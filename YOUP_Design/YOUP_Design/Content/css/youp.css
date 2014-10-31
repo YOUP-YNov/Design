@@ -19,7 +19,6 @@
     .nav-border {
          background-color: #367bb7;
          height:15px;
-         width:100%;
          border-bottom:1px solid #132c42;
     }
 
@@ -29,7 +28,7 @@
 
     .upper-footer {
         background-color: #367bb7;
-        padding: 5%;
+        padding: 50px;
         text-align:center;
         color:#fff;
         font-size:20px;
@@ -52,7 +51,7 @@
     }
 
 #main-wrapper {
-    margin-top:50px;
+    margin-top:75px;
 }
 
 /*=================================================================================================
