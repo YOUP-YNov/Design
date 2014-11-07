@@ -6,7 +6,7 @@ using System.Web;
 namespace YOUP_Design.Classes.Evenement
 {
     /// <summary>
-    /// 
+    /// Enumération des statuts de l'evènement.
     /// </summary>
     public enum EventStateEnum
     {

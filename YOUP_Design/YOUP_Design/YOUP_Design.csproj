@@ -218,7 +218,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BlogModels.cs" />
+    <Compile Include="Models\Blog\ArticleModel.cs" />
+    <Compile Include="Models\Blog\BlogModel.cs" />
+    <Compile Include="Models\Blog\CategorieModel.cs" />
+    <Compile Include="Models\Blog\CommentaireModel.cs" />
+    <Compile Include="Models\Blog\PubliciteModel.cs" />
+    <Compile Include="Models\Evenement\EventFrontModel.cs" />
+    <Compile Include="Models\Evenement\EventStateFrondModel.cs" />
+    <Compile Include="Models\Evenement\InviteFriendsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +330,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Images\barre.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -363,9 +371,17 @@
     <Content Include="Views\Evenements\Index.cshtml" />
     <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Inscription.cshtml" />
+    <Content Include="Views\Profile\MDPOublie.cshtml" />
+    <Content Include="Views\Profile\partialActivite.cshtml" />
+    <Content Include="Views\Profile\partialProfil.cshtml" />
+    <Content Include="Views\Profile\partialAmis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Forum\" />
+    <Folder Include="Models\Historique\" />
+    <Folder Include="Models\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

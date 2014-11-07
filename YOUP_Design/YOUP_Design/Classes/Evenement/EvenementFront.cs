@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Model d'accès au données représentant un évenement
+    /// Model d'accès au données représentant un évenement.
     /// </summary>
     public class EvenementFront
     {
@@ -118,7 +118,7 @@
         /// </summary>
         public bool  Payant { get; set; }
         /// <summary>
-        /// 
+        /// Constructeur de EvenementFront
         /// </summary>
         /// <param name="organisateur"></param>
         /// <param name="end_inscription"></param>
