@@ -1,6 +1,35 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Profil";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Profile";
 }
 
-<h2>Index</h2>
+
+<link href="~/Content/css/profile.css" rel="stylesheet" />
+
+<div class="publicite well">
+    Encart de publicité
+</div>
+
+<div class="moduleRecherche form-group input-group">
+    <input type="text" class="form-control" placeholder="Rechercher dans le Profil">
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+    </span>
+</div>
+
+<div class="photoProfil">
+    <img src="~/Images/barre.png" />
+    <img id="idPhotoProfil" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" alt="photo profil" class="img-circle">
+    <img src="~/Images/barre.png" />
+    <br/>
+    <h3 class="helloUtil">Salut Florian Laubier !</h3>
+</div>
+
+<div class="btn-group btn-group-justified menuProfil">
+    <a href="#" class="btn btn-default">Activité</a>
+    <a href="#" class="btn btn-default">Profil</a>
+    <a href="#" class="btn btn-default">Amis</a>
+</div>
+
+@Html.Partial("~/Views/Profile/partialProfil.cshtml")
