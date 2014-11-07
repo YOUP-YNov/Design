@@ -181,6 +181,31 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\Blog\Article.cs" />
+    <Compile Include="Classes\Blog\Blog.cs" />
+    <Compile Include="Classes\Blog\Categorie.cs" />
+    <Compile Include="Classes\Blog\Commentaire.cs" />
+    <Compile Include="Classes\Blog\Publicite.cs" />
+    <Compile Include="Classes\Evenement\EvenementCategorieFront.cs" />
+    <Compile Include="Classes\Evenement\EvenementFront.cs" />
+    <Compile Include="Classes\Evenement\EvenementTimeline.cs" />
+    <Compile Include="Classes\Evenement\EventImageFront.cs" />
+    <Compile Include="Classes\Evenement\EventLocationFront.cs" />
+    <Compile Include="Classes\Evenement\EventStateEnumFront.cs" />
+    <Compile Include="Classes\Evenement\EventStateFront.cs" />
+    <Compile Include="Classes\Evenement\InviteFriends.cs" />
+    <Compile Include="Classes\Forum\Categorie.cs" />
+    <Compile Include="Classes\Forum\Forum.cs" />
+    <Compile Include="Classes\Forum\Message.cs" />
+    <Compile Include="Classes\Forum\Topic.cs" />
+    <Compile Include="Classes\Historique\Categorie.cs" />
+    <Compile Include="Classes\Historique\Evenement.cs" />
+    <Compile Include="Classes\Historique\EvenementLieu.cs" />
+    <Compile Include="Classes\Historique\Utilisateur.cs" />
+    <Compile Include="Classes\Profile\Categorie.cs" />
+    <Compile Include="Classes\Profile\Utilisateur.cs" />
+    <Compile Include="Classes\Profile\UtilisateurPublic.cs" />
+    <Compile Include="Classes\Profile\UtilisateurSmall.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -193,7 +218,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BlogModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +233,15 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\js\animo.js" />
+    <Content Include="Content\js\blog.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\evenements.js" />
+    <Content Include="Content\js\forum.js" />
+    <Content Include="Content\js\global.js" />
+    <Content Include="Content\js\home.js" />
     <Content Include="Content\js\npm.js" />
+    <Content Include="Content\js\profile.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -340,6 +370,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Blog\" />
+    <Folder Include="Models\Evenement\" />
+    <Folder Include="Models\Forum\" />
+    <Folder Include="Models\Historique\" />
+    <Folder Include="Models\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
