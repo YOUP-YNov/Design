@@ -10,17 +10,17 @@ namespace YOUP_Design.Classes.Evenement
     public class EventStateFront
     {
         /// <summary>
-        /// Assigne ou récupère le libelle de l'état de l'évenement
+        /// Assigne ou récupère le libelle de l'état de l'évenement.
         /// </summary>
         public EventStateEnum Nom { get; set; }
 
         /// <summary>
-        /// Assigne ou récupère l'id de l'état de l'évenement
+        /// Assigne ou récupère l'id de l'état de l'évenement.
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// 
+        /// Constructeur de EventStateFront
         /// </summary>
         /// <param name="name"></param>
         public EventStateFront(EventStateEnum name)
@@ -30,7 +30,7 @@ namespace YOUP_Design.Classes.Evenement
         }
 
         /// <summary>
-        /// 
+        /// Constructeur de EventStateFront
         /// </summary>
         public EventStateFront()
         {

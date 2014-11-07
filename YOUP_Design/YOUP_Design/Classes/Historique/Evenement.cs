@@ -8,11 +8,11 @@ namespace YOUP_Design.Classes.Historique
     public class Evenement
     {
         /// <summary>
-        /// 
+        /// Id de l'evènement.
         /// </summary>
         private int _Id;
         /// <summary>
-        /// 
+        /// Assigne ou récupère l'id de l'evènement.
         /// </summary>
         public int Id
         {
@@ -20,11 +20,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Id = value; }
         }
         /// <summary>
-        /// 
+        /// Id de l'utilisateur.
         /// </summary>
         private int _IdUser;
         /// <summary>
-        /// 
+        /// Assigne ou récupère l'id de l'utilisateur.
         /// </summary>
         public int IdUser
         {
@@ -32,11 +32,11 @@ namespace YOUP_Design.Classes.Historique
             set { _IdUser = value; }
         }
         /// <summary>
-        /// 
+        /// Date de l'evènement.
         /// </summary>
         private DateTime _DateEvenement;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la date de l'evènement.
         /// </summary>
         public DateTime DateEvenement
         {
@@ -44,11 +44,11 @@ namespace YOUP_Design.Classes.Historique
             set { _DateEvenement = value; }
         }
         /// <summary>
-        /// 
+        /// Date de modification de l'evènement.
         /// </summary>
         private DateTime _DateModification;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la date de modification de l'evènement.
         /// </summary>
         public DateTime DateModification
         {
@@ -56,11 +56,11 @@ namespace YOUP_Design.Classes.Historique
             set { _DateModification = value; }
         }
         /// <summary>
-        /// 
+        /// Date de fin d'inscription à l'evènement.
         /// </summary>
         private DateTime _DateFinIncription;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la date de fon d'inscription à l'evènement.
         /// </summary>
         public DateTime DateFinIncription
         {
@@ -68,11 +68,11 @@ namespace YOUP_Design.Classes.Historique
             set { _DateFinIncription = value; }
         }
         /// <summary>
-        /// 
+        /// Titre de l'evènement.
         /// </summary>
         private string _Titre;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le titre de l'evènement.
         /// </summary>
         public string Titre
         {
@@ -80,11 +80,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Titre = value; }
         }
         /// <summary>
-        /// 
+        /// Description de l'evènement.
         /// </summary>
         private string _Description;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la description de l'evènement.
         /// </summary>
         public string Description
         {
@@ -92,11 +92,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Description = value; }
         }
         /// <summary>
-        /// 
+        /// Nombre maximum de participants à l'evènement.
         /// </summary>
         private int _NbMaxParticipant;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le nombre maximum de participants à l'evènement.
         /// </summary>
         public int NbMaxParticipant
         {
@@ -104,11 +104,11 @@ namespace YOUP_Design.Classes.Historique
             set { _NbMaxParticipant = value; }
         }
         /// <summary>
-        /// 
+        /// Nombre minimum de participants à l'evènement.
         /// </summary>
         private int _NbMinParticipant;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le nombre minimum de participants à l'evènement.
         /// </summary>
         public int NbMinParticipant
         {
@@ -116,11 +116,11 @@ namespace YOUP_Design.Classes.Historique
             set { _NbMinParticipant = value; }
         }
         /// <summary>
-        /// 
+        /// Prix de l'evènement.
         /// </summary>
         private double _Prix;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le prix de l'evènement.
         /// </summary>
         public double Prix
         {
@@ -132,7 +132,7 @@ namespace YOUP_Design.Classes.Historique
         /// </summary>
         private bool _Premium;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la valeur pour savoir si l'evènement est premium.
         /// </summary>
         public bool Premium
         {
@@ -140,11 +140,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Premium = value; }
         }
         /// <summary>
-        /// 
+        /// Etat de l'evènement.
         /// </summary>
         private string _Etat;
         /// <summary>
-        /// 
+        /// Assigne ou récupère l'état de l'evènement.
         /// </summary>
         public string Etat
         {
@@ -152,11 +152,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Etat = value; }
         }
         /// <summary>
-        /// 
+        /// Statut de l'evènement.
         /// </summary>
         private string _Statut;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le statut de l'evènement.
         /// </summary>
         public string Statut
         {
@@ -164,11 +164,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Statut = value; }
         }
         /// <summary>
-        /// 
+        /// Catégorie de l'evènement.
         /// </summary>
         private Categorie _Categorie;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la catégorie de l'evènement.
         /// </summary>
         public Categorie Categorie
         {
@@ -181,11 +181,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Categorie = value; }
         }
         /// <summary>
-        /// 
+        /// Lieu de l'evènement.
         /// </summary>
         private EvenementLieu _Lieu;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le lieu de l'evènement.
         /// </summary>
         public EvenementLieu Lieu
         {
@@ -201,11 +201,11 @@ namespace YOUP_Design.Classes.Historique
             }
         }
         /// <summary>
-        /// 
+        /// Liste de participants.
         /// </summary>
         private IEnumerable<Utilisateur> _Participants;
         /// <summary>
-        /// 
+        /// Assigne ou récupère une liste de participants.
         /// </summary>
         public IEnumerable<Utilisateur> Participants
         {
@@ -221,11 +221,11 @@ namespace YOUP_Design.Classes.Historique
             }
         }
         /// <summary>
-        /// 
+        /// Createur de l'evènement.
         /// </summary>
         private Utilisateur _Createur;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le createur de l'evènement.
         /// </summary>
         public Utilisateur Createur
         {

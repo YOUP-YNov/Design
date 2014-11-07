@@ -9,12 +9,12 @@ namespace YOUP_Design.Classes.Evenement
     public class EvenementCategorieFront
     {
         /// <summary>
-        /// 
+        /// Id de la catégorie de l'event.
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// 
+        /// Libelle de la catégorie de l'event.
         /// </summary>
         public string Libelle { get; set; }
     }
