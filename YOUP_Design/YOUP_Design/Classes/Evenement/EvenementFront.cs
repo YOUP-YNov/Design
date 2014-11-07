@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Model d'accès au données représentant un évenement
+    /// Model d'accès au données représentant un évenement.
     /// </summary>
     public class EvenementFront
     {

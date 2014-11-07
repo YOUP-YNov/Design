@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace YOUP_Design.Classes.Evenement
 {
+    /// <summary>
+    /// Model d'accès au données représentant l'image d'un événement.
+    /// </summary>
     public class EventImageFront
     {
         /// <summary>

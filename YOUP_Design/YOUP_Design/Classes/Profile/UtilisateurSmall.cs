@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace YOUP_Design.Classes.Profile
 {
+    /// <summary>
+    /// Model d'accès au données représentant un utilisateursmall.
+    /// </summary>
     public class UtilisateurSmall
     {
         /// <summary>

@@ -5,6 +5,9 @@ using System.Web;
 
 namespace YOUP_Design.Classes.Historique
 {
+    /// <summary>
+    /// Model d'accès au données représentant un événement.
+    /// </summary>
     public class Evenement
     {
         /// <summary>

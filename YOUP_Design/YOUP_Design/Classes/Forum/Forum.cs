@@ -5,6 +5,9 @@ using System.Web;
 
 namespace YOUP_Design.Classes.Forum
 {
+    /// <summary>
+    /// Model d'accès au données représentant un forum.
+    /// </summary>
     public class Forum
     {
         /// <summary>

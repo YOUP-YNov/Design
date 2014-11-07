@@ -218,7 +218,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BlogModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +364,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Blog\" />
+    <Folder Include="Models\Evenement\" />
+    <Folder Include="Models\Forum\" />
+    <Folder Include="Models\Historique\" />
+    <Folder Include="Models\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

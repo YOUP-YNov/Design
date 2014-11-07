@@ -5,7 +5,9 @@ using System.Web;
 
 namespace YOUP_Design.Classes.Evenement
 {
-    
+    /// <summary>
+    /// Model d'accès au données représentant les amis invités à un événement.
+    /// </summary>
     public class InviteFriends
     {
         /// <summary>

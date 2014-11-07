@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace YOUP_Design.Classes.Blog
 {
+    /// <summary>
+    /// Model d'accès au données représentant commentaire.
+    /// </summary>
     public class Commentaire
     {
         /// <summary>

@@ -5,6 +5,9 @@ using System.Web;
 
 namespace YOUP_Design.Classes.Historique
 {
+    /// <summary>
+    /// Model d'accès au données représentant une catégorie.
+    /// </summary>
     public class Categorie
     {
         /// <summary>

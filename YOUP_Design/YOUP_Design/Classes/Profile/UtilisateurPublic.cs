@@ -6,6 +6,9 @@ using System.Web;
 
 namespace YOUP_Design.Classes.Profile
 {
+    /// <summary>
+    /// Model d'accès au données représentant un utilisateurpublic.
+    /// </summary>
     public class UtilisateurPublic
     {
         /// <summary>
