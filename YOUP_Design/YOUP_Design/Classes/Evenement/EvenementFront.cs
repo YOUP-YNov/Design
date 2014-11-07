@@ -117,7 +117,22 @@
         /// Assigne ou récupère la visibilité de l'évènement
         /// </summary>
         public bool  Payant { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="organisateur"></param>
+        /// <param name="end_inscription"></param>
+        /// <param name="date_event"></param>
+        /// <param name="keys_words"></param>
+        /// <param name="friends"></param>
+        /// <param name="total_people"></param>
+        /// <param name="description"></param>
+        /// <param name="title"></param>
+        /// <param name="location"></param>
+        /// <param name="prenium"></param>
+        /// <param name="payant"></param>
+        /// <param name="isPublic"></param>
+        /// <param name="lstPicture"></param>
         public EvenementFront(long organisateur, DateTime end_inscription, DateTime date_event, 
             List<String> keys_words, List<object> friends, 
             int total_people, string description, string title,
@@ -152,7 +167,9 @@
 
         }
 
-        //Constructeur vide
+       /// <summary>
+       /// Constructeur vide.
+       /// </summary>
         public EvenementFront()
         {
         }

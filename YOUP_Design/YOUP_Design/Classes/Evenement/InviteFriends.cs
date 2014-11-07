@@ -5,6 +5,9 @@ using System.Web;
 
 namespace YOUP_Design.Classes.Evenement
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class InviteFriends
     {
         public long idEvent;

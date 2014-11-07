@@ -9,16 +9,29 @@ namespace YOUP_Design.Classes.Profile
 {
     public class UtilisateurSmall
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int Utilisateur_Id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Pseudo { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string PhotoChemin { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public UtilisateurSmall()
         {
                 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="row"></param>
         public UtilisateurSmall(DataRow row)
         {
             Utilisateur_Id = Convert.ToInt32(row["Utilisateur_Id"]);
