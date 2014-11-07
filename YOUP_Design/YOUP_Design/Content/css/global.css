@@ -54,8 +54,23 @@
 		Main
 ---------------------------------------------------------------------------------------------*/
 
-#main-wrapper {
+html, body {
+  height: 100%;
+}
+
+.main-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -290px;
+}
+
+.content-wrapper {
     margin:75px 0;
+}
+
+.footer, .push {
+    height: 290px;
 }
 
 /*=================================================================================================
