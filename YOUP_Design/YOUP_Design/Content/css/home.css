@@ -1,2 +1,24 @@
-﻿body {
+﻿.fullscreen-bg {
+    border-top: 1px solid rgba(255,255,255,.12);
+	/*box-shadow: 0 5px 50px black;*/
+	background-position:center; 
+	background-size:cover; 
+	background-repeat:no-repeat; 
+	background-attachment:fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.home-image-1 {
+    background-image:url(../../Images/home-image-1.jpg);
+}
+
+.home-image-1 h1{
+    color:#fff;
+    font-size: 70px;
+}
+
+.home-image-1 h2{
+    color:#ccc;
+    font-size:40px;
 }
