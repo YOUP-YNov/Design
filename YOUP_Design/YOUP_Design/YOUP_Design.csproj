@@ -325,7 +325,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Article\" />
     <Folder Include="Views\Blog\" />
+    <Folder Include="Views\Evenement\" />
+    <Folder Include="Views\Forum\" />
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
