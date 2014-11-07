@@ -8,9 +8,17 @@ namespace YOUP_Design.Classes.Blog
 {
     public class Categorie
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int Categorie_id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Libelle { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Categorie()
         {
 

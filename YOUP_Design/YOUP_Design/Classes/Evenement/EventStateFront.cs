@@ -19,12 +19,19 @@ namespace YOUP_Design.Classes.Evenement
         /// </summary>
         public long Id { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
         public EventStateFront(EventStateEnum name)
         {
             Nom = name;
             Id = (long)name;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EventStateFront()
         {
 

@@ -8,8 +8,14 @@ namespace YOUP_Design.Classes.Evenement
 {
     public class EvenementCategorieFront
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public long Id { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Libelle { get; set; }
     }
 }
