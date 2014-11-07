@@ -8,11 +8,11 @@ namespace YOUP_Design.Classes.Historique
     public class EvenementLieu
     {
         /// <summary>
-        /// 
+        /// L'id de l'événement.
         /// </summary>
         private int _Id;
         /// <summary>
-        /// 
+        /// Assigne ou récupère l'id de l'événement.
         /// </summary>
         public int Id
         {
@@ -20,11 +20,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Id = value; }
         }
         /// <summary>
-        /// 
+        /// La ville de l'événement.
         /// </summary>
         private string _Ville;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la ville de l'événement.
         /// </summary>
         public string Ville
         {
@@ -32,11 +32,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Ville = value; }
         }
         /// <summary>
-        /// 
+        /// Le code postal de l'événement.
         /// </summary>
         private string _CodePostale;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le code postal de l'événement.
         /// </summary>
         public string CodePostale
         {
@@ -44,11 +44,11 @@ namespace YOUP_Design.Classes.Historique
             set { _CodePostale = value; }
         }
         /// <summary>
-        /// 
+        /// Le pays de l'événement.
         /// </summary>
         private string _Pays;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le pays d'événement.
         /// </summary>
         public string Pays
         {
@@ -56,11 +56,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Pays = value; }
         }
         /// <summary>
-        /// 
+        /// La longitude de l'événement.
         /// </summary>
         private double _Longitude;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la longitude de l'événement.
         /// </summary>
         public double Longitude
         {
@@ -68,11 +68,11 @@ namespace YOUP_Design.Classes.Historique
             set { _Longitude = value; }
         }
         /// <summary>
-        /// 
+        /// La latitude de l'événement.
         /// </summary>
         private double _Latitute;
         /// <summary>
-        /// 
+        /// Assigne ou récupère la latitude de l'événement.
         /// </summary>
         public double Latitute
         {

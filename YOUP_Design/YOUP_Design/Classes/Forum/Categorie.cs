@@ -8,15 +8,15 @@ namespace YOUP_Design.Classes.Forum
     public class Categorie
     {
         /// <summary>
-        /// 
+        /// Assigne ou récupère l'id du sujet.
         /// </summary>
         public long Sujet_id { get; set; }
         /// <summary>
-        /// 
+        /// Assigne ou récupère l'id du forum.
         /// </summary>
         public long Forum_id { get; set; }
         /// <summary>
-        /// 
+        /// Assigne ou récupère le nom de la catégorie.
         /// </summary>
         public string Nom { get; set; }
     }

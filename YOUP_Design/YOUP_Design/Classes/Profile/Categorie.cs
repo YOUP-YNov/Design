@@ -10,22 +10,22 @@ namespace YOUP_Design.Classes.Profile
     public class Categorie
     {
         /// <summary>
-        /// 
+        /// Assigne ou récupère l'id de la catégorie.
         /// </summary>
         public int Categorie_id;
         /// <summary>
-        /// 
+        /// Assigne ou récupère le libelle de la catégorie.
         /// </summary>
         public string Libelle;
         /// <summary>
-        /// 
+        /// Constructeur vide de la catégorie.
         /// </summary>
         public Categorie()
         {
                 
         }
         /// <summary>
-        /// 
+        /// Constructeur de Categorie.
         /// </summary>
         /// <param name="row"></param>
         public Categorie(DataRow row)
