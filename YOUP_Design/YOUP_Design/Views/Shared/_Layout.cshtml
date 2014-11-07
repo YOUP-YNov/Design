@@ -36,11 +36,11 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="youp-menu">
                         <ul class="nav navbar-nav">
-                            <li class="active">@Html.ActionLink("Accueil", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
-                            <li>@Html.ActionLink("Evenements", "Index", "Evenements")</li>
-                            <li>@Html.ActionLink("Forum", "Index", "Forum")</li>
-                            <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
+                            <li @if (@ViewBag.ActiveMenu == "Home") { <text> class="active" </text>  }>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                            <li @if (@ViewBag.ActiveMenu == "Profile") { <text> class="active" </text> }>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                            <li @if (@ViewBag.ActiveMenu == "Evenements") { <text> class="active" </text> }>@Html.ActionLink("Evenements", "Index", "Evenements")</li>
+                            <li @if (@ViewBag.ActiveMenu == "Forum") { <text> class="active" </text> }>@Html.ActionLink("Forum", "Index", "Forum")</li>
+                            <li @if (@ViewBag.ActiveMenu == "Blog") { <text> class="active" </text> }>@Html.ActionLink("Blog", "Index", "Blog")</li>
                         </ul>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="input-group">
