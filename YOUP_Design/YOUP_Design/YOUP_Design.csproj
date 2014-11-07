@@ -329,6 +329,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Images\barre.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -369,6 +370,11 @@
     <Content Include="Views\Evenements\Index.cshtml" />
     <Content Include="Views\Forum\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Inscription.cshtml" />
+    <Content Include="Views\Profile\MDPOublie.cshtml" />
+    <Content Include="Views\Profile\partialActivite.cshtml" />
+    <Content Include="Views\Profile\partialProfil.cshtml" />
+    <Content Include="Views\Profile\partialAmis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
