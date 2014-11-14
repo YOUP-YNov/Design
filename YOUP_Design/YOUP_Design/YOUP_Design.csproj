@@ -208,6 +208,7 @@
     <Compile Include="Classes\Profile\UtilisateurSmall.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\HistoriqueController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\EvenementsController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\forum.css" />
     <Content Include="Content\css\global.css" />
+    <Content Include="Content\css\historique.css" />
     <Content Include="Content\css\home.css" />
     <Content Include="Content\css\profile.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
@@ -376,6 +378,12 @@
     <Content Include="Views\Profile\partialActivite.cshtml" />
     <Content Include="Views\Profile\partialProfil.cshtml" />
     <Content Include="Views\Profile\partialAmis.cshtml" />
+    <Content Include="Views\Historique\Index.cshtml" />
+    <Content Include="Views\Historique\partialDeviceOS.cshtml" />
+    <Content Include="Views\Historique\partialPagesVisitees.cshtml" />
+    <Content Include="Views\Historique\partialSaisonnalite.cshtml" />
+    <Content Include="Views\Historique\partialStatsUtilisation.cshtml" />
+    <Content Include="Views\Historique\partialTops.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
