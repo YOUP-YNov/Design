@@ -1,1 +1,47 @@
-﻿
+﻿$(document).ready(function () {
+
+    $('#afficheProfil').fadeIn();
+    $('#lienPro').css("background-color", "#428bca");
+
+    $('#afficheActivite').hide();
+    $('#afficheAmis').hide();
+
+    $(document).on('click', "#lienAm", function () {
+
+        $('#afficheProfil').hide();
+        $('#afficheActivite').hide();
+        $('#afficheAmis').fadeIn();
+
+        $('#lienAct').css("background-color", "#eeeeee");
+        $('#lienPro').css("background-color", "#eeeeee");
+        $('#lienAm').css("background-color", "#428bca");
+
+    });
+
+    $(document).on('click', "#lienPro", function () {
+
+        $('#afficheProfil').fadeIn();
+        $('#afficheActivite').hide();
+        $('#afficheAmis').hide();
+
+        $('#lienAct').css("background-color", "#eeeeee");
+        $('#lienPro').css("background-color", "#428bca");
+        $('#lienAm').css("background-color", "#eeeeee");
+
+    });
+
+    $(document).on('click', "#lienAct", function () {
+
+        $('#afficheProfil').hide();
+        $('#afficheActivite').fadeIn();
+        $('#afficheAmis').hide();
+
+        $('#lienAct').css("background-color", "#428bca");
+        $('#lienPro').css("background-color", "#eeeeee");
+        $('#lienAm').css("background-color", "#eeeeee");
+
+    });
+
+
+
+});
