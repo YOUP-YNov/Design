@@ -1,9 +1,10 @@
 ﻿var evenementModule = (function () {
+    var apiUrl = "http://youp-evenementapi.azurewebsites.net/api/";
 
     var recuperationListeEvenements = function () {
         $.ajax({
             type: "GET",
-            url: 'http://youp-evenementapi.azurewebsites.net/api/Evenement',
+            url: apiUrl + 'Evenement',
             success: function (msg) {
                 var listeEvenements = jQuery.parseJSON(msg);
                 alert("sucess recuperationListeEvenements");
@@ -15,16 +16,12 @@
     {
         $.ajax({
             type: "GET",
-            url: 'http://youp-evenementapi.azurewebsites.net/api/Evenement/id',
+            url: apiUrl + 'Evenement/id',
             success: function (msg) {
                 var evenement = jQuery.parseJSON(msg);
                 alert("sucess recupererEvenementParId");
             }
         });
-    }
-
-    var creationEvenements = function(){
-
     }
     
     var init = function () {
