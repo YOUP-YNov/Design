@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.Classes.Blog;
+using YOUP_Design.Models.Blog;
 
 namespace YOUP_Design.Controllers
 {
@@ -27,8 +29,10 @@ namespace YOUP_Design.Controllers
         //
         // GET: /Blog/Create
 
-        public ActionResult Create()
+        public ActionResult Create(BlogModel model)
         {
+            Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
+            //httpclient (voir msdn)
             return View();
         }
 
