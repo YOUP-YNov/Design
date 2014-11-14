@@ -59,15 +59,13 @@
                 </nav>
             </header>
             <section class="content-wrapper">
-                <div class="container">
                 @RenderBody()
-                </div>
                 <div class="push"></div>
             </section>
         </div>
         <footer class="footer">
             <div class="upper-footer">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <div class="col-sm-4">
                             Logo
@@ -108,11 +106,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         @Scripts.Render("~/Content/js/animo.js")
+        @Scripts.Render("~/Content/js/raphael-min.js")
         @Scripts.Render("~/Content/js/home.js")
         @Scripts.Render("~/Content/js/profile.js")
         @Scripts.Render("~/Content/js/evenements.js")
         @Scripts.Render("~/Content/js/forum.js")
         @Scripts.Render("~/Content/js/blog.js")
+        @Scripts.Render("~/Content/js/historique.js")
         @RenderSection("scripts", required: false)
     </body>
 </html>
