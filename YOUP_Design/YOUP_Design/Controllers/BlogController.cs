@@ -18,6 +18,11 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
+        public ActionResult Blog_vue()
+        {
+            return View("Blog_vue");
+        }
+
         //
         // GET: /Blog/Details/5
 
