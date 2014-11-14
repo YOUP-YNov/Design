@@ -384,6 +384,8 @@
     <Content Include="Views\Historique\partialSaisonnalite.cshtml" />
     <Content Include="Views\Historique\partialStatsUtilisation.cshtml" />
     <Content Include="Views\Historique\partialTops.cshtml" />
+    <Content Include="Views\Forum\ViewForum.cshtml" />
+    <Content Include="Views\Forum\Discussion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
