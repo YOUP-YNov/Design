@@ -4,47 +4,55 @@
     ViewBag.ActiveMenu = "Profile";
 }
 
-
-<link href="~/Content/css/profile.css" rel="stylesheet" />
-
-<div class="publicite well">
-    Encart de publicité
-</div>
-
-<div class="rechercheProfil">
-    <div class="moduleRecherche form-group input-group">
-        <input type="text" class="form-control" placeholder="Rechercher dans le Profil">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-        </span>
+<div class="container divAllProfil">
+    <div class="publicite well">
+        Encart de publicité
     </div>
-    <div class="btnModifPhoto">
-        <button type="submit" class="btn btn-default">Modifier ma photo</button>
-    </div>
-</div>
 
-<div class="photoProfil">
-    <div class="row parentDecoProfil">
-        <div class="col-lg-offset-2 col-lg-3 decoPhotoProfil "></div>
-        <div class="col-lg-2">
-            <img id="idPhotoProfil" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" alt="photo profil" class="img-circle">
+    <div class="rechercheProfil">
+        <div class="moduleRecherche form-group input-group">
+            <input type="text" class="form-control" placeholder="Rechercher dans le Profil">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+            </span>
         </div>
-        <div class="col-lg-3 decoPhotoProfil" ></div>
-    </div>
-
-    <br />
-    <h3 class="helloUtil">Salut Florian Laubier !</h3>
-</div>
-
-<div class="row ">
-    <div class="col-lg-offset-2 col-lg-8 text-center">
-        <div class=" btn-group btn-group-justified menuProfil">
-            <a href="#" class="btn btn-default">Activité</a>
-            <a href="#" class="btn btn-default">Profil</a>
-            <a href="#" class="btn btn-default">Amis</a>
+        <div class="btnModifPhoto">
+            <button type="submit" class="btn btn-default">Modifier ma photo</button>
         </div>
     </div>
+
+    <div class="photoProfil">
+        <div class="row parentDecoProfil">
+            <div class="col-lg-offset-2 col-lg-3 decoPhotoProfil "></div>
+            <div class="col-lg-2">
+                <img id="idPhotoProfil" src="~/Images/default_profil.png" alt="photo profil" class="img-circle">
+            </div>
+            <div class="col-lg-3 decoPhotoProfil"></div>
+        </div>
+
+        <br />
+        <h3 class="helloUtil">Salut Florian Laubier !</h3>
+    </div>
+
+    <div class="row ">
+        <div id="menuProfile" class="col-lg-offset-2 col-lg-8 text-center">
+            <div class=" btn-group btn-group-justified menuProfil">
+                <a id="lienAct" class="btn btn-default">Activité</a>
+                <a id="lienPro" class="btn btn-default">Profil</a>
+                <a id="lienAm" class="btn btn-default">Amis</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="afficheActivite">
+        @Html.Partial("~/Views/Profile/partialActivite.cshtml")
+    </div>
+
+    <div id="afficheProfil">
+        @Html.Partial("~/Views/Profile/partialProfil.cshtml")
+    </div>
+
+    <div id="afficheAmis">
+        @Html.Partial("~/Views/Profile/partialAmis.cshtml")
+    </div>
 </div>
-
-
-@Html.Partial("~/Views/Profile/partialAmis.cshtml")
