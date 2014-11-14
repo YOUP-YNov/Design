@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Blog_vue";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Blog";
+}
+<div class="container">
+    <div class="row">
+        <div class="rechercheBlog">
+            <div class="moduleRechercheBlog form-group input-group">
+                <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
+                    <option value="Categories" selected>Categories</option>
+                </select>
+                <input type="text" class="form-control" placeholder="Rechercher">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <div class="btnModifPhoto">
+                <button type="submit" class="btn btn-default">Gérer mon Blog</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h2>Blog Title</h2>
+        <div class="photoProfil">
+            <div class="row_blog parentDecoProfil">
+                <div class="col-lg-2">
+                    <img id="idPhotoProfil" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" alt="photo profil" class="img-circle">
+                </div>
+                <div class="col-lg-3 decoPhotoProfil"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Article Title</h3>
+        <div class="article_blog">
+            <img src="http://www.pokertwitt.com/wp-content/uploads/2012/09/poker_night_by_gunblade132-d3ch6n81.jpg" alt="image" class="img-rounded">
+        </div>
+    </div>
+</div>

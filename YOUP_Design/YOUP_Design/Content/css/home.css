@@ -1,6 +1,5 @@
 ﻿.home-fullscreen-bg {
     border-top: 1px solid rgba(255,255,255,.1);
-	box-shadow: 0 5px 50px #000;
 	background-position:center; 
 	background-size:cover; 
 	background-repeat:no-repeat; 
@@ -11,6 +10,10 @@
 
 #home-part-1 {
     background-image:url(../../Images/home-image-1.jpg);
+}
+
+.full-width {
+    width:100%;
 }
 
 #home-part-1 h1{
@@ -26,10 +29,16 @@
 #home-part-1 .next-section {
     display:block;
     color:#fff;
-    font-size:50px;
+    font-size:60px;
     text-align:center;
+    margin-top:50px;
 }
 
 #home-part-2 {
     background-image:url(../../Images/home-image-2.jpg);
+}
+
+#home-part-2 h1{
+    color:#fff;
+    font-size: 50px;
 }
