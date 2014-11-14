@@ -3,3 +3,34 @@
     color:#367bb7;
     font-size:18px;
 }
+s
+
+.photoProfil .row_blog{ 
+    display: flex;
+    padding-top:10px;
+    justify-content: left;
+    align-items: center;
+}
+.rechercheBlog{
+    display:flex;
+    padding-top:10px;
+    justify-content:space-between;
+}
+
+.moduleRechercheBlog{
+    width:55%;
+    display:flex;
+}
+
+.article_blog {
+
+}
+
+.article_blog container-img {
+   
+}
+
+.article_blog img{
+    width:300px;
+}
+
