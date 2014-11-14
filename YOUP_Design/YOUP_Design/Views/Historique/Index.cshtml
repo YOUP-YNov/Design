@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Historique";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/historique.css" rel="stylesheet" />
+
+<div class="row ">
+    <div class="col-lg-offset-2 col-lg-8 text-center">
+        <div class=" btn-group btn-group-justified menuProfil">
+            <a href="#" class="btn btn-default">Type de device/OS</a>
+            <a href="#" class="btn btn-default">Pages les plus visitées</a>
+            <a href="#" class="btn btn-default">Saisonnalité</a>
+            <a href="#" class="btn btn-default">Stats d'utilisation/pers</a>
+            <a href="#" class="btn btn-default">Tops</a>
+        </div>
+    </div>
+</div>
+
+    @Html.Partial("~/Views/Historique/partialStatsUtilisation.cshtml")
