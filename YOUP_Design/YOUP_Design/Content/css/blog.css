@@ -1,12 +1,4 @@
 ﻿
-
-.table_blog td{ 
-    border:solid 1px black;
-   padding:5px;
-    text-align:center;
-    width:auto;
-}
-
 .blog_title {
     color:#367bb7;
     font-size:18px;
