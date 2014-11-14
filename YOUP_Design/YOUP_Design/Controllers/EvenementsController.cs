@@ -15,7 +15,6 @@ namespace YOUP_Design.Controllers
         // GET: /Evenement/
         public  ActionResult Index()
         {
-            //var test = apiEvenement.getEvenements();
             return View();
         }
 
