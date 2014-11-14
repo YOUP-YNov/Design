@@ -223,10 +223,9 @@
     <Compile Include="Models\Blog\BlogModel.cs" />
     <Compile Include="Models\Blog\CommentaireModel.cs" />
     <Compile Include="Models\Blog\PubliciteModel.cs" />
-    <Compile Include="Models\Evenement\EventFrontModel.cs" />
     <Compile Include="Models\Evenement\EventStateEnumFront.cs" />
-    <Compile Include="Models\Evenement\EventStateFrondModel.cs" />
-    <Compile Include="Models\Evenement\InviteFriendsModel.cs" />
+    <Compile Include="Models\Forum\MessageModel.cs" />
+    <Compile Include="Models\Forum\TopicModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -387,7 +386,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Forum\" />
     <Folder Include="Models\Historique\" />
     <Folder Include="Models\Profile\" />
   </ItemGroup>
