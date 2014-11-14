@@ -9,20 +9,27 @@
     width: 100%;
 }
 
-.home-part-1 {
+#home-part-1 {
     background-image:url(../../Images/home-image-1.jpg);
 }
 
-.home-part-1 h1{
+#home-part-1 h1{
     color:#fff;
     font-size: 70px;
 }
 
-.home-part-1 h2{
+#home-part-1 h2{
     color:#ccc;
     font-size:40px;
 }
 
-.home-part-2 {
+#home-part-1 .next-section {
+    display:block;
+    color:#fff;
+    font-size:50px;
+    text-align:center;
+}
+
+#home-part-2 {
     background-image:url(../../Images/home-image-2.jpg);
 }
