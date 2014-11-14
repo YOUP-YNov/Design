@@ -4,56 +4,64 @@
     ViewBag.ActiveMenu = "Forum";
 
 }
-
-<h1>Index</h1>
-<div class="publicite well">
-    Encart de publicité
-</div>
-
-<div class="rechercheProfil">
-    <div class="moduleRecherche form-group input-group">
-        <input type="text" class="form-control" placeholder="Recherche Forum">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-        </span>
+<div class="container">
+    <h1>Index</h1>
+    <div class="publicite well">
+        Encart de publicité
     </div>
-</div>
+    
 
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h2 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#Forum-Categorie-1" aria-expanded="true" aria-controls="collapseOne">
-                    Collapsible Group Item #1
-                </a>
-            </h2>
+    <!--
+        FORUM
+            CATEGORIES
+                TOPICS
+                    MESSAGES
+    -->
+    <div class="rechercheForum">
+        <div class="moduleRecherche form-group input-group">
+            <input type="text" class="form-control" placeholder="Recherche Forum">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+            </span>
         </div>
-        <div id="Forum-Categorie-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <ul>
-                    <li><a href="#">Forum 1</a></li>
-                    <li><a href="#">Forum 2</a></li>
-                </ul>
+    </div>  
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#Forum-Categorie-1" aria-expanded="true" aria-controls="collapseOne">
+                        Général
+                    </a>
+                </h2>
+            </div>
+            <div id="Forum-Categorie-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="/Forum/ViewForum">Forum 1</a></li>
+                        <li><a href="/Forum/ViewForum">Forum 2</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h2 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#Forum-Categorie-2" aria-expanded="true" aria-controls="collapseOne">
-                    Collapsible Group Item #1
-                </a>
-            </h2>
-        </div>
-        <div id="Forum-Categorie-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <ul>
-                    <li><a href="#">Forum 1</a></li>
-                    <li><a href="#">Forum 2</a></li>
-                    <li><a href="#">Forum 3</a></li>
-                    <li><a href="#">Forum 4</a></li>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#Forum-Categorie-2" aria-expanded="true" aria-controls="collapseOne">
+                        Profession
+                    </a>
+                </h2>
+            </div>
+            <div id="Forum-Categorie-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="#">Forum 1</a></li>
+                        <li><a href="#">Forum 2</a></li>
+                        <li><a href="#">Forum 3</a></li>
+                        <li><a href="#">Forum 4</a></li>
 
-                </ul>            
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
