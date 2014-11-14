@@ -1,4 +1,9 @@
 ﻿/* CSS index profil */
+
+.divAllProfil{
+    margin-bottom: 70px;
+}
+
 .publicite{
     height:100px;
     text-align:center;
