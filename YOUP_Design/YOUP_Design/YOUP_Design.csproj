@@ -226,10 +226,9 @@
     <Compile Include="Models\Blog\CategorieModel.cs" />
     <Compile Include="Models\Blog\CommentaireModel.cs" />
     <Compile Include="Models\Blog\PubliciteModel.cs" />
-    <Compile Include="Models\Evenement\EventFrontModel.cs" />
-    <Compile Include="Models\Evenement\EventStateFrondModel.cs" />
-    <Compile Include="Models\Evenement\InviteFriendsModel.cs" />
+    <Compile Include="Models\Evenement\EvenementTimelineFront.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApiControler\ApiEvenement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\animo.css" />

@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.WebApiControler;
 
 namespace YOUP_Design.Controllers
 {
     public class EvenementsController : Controller
     {
+        ApiEvenement apiEvenement = new ApiEvenement();
         //
         // GET: /Evenement/
-
-        public ActionResult Index()
+        public  ActionResult Index()
         {
+            //var test = apiEvenement.getEvenements();
             return View();
         }
 
