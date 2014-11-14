@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.Classes.Blog;
+using YOUP_Design.Models.Blog;
 
 namespace YOUP_Design.Controllers
 {
@@ -25,23 +27,14 @@ namespace YOUP_Design.Controllers
         }
 
         //
-        // GET: /Blog/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
         // POST: /Blog/Create
-
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(BlogModel model)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
+                //httpclient (voir msdn)
                 return RedirectToAction("Index");
             }
             catch
@@ -50,24 +43,18 @@ namespace YOUP_Design.Controllers
             }
         }
 
-        //
-        // GET: /Blog/Edit/5
 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
         //
         // POST: /Blog/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, BlogModel model)
         {
             try
             {
-                // TODO: Add update logic here
-
+                Blog blog = new Blog() {Blog_id = id, TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId };
+                //httpclient (voir msdn)
                 return RedirectToAction("Index");
             }
             catch
