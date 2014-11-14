@@ -29,7 +29,6 @@ namespace YOUP_Design.WebApiControler
                 {
                     var evenements = await response.Content.ReadAsAsync<EvenementTimelineFront>();
 
-                    Console.WriteLine("TOTOTOTO");
                 }
             }
         }
