@@ -9,6 +9,11 @@ using YOUP_Design.Models.Evenement.webApiObjects;
 
 namespace YOUP_Design.WebApiControler
 {
+    /// <summary>
+    /// test de méthode asynchrone 
+    /// Obsolete => tout faire en JQUERY !! 
+    /// paas le temps de monté en compétence sur l'asynchrone.
+    /// </summary>
     public class ApiEvenement
     {
         public async Task getEvenements()
