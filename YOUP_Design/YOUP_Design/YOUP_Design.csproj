@@ -280,6 +280,7 @@
     <Content Include="Content\js\evenements.js" />
     <Content Include="Content\js\forum.js" />
     <Content Include="Content\js\global.js" />
+    <Content Include="Content\js\Historique.js" />
     <Content Include="Content\js\home.js" />
     <Content Include="Content\js\npm.js" />
     <Content Include="Content\js\profile.js" />
@@ -416,6 +417,7 @@
     <Content Include="Views\Historique\partialStatsUtilisation.cshtml" />
     <Content Include="Views\Historique\partialTops.cshtml" />
     <Content Include="Views\Mentions\index.cshtml" />
+    <Content Include="Views\Evenements\Creation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

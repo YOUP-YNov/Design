@@ -26,7 +26,7 @@ namespace YOUP_Design.Controllers
         //
         // GET: /Evenement/Create
 
-        public ActionResult Create()
+        public ActionResult Creation()
         {
             return View();
         }
