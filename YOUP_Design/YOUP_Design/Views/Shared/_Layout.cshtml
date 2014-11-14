@@ -17,6 +17,11 @@
         @Styles.Render("~/Content/css/forum.css")
         @Styles.Render("~/Content/css/blog.css")
         @Scripts.Render("~/bundles/modernizr")
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//cdn.ckeditor.com/4.4.5/basic/ckeditor.js"></script>
+        @Scripts.Render("~/Content/js/animo.js")
+        @Scripts.Render("~/Content/js/raphael-min.js")
     </head>
     <body>
         <div class="main-wrapper">
@@ -102,17 +107,24 @@
                 </div>
             </div>
         </footer>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        @Scripts.Render("~/Content/js/animo.js")
-        @Scripts.Render("~/Content/js/raphael-min.js")
-        @Scripts.Render("~/Content/js/home.js")
-        @Scripts.Render("~/Content/js/profile.js")
-        @Scripts.Render("~/Content/js/evenements.js")
-        @Scripts.Render("~/Content/js/forum.js")
-        @Scripts.Render("~/Content/js/blog.js")
+        @if (@ViewBag.ActiveMenu == "Home"){ @Scripts.Render("~/Content/js/home.js") }
+        @if (@ViewBag.ActiveMenu == "Profile"){@Scripts.Render("~/Content/js/profile.js") }
+        @if (@ViewBag.ActiveMenu == "Evenements"){@Scripts.Render("~/Content/js/evenements.js") }
+        @if (@ViewBag.ActiveMenu == "Forum"){@Scripts.Render("~/Content/js/forum.js") }
+        @if (@ViewBag.ActiveMenu == "Blog"){@Scripts.Render("~/Content/js/blog.js") }
         @Scripts.Render("~/Content/js/historique.js")
         @RenderSection("scripts", required: false)
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-56751698-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
     </body>
 </html>
