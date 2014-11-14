@@ -4,7 +4,7 @@
     =================================================================================================*/
 
     function set_fullscreen_backgrounds() {
-        var fullscreen_bg = $('.fullscreen-bg');
+        var fullscreen_bg = $('.home-fullscreen-bg');
 
         fullscreen_bg.each(function () {
             $(this).css({
@@ -18,7 +18,14 @@
 	=================================================================================================*/
 
     $(document).ready(function () {
+        $('.next-section').click(function () {
+            var the_id = $(this).attr("href");
 
+            $(window).animate({
+                scrollTop: $(the_id).offset().top + 65, 
+            }, 'slow');
+            return false;
+        });
     });
 
     /*=================================================================================================

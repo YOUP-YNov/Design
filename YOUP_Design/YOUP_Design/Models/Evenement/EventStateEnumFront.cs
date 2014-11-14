@@ -5,7 +5,7 @@ using System.Web;
 
 namespace YOUP_Design.Models.Evenement
 {
-    public class EventStateFrondModel
+    public class EventStateEnumFront
     {
     }
 }

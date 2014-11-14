@@ -3,46 +3,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
 }
-<body>
-    <div class="container">
-        <div class="input-group">
-            <form class="navbar-form navbar-left" role="search">
-                <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
-                    <option value="Categories" selected>Categories</option>
-                </select>
-                <input type="text" class="form-control" placeholder="Rechercher">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">Créer / Gérer Blog</button>
-                </span>
-            </form>
-        </div>
-
-
-        <h2>Top des Blogs</h2>
-        <table id="top_blog_table" class="table_blog">
-            <tbody>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2>Tous les Blogs</h2>
-        <table id="tout_blog_table" class="table_blog">
-            <tbody>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</body>
+<div class="input-group">
+    <form class="navbar-form navbar-left" role="search">
+        <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
+            <option value="Categories" selected>Categories</option>
+        </select>
+        <input type="text" class="form-control" placeholder="Rechercher">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Créer / Gérer Blog</button>
+        </span>
+    </form>
+</div>
+<h2>Top des Blogs</h2>
+<div class="table-responsive">
+    <table id="top_blog_table" class="table">
+        <tbody>
+            <tr>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+            </tr>
+            <tr>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<h2>Tous les Blogs</h2>
+<div class="table-responsive">
+    <table id="tout_blog_table" class="table">
+        <tbody>
+            <tr>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+            </tr>
+            <tr>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+                <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
