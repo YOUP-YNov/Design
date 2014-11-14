@@ -48,5 +48,15 @@
         </div>
     </div>
 
-    <center><h3>Ecris ton message :</h3></center>
+    <center>
+        <h3>Ecris ton message :</h3>
+
+        <textarea name="editor1" id="editor1" rows="10" cols="80" class="input-sm">
+        </textarea>
+        <script>
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('editor1');
+        </script>
+    </center>
 </div>
