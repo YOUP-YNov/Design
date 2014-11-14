@@ -4,7 +4,7 @@
     =================================================================================================*/
 
     function set_fullscreen_backgrounds() {
-        var fullscreen_bg = $('.fullscreen-bg');
+        var fullscreen_bg = $('.home-fullscreen-bg');
 
         fullscreen_bg.each(function () {
             $(this).css({
