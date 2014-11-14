@@ -1,4 +1,4 @@
-﻿
+﻿/* CSS index profil */
 .publicite{
     height:100px;
     text-align:center;
@@ -71,8 +71,7 @@
 
 }
 
-
-
+/* CSS partialProfil */
 
 .bodyProfil {
 	text-align: center;
@@ -106,3 +105,52 @@
 	padding-left: 0;
 	padding-right: 0;
 }
+
+/* CSS partialAmis */
+
+.divAmis{
+    padding: 50px 100px 0 100px ;
+    margin-top: 30px;
+}
+
+.titreAmis{
+    font-weight:bold;
+    margin-left: 3px;
+}
+
+.panelAmis{
+    margin-top:10px;
+    height:250px;
+    overflow-y:scroll;
+}
+
+.panelAmis .panel-body{
+    padding:0;
+}
+
+.panelAmis::-webkit-scrollbar { 
+    display: none; 
+}
+
+.liAmis{
+    border:none;
+    border-radius: ;
+}
+
+.liAmis button{
+    margin-top:10px;
+    background-color : white;
+    color: black;
+}
+
+.liAmis:hover{
+    background-color:#428bca;
+}
+
+
+.photoProfilAmis{
+    max-height:40px;
+    margin-right:10px;
+    border: 2px #f5f5f5 solid;
+}
+
