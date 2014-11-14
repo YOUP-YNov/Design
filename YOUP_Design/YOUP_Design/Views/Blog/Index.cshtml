@@ -3,46 +3,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
 }
-<div class="input-group">
-    <form class="navbar-form navbar-left" role="search">
-        <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
-            <option value="Categories" selected>Categories</option>
-        </select>
-        <input type="text" class="form-control" placeholder="Rechercher">
-        <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">Créer / Gérer Blog</button>
-        </span>
-    </form>
-</div>
-
-<h2>Tous les Blogs</h2>
-    <div class="table-responsive">
-        <table id="tout_blog_table" class="table">
-            <tbody>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="row">
+        <div class="rechercheBlog">
+            <div class="moduleRechercheBlog form-group input-group">
+                <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
+                    <option value="Categories" selected>Categories</option>
+                </select>
+                <input type="text" class="form-control" placeholder="Rechercher">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <div class="btnModifPhoto">
+                <button type="submit" class="btn btn-default">Gérer mon Blog</button>
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <h2>Top des Blogs</h2>
+        <div class="list-group">
+            <div class="row list-group-item">
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+            </div>
+            <div class="row list-group-item">
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2>Tous les Blogs</h2>
+        <div class="list-group">
+            <div class="row list-group-item">
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+            </div>
+            <div class="row list-group-item">
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+                <div class="col-sm-6"><a class="blog_title" href="Blog/Blog_vue">Blog Title</a><br />100000 vues | Category | Author</div>
+            </div>
+        </div>
+    </div>
+</div>
