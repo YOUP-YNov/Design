@@ -1,2 +1,32 @@
 ﻿body {
 }
+
+.bodyEventCreate {
+    text-align: center;
+    padding-top:2%;
+    padding-bottom: 2%;
+}
+
+#InputNombre {
+    width: 20%;
+    display: inline;
+    margin-left: 20%;
+}
+
+#InputPayant {
+    margin-right: 2%;
+}
+
+#InputPublic {
+    margin-right: 3.5%;
+}
+
+#TxtAreaDescription {
+    height: 200px;
+}
+
+.panelAmisInvite {
+    margin-top: 10px;
+    height: 200px;
+    overflow-y: scroll;
+}
