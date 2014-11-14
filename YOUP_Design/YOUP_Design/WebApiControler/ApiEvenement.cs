@@ -5,10 +5,15 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
-using YOUP_Design.Models.Evenement.webApiObjects;
+using YOUP_Design.Classes.Evenement;
 
 namespace YOUP_Design.WebApiControler
 {
+    /// <summary>
+    /// test de méthode asynchrone 
+    /// Obsolete => tout faire en JQUERY !! 
+    /// paas le temps de monté en compétence sur l'asynchrone.
+    /// </summary>
     public class ApiEvenement
     {
         public async Task getEvenements()
@@ -24,7 +29,6 @@ namespace YOUP_Design.WebApiControler
                 {
                     var evenements = await response.Content.ReadAsAsync<EvenementTimelineFront>();
 
-                    Console.WriteLine("TOTOTOTO");
                 }
             }
         }
