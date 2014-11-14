@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
-using YOUP_Design.Models.Evenement.webApiObjects;
+using YOUP_Design.Classes.Evenement;
 
 namespace YOUP_Design.WebApiControler
 {
