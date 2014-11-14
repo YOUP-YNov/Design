@@ -4,13 +4,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using YOUP_Design.WebApiControler;
 
 namespace YOUP_Design.Controllers
 {
     public class EvenementsController : Controller
     {
-        ApiEvenement apiEvenement = new ApiEvenement();
         //
         // GET: /Evenement/
         public  ActionResult Index()
@@ -20,7 +18,6 @@ namespace YOUP_Design.Controllers
 
         //
         // GET: /Evenement/Details/5
-
         public ActionResult Details(int id)
         {
             return View();
