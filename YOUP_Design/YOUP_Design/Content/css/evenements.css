@@ -93,6 +93,18 @@
     align-items:center;
 }
 
+<<<<<<< HEAD
+=======
+.timelineEvent .panel-body a{
+    text-decoration: none;
+    color: black;
+}
+
+.timelineEvent .panel-body a:hover{
+    color: #367bb7;
+}
+
+>>>>>>> 5bbb807973513b76adefdb4d4528753cc777846b
 .dateEtVille{
     font-weight:bold;
 }
