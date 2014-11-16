@@ -6,31 +6,32 @@
         self.date = ko.observable(data.date);
         self.listeEvenements = ko.observableArray();
 
-        for (var i = 0; i < data.listeEvenements.length; i++)
-            self.listeEvenements.push(new evenement(data.evenements[i]));
+        self.init = function(data)
+        {
+            for (var i = 0; i < data.listeEvenements.length; i++)
+                self.listeEvenements.push(new evenement(data.listeEvenements[i]));
+        }
+
+        self.init(data);
+        
     }
 
     function evenement(data) {
         var self = this;
 
-        self.idEvenement = ko.observable(data.Evenement_id);
-        self.titre = ko.observable(data.TitreEvenement);
-        self.imgEvt = ko.observable(function ()
-            {
-                return data.ImgEvt == "" || data.ImgEvt == null ? "~/Images/default_profil.png" : data.ImgEvt;
-            });
-        self.adresse = ko.observable(data.Adresse);
-        self.prix = ko.observable(function () {
-            return data.Prix == 0 ? "gratuit" : data.Prix + " €";
-        });
-        self.description = ko.observable(data.Descrption);
-        self.date = ko.observable(data.DateEvenement);
-        self.ville = ko.observable(data.Ville);
-        self.categorie = ko.observable(data.VilleCategorie);
+        self.idEvenement = ko.observable(data.idEvenement);
+        self.titre = ko.observable(data.titre);
+        self.imgEvt = ko.observable(data.imgEvt == "" || data.imgEvt == null ? "~/Images/default_profil.png" : data.imgEvt);
+        self.adresse = ko.observable(data.adresse);
+        self.prix = ko.observable(data.prix == 0 ? "gratuit" : data.prix + " €");
+        self.description = ko.observable(data.description);
+        self.date = ko.observable(data.date);
+        self.ville = ko.observable(data.ville);
+        self.categorie = ko.observable(data.categorie);
         self.nbParticipant = ko.observable(data.nbParticipant);
         self.nbMaxParticipant = ko.observable(data.nbMaxParticipant);
-        self.imgOrganisateur = ko.observable(data.ImgOrganisateur);
-        self.organisateur = ko.observable(data.Organisateur);
+        self.imgOrganisateur = ko.observable(data.imgOrganisateur);
+        self.organisateur = ko.observable(data.organisateur);
         self.visible = ko.observable(true);
 
     }
@@ -40,6 +41,7 @@
 
         self.listeEvenementDate = ko.observableArray();
 
+
         for (var i = 0; i < data.length; i++)
             self.listeEvenementDate.push(new listeEvenementDate(data[i]));
     }
@@ -47,14 +49,13 @@
     var apiUrl = "http://youp-evenementapi.azurewebsites.net/api/";
 
     var recuperationListeEvenements = function () {
-        var today = Date.today();
-        Date.today().addDays(14)
+        var startRange = Date.today().toString('yyyy/MM/dd');
+        var endRange = Date.today().addDays(14).toString('yyyy/MM/dd');
+        parameters = '?startRange=' + startRange + '&endRange=' + endRange;
         $.ajax({
             type: "GET",
-            url: apiUrl + 'Evenement',
+            url: apiUrl + 'Evenement' + parameters,
             contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify({ 'dateSearch': today }),
             success: function (msg) {
                 var datas = msg;
                 traiterListeEvenement(datas);

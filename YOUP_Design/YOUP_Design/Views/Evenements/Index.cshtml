@@ -86,10 +86,10 @@
                 </div>
                 <div class="panel-body">
                     <!-- code à générer pour un event -->
-                    <div data-bind="visible : evenementDate.listeEvenements > 0 ,foreach: { data: evenementDate.listeEvenements, as: 'evt' }">
+                    <div data-bind="foreach: { data: evenementDate.listeEvenements, as: 'evt' }">
                         <a class="row" href="#" data-bind="'evenementId': idEvenement, visible: visible">
                             <div class="col-lg-2">
-                                <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement" data-bind="src: evt.imgEvt">
+                                <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement" data-bind="src: evt.imgEvt()">
                             </div>
                             <div class="col-lg-10">
                                 <span class="titreTimelineEvent" data-bind="text: evt.titre"></span>
@@ -117,7 +117,7 @@
                                         <span class="nombreAttenteEventTimeline" data-bind="text: evt.nbAttenteParticipant"></span> personnes en attente.
                                     </div>
                                     <div class="col-lg-6">
-                                        Prix de l'évènenement : <span class="typeEventTimeline" data-bind="text: evt.prix"></span>
+                                        Prix de l'évènenement : <span class="typeEventTimeline" data-bind="text: evt.prix()"></span>
                                     </div>
                                 </div>
 
@@ -126,7 +126,7 @@
                     </div>
                     <!-- FIN du code à générer pour un event -->
 
-                    <div class="text-center" data-bind="visible : evenementDate.listeEvenements.length == 0">
+                    <div class="text-center" data-bind="visible : evenementDate.listeEvenements().length == 0">
                         Il n'y a aucun évènement pour <span data-bind="text: evenementDate.date"></span>... Courage !
                     </div>
                 </div>
