@@ -125,3 +125,38 @@
 .pub_AdContent input {
     width: 75%;
 }
+
+/* Blog Voir Plus */
+
+.btnVisiterBlogVoirPlus button{
+    background-color: #367bb7;
+    color:white;
+    width:100%;
+    margin-top:15px;
+}
+
+.btnVisiterBlogVoirPlus button:hover{
+    background-color: #3372A8;
+    color:white;
+}
+
+.btnGererPubVoirPlus button{
+    width:100%;
+    margin-top:15px;
+}
+
+.rowBlogVoirPlus{
+    display:flex;
+    justify-content:space-around;
+}
+
+.colBtnVoirPlus{
+    display:flex;
+    align-items:center;
+}
+
+.menuPaginationVoirPlus{
+    display:flex;
+    justify-content:center;
+    margin:30px;
+}
