@@ -427,14 +427,11 @@
     <Content Include="Views\Blog\Blog_vue.cshtml" />
     <Content Include="Views\Forum\Discussion.cshtml" />
     <Content Include="Views\Forum\ViewForum.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Evenements\Creation.cshtml" />
+<Content Include="Views\Evenements\Creation.cshtml" />
     <Content Include="Views\Evenements\Details.cshtml" />
-=======
-    <Content Include="Views\Blog\ModComment.cshtml" />
+<Content Include="Views\Blog\ModComment.cshtml" />
     <Content Include="Views\Blog\PubBlog.cshtml" />
->>>>>>> 5bbb807973513b76adefdb4d4528753cc777846b
-  </ItemGroup>
+</ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Historique\" />
