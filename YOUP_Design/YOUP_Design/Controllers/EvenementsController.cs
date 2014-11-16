@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Models.Evenement.templatesObjects;
+using YOUP_Design.Classes.Evenement;
 
 namespace YOUP_Design.Controllers
 {
@@ -95,7 +96,14 @@ namespace YOUP_Design.Controllers
         // GET: /Evenement/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.idEvenement = id;
             return View();
+        }
+
+        public JsonResult DetailEvenement(EvenementFront listeEvenementApi)
+        {
+            var result = new evenementTimeLineObject(listeEvenementApi);
+            return Json(result);
         }
 
         //

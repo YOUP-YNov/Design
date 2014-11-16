@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Time Line";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -87,7 +87,7 @@
                 <div class="panel-body">
                     <!-- code à générer pour un event -->
                     <div data-bind="foreach: { data: evenementDate.listeEvenements, as: 'evt' }">
-                        <a class="row" href="#" data-bind="'evenementId': idEvenement, visible: visible">
+                        <a class="row" href="#" data-bind="'evenementId': idEvenement, visible: visible, click: goDetail">
                             <div class="col-lg-2">
                                 <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement" data-bind="src: evt.imgEvt()">
                             </div>
@@ -100,7 +100,7 @@
                                 <div class="descriptionEventTimeline" data-bind="text: evt.description">
                                 </div>
                                 <div class="dateEtVille">
-                                    Le <span class="dateEventTimeline" data-bind="text: evt.date"</span> à <span class="villeEventTimeline" data-bind="text: evt.ville"></span>
+                                    Le <span class="dateEventTimeline" data-bind="text: evt.date"></span> à <span class="villeEventTimeline" data-bind="text: evt.adresse().ville"></span>
                                 </div>
 
                                 <div class="row text-left informationEventTimeline">
@@ -114,13 +114,9 @@
 
                                 <div class="row text-left informationEventTimeline">
                                     <div class="col-lg-6">
-                                        <span class="nombreAttenteEventTimeline" data-bind="text: evt.nbAttenteParticipant"></span> personnes en attente.
-                                    </div>
-                                    <div class="col-lg-6">
                                         Prix de l'évènenement : <span class="typeEventTimeline" data-bind="text: evt.prix()"></span>
                                     </div>
                                 </div>
-
                             </div>
                         </a>
                     </div>

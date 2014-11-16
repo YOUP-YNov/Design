@@ -430,11 +430,11 @@
     <Content Include="Views\Blog\Blog_vue.cshtml" />
     <Content Include="Views\Forum\Discussion.cshtml" />
     <Content Include="Views\Forum\ViewForum.cshtml" />
-<Content Include="Views\Evenements\Creation.cshtml" />
-    <Content Include="Views\Evenements\Details.cshtml" />
-<Content Include="Views\Blog\ModComment.cshtml" />
+    <Content Include="Views\Evenements\Creation.cshtml" />
+    <Content Include="Views\Blog\ModComment.cshtml" />
     <Content Include="Views\Blog\PubBlog.cshtml" />
     <Content Include="Views\Evenements\templates\timeLine.cshtml" />
+    <Content Include="Views\Evenements\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

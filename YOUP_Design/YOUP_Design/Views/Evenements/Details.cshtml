@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Détail d'un évenement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Evenements";
+}
+
+@Scripts.Render("~/Scripts/knockout-2.2.0.js")
+@Scripts.Render("~/Content/js/evenements.js")
+<script type="text/javascript">
+    $(document).ready(function () {
+        evenementModule.initDetail(@ViewBag.idEvenement);
+    });
+</script>
+
+<div class="container divAllEvenement">
+    <p>idEvenement : <span data-bind="text: idEvenement"></span></p>
+    <p>titre : <span data-bind="text: titre"></span></p>
+    <p>imgEvt : <span data-bind="text: imgEvt"></span></p>
+    <p>prix : <span data-bind="text: prix"></span></p>
+    <p>date : <span data-bind="text: date"></span></p>
+    <p>categorie : <span data-bind="text: categorie"></span></p>
+    <p>nbParticipant : <span data-bind="text: nbParticipant"></span></p>
+    <p>imgOrganisateur : <span data-bind="text: imgOrganisateur"></span></p>
+    <p>organisateur : <span data-bind="text: organisateur"></span></p>
+    <p>adresse : 
+        <ul>
+            <li> idAdresse :<span data-bind="text: adresse().id"></span></li>
+            <li> ville :  <span data-bind="text: adresse().ville"></span></li>
+            <li> codePostale : <span data-bind="text: adresse().codePostale"></span></li>
+            <li> adresse : <span data-bind="text: adresse().adresse"></span></li>
+            <li> longitude : <span data-bind="text: adresse().longitude"></span></li>
+            <li> latitude :  <span data-bind="text: adresse().latitude"></span></li>
+            <li> pays :  <span data-bind="text: adresse().pays"></span></li>
+            <li> nom :  <span data-bind="text: adresse().nom"></span></li>
+        </ul>
+    </p>
+    <p>dateFinInscription : <span data-bind="text: dateFinInscription"></span></p>
+    <p>premium : <span data-bind="text: premium"></span></p>
+    <p>public : <span data-bind="text: public"></span></p>
+    <p>hashTag : <span data-bind="text: hashTag"></span></p>
+
+</div>

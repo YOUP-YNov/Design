@@ -22,18 +22,41 @@
         self.idEvenement = ko.observable(data.idEvenement);
         self.titre = ko.observable(data.titre);
         self.imgEvt = ko.observable(data.imgEvt == "" || data.imgEvt == null ? "~/Images/default_profil.png" : data.imgEvt);
-        self.adresse = ko.observable(data.adresse);
         self.prix = ko.observable(data.prix == 0 ? "gratuit" : data.prix + " €");
         self.description = ko.observable(data.description);
         self.date = ko.observable(data.date);
-        self.ville = ko.observable(data.ville);
         self.categorie = ko.observable(data.categorie);
         self.nbParticipant = ko.observable(data.nbParticipant);
         self.nbMaxParticipant = ko.observable(data.nbMaxParticipant);
         self.imgOrganisateur = ko.observable(data.imgOrganisateur);
         self.organisateur = ko.observable(data.organisateur);
+        self.adresse = ko.observable(new adresseEvt(data.adresse));
         self.visible = ko.observable(true);
+        self.dateFinInscription = ko.observable(data.dateFinInscription);
+        self.premium = ko.observable(data.premium);
+        //attribut public
+        self.public = ko.observable(data.visible);
+        self.hashTag = ko.observable(data.hashTag);
 
+        self.goDetail = function () {
+
+            var id = self.idEvenement();
+            var url = '/Evenements/details/' + id;
+            window.location.href = url;
+        }
+    }
+
+    function adresseEvt(data) {
+        var self = this;
+
+        self.id = ko.observable(data.Id);
+        self.ville = ko.observable(data.Ville);
+        self.codePostale = ko.observable(data.CodePostale);
+        self.adresse = ko.observable(data.Adresse);
+        self.longitude = ko.observable(data.Longitude);
+        self.latitude = ko.observable(data.Latitude);
+        self.pays = ko.observable(data.Pays);
+        self.nom = ko.observable(data.Nom);
     }
 
     var timeLineViewModel = function (data) {
@@ -84,10 +107,23 @@
     {
         $.ajax({
             type: "GET",
-            url: apiUrl + 'Evenement/id',
+            url: apiUrl + 'Evenement/' + id,
+            success: function (data) {
+                DetaillerEvenement(data);
+            }
+        });
+    }
+
+    var DetaillerEvenement = function (data) {
+        $.ajax({
+            type: "POST",
+            url: '/Evenements/DetailEvenement',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
             success: function (msg) {
-                var evenement = jQuery.parseJSON(msg);
-                alert("sucess recupererEvenementParId");
+                var datas = msg;
+                ko.applyBindings(new evenement(datas));
             }
         });
     }
@@ -97,8 +133,13 @@
         recuperationListeEvenements();
     }
 
+    var initDetail = function (id) {
+        recupererEvenementParId(id);
+    }
+
     return {
-        init: init
+        init: init,
+        initDetail : initDetail
     }
 })();
 
