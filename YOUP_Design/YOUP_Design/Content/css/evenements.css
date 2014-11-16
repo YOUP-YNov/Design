@@ -1,8 +1,7 @@
 ﻿﻿/* evenement Index */
 
 .rechercheEvenement{
-    display:flex;
-    justify-content:flex-start;
+    display:flex !important;
 }
 
 .moduleRechercheEvenement{
@@ -19,17 +18,20 @@
     display:flex;
     height: 34px;
     margin-left: 15px;
+    width:20%;
 }
 
 .selectRegionEvent{
     display:flex;
     height: 34px;
     margin-left: 15px;
+    width:20%;
 }
 .selectDateEvent{
     display:flex;
     height: 34px;
     margin-left: 15px;
+    width:20%;
 }
 
 .btnRechercherEvenement{
@@ -81,18 +83,26 @@
 .timelineEvent .panel-heading{
     background-color: white;
 }
-/*
-.timelineEvent .panel-body{
+
+.panel-default .panel-body{
     background-color: #f5f5f5;
-    border-bottom-left-radius:12px;
-    border-bottom-right-radius:12px;
 }
 
 .timelineEvent .panel-body .row{
     display:flex;
     align-items:center;
 }
-*/
+
+.timelineEvent .panel-body a{
+    text-decoration: none;
+    color: black;
+}
+
+.timelineEvent .panel-body a:hover{
+    color: #367bb7;
+}
+
+
 .dateEtVille{
     font-weight:bold;
 }
@@ -104,9 +114,9 @@
 }
 
 .moreOneEvent{
-    border-top: 2px solid #dddddd;
-    margin-top:10px;
-    padding-top:10px;
+    border-bottom: 2px solid #dddddd;
+    margin-bottom:10px;
+    padding-bottom:10px;
 }
 
 /* Evenement Creation */
