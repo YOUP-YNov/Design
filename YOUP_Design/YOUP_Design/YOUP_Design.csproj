@@ -227,6 +227,8 @@
     <Compile Include="Models\Blog\PubliciteModel.cs" />
     <Compile Include="Models\Evenement\EvenementTimelineFront.cs" />
     <Compile Include="Models\Evenement\EventStateEnumFront.cs" />
+    <Compile Include="Models\Evenement\templatesObjects\EvenemenDate.cs" />
+    <Compile Include="Models\Evenement\templatesObjects\evenementTimeLineObject.cs" />
     <Compile Include="Models\Forum\MessageModel.cs" />
     <Compile Include="Models\Forum\TopicModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -356,6 +358,7 @@
     <Content Include="Images\home-image-1.jpg" />
     <Content Include="Images\home-image-2.jpg" />
     <Content Include="Images\nav-logo.png" />
+    <Content Include="Scripts\date.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -426,6 +429,8 @@
     <Content Include="Views\Blog\Blog_vue.cshtml" />
     <Content Include="Views\Forum\Discussion.cshtml" />
     <Content Include="Views\Forum\ViewForum.cshtml" />
+    <Content Include="Views\Evenements\Creation.cshtml" />
+    <Content Include="Views\Evenements\templates\timeLine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
