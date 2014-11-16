@@ -20,16 +20,23 @@
     display:flex;
 }
 
+
 .article_blog {
 
 }
 
-.article_blog container-img {
-   
+.article_blog img{
+    width:600px;
 }
 
-.article_blog img{
-    width:300px;
+.article_blog p {
+    padding-top:20px;
+    text-align:justify;
+}
+
+.date_publication_article {
+    justify-content: center;
+    margin-top:15px;
 }
 
 .btnGererBlog{
