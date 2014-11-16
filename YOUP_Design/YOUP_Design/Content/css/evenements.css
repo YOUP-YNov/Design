@@ -1,4 +1,4 @@
-﻿/* evenement Index */
+﻿﻿/* evenement Index */
 
 .rechercheEvenement{
     display:flex;
@@ -93,6 +93,8 @@
     align-items:center;
 }
 
+<<<<<<< HEAD
+=======
 .timelineEvent .panel-body a{
     text-decoration: none;
     color: black;
@@ -102,6 +104,7 @@
     color: #367bb7;
 }
 
+>>>>>>> 5bbb807973513b76adefdb4d4528753cc777846b
 .dateEtVille{
     font-weight:bold;
 }
@@ -146,6 +149,70 @@
     margin-top: 10px;
     height: 200px;
     overflow-y: scroll;
+}
+
+/* PAGE DETAILS */
+.bodyEventDetails {
+
+}
+
+.contentDetailsEvent h1 {
+    display: inline;
+}
+
+.contentDetailsEvent p {
+    display: inline-flex;
+    margin-left: 2%;
+}
+
+.imgauteur {
+    max-height: 90px !important;
+    margin-bottom: 2%;
+}
+
+.imgevent {
+    height: 210px;
+    width: 850px;
+}
+
+.margtop {
+    margin-top: 2%;
+}
+
+#descEvent {
+    text-align: justify;
+}
+
+.inline {
+    display: inline;
+}
+
+.decoEvent {
+    height: 5px;
+    border-top: solid 1px #367BB7;
+    border-bottom: solid 1px #367BB7;
+    align-items: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.detailsEventComm {
+    text-align: justify;
+}
+
+.eventComm h4 {
+    margin-bottom: 0;
+}
+
+.eventComm p {
+    font-size: 10px;
+}
+
+.decoEventbis {
+    width: 78%;
+    margin-left: 11%;
 }
 
 .timelineEvent .panel-body a{

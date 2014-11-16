@@ -18,6 +18,16 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
+        public ActionResult ModComment()
+        {
+            return View();
+        }
+
+        public ActionResult PubBlog()
+        {
+            return View();
+        }
+
         public ActionResult Blog_vue()
         {
             return View("Blog_vue");
