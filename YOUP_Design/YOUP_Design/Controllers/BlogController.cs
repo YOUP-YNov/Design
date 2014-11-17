@@ -28,9 +28,29 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
+        public ActionResult Blog_edit()
+        {
+            return View();
+        }
+
+        public ActionResult Blog_article_edit()
+        {
+            return View();
+        }
+
+        public ActionResult Blog_liste_article()
+        {
+            return View();
+        }
+
         public ActionResult Blog_vue()
         {
-            return View("Blog_vue");
+            return View();
+        }
+
+        public ActionResult Blog_voir_plus()
+        {
+            return View();
         }
 
         //
