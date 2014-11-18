@@ -133,6 +133,12 @@
 }
 
 #InputPayant {
+    width: 20%;
+    display: inline;
+    margin-left: 20px;
+}
+
+#InputPayant {
     margin-right: 2%;
 }
 
@@ -148,6 +154,10 @@
     margin-top: 10px;
     height: 200px;
     overflow-y: scroll;
+}
+
+.panelAmisInvite .panel-body{
+    padding:0px;
 }
 
 /* PAGE DETAILS */
