@@ -200,8 +200,11 @@
     <Compile Include="Classes\Forum\Message.cs" />
     <Compile Include="Classes\Forum\Topic.cs" />
     <Compile Include="Classes\Historique\Categorie.cs" />
+    <Compile Include="Classes\Historique\DeviceCategoryStatRow.cs" />
+    <Compile Include="Classes\Historique\DeviceTypeStatRow.cs" />
     <Compile Include="Classes\Historique\Evenement.cs" />
     <Compile Include="Classes\Historique\EvenementLieu.cs" />
+    <Compile Include="Classes\Historique\PageVisitee.cs" />
     <Compile Include="Classes\Historique\Utilisateur.cs" />
     <Compile Include="Classes\Profile\Categorie.cs" />
     <Compile Include="Classes\Profile\Utilisateur.cs" />
