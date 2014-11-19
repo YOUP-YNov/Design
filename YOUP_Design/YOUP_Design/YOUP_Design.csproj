@@ -234,6 +234,7 @@
     <Compile Include="Models\Evenement\templatesObjects\evenementTimeLineObject.cs" />
     <Compile Include="Models\Forum\MessageModel.cs" />
     <Compile Include="Models\Forum\TopicModel.cs" />
+    <Compile Include="Models\Profile\UtilisateurModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -242,33 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\DotNetOpenAuth.AspNet.dll" />
-    <Content Include="bin\DotNetOpenAuth.Core.dll" />
-    <Content Include="bin\DotNetOpenAuth.OAuth.Consumer.dll" />
-    <Content Include="bin\DotNetOpenAuth.OAuth.dll" />
-    <Content Include="bin\DotNetOpenAuth.OpenId.dll" />
-    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.dll" />
-    <Content Include="bin\EntityFramework.dll" />
-    <Content Include="bin\Microsoft.Data.Edm.dll" />
-    <Content Include="bin\Microsoft.Data.OData.dll" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Microsoft.Web.Mvc.FixedDisplayModes.dll" />
-    <Content Include="bin\Microsoft.Web.WebPages.OAuth.dll" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\System.Spatial.dll" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Http.OData.dll" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.dll" />
-    <Content Include="bin\WebGrease.dll" />
-    <Content Include="bin\WebMatrix.Data.dll" />
-    <Content Include="bin\WebMatrix.WebData.dll" />
-    <Content Include="bin\YOUP_Design.dll" />
-    <Content Include="bin\YOUP_Design.pdb" />
     <Content Include="Content\css\animo.css" />
     <Content Include="Content\css\blog.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -445,6 +419,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Historique\" />
+    <Folder Include="WebApiControler\" />
     <Folder Include="Models\Profile\" />
   </ItemGroup>
   <ItemGroup>
