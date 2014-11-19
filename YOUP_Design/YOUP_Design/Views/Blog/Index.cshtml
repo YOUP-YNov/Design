@@ -1,47 +1,47 @@
-﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.ActiveMenu = "Blog";
-}
-<div class="input-group">
-    <form class="navbar-form navbar-left" role="search">
-        <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
-            <option value="Categories" selected>Categories</option>
-        </select>
-        <input type="text" class="form-control" placeholder="Rechercher">
-        <span class="input-group-btn">
-            <button class="btn btn-primary" type="submit">Créer / Gérer Blog</button>
-        </span>
-    </form>
-</div>
+﻿@model IEnumerable<YOUP_Design.Classes.Blog.Blog>
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.ActiveMenu = "Blog";
+    }
+    <div class="input-group">
+        <form class="navbar-form navbar-left" role="search">
+            <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
+                <option value="Categories" selected>Categories</option>
+            </select>
+            <input type="text" class="form-control" placeholder="Rechercher">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Créer / Gérer Blog</button>
+            </span>
+        </form>
+    </div>
 
-<h2>Tous les Blogs</h2>
+    <h2>Tous les Blogs</h2>
     <div class="table-responsive">
         <table id="tout_blog_table" class="table">
             <tbody>
                 <tr>
+                    @foreach (var b in Model)
+                    {
+                        <td><span class="blog_title">@b.TitreBlog</span><br />@b.DateCreation.ToString("dd MMM YYYY")</td>
+                    }
+                    @*<td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+                
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
+                
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
+                
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
+               
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
+                
                     <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                </tr>
-                <tr>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
-                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>
+                    <td><span class="blog_title">Blog Title</span><br />100000 vues | Category | Author</td>*@
                 </tr>
             </tbody>
         </table>

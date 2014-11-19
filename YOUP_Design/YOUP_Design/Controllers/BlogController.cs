@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using YOUP_Design.Classes.Blog;
@@ -13,10 +16,34 @@ namespace YOUP_Design.Controllers
         //
         // GET: /Blog/
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            List<Blog> blogs = new List<Blog>();
+            await GetBlogsAsync(blogs);
+            return View(blogs);
+
         }
+
+        static async Task GetBlogsAsync(List<Blog> list)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://youp-blog.azurewebsites.net/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync("api/blog");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    list = await response.Content.ReadAsAsync<List<Blog>>();
+                }
+            }
+        }
+
+
+
+
 
         //
         // GET: /Blog/Details/5
