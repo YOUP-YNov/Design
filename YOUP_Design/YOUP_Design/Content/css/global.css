@@ -7,7 +7,7 @@
 ---------------------------------------------------------------------------------------------*/
     
 .navbar-brand {
-    background-image: url(../../Images/nav-logo.png);
+    background-image: url(/Images/logo-petit.png);
     background-repeat:no-repeat;
     width:76px;
 }
