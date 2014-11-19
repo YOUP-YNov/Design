@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.Models.Forum;
 
 namespace YOUP_Design.Controllers
 {
@@ -13,6 +14,8 @@ namespace YOUP_Design.Controllers
 
         public ActionResult Index()
         {
+            List<CategorieModel> test = new List<CategorieModel>();
+            ViewBag.listeCategorie = test;
             return View();
         }
 
