@@ -160,6 +160,11 @@
     padding:0px;
 }
 
+#popupUrlImage .modal-header{
+    background-color: #367bb7;
+    color: white;
+}
+
 /* PAGE DETAILS */
 .bodyEventDetails {
 
