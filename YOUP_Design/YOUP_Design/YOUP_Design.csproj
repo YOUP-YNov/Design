@@ -420,6 +420,11 @@
     <Content Include="Views\Blog\PubBlog.cshtml" />
     <Content Include="Views\Evenements\templates\timeLine.cshtml" />
     <Content Include="Views\Evenements\Details.cshtml" />
+    <Content Include="Views\Blog\Blog_article_edit.cshtml" />
+    <Content Include="Views\Blog\Blog_edit.cshtml" />
+    <Content Include="Views\Blog\Blog_liste_article.cshtml" />
+    <Content Include="Views\Blog\Blog_voir_plus.cshtml" />
+    <Content Include="Views\Blog\partialRechercheBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

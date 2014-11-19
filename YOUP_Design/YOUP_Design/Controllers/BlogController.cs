@@ -56,12 +56,22 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
-        public ActionResult Blog_liste_article()
+        public ActionResult Blog_vue(int UserId, int BlogId)
         {
-            return View();
+            List<Article> blog = new List<Article>();
+            blog = this.GetBlog(UserId, BlogId);
+            ViewBag.articles = blog;
+            return View(blog);
         }
 
-        public ActionResult Blog_vue()
+        public List<Article> GetBlog(int UserId, int BlogId)
+        {
+            var request = new RestRequest("api/article?utilisateurId=UserId&blogId=BlogId", Method.GET);
+            var result = Execute<List<Article>>(request);
+            return result;
+        }
+
+        public ActionResult Blog_liste_article()
         {
             return View();
         }
