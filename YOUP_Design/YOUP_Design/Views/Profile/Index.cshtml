@@ -4,6 +4,17 @@
     ViewBag.ActiveMenu = "Profile";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        ProfilModule.initProfil(@ViewBag.idProfil);
+    });
+</script>
+
+
+<p>Utilisateur_id : <span data-bind="text: Utilisateur_id"></span></p>
+<p>Nom : <span data-bind="text: Nom"></span></p>
+<p>Prenom : <span data-bind="text: Prenom"></span></p>
+
 <div class="container divAllProfil">
     <div class="encartPoub well">
         Encart de publicité

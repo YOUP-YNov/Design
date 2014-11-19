@@ -9,22 +9,7 @@
         Encart de publicité
     </div>
 
-    <div class="row">
-        <div class="rechercheBlog">
-            <div class="moduleRechercheBlog form-group input-group">
-                <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
-                    <option value="Categories" selected>Categories</option>
-                </select>
-                <input type="text" class="form-control" placeholder="Rechercher">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-            <div class="btnGererBlog">
-                <button type="submit" class="btn btn-default">Créer / Gérer mon Blog</button>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
 
     <div class="row titreModComment">
         <h3>Top des blogs</h3>
@@ -36,17 +21,17 @@
         <div class="col-lg-3">
             <h3>Blog Title</h3>
             <div class="infoBlogVoirPlus">
-                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Autheur</a>
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
             </div>
         </div>
 
         <div class="col-lg-6 colBtnVoirPlus">
             <div class="col-lg-6 btnGererPubVoirPlus">
-                <button type="submit" class="btn btn-default">Gérer Publicité</button>
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
             </div>
 
             <div class=" col-lg-6 btnVisiterBlogVoirPlus">
-                <button type="submit" class="btn btn-default">Visiter</button>
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
             </div>
         </div>
 
@@ -58,17 +43,17 @@
         <div class="col-lg-3">
             <h3>Blog Title</h3>
             <div class="infoBlogVoirPlus">
-                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Autheur</a>
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
             </div>
         </div>
 
         <div class="col-lg-6 colBtnVoirPlus">
             <div class="col-lg-6 btnGererPubVoirPlus">
-                <button type="submit" class="btn btn-default">Gérer Publicité</button>
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
             </div>
 
             <div class=" col-lg-6 btnVisiterBlogVoirPlus">
-                <button type="submit" class="btn btn-default">Visiter</button>
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
             </div>
         </div>
 
@@ -80,17 +65,17 @@
         <div class="col-lg-3">
             <h3>Blog Title</h3>
             <div class="infoBlogVoirPlus">
-                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Autheur</a>
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
             </div>
         </div>
 
         <div class="col-lg-6 colBtnVoirPlus">
             <div class="col-lg-6 btnGererPubVoirPlus">
-                <button type="submit" class="btn btn-default">Gérer Publicité</button>
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
             </div>
 
             <div class=" col-lg-6 btnVisiterBlogVoirPlus">
-                <button type="submit" class="btn btn-default">Visiter</button>
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
             </div>
         </div>
 
@@ -102,17 +87,17 @@
         <div class="col-lg-3">
             <h3>Blog Title</h3>
             <div class="infoBlogVoirPlus">
-                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Autheur</a>
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
             </div>
         </div>
 
         <div class="col-lg-6 colBtnVoirPlus">
             <div class="col-lg-6 btnGererPubVoirPlus">
-                <button type="submit" class="btn btn-default">Gérer Publicité</button>
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
             </div>
 
             <div class=" col-lg-6 btnVisiterBlogVoirPlus">
-                <button type="submit" class="btn btn-default">Visiter</button>
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
             </div>
         </div>
 

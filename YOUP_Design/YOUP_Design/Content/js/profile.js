@@ -41,7 +41,36 @@
         $('#lienAm').css("background-color", "#eeeeee");
 
     });
-
-
-
 });
+
+var ProfilModule = (function () {
+
+    var apiUrl = "http://aspmoduleprofil.azurewebsites.net/api/";
+
+    var recupererProfilParId = function (id) {
+        $.ajax({
+            type: "GET",
+            url: apiUrl + 'User/' + id,
+            success: function (data) {
+                
+                var self = this;
+
+                self.User_id = ko.observable(data.Utilisateur_id); 
+                self.Nom = ko.observable(data.Nom); 
+                self.Prenom = ko.observable(data.Prenom);
+                
+                //self. = ko.observable(data.); 
+                //self. = ko.observable(data.); 
+            }
+        });
+    }
+
+    var initProfil = function (id) {
+        recupererProfilParId(id);
+    }
+
+    return {
+        initProfl: initProfil
+    }
+})();
+

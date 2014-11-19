@@ -1,4 +1,73 @@
-﻿var evenementModule = (function () {
+﻿
+var evenementModule = (function () {
+
+    function initializeMap(Lat, Long) {
+        var mapOptions = {
+            scaleControl: true,
+            center: new google.maps.LatLng(Lat, Long),
+            zoom: 15
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: map.getCenter()
+        });
+    }
+
+    function initializeMapCreation() {
+        var mapOptions = {
+            scaleControl: true,
+            center: new google.maps.LatLng(Lat, Long),
+            zoom: 15
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: map.getCenter()
+        });
+
+        var oA = document.getElementById('btnRechercheAdresse');
+        oA.onclick = function () {
+            searchAddress(map);
+            return false;
+        };
+
+        /* SEARCH ADDRESS */
+        function searchAddress(map) {
+            console.log("Fonction search")
+            geocoder = new google.maps.Geocoder(); //Déclaration de la classe de géocodage de Google
+            geoOptions = {
+                'address': document.getElementById("adresse").value,
+                'region': 'FR'
+            };
+
+            //enlève tout les marqueurs
+            setAllMap(null);
+
+            geocoder.geocode(geoOptions, function (results, status) {
+                /* Si l'adresse a pu être géolocalisée */
+                if (status == google.maps.GeocoderStatus.OK) {
+                    console.log("geocoder ok")
+                    var coords = results[0].geometry.location;
+
+                    boundsGlob = createCircle(coords);
+                    afficheMarker(map); //réaffiche tout les marqueurs étant dans le cercle.
+
+                    addMarker(map, geoOptions.address, coords, "Montitre", false);
+                    centerMap(map, coords, 14);
+                } else {
+                    console.log("adresse non trouvée")
+                    alert("L'adresse n'a pu être géocodée avec succès.");
+                }
+            });
+        }
+    }
 
     function listeEvenementDate(data) {
         var self = this;
@@ -123,7 +192,12 @@
             data: JSON.stringify(data),
             success: function (msg) {
                 var datas = msg;
+                var event = new evenement(datas);
+                ko.applyBindings(event);
                 ko.applyBindings(new evenement(datas));
+
+                //initializeMap(45.862998, -0.400314);
+                initializeMap(event.adresse().latitude(), event.adresse().longitude());
             }
         });
     }

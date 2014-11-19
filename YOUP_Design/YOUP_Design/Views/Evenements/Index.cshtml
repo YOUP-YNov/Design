@@ -17,10 +17,10 @@
         Encart de publicité
     </div>
 
-    <div class="rechercheEvenement">
-        <div class="moduleRechercheEvenement form-group input-group">
-            <input type="text" class="form-control" placeholder="Rechercher dans évènement">
-        </div>
+    <div class="rechercheEvenement" style="display: flex;">
+        <div class=" moduleRechercheEvenement form-group input-group">
+        <input type="text" class="form-control" placeholder="Rechercher dans évènement">
+    </div>
 
         <div class="selectCategorieEvent">
             <select class="form-control">
@@ -42,7 +42,7 @@
             </select>
         </div>
 
-        <div class="selectRegionEvent">
+        <div class="selectDateEvent">
             <select class="form-control">
                 <option>Date</option>
                 <option>2</option>
@@ -77,7 +77,7 @@
     </div>
 
     <div id="timeLineEvent" class="row timelineEvent">
-        <div class="col-lg-9">
+        <div class="col-lg-12">
             <!-- Rajouter dans col-lg-9 les différents panel comme aujourd'hui, demain ou les catégories -->
 
             <div class="panel panel-default " data-bind="foreach: { data: listeEvenementDate, as: 'evenementDate' }">
@@ -85,9 +85,10 @@
                     <h3 class="panel-title" data-bind="text: evenementDate.date">Aujourd'hui</h3>
                 </div>
                 <div class="panel-body">
+
                     <!-- code à générer pour un event -->
                     <div data-bind="foreach: { data: evenementDate.listeEvenements, as: 'evt' }">
-                        <a class="row" href="#" data-bind="'evenementId': idEvenement, visible: visible, click: goDetail">
+                        <a class="row moreOneEvent" href="#" data-bind="'evenementId': idEvenement, visible: visible, click: goDetail">
                             <div class="col-lg-2">
                                 <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement" data-bind="src: evt.imgEvt()">
                             </div>

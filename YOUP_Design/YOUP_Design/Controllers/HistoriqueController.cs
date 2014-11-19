@@ -8,98 +8,33 @@ namespace YOUP_Design.Controllers
 {
     public class HistoriqueController : Controller
     {
-        //
-        // GET: /Historique/
-
         public ActionResult Index()
         {
             return View();
         }
-
-        //
-        // GET: /Historique/Details/5
-
-        public ActionResult Details(int id)
+        public ActionResult Device()
         {
-            return View();
+            return PartialView("~/Views/Historique/partialDeviceOS.cshtml");
         }
 
-        //
-        // GET: /Historique/Create
-
-        public ActionResult Create()
+        public ActionResult PageVisitee()
         {
-            return View();
+            return PartialView("~/Views/Historique/partialPagesVisitees.cshtml");
         }
 
-        //
-        // POST: /Historique/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Saisonnalite()
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return PartialView("~/Views/Historique/partialSaisonnalite.cshtml");
         }
 
-        //
-        // GET: /Historique/Edit/5
-
-        public ActionResult Edit(int id)
+        public ActionResult StatsUsage()
         {
-            return View();
+            return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml");
         }
 
-        //
-        // POST: /Historique/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Tops()
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Historique/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Historique/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return PartialView("~/Views/Historique/partialTops.cshtml");
         }
     }
 }

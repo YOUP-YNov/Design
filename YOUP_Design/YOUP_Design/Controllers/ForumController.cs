@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.Classes.Forum;
+using YOUP_Design.Models.Forum;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using RestSharp;
 
 namespace YOUP_Design.Controllers
 {
@@ -11,10 +17,50 @@ namespace YOUP_Design.Controllers
         //
         // GET: /Forum/
 
-        public ActionResult Index()
+
+        public T Execute<T>(RestRequest request) where T : new()
         {
-            return View();
+            var client = new RestClient("http://forumyoup.apphb.com/");
+            var response = client.Execute<T>(request);
+            return response.Data;
         }
+
+
+        public List<Forum> GetForums()
+        {
+            var request = new RestRequest("api/Forums", Method.GET);
+            var result = Execute<List<Forum>>(request);
+
+            return result;
+
+        }
+
+        public  ActionResult Index()
+        {
+
+            List<Forum> forums = new List<Forum>();
+            forums = this.GetForums();
+            ViewBag.forums = forums;
+            return View(forums);
+
+        }
+        /*
+        static async Task GetForumsAsync(List<Forum> list)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://forumyoup.apphb.com/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync("api/blog");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    list = await response.Content.ReadAsAsync<List<Forum>>();
+                }
+            }
+        }*/
 
         //
         // GET: /Forum/Details/5

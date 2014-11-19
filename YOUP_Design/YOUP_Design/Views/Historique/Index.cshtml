@@ -3,6 +3,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        function LoadPartialViewDevice() {
+
+            $.get("@Url.Action("Device", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuDeviceOS').on('click', function () {
+            LoadPartialViewDevice();
+        });
+
+        function LoadPartialViewPagesVisitees() {
+
+            $.get("@Url.Action("PageVisitee", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuPagesVisitees').on('click', function () {
+            LoadPartialViewPagesVisitees();
+        });
+        function LoadPartialViewSaisonnalite() {
+
+            $.get("@Url.Action("Saisonnalite", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuSaisonnalite').on('click', function () {
+            LoadPartialViewSaisonnalite();
+        });
+        function LoadPartialViewStatsUsage() {
+
+            $.get("@Url.Action("StatsUsage", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuStatsUtilisation').on('click', function () {
+            LoadPartialViewStatsUsage();
+        });
+        function LoadPartialViewTops() {
+
+            $.get("@Url.Action("Tops", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuTops').on('click', function () {
+            LoadPartialViewTops();
+        });
+    });
+</script>
+
 <div class="container divAllHistorique">
     <div class="row ">
         <div class="col-lg-offset-2 col-lg-8 text-center">
@@ -17,19 +90,7 @@
         </div>
     </div>
 
-    <div id="afficheDeviceOS">
-        @Html.Partial("~/Views/Historique/partialDeviceOS.cshtml")
-    </div>
-    <div id="affichePagesVisitees">
-        @Html.Partial("~/Views/Historique/partialPagesVisitees.cshtml")
-    </div>
-    <div id="afficheSaisonnalite">
-        @Html.Partial("~/Views/Historique/partialSaisonnalite.cshtml")
-    </div>
-    <div id="afficheStatsUtilisation">
-        @Html.Partial("~/Views/Historique/partialStatsUtilisation.cshtml")
-    </div>
-    <div id="afficheTops">
-        @Html.Partial("~/Views/Historique/partialTops.cshtml")
+    <div id="partialgoeshere">
+
     </div>
 </div>
