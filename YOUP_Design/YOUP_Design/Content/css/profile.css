@@ -75,6 +75,11 @@
 
 }
 
+#popupUrlModifImage .modal-header{
+    background-color: #367bb7;
+    color: white;
+}
+
 /* CSS partialProfil */
 
 .bodyProfil {

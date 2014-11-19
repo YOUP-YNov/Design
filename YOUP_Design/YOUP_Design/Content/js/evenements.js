@@ -47,8 +47,6 @@ var evenementModule = (function () {
 
                     var latitude = marker.getPosition().lat();
                     var longitude = marker.getPosition().lng();
-
-                    alert(latitude);
                     
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
