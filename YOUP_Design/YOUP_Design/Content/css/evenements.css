@@ -1,2 +1,238 @@
-﻿body {
+﻿﻿/* evenement Index */
+
+.rechercheEvenement{
+    display:flex !important;
+
+}
+
+.moduleRechercheEvenement{
+    width:30%;
+    display:flex;
+}
+
+.moduleRechercheEvenement input{
+    border-radius:12px !important;
+}
+
+
+.selectCategorieEvent{
+    display:flex;
+    height: 34px;
+    margin-left: 15px;
+    width:20%;
+}
+
+.selectRegionEvent{
+    display:flex;
+    height: 34px;
+    margin-left: 15px;
+    width:20%;
+}
+.selectDateEvent{
+    display:flex;
+    height: 34px;
+    margin-left: 15px;
+    width:20%;
+}
+
+.btnRechercherEvenement{
+    display:flex;
+    height: 34px;
+    margin-left: 15px;
+}
+
+/* Timeline et premium */
+
+.timelineEvent{
+    margin-top:40px;
+    margin-bottom:40px;
+;
+}
+
+.photoTimelineEvent{
+    max-height: 100px;
+}
+
+.titreTimelineEvent{
+    font-size:large;
+}
+
+.photoTimelineProfil{
+    max-height:30px;
+        border: 2px solid white;
+}
+
+.parUtilisateur{
+    font-size:smaller;
+    color: gray;
+}
+
+.descriptionEventTimeline{
+    font-size:small;
+        padding-top:20px;
+    padding-bottom:10px;
+}
+
+.informationEventTimeline span{
+    font-weight:bold;
+}
+
+.informationEventTimeline .col-lg-6{
+    margin-top:15px;
+}
+
+.timelineEvent .panel-heading{
+    background-color: white;
+}
+
+.panel-default .panel-body{
+    background-color: #f5f5f5;
+}
+
+.timelineEvent .panel-body .row{
+    display:flex;
+    align-items:center;
+}
+
+.timelineEvent .panel-body a{
+    text-decoration: none;
+    color: black;
+}
+
+.timelineEvent .panel-body a:hover{
+    color: #367bb7;
+}
+
+
+.dateEtVille{
+    font-weight:bold;
+}
+
+.imgPremiumTimeline{
+    display:flex;
+    justify-content:center;
+    margin-bottom:10px;
+}
+
+.moreOneEvent{
+    border-bottom: 2px solid #dddddd;
+    margin-bottom:10px;
+    padding-bottom:10px;
+}
+
+/* Evenement Creation */
+.bodyEventCreate {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+#InputNombre {
+    width: 20%;
+    display: inline;
+    margin-left: 20%;
+}
+
+#InputPayant {
+    width: 20%;
+    display: inline;
+    margin-left: 20px;
+}
+
+#InputPayant {
+    margin-right: 2%;
+}
+
+#InputPublic {
+    margin-right: 3.5%;
+}
+
+#TxtAreaDescription {
+    height: 200px;
+}
+
+.panelAmisInvite {
+    margin-top: 10px;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.panelAmisInvite .panel-body{
+    padding:0px;
+}
+
+/* PAGE DETAILS */
+.bodyEventDetails {
+
+}
+
+.contentDetailsEvent h1 {
+    display: inline;
+}
+
+.contentDetailsEvent p {
+    display: inline-flex;
+    margin-left: 2%;
+}
+
+.imgauteur {
+    max-height: 90px !important;
+    margin-bottom: 2%;
+}
+
+.imgevent {
+    height: 210px;
+    width: 850px;
+}
+
+.margtop {
+    margin-top: 2%;
+}
+
+#descEvent {
+    text-align: justify;
+}
+
+.inline {
+    display: inline;
+}
+
+.decoEvent {
+    height: 5px;
+    border-top: solid 1px #367BB7;
+    border-bottom: solid 1px #367BB7;
+    align-items: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.detailsEventComm {
+    text-align: justify;
+}
+
+.eventComm h4 {
+    margin-bottom: 0;
+}
+
+.eventComm p {
+    font-size: 10px;
+}
+
+.decoEventbis {
+    width: 78%;
+    margin-left: 11%;
+}
+
+.timelineEvent .panel-body a{
+    text-decoration: none;
+    color: black;
+}
+
+.timelineEvent .panel-body a:hover{
+    color: #367bb7;
+}
+
+.googleProfil{
+    height:250px;
 }

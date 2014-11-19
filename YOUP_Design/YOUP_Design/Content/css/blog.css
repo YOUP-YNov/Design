@@ -1,5 +1,169 @@
-﻿
-.blog_title {
+﻿.blog_title {
     color:#367bb7;
     font-size:18px;
+}
+
+.photoProfil .row_blog{ 
+    display: flex;
+    padding-top:10px;
+    justify-content: left;
+    align-items: center;
+}
+.rechercheBlog{
+    display:flex;
+    padding-top:10px;
+    justify-content:space-between;
+}
+
+.moduleRechercheBlog{
+    width:55%;
+    display:flex;
+}
+
+
+.article_blog {
+
+}
+
+.article_blog img{
+    width:600px;
+}
+
+.article_blog p {
+    padding-top:20px;
+    text-align:justify;
+}
+
+.date_publication_article {
+    justify-content: center;
+    margin-top:15px;
+}
+
+.btnGererBlog{
+    display:flex;
+    height: 34px;
+    margin-right: 15px;
+}
+
+.btnGererBlog button{
+    background-color: #367bb7;
+    color:white;
+}
+
+.btnGererBlog button:hover{
+    background-color: #3372A8;
+    color:white;
+}
+/* Modération commentaire */
+
+.divGaucheComment{
+    border-right:1px solid gray;
+    padding-left: 0;
+    min-width:100px;
+}
+
+.contenuOneComment{
+    display:flex;
+    align-items:stretch;
+}
+
+.btnEnregistrerCommentBlog button{
+    background-color: #367bb7;
+    color:white;
+    width:100%;
+    margin-top:15px;
+}
+
+.btnEnregistrerCommentBlog button:hover{
+    background-color: #3372A8;
+    color:white;
+}
+
+.btnAnnulerCommentBlog button{
+    width:100%;
+    margin-top:15px;
+}
+
+.btnValidComment{
+
+    margin-bottom:30px;
+}
+
+/* Gestion des publicites */
+.pubBlog_title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.bloc_pub {
+    border-right: 1px solid grey;
+}
+
+.bloc_pub p {
+    margin: 0;
+}
+
+.pub_banniere {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.pub_banniere p {
+    display: inline;
+    margin-left: 50px;
+    margin-right: 10px;
+}
+
+.pub_block {
+    margin-bottom: 15px;
+}
+
+.pub_block p {
+    display: inline;
+    margin-left: 50px;
+    margin-right: 10px;
+}
+
+.pub_adContent p {
+    display: inline;
+    margin-right: 10px;
+}
+
+.pub_AdContent input {
+    width: 75%;
+}
+
+/* Blog Voir Plus */
+
+.btnVisiterBlogVoirPlus button{
+    background-color: #367bb7;
+    color:white;
+    width:100%;
+    margin-top:15px;
+}
+
+.btnVisiterBlogVoirPlus button:hover{
+    background-color: #3372A8;
+    color:white;
+}
+
+.btnGererPubVoirPlus button{
+    width:100%;
+    margin-top:15px;
+}
+
+.rowBlogVoirPlus{
+    display:flex;
+    justify-content:space-around;
+}
+
+.colBtnVoirPlus{
+    display:flex;
+    align-items:center;
+}
+
+.menuPaginationVoirPlus{
+    display:flex;
+    justify-content:center;
+    margin:30px;
 }

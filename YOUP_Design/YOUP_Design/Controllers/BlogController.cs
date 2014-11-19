@@ -35,15 +35,46 @@ namespace YOUP_Design.Controllers
                 HttpResponseMessage response = await client.GetAsync("api/blog");
 
                 if (response.IsSuccessStatusCode)
-                {
+        {
                     list = await response.Content.ReadAsAsync<List<Blog>>();
                 }
             }
         }
 
+        public ActionResult ModComment()
+        {
+            return View();
+        }
 
+        public ActionResult PubBlog()
+        {
+            return View();
+        }
 
+        public ActionResult Blog_edit()
+        {
+            return View();
+        }
 
+        public ActionResult Blog_article_edit()
+        {
+            return View();
+        }
+
+        public ActionResult Blog_liste_article()
+        {
+            return View();
+        }
+
+        public ActionResult Blog_vue()
+        {
+            return View();
+        }
+
+        public ActionResult Blog_voir_plus()
+        {
+            return View();
+        }
 
         //
         // GET: /Blog/Details/5

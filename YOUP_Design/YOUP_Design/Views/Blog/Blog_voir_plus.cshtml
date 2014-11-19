@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Blog_voir_plus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Blog";
+}
+
+<div class="container">
+    <div class="encartPoub well row">
+        Encart de publicité
+    </div>
+
+    @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
+
+    <div class="row titreModComment">
+        <h3>Top des blogs</h3>
+    </div>
+
+    <!--Code à implementer pour chaque row -->
+    <div class="row rowBlogVoirPlus">
+
+        <div class="col-lg-3">
+            <h3>Blog Title</h3>
+            <div class="infoBlogVoirPlus">
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 colBtnVoirPlus">
+            <div class="col-lg-6 btnGererPubVoirPlus">
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
+            </div>
+
+            <div class=" col-lg-6 btnVisiterBlogVoirPlus">
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
+            </div>
+        </div>
+
+    </div>
+    <!--FIN du Code à implementer pour chaque row -->
+    <!--Code à implementer pour chaque row -->
+    <div class="row rowBlogVoirPlus">
+
+        <div class="col-lg-3">
+            <h3>Blog Title</h3>
+            <div class="infoBlogVoirPlus">
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 colBtnVoirPlus">
+            <div class="col-lg-6 btnGererPubVoirPlus">
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
+            </div>
+
+            <div class=" col-lg-6 btnVisiterBlogVoirPlus">
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
+            </div>
+        </div>
+
+    </div>
+    <!--FIN du Code à implementer pour chaque row -->
+    <!--Code à implementer pour chaque row -->
+    <div class="row rowBlogVoirPlus">
+
+        <div class="col-lg-3">
+            <h3>Blog Title</h3>
+            <div class="infoBlogVoirPlus">
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 colBtnVoirPlus">
+            <div class="col-lg-6 btnGererPubVoirPlus">
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
+            </div>
+
+            <div class=" col-lg-6 btnVisiterBlogVoirPlus">
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
+            </div>
+        </div>
+
+    </div>
+    <!--FIN du Code à implementer pour chaque row -->
+    <!--Code à implementer pour chaque row -->
+    <div class="row rowBlogVoirPlus">
+
+        <div class="col-lg-3">
+            <h3>Blog Title</h3>
+            <div class="infoBlogVoirPlus">
+                <span>100000</span> Vues | <a href="#">Catégorie</a> | <a href="#">Auteur</a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 colBtnVoirPlus">
+            <div class="col-lg-6 btnGererPubVoirPlus">
+                <a href="PubBlog" class="btn btn-default" role="button">Gérer Publicité</a>
+            </div>
+
+            <div class=" col-lg-6 btnVisiterBlogVoirPlus">
+                <a href="Blog_vue" class="btn btn-primary" role="button">Visiter</a>
+            </div>
+        </div>
+
+    </div>
+    <!--FIN du Code à implementer pour chaque row -->
+
+    <nav class="row menuPaginationVoirPlus">
+        <ul class="pagination">
+            <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+        </ul>
+    </nav>
+
+</div>

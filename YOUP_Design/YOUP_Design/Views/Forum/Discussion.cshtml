@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Discussion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Forum";
+}
+<div class="container">
+    <h1>Forum</h1>
+
+    <div class="publicite well">
+        Encart de publicité
+    </div>
+
+    <div class="rechercheForum">
+        <div class="moduleRecherche form-group input-group">
+            <input type="text" class="form-control" placeholder="Recherche Forum">
+            <select class="form-control">
+                <option value="Categorie">Categorie</option>
+            </select>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+
+    <div class="list-group"><div class="list-group-item">Forum > Jeux > Poker > Texas Hold'Em </div></div>
+
+    <div class="list-group">
+
+        <div class="row list-group-item">
+            <div class="col-sm-2">
+                <p><img class="img-circle forumImgDisc" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" /></p>
+            </div>
+            <div class="col-sm-10">
+                <h2><a href="#">Jean-Claude Duss</a></h2>
+                <p>Le 13/11/2014 à 12h53</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet lorem dapibus, gravida nulla sit amet, interdum nisl. Morbi ac purus accumsan, dictum sem vitae, sagittis justo. Quisque pretium, leo in dictum ullamcorper, nulla nisi consequat urna, eget lacinia nisl ex blandit tellus. In ullamcorper odio sed tristique fringilla. Vivamus eros sem, tempus aliquam mauris eu, laoreet viverra dolor. Donec ac nibh odio. Curabitur elit massa, efficitur eu urna et, condimentum interdum sapien. Donec commodo porta rutrum. Maecenas quis libero quam. Nullam lacinia accumsan diam et vehicula. Donec tristique sem risus, non dictum dui euismod non. Vestibulum interdum id augue vel porta. Pellentesque interdum, mauris nec elementum tincidunt, elit mauris maximus magna, sed euismod nibh erat a ex. Maecenas fringilla ante vel vestibulum gravida. Donec eu suscipit neque. Vestibulum pulvinar molestie metus, non feugiat lectus luctus sed.</p>
+            </div>
+        </div>
+        <div class="row list-group-item">
+            <div class="col-sm-2">
+                <p><img class="img-circle forumImgDisc" src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xfa1/v/t1.0-9/10702174_10205016467361976_8906396922194623249_n.jpg?oh=560983af5e7764ec2558673bf4658db7&oe=54E63CCE&__gda__=1423188515_e2a51d113efc7cc4a96bccd16657b6d6" /></p>
+            </div>
+            <div class="col-sm-10">
+                <h2><a href="#">Lambert Jacques</a></h2>
+                <p>Le 14/11/2014 à 17h17</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet lorem dapibus, gravida nulla sit amet, interdum nisl. Morbi ac purus accumsan, dictum sem vitae, sagittis justo. Quisque pretium, leo in dictum ullamcorper, nulla nisi consequat urna, eget lacinia nisl ex blandit tellus. In ullamcorper odio sed tristique fringilla. Vivamus eros sem, tempus aliquam mauris eu, laoreet viverra dolor. Donec ac nibh odio. Curabitur elit massa, efficitur eu urna et, condimentum interdum sapien. Donec commodo porta rutrum. Maecenas quis libero quam. Nullam lacinia accumsan diam et vehicula. Donec tristique sem risus, non dictum dui euismod non. Vestibulum interdum id augue vel porta. Pellentesque interdum, mauris nec elementum tincidunt, elit mauris maximus magna, sed euismod nibh erat a ex. Maecenas fringilla ante vel vestibulum gravida. Donec eu suscipit neque. Vestibulum pulvinar molestie metus, non feugiat lectus luctus sed.</p>
+            </div>
+        </div>
+    </div>
+
+    <center>
+        <h3>Ecris ton message :</h3>
+
+        <textarea name="editor1" id="editor1" rows="10" cols="80" class="input-sm">
+        </textarea>
+        <script>
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace('editor1');
+        </script>
+    </center>
+    <br /><center> <div><input type="button" class="btn btn-primary" value="Envoyer" /></div></center>
+<br />
+</div>

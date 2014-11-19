@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Détail d'un évenement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Evenements";
+}
+
+@Scripts.Render("~/Scripts/knockout-2.2.0.js")
+@Scripts.Render("~/Content/js/evenements.js")
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false" >
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        evenementModule.initDetail(@ViewBag.idEvenement);
+        loadScript;
+    });
+
+    function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false' +
+            'callback=initializeMap';
+        document.body.appendChild(script);
+    }
+</script>
+
+<div class="bodyEventDetails container">
+    <div class="encartPoub well">
+        Encart de publicité
+    </div>
+
+    @using(Html.BeginForm("Index","Evenements"))
+    {
+        <button type="submit" class="btn btn-default">Retour à la liste</button>
+    }
+    <div class="row">
+        <div class="col-lg-12 text-center border-right contentDetailsEvent">
+            <h1 data-bind="text: titre"></h1>
+            <p data-bind="text: organisateur"></p>
+            <!--<img id="idPhotoProfil" src="/Images/default_profil.png" alt="Image de l'auteur" class="img-circle imgauteur" />-->
+            <img id="idPhotoProfil" alt="Image de l'auteur" class="img-circle imgauteur" data-bind="attr: {'src': imgOrganisateur}" />
+            <img id="idPhotoEvent" alt="Image de l'evenement" class="imgevent" data-bind="attr: {'src': imgEvt}" />
+        </div>
+    </div>
+    <div class="row margtop">
+        <div class="col-lg-offset-2 col-lg-4 text-center border-right">
+            <h4>Description</h4>
+            <p id="descEvent" data-bind="text: description"></p>
+            <h4 class="inline">Prix :</h4>
+            <p class="inline" data-bind="text: prix"></p><br/><br />
+            <h4 class="inline">Mots clés :</h4>
+            <p class="inline" data-bind="text: hashTag"></p><br /><br />
+            <h4 class="inline">Catégorie :</h4>
+            <p class="inline" data-bind="text: categorie"></p>
+        </div>
+        <div class="col-lg-4 text-center border-right">
+            <h4>Lieu de l'évènement</h4>
+            <p><span data-bind="text: adresse().adresse"></span>, <span data-bind="text: adresse().codePostale"></span> <span data-bind="text: adresse().ville"></span></p>
+            <div id="map-canvas" class="googleProfil" ></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="decoEvent"></div>
+        </div>
+        <div class="col-lg-offset-2 col-lg-4 text-center">
+            <p>Nombre de participants : <span data-bind="text: nbParticipant"/></p>
+            <p>Date : <span data-bind="text: date" /></p>
+        </div>
+        <div class="col-lg-4 text-center">
+            <p>Liste d'attente : 5 personnes</p>
+            <p>Date de fin d'inscription : <span data-bind="text: dateFinInscription"/></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="col-lg-7" style="text-align: right;">
+                <button type="submit" class="btn btn-primary">Inscrit toi !</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="decoEvent"></div>
+        </div>
+</div>
+
+<!--<div class="container divAllEvenement">
+    <p>idEvenement : <span data-bind="text: idEvenement"></span></p>
+    <p>titre : <span data-bind="text: titre"></span></p>
+    <p>imgEvt : <span data-bind="text: imgEvt"></span></p>
+    <p>prix : <span data-bind="text: prix"></span></p>
+    <p>date : <span data-bind="text: date"></span></p>
+    <p>categorie : <span data-bind="text: categorie"></span></p>
+    <p>nbParticipant : <span data-bind="text: nbParticipant"></span></p>
+    <p>imgOrganisateur : <span data-bind="text: imgOrganisateur"></span></p>
+    <p>organisateur : <span data-bind="text: organisateur"></span></p>
+    <p>adresse : 
+        <ul>
+            <li> idAdresse :<span data-bind="text: adresse().id"></span></li>
+            <li> ville :  <span data-bind="text: adresse().ville"></span></li>
+            <li> codePostale : <span data-bind="text: adresse().codePostale"></span></li>
+            <li> adresse : <span data-bind="text: adresse().adresse"></span></li>
+            <li> longitude : <span data-bind="text: adresse().longitude"></span></li>
+            <li> latitude :  <span data-bind="text: adresse().latitude"></span></li>
+            <li> pays :  <span data-bind="text: adresse().pays"></span></li>
+            <li> nom :  <span data-bind="text: adresse().nom"></span></li>
+        </ul>
+    </p>
+    <p>dateFinInscription : <span data-bind="text: dateFinInscription"></span></p>
+    <p>premium : <span data-bind="text: premium"></span></p>
+    <p>public : <span data-bind="text: public"></span></p>
+    <p>hashTag : <span data-bind="text: hashTag"></span></p>
+
+</div> -->

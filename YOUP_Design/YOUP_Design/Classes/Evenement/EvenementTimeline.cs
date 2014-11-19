@@ -8,7 +8,7 @@ namespace YOUP_Design.Classes.Evenement
     /// <summary>
     /// Model d'accès au données représentant un événement.
     /// </summary>
-    public class EvenementTimelineFront
+    public class EvenementTimeline
     {
         /// <summary>
         /// Assigne ou récupère l'id de l'evènement.

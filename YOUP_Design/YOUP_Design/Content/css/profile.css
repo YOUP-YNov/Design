@@ -4,10 +4,10 @@
     margin-bottom: 70px;
 }
 
-.publicite{
+.encartPoub{
     height:100px;
     text-align:center;
-    margin: 15px;
+    margin-top: 15px;
 }
 
 .rechercheProfil{
@@ -21,7 +21,6 @@
 
 .moduleRecherche{
     width:30%;
-    margin-left:15px;
     display:flex;
 }
 

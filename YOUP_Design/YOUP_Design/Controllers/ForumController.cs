@@ -50,6 +50,37 @@ namespace YOUP_Design.Controllers
             }
         }
 
+        public ActionResult ViewForum()
+        {
+            //try
+            //{
+            //    // TODO: Add insert logic here
+
+            //    return RedirectToAction("Forum");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+            return View("ViewForum");
+        }
+
+        public ActionResult Discussion()
+        {
+            //try
+            //{
+            //    // TODO: Add insert logic here
+
+            //    return RedirectToAction("Forum");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+            return View("Discussion");
+        }
+
+
         //
         // GET: /Forum/Edit/5
 

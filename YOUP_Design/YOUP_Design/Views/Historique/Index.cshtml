@@ -3,33 +3,94 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/css/historique.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
 
-<div class="row ">
-    <div class="col-lg-offset-2 col-lg-8 text-center">
-        <h1>Historique</h1>
-        <div class=" btn-group btn-group-justified menuProfil">
-            <a href="#" class="btn btn-default">Type de device/OS</a>
-            <a href="#" class="btn btn-default">Pages les + visitées</a>
-            <a href="#" class="btn btn-default">Saisonnalité</a>
-            <a href="#" class="btn btn-default">Stats d'utilisation</a>
-            <a href="#" class="btn btn-default">Tops</a>
+<script type="text/javascript">
+    $(document).ready(function () {
+        function LoadPartialViewDevice() {
+
+            $.get("@Url.Action("Device", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuDeviceOS').on('click', function () {
+            LoadPartialViewDevice();
+        });
+
+        function LoadPartialViewPagesVisitees() {
+
+            $.get("@Url.Action("PageVisitee", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuPagesVisitees').on('click', function () {
+            LoadPartialViewPagesVisitees();
+        });
+        function LoadPartialViewSaisonnalite() {
+
+            $.get("@Url.Action("Saisonnalite", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuSaisonnalite').on('click', function () {
+            LoadPartialViewSaisonnalite();
+        });
+        function LoadPartialViewStatsUsage() {
+
+            $.get("@Url.Action("StatsUsage", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuStatsUtilisation').on('click', function () {
+            LoadPartialViewStatsUsage();
+        });
+        function LoadPartialViewTops() {
+
+            $.get("@Url.Action("Tops", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuTops').on('click', function () {
+            LoadPartialViewTops();
+        });
+    });
+</script>
+
+<div class="container divAllHistorique">
+    <div class="row ">
+        <div class="col-lg-offset-2 col-lg-8 text-center">
+            <h1>Historique</h1>
+            <div class=" btn-group btn-group-justified menuProfil">
+                <a id="menuDeviceOS" class="btn btn-default">Type de device/OS</a>
+                <a id="menuPagesVisitees" class="btn btn-default">Pages les + visitées</a>
+                <a id="menuSaisonnalite" class="btn btn-default">Saisonnalité</a>
+                <a id="menuStatsUtilisation" class="btn btn-default">Stats d'utilisation</a>
+                <a id="menuTops" class="btn btn-default">Tops</a>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="afficheDeviceOS">
-    @Html.Partial("~/Views/Historique/partialDeviceOS.cshtml")
-</div>
-<div id="affichePagesVisitees">
-    @Html.Partial("~/Views/Historique/partialPagesVisitees.cshtml")
-</div>
-<div id="afficheSaisonnalite">
-    @Html.Partial("~/Views/Historique/partialSaisonnalite.cshtml")
-</div>
-<div id="afficheStatsUtilisation">
-    @Html.Partial("~/Views/Historique/partialStatsUtilisation.cshtml")
-</div>
-<div id="afficheTops">
-    @Html.Partial("~/Views/Historique/partialTops.cshtml")
+    <div id="partialgoeshere">
+
+    </div>
 </div>

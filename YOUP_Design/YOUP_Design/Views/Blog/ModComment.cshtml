@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Modération des commentaires";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Blog";
+}
+
+
+<div class="container">
+    <div class="encartPoub well row">
+        Encart de publicité
+    </div>
+
+    @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
+
+    <div class="row titreModComment">
+        <h3>Modération des commentaires</h3>
+    </div>
+
+    <!-- Début d'un bloc avec le tritre de l'article -->
+    <div class="row commentArticle">
+        <h4>Titre de l'article</h4>
+        <!-- Début panel d'un seul com-->
+        <div class="row panel panel-default ">
+            <div class="panel-body contenuOneComment">
+
+                <div class="col-lg-2 divGaucheComment">
+                    <h4>Auteur</h4>
+                    <div>
+                        Posté le <span>01/01/2015</span>
+                    </div>
+
+                    <div class="selectTypeComment">
+                        <select class="form-control">
+                            <option>Visible</option>
+                            <option>En Attente</option>
+                            <option>Refuser</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-10">
+                    js flexbox flexboxlegacy canvas canvastext webgl touch geolocation postmessage
+                    websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs
+                    backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients
+                    cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage
+                    sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths
+                </div>
+
+            </div>
+        </div>
+        <!-- FIN panel d'un seul com-->
+        <!-- Début panel d'un seul com-->
+        <div class="row panel panel-default ">
+            <div class="panel-body contenuOneComment">
+
+                <div class="col-lg-2 divGaucheComment">
+                    <h4>Auteur</h4>
+                    <div>
+                        Posté le <span>01/01/2015</span>
+                    </div>
+
+                    <div class="selectTypeComment">
+                        <select class="form-control">
+                            <option>Visible</option>
+                            <option>En Attente</option>
+                            <option>Refuser</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-10">
+                    js flexbox flexboxlegacy canvas canvastext webgl touch geolocation postmessage
+                    websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs
+                    backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients
+                    cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage
+                    sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths
+                </div>
+
+            </div>
+        </div>
+        <!-- FIN panel d'un seul com-->
+    </div>
+    <!-- FIN d'un bloc avec le tritre de l'article -->
+
+    <div class="row text-center btnValidComment">
+        <div class=" col-lg-offset-2 col-lg-4 btnAnnulerCommentBlog">
+            <button type="submit" class="btn btn-default">Annuler</button>
+        </div>
+
+        <div class=" col-lg-4 btnEnregistrerCommentBlog">
+            <button type="submit" class="btn btn-default">Enregistrer</button>
+        </div>
+
+    </div>
+
+</div>
