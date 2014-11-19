@@ -1,9 +1,16 @@
 ﻿<link href="~/Content/css/historique.css" rel="stylesheet" />
 
 <div class="row">
-    <div class="col-lg-offset-2 col-lg-8 text-center">
+    <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
         <h2>Statistiques d'utilisation par personne</h2>
-        <div class="col-lg-4 text-center  StatsUser">
+        <div class="col-lg-12 comboHisto">
+            <select name="pseudo" onchange="combo(this, 'theinput')">
+                <option> Toto </option>
+                <option> Coco </option>
+            </select>
+            <input class="btn btn-primary"  type="submit" value="Envoyer"/>
+        </div>
+        <div class="col-lg-4 text-center">
             <strong>Date d'inscription</strong>
             <p>29/04/2014</p>
         </div>
