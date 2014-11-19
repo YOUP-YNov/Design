@@ -98,6 +98,9 @@ namespace YOUP_Design.Classes.Profile
         {
 
         }
-
+        public string GetJson()
+        {
+            return new JavaScriptSerializer().Serialize(this);
+        }
     }
 }
