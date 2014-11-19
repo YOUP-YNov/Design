@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<YOUP_Design.Classes.Blog.Blog>;
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
@@ -6,6 +7,11 @@
 <div class="container">
     
     @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
+
+    @foreach (var e in Model)
+    {
+        
+    }
 
     <div class="row">
         <h2>Top des Blogs</h2>
