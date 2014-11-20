@@ -7,38 +7,37 @@
     </div>
 </div>
 
-    @{int compt = 0;}
 
-    @foreach (var m in Model)
-    {
-        if (compt<5)
+
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8 text-center">
+        @{int compt = 0;}
+
+        @foreach (var m in Model)
         {
-            <div class="row">          
-                <div class="col-lg-offset-2 col-lg-8 text-center">
+            if (compt < 5)
+            {
+                if (compt == 0)
+                {
                     <h3>Top 5 des amis</h3>
-                    <div class=" topContainer">
-                        <div class=" topHisto">
-                            <img class="img-circle imgHistoTop" src=@m.CheminPhoto alt="">
-                            <p class="txtHisto">@m.Pseudo - @m.NbAmis</p>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        }
-        else
-	    {
-	         <div class="row">
-                <div class="col-lg-offset-2 col-lg-8 text-center">
-                    <h3>Top 5 des créateurs</h3>
-                    <div class=" topContainer">
-                        <div class=" topHisto">
-                            <img class="img-circle imgHistoTop" src=@m.CheminPhoto alt="">
-                            <p class="txtHisto">@m.Pseudo - @m.NbEvenmentPropose</p>
-                        </div>                       
-                    </div>
+                }
+                <div class=" topHisto">
+                    <img class="img-circle imgHistoTop" src=@m.CheminPhoto alt="">
+                    <p class="txtHisto"><span class="pseudoHisto">@m.Pseudo </span> - @m.NbAmis</p>
                 </div>
-            </div>   
-	    }
-        compt++;
-        
-    }
+            }
+            else
+            {
+                if (compt == 5)
+                {
+                    <h3 id="topCreateur">Top 5 des créateurs</h3>
+                }
+                <div class=" topHisto">
+                    <img class="img-circle imgHistoTop" src=@m.CheminPhoto alt="">
+                    <p class="txtHisto"><span class="pseudoHisto">@m.Pseudo </span> - @m.NbEvenmentPropose</p>
+                </div>
+            }
+            compt++;
+        }
+    </div>
+</div>
