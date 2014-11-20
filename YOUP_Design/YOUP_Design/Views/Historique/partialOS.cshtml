@@ -1,4 +1,6 @@
-﻿<link href="~/Content/css/historique.css" rel="stylesheet" />
+﻿@model IEnumerable<YOUP_Design.Classes.Historique.DeviceTypeStatRow>
+
+<link href="~/Content/css/historique.css" rel="stylesheet" />
 <script type="text/javascript">
     $(document).ready(function () {
         $('#exampleInputDateDebut').on('change',function () {
@@ -29,10 +31,9 @@
         });
     }
 </script>
-
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center">
-        <h2>Type de device/OS</h2>
+        <h2>Type d'OS</h2>
     </div>
 </div>
 
@@ -49,36 +50,37 @@
         </p>
         <input id="SubmitButtonID" class="btn btn-primary" type="button" value="Rechercher" onclick="datecheck()" />
     </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-offset-2 col-lg-8 text-center">
-        <h3>Session et demandes pour device</h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Catégorie d'appareil</th>
-                    <th>Sessions</th>
-                    <th>Demande (taux conversion)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Desktop</td>
-                    <td>1245</td>
-                    <td>16,85%</td>
-                </tr>
-                <tr>
-                    <td>Mobile</td>
-                    <td>2954</td>
-                    <td>8,45%</td>
-                </tr>
-                <tr>
-                    <td>Tablet</td>
-                    <td>4102</td>
-                    <td>12,32%</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    @if(Model.Count()==0)
+    {
+         <p>Pas de device disponible pour la période sélectionnée</p>
+    }
+    else
+    {
+        <div class="col-lg-offset-2 col-lg-8 text-center">
+            <p>Période sélectionnée</p>
+            @Html.TextBox("DateDebut");
+            @Html.TextBox("DateFin");
+            <h3>Sessions et demandes pour système d'exploitation</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Système d'exploitation</th>
+                        <th>Sessions</th>
+                        <th>Demande (taux conversion)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var m in Model)
+                    {
+                        <tr>
+                            <td>@m.OsType </td>
+                            <td>@m.NbViews</td>
+                            <td>@m.ConversionRate</td>
+                        </tr>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    }
 </div>
