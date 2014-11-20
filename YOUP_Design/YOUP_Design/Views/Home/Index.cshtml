@@ -1,4 +1,8 @@
-﻿@{
+﻿@using YOUP_Design.Classes.Blog;
+@using YOUP_Design.Classes.Evenement;
+@using YOUP_Design.Classes.Profile;
+@using YOUP_Design.Classes.Historique;
+@{
     ViewBag.Title = "Accueil";
     ViewBag.ActiveMenu = "Home";
 }
@@ -25,34 +29,15 @@
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row full-width-block">
-                    <div class="col-xs-6 col-sm-3">
-                        <a class="home-last-member" href="#">
-                            <h2>Franky Vincent</h2>
-                            <h3>le 12/12/2012</h3>
-                            <div class="home-circle-img" style="background-image: url(http://lorempixel.com/200/200/sports); "></div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <a class="home-last-member" href="#">
-                            <h2>Zlatan Ibrahimovic</h2>
-                            <h3>le 12/12/2012</h3>
-                            <div class="home-circle-img" style="background-image: url(http://lorempixel.com/200/200/animals);"></div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <a class="home-last-member" href="#">
-                            <h2>Lionel Messi</h2>
-                            <h3>le 12/12/2012</h3>
-                            <div class="home-circle-img" style="background-image: url(http://lorempixel.com/200/200/food);"></div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <a class="home-last-member" href="#">
-                            <h2>Cristiano Ronaldo</h2>
-                            <h3>le 12/12/2012</h3>
-                            <div class="home-circle-img" style="background-image: url(http://lorempixel.com/200/200/people);"></div>
-                        </a>
-                    </div>
+                    @foreach (var profil in ViewBag.LastProfiles)
+                    {
+                        <div class="col-xs-6 col-sm-3">
+                            <a class="home-last-member" href="#">
+                                <h2>@profil.Pseudo</h2>
+                                <div class="home-member-img" style="background-image: url(http://lorempixel.com/200/200/sports); "></div>
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="home-last-events home-section">
@@ -62,48 +47,24 @@
                 </div>
                 <div class="row full-width-block">
                     <div class="col-xs-12 col-sm-6 home-border-col-right">
-                        <a href="#" class="home-last-event block">
-                            <div class="col-xs-4 no-padding">
-                                <div class="home-event-img" style="background-image: url(http://lorempixel.com/200/200/sports);"></div>
-                            </div>
-                            <div class="col-xs-8">
-                                <h2>Street Basket</h2>
-                                <h3>par: Kobe Bryant</h3>
-                                <h4>le 12/12/2012</h4>
-                                <div class="home-event-categories">
-                                    <span class="label label-default">Sport</span>
+                        @foreach (var evenenement in ViewBag.LastEvents)
+                        {
+                            <a href="#" class="home-last-event block">
+                                <div class="col-xs-4 no-padding">
+                                    <div class="home-event-img" style="background-image: url(http://lorempixel.com/200/200/sports);"></div>
                                 </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <a href="#" class="home-last-event block">
-                            <div class="col-xs-4 no-padding">
-                                <div class="home-event-img" style="background-image: url(http://lorempixel.com/200/200/sports);"></div>
-                            </div>
-                            <div class="col-xs-8">
-                                <h2>Street Basket</h2>
-                                <h3>par: Kobe Bryant</h3>
-                                <h4>le 12/12/2012</h4>
-                                <div class="home-event-categories">
-                                    <span class="label label-default">Sport</span>
+                                <div class="col-xs-8">
+                                    <h2>@evenenement.TitreEvenement</h2>
+                                    <h3>par: </h3>
+                                    <h4>le @evenenement.DateEvenement</h4>
+                                    <div class="home-event-categories">
+                                        <span class="label label-default">Sport</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <a href="#" class="home-last-event block">
-                            <div class="col-xs-4 no-padding">
-                                <div class="home-event-img" style="background-image: url(http://lorempixel.com/200/200/sports);"></div>
-                            </div>
-                            <div class="col-xs-8">
-                                <h2>Street Basket</h2>
-                                <h3>par: Kobe Bryant</h3>
-                                <h4>le 12/12/2012</h4>
-                                <div class="home-event-categories">
-                                    <span class="label label-default">Sport</span>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </a>
+                                <div class="clearfix"></div>
+                            </a>
+                        }
+
                     </div>
                     <div class="col-sm-6 hidden-xs">
                         <div>
@@ -246,33 +207,6 @@
             <div class="home-top-5-createurs home-section">
                 <div class="home-title">
                     <h1>Top 5 des créateurs d'évènements :</h1>
-                    <div class="home-title-border"></div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/abstract);"></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/food);"></a>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-6 home-center-col">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/animals);"></a>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/people);"></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/cats);"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="home-top-5-stars home-section">
-                <div class="home-title">
-                    <h1>Top 5 des célébrités :</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row no-margin">

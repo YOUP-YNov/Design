@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Script.Serialization;
 
 namespace YOUP_Design.Classes.Profile
 {
@@ -99,9 +98,6 @@ namespace YOUP_Design.Classes.Profile
         {
 
         }
-        public string GetJson()
-        {
-            return new JavaScriptSerializer().Serialize(this);
-        }
+
     }
 }

@@ -1,6 +1,4 @@
-﻿@using YOUP_Design.Classes.Forum;
-@model IEnumerable<YOUP_Design.Classes.Forum.Forum>
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Forum";
@@ -11,43 +9,48 @@
     <div class="publicite well">
         Encart de publicité
     </div>
-    
-
-    <!--
-        FORUM
-            CATEGORIES
-                TOPICS
-                    MESSAGES
-    --><div class="rechercheForum">
-    <div class="moduleRecherche form-group input-group">
-        <input type="text" class="form-control" placeholder="Recherche Forum">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-        </span>
-    </div>
-</div>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h2 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#Forum-Categorie-1" aria-expanded="true" aria-controls="collapseOne">
-                        Général
-                    </a>
-                </h2>
-            </div><div id="Forum-Categorie-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                    <ul>
-                        @foreach (var f in Model)
-                        {
-
-                            <li><a href="/Forum/ViewForum">@f.Nom</a></li>
-
-                        }
-                    </ul>
-                </div>
-            </div>
-
-
-
+    <div class="rechercheForum">
+        <div class="moduleRecherche form-group input-group">
+            <input type="text" class="form-control" placeholder="Recherche Forum">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+            </span>
         </div>
     </div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            @{int i = 0;}
+            @foreach (var f in ViewBag.forums)
+            {
+
+
+                i += 1;
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h2 class="panel-title">
+
+                        <a data-toggle="collapse" data-parent="#accordion" href="#Forum-Categorie-@i" aria-expanded="true" aria-controls="collapseOne">
+                            @f.Nom
+                        </a>
+
+                    </h2>
+                </div>
+                <div id="Forum-Categorie-@i" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <ul>
+                            @foreach (var c in ViewBag.categs)
+                            {
+                                if (c.Forum_id == f.Forum_id) { 
+                                        
+                                        <li><a href="/Forum/Topics?id=@c.Sujet_id">@c.Nom</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+</div>

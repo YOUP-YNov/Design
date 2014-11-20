@@ -1,5 +1,4 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,38 +10,31 @@ namespace YOUP_Design.Controllers
 {
     public class HistoriqueController : Controller
     {
-        public T Execute<T>(RestRequest request) where T : new()
-        {
-            var client = new RestClient("http://youphistorique-wepapi.apphb.com/");
-            var response = client.Execute<T>(request);
-            return response.Data;
-        }
-
-        public Utilisateur GetUtilisateurByPseudo()
-        {
-            var request = new RestRequest("api/utilisateur/Collier", Method.GET);
-            var result = Execute<Utilisateur>(request);
-
-            return result;
-
-        }
-        public HistoriqueController()
-        {
-           
-        }
-
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Device()
+        public ActionResult Device(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialDeviceOS.cshtml");
+            return PartialView("~/Views/Historique/partialDevice.cshtml");
         }
 
-        public ActionResult PageVisitee()
+        public ActionResult OS(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialPagesVisitees.cshtml");
+            return PartialView("~/Views/Historique/partialOS.cshtml");
+        }
+        public ActionResult PageVisitee(string dateDebut, string dateFin)
+        {
+            if(string.IsNullOrEmpty(dateDebut)|| string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialPagesVisitees.cshtml", new List<PageVisitee>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialPagesVisitees.cshtml", WebApiHistoriqueController.GetPageVisitee(dateDebut,dateFin));
+            }
         }
 
         public ActionResult Saisonnalite()
@@ -54,13 +46,22 @@ namespace YOUP_Design.Controllers
         {
             List<SelectListItem> pseudos = new List<SelectListItem>();
             var users = WebApiHistoriqueController.GetUtilisateurs();
-            users.ForEach(x => pseudos.Add(new SelectListItem(){Text= x.Pseudo,Value= x.Pseudo}));
-            ViewBag.Pseudo = new SelectList(pseudos, "Value", "Text");
-            if(string.IsNullOrEmpty(pseudoUser))
-                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",new Utilisateur());
+            if(users != null)
+            {
+                users.ForEach(x => pseudos.Add(new SelectListItem() { Text = x.Pseudo, Value = x.Pseudo }));
+                ViewBag.Pseudo = new SelectList(pseudos, "Value", "Text");
+            }
             else
-                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser));
-        }
+            {
+                ViewBag.Pseudo = new SelectList(new List<SelectListItem>(), "Value", "Text");
+                ViewBag.Error = "Impossible de charger les utilisateurs";
+            }
+
+            if (string.IsNullOrEmpty(pseudoUser))
+                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", new Utilisateur());
+            else
+                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser));
+          }
 
         public ActionResult Tops()
         {

@@ -67,5 +67,54 @@ namespace YOUP_Design.WebApi.Historique
             user = JsonConvert.DeserializeObject<Utilisateur>(json);
             return user;
         }
+
+        public static List<PageVisitee> GetPageVisitee(string dateDebut,string dateFin)
+        {
+            var pages = new List<PageVisitee>();
+            string json = string.Empty;
+            WebClient wc = new WebClient();
+            try
+            {
+                json = wc.DownloadString(string.Concat(_UrlWebAPi, "/api/analytics/views/pages?startDate=",dateDebut,"&endDate=",dateFin));
+                pages = JsonConvert.DeserializeObject<List<PageVisitee>>(json);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return pages;
+        }
+        public static List<DeviceTypeStatRow> GetDeviceType(string dateDebut, string dateFin)
+        {
+            var pages = new List<DeviceTypeStatRow>();
+            string json = string.Empty;
+            WebClient wc = new WebClient();
+            try
+            {
+                json = wc.DownloadString(string.Concat(_UrlWebAPi, "api/analytics/views/os?startDate=", dateDebut, "&endDate=", dateFin));
+                pages = JsonConvert.DeserializeObject<List<DeviceTypeStatRow>>(json);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return pages;
+        }
+        public static List<DeviceCategoryStatRow> GetDeviceCategorie(string dateDebut, string dateFin)
+        {
+            var pages = new List<DeviceCategoryStatRow>();
+            string json = string.Empty;
+            WebClient wc = new WebClient();
+            try
+            {
+                json = wc.DownloadString(string.Concat(_UrlWebAPi, "api/analytics/views/deviceCategory?startDate=", dateDebut, "&endDate=", dateFin));                
+                pages = JsonConvert.DeserializeObject<List<DeviceCategoryStatRow>>(json);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return pages;
+        }
     }
 }

@@ -1,6 +1,9 @@
 ﻿@model YOUP_Design.Classes.Historique.Utilisateur
 <link href="~/Content/css/historique.css" rel="stylesheet" />
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#SubmitButtonID').on('click', function () {
@@ -23,11 +26,10 @@
 
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
-        <h2>Statistiques d'utilisation par personne</h2>
+        <h2>Statistiques d'utilisation : @Model.Pseudo</h2>
+        @Html.TextBox("Error")
         <div class="col-lg-12 comboHisto">
-            @*<input type="text" id="theinput" name="theinput" />
-            *@
-            @Html.DropDownList("Pseudo","Select pseudo")
+            @Html.DropDownList("Pseudo", "Select user")
             <input id="SubmitButtonID" class="btn btn-primary" type="submit" value="Envoyer" />
         </div>
         <div class="col-lg-4 text-center">
@@ -36,7 +38,15 @@
         </div>
         <div class="col-lg-4 text-center">
             <strong>Sexe</strong>
-            <p>@Model.IsHomme</p>
+            @if (Model.IsHomme)
+            {
+                <p>Masculin</p>
+            }
+            else
+	        {
+	            <p>Feminin</p>
+	        }
+            
         </div>
         <div class="col-lg-4 text-center">
             <strong>Age</strong>
@@ -61,5 +71,49 @@
     <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
         <strong>Catégories d'évènements</strong>
          <p>Graphique</p>
+        <div id="categorie" style="min-width: 310px; height: 320px; max-width: 500px; margin: 0 auto"></div> @*defini la taille du graphique et l'affiche*@
+
+        <script>
+            $(document).ready(function () {
+                var chart2 = new Highcharts.Chart({
+
+                    chart: {
+                        renderTo: 'categorie', // id du graphique
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie', // type du graphique
+                    },
+                    title: {
+                        text: 'Catégories d\'évènements'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>' // si on pointe sur un morceau, affiche : Pourcentage : xx%
+                    },
+                    plotOptions: { //les options pour rendre le graphique dynamique
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Pourcentage',
+                        data: [
+                            ['Sport', 45.0],//********libellé des catégories, pourcentage de répartition
+                            ['Musées', 26.8],
+                            ['Restaurants', 12.9],
+                            ['Musique', 8.5],
+                            ['Sortie', 6.2],
+                            ['Autres', 0.6]
+                        ]
+                    }]
+                });
+            });
+
+        </script>
     </div>
 </div>
