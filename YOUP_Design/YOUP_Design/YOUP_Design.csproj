@@ -191,6 +191,7 @@
     <Compile Include="Classes\Blog\Categorie.cs" />
     <Compile Include="Classes\Blog\Commentaire.cs" />
     <Compile Include="Classes\Blog\Publicite.cs" />
+    <Compile Include="Classes\Blog\Theme.cs" />
     <Compile Include="Classes\Evenement\EvenementCategorieFront.cs" />
     <Compile Include="Classes\Evenement\EvenementFront.cs" />
     <Compile Include="Classes\Evenement\EvenementTimeline.cs" />
@@ -346,6 +347,7 @@
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\home-image-1.jpg" />
     <Content Include="Images\home-image-2.jpg" />
+    <Content Include="Images\loader.GIF" />
     <Content Include="Images\logo-petit.png" />
     <Content Include="Images\logo-tete.png" />
     <Content Include="Images\logo.png" />

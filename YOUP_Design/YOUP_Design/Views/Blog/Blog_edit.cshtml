@@ -1,7 +1,10 @@
-﻿@{
+﻿@using YOUP_Design.Classes.Blog
+@{
     ViewBag.Title = "Blog_edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
+    IEnumerable<Categorie> categories = ViewData["Category"] as IEnumerable<Categorie>;
+    IEnumerable<Theme> themes = ViewData["Theme"] as IEnumerable<Theme>;
 }
 <div class="container">
     <div class="publicite well">
@@ -11,27 +14,52 @@
     <div class="row">
         <h2>Création / Edition Blog</h2>
         <div class="panel-body">
-            <form role="form" class="formProfil">
+
+            @using (Html.BeginForm("Create", "Blog", FormMethod.Post))
+            {
+                //<button type="submit" class="btn btn-primary">Enregistrer</button>
                 <div class="form-group">
                     <label for="inputTitre">Titre</label>
-                    <input type="text" class="form-control" id="inputTitre">
+                    <input type="text" class="form-control" id="inputTitre" name="TitreBlog">
                 </div>
                 <div class="form-group">
-                    <label for="select_categorie_blog">Categorie </label>
-                    <select name="select_categorie_blog" class="form-control" id="select_categorie_blog">
-                        <option value="Categories" selected>Categories</option>
+                    <label for="CategorieId">Categorie </label>
+                    <select name="CategorieId" class="form-control" id="select_categorie_blog">
+                        @foreach (var c in categories)
+                        {
+                            <option value="@c.Categorie_id">@c.Libelle</option>
+                        }
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="inputTheme">Thème</label>
-                    <input type="text" class="form-control" id="inputTheme">
+                    <div style="margin-bottom: 100px;">
+                        @foreach (var t in themes)
+                        {
+                            if (!string.IsNullOrEmpty(t.Couleur))
+                            {
+                                <div style="width:70px; height:50px; float:left; margin-right:10px;">
+                                    <div style="float:left;"><input type="radio" name="ThemeId" value="@t.Theme_id" checked></div> <div style="width:50px; height: 50px; float:right; background-color: @t.Couleur ; border:solid 1px #000;"></div>
+                                </div>
+
+                            }
+                            if (!string.IsNullOrEmpty(t.ImageChemin))
+                            {
+                                <div style="width:70px; height:50px; float:left; margin-right:10px;">
+                                    <div style="float:left;"><input type="radio" name="ThemeId" value="@t.Theme_id" checked></div> <div style="width:50px; height: 50px; float:right; background-image: url(@t.ImageChemin); background-size: contain; border:solid 1px #000;"></div>
+                                </div>
+                            }
+                        }
+                    </div>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Enregistrer</button>
                     <a href="Blog_liste_article" class="btn btn-primary" role="button">Afficher les articles</a>
                     <button type="submit" class="btn btn-danger">Supprimer Blog</button>
                 </div>
-            </form>
+            }
+
+
         </div>
     </div>
 </div>

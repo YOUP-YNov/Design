@@ -16,12 +16,30 @@ namespace YOUP_Design.Controllers
         }
         public ActionResult Device(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialDevice.cshtml");
+            if (string.IsNullOrEmpty(dateDebut) || string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialDevice.cshtml", new List<DeviceCategoryStatRow>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialDevice.cshtml", WebApiHistoriqueController.GetDeviceCategorie(dateDebut, dateFin));
+            }
         }
 
         public ActionResult OS(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialOS.cshtml");
+            if (string.IsNullOrEmpty(dateDebut) || string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialOS.cshtml", new List<DeviceTypeStatRow>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialOS.cshtml", WebApiHistoriqueController.GetDeviceType(dateDebut, dateFin));
+            }
         }
         public ActionResult PageVisitee(string dateDebut, string dateFin)
         {

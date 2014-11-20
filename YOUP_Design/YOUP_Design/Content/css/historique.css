@@ -72,3 +72,32 @@ h2 {
     font-weight: bold;
     color: #367bb7;
 }
+
+.dateHisto {
+    width: 25%;
+    float: left;
+    margin-left: 50px;
+}
+
+.searchDate {
+    margin-bottom: 15%;
+    margin-top: 30px;
+}
+
+.btnSearchPV {
+    float: left;
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 100px;
+}
+
+#DateDebut {
+    margin-right: 50px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+#DateFin {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
