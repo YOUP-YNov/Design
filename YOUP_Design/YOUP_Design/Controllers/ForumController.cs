@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using RestSharp;
-
+using System.Globalization;
 namespace YOUP_Design.Controllers
 {
     public class ForumController : Controller
@@ -25,6 +25,13 @@ namespace YOUP_Design.Controllers
         public T Execute<T>(RestRequest request) where T : new()
         {
             var client = new RestClient("http://forumyoup.apphb.com/");
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
+
+        public T ExecuteProfil<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
             var response = client.Execute<T>(request);
             return response.Data;
         }
@@ -77,7 +84,7 @@ namespace YOUP_Design.Controllers
             return result;
 
         }
-      
+
         #endregion
 
         // METHODES SUR LA VUE TOPIC
@@ -114,17 +121,20 @@ namespace YOUP_Design.Controllers
 
         // METHODES SUR LA VUE DISCUSSION
         #region Discussion
-       /// <summary>
+        /// <summary>
         /// Retourne la vue Discussion qui représente la liste des messages sur un topic.
-       /// </summary>
-       /// <param name="id"></param>
-       /// <returns></returns>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Discussion(int id)
         {
             List<Message> messages = new List<Message>();
             messages = this.getMessagesByTopicId(id);
+            List<YOUP_Design.Classes.Profile.Utilisateur> users = new List<Classes.Profile.Utilisateur>();
+            users = getUsers();
+            ViewBag.users = users;
             ViewBag.messages = messages;
-            return View(messages);
+            return View();
         }
         /// <summary>
         /// Récupère la liste des messages du topic séléctionné.
@@ -133,10 +143,47 @@ namespace YOUP_Design.Controllers
         /// <returns></returns>
         public List<Message> getMessagesByTopicId(int id)
         {
-            var request = new RestRequest("api/MessageTopic/"+id, Method.GET);
+            var request = new RestRequest("api/MessageTopic/" + id, Method.GET);
             var result = Execute<List<Message>>(request);
 
             return result;
+
+        }
+
+        public List<YOUP_Design.Classes.Profile.Utilisateur> getUsers()
+        {
+            var request = new RestRequest("api/MessageTopic/", Method.GET);
+            var result = ExecuteProfil<List<YOUP_Design.Classes.Profile.Utilisateur>>(request);
+
+            return result;
+
+        }
+
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Discussion(MessageModel m, string editor1)
+        {
+     
+                Message message = new Message();
+                message.ContenuMessage = editor1;
+                setMessage(message);
+
+                //messages = this.getMessagesByTopicId(id);
+                return RedirectToAction("Index", "Forum");
+ 
+        }
+
+        public void setMessage(Message message)
+        {
+            var request = new RestRequest("api/Message/", Method.POST);
+
+            request.AddParameter("Message_id",10000);
+            request.AddParameter("Topic_id",20);
+            request.AddParameter("Utilisateur_id",7);
+            request.AddParameter("DatePoste", DateTime.Now.ToString(new CultureInfo("en-us")));
+            request.AddParameter("ContenuMessage",""+message.ContenuMessage);
+            Execute<Message>(request);
+
 
         }
         #endregion

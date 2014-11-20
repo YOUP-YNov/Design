@@ -1,4 +1,6 @@
-﻿@{
+﻿@using YOUP_Design.Classes.Profile;
+@model YOUP_Design.Models.Forum.MessageModel
+@{
     ViewBag.Title = "Discussion";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Forum";
@@ -23,6 +25,11 @@
     </div>
     <a name="hautpage" id="hautpage"></a>
     <div class="list-group"><div class="list-group-item">Forum > Jeux > Poker > Texas Hold'Em </div></div>
+
+    @{
+        List<YOUP_Design.Classes.Profile.Utilisateur> listUsers = ViewBag.users;
+          
+    }
     @foreach (var m in ViewBag.messages)
     {
 
@@ -30,32 +37,37 @@
 
             <div class="row list-group-item">
                 <div class="col-sm-2">
-                    <p><img class="img-circle forumImgDisc" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" /></p>
+                    <p><img class="img-circle forumImgDisc" src="@listUsers.Where(o => o.Utilisateur_Id == m.Utilisateur_id).FirstOrDefault().PhotoChemin" /></p>
                 </div>
                 <div class="col-sm-10">
-                    <h2><a href="#">Jean-Claude Duss</a></h2>
+                    <h2><a href="#">@listUsers.Where(o => o.Utilisateur_Id == m.Utilisateur_id).FirstOrDefault().Pseudo</a></h2>
                     <p>@m.DatePoste</p>
-                    <p>@m.ContenuMessage</p>
+                    <p>@Html.Raw(m.ContenuMessage)</p>
                 </div>
             </div>
 
         </div>
     }
-
-
-    <div style="text-align:center;">
+    
+    @using (Html.BeginForm())
+    {
+       
+    
+        <div style="text-align:center;">
         <h3>Ecris ton message :</h3>
+        @Html.ValidationMessageFor(Model => Model.ContenuMessage)
 
+        
         <textarea name="editor1" id="editor1" rows="10" style="width:100%"  class="input-sm"></textarea>
         <script>
             // Replace the <textarea id="editor1"> with a CKEditor
             // instance, using default configuration.
             CKEDITOR.replace('editor1');
         </script>
-        <br /><center> <div><input type="button" class="btn btn-primary" value="Envoyer" /></div></center>
+        <br /><center> <div><input type="submit" class="btn btn-primary" value="Envoyer" /></div></center>
         <br />
     </div>
-
-    <a href="#hautpage"><div id="btntop"><input type="button" name="top" title="TOP" value="TOP" /><div></a>
+    }
+    <a href="#hautpage"><div id="btntop"><input type="button" name="top" title="TOP" value="TOP" /></div></a>
    
 </div>
