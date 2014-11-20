@@ -29,13 +29,12 @@ namespace YOUP_Design.Controllers
             return response.Data;
         }
 
-        public T ExecuteUser<T>(RestRequest request) where T : new()
+        public T ExecuteProfil<T>(RestRequest request) where T : new()
         {
             var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
             var response = client.Execute<T>(request);
             return response.Data;
         }
-
         #endregion
 
         // METHODES SUR LA VUE FORUM
@@ -132,8 +131,7 @@ namespace YOUP_Design.Controllers
             List<Message> messages = new List<Message>();
             messages = this.getMessagesByTopicId(id);
             List<YOUP_Design.Classes.Profile.Utilisateur> users = new List<Classes.Profile.Utilisateur>();
-            users = this.getUsers();
-
+            users = getUsers();
             ViewBag.users = users;
             ViewBag.messages = messages;
             return View();
@@ -151,25 +149,23 @@ namespace YOUP_Design.Controllers
             return result;
 
         }
+
         public List<YOUP_Design.Classes.Profile.Utilisateur> getUsers()
         {
-            var request = new RestRequest("api/UserSmall/", Method.GET);
-            var result = ExecuteUser<List<YOUP_Design.Classes.Profile.Utilisateur>>(request);
+            var request = new RestRequest("api/MessageTopic/", Method.GET);
+            var result = ExecuteProfil<List<YOUP_Design.Classes.Profile.Utilisateur>>(request);
 
             return result;
 
         }
 
-   
-
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Discussion(MessageModel m, string editor1, string idTopic)
+        public ActionResult Discussion(MessageModel m, string editor1)
         {
      
                 Message message = new Message();
                 message.ContenuMessage = editor1;
-                message.Topic_id = int.Parse(idTopic);
                 setMessage(message);
 
                 //messages = this.getMessagesByTopicId(id);
@@ -181,7 +177,8 @@ namespace YOUP_Design.Controllers
         {
             var request = new RestRequest("api/Message/", Method.POST);
 
-            request.AddParameter("Topic_id",message.Topic_id);
+            request.AddParameter("Message_id",10000);
+            request.AddParameter("Topic_id",20);
             request.AddParameter("Utilisateur_id",7);
             request.AddParameter("DatePoste", DateTime.Now.ToString(new CultureInfo("en-us")));
             request.AddParameter("ContenuMessage",""+message.ContenuMessage);
