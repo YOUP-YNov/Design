@@ -4,14 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
 }
-<div class="container">
+<div class="container" style="background-color:blueviolet;">
     <div class="publicite well">
         Encart de publicité
     </div>
 
-
     @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
-
 
     <div class="row">
         <h2>Blog Title</h2>
@@ -25,31 +23,30 @@
             </div>
         </div>
     </div>
-@foreach (var e in Model)
-{
-    <div class="row">
-        <h3>@e.TitreArticle</h3>
-        <div class="col-lg-offset-2 col-lg-8 text-center">
-            <div class="article_blog">
-                <img src="http://www.pokertwitt.com/wp-content/uploads/2012/09/poker_night_by_gunblade132-d3ch6n81.jpg" alt="image" class="img-rounded">
-                <p>@e.ContenuArticle</p>
-            </div>
-            <div class="date_publication_article">
-                <div class="row list-group-item">
-                    <div class="col-sm-4">
-                        Publié le : @e.DateCreation
-                    </div>
-                    <div class="col-sm-4">
-                        Likes : 30
-                    </div>
-                    <div class="col-sm-4">
-                        Comments : 30
+    @foreach (var e in Model)
+    {
+        <div class="row">
+            <h3>@e.TitreArticle</h3>
+            <div class="col-lg-offset-2 col-lg-8 text-center">
+                <div class="article_blog">
+                    <img src="http://www.pokertwitt.com/wp-content/uploads/2012/09/poker_night_by_gunblade132-d3ch6n81.jpg" alt="image" class="img-rounded">
+                    <p>@e.ContenuArticle</p>
+                </div>
+                <div class="date_publication_article">
+                    <div class="row list-group-item">
+                        <div class="col-sm-4">
+                            Publié le : @e.DateCreation
+                        </div>
+                        <div class="col-sm-4">
+                            Likes : 30
+                        </div>
+                        <div class="col-sm-4">
+                            Comments : 30
+                        </div>
                     </div>
                 </div>
+                <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
             </div>
-            <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
         </div>
-    </div>
-}
-    
+    }
 </div>

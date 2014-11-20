@@ -1,27 +1,43 @@
 ﻿$(document).ready(function () {
 
+    $('#afficheDeviceOS').fadeIn();
+    $('#menuDeviceOS').css("background-color", "#428bca");
 
-    $("#SubmitButtonID").click(function () {
-        alert("Hola");
-            //// Get the value from 'Select1'
-            //var value = $("#Pseudo").val();
+    $('#affichePagesVisitees').hide();
+    $('#afficheSaisonnalite').hide();
+    $('#afficheStatsUtilisation').hide();
+    $('#afficheTops').hide();
 
-            //var url = '@Url.Action("StatsUsage", "Historique", new { pseudoUser = "_pseudo_" })'
-            //    .replace('_pseudo_', value);
+    $(document).on('click', "#menuDevice", function () {
 
-            //$.get(url, '', function (data) {
+        $('#afficheDevice').fadeIn();
+        $('#afficheOS').hide();
+        $('#affichePagesVisitees').hide();
+        $('#afficheSaisonnalite').hide();
+        $('#afficheStatsUtilisation').hide();
+        $('#afficheTops').hide();
 
-            //    $("#partialgoeshere").empty();
-            //    $("#partialgoeshere").html(data);
+        $('#menuDevice').css("background-color", "#428bca");
+        $('#menuOS').css("background-color", "#eeeeee");
+        $('#menuDevice').css("background-color", "#eeeeee");
+        $('#menuPagesVisitees').css("background-color", "#eeeeee");
+        $('#menuSaisonnalite').css("background-color", "#eeeeee");
+        $('#menuStatsUtilisation').css("background-color", "#eeeeee");
+        $('#menuTops').css("background-color", "#eeeeee");
 
-            //});
-        });
+    });
 
+    $(document).on('click', "#menuOS", function () {
 
+        $('#afficheOS').fadeIn();
+        $('#afficheDevice').hide();
+        $('#affichePagesVisitees').hide();
+        $('#afficheSaisonnalite').hide();
+        $('#afficheStatsUtilisation').hide();
+        $('#afficheTops').hide();
 
-    $(document).on('click', "#menuDeviceOS", function () {
-
-        $('#menuDeviceOS').css("background-color", "#428bca");
+        $('#menuOS').css("background-color", "#428bca");
+        $('#menuDevice').css("background-color", "#eeeeee");
         $('#menuPagesVisitees').css("background-color", "#eeeeee");
         $('#menuSaisonnalite').css("background-color", "#eeeeee");
         $('#menuStatsUtilisation').css("background-color", "#eeeeee");
@@ -31,8 +47,16 @@
 
     $(document).on('click', "#menuPagesVisitees", function () {
 
+        $('#affichePagesVisitees').fadeIn();
+        $('#afficheDevice').hide();
+        $('#afficheOS').hide();
+        $('#afficheSaisonnalite').hide();
+        $('#afficheStatsUtilisation').hide();
+        $('#afficheTops').hide();
+
         $('#menuPagesVisitees').css("background-color", "#428bca");
-        $('#menuDeviceOS').css("background-color", "#eeeeee");
+        $('#menuDevice').css("background-color", "#eeeeee");
+        $('#menuOS').css("background-color", "#eeeeee");
         $('#menuSaisonnalite').css("background-color", "#eeeeee");
         $('#menuStatsUtilisation').css("background-color", "#eeeeee");
         $('#menuTops').css("background-color", "#eeeeee");
@@ -41,8 +65,16 @@
 
     $(document).on('click', "#menuSaisonnalite", function () {
 
+        $('#afficheSaisonnalite').fadeIn();
+        $('#afficheDevice').hide();
+        $('#afficheOS').hide();
+        $('#affichePagesVisitees').hide();
+        $('#afficheStatsUtilisation').hide();
+        $('#afficheTops').hide();
+
         $('#menuSaisonnalite').css("background-color", "#428bca");
-        $('#menuDeviceOS').css("background-color", "#eeeeee");
+        $('#menuDevice').css("background-color", "#eeeeee");
+        $('#menuOS').css("background-color", "#eeeeee");
         $('#menuPagesVisitees').css("background-color", "#eeeeee");
         $('#menuStatsUtilisation').css("background-color", "#eeeeee");
         $('#menuTops').css("background-color", "#eeeeee");
@@ -51,8 +83,16 @@
 
     $(document).on('click', "#menuStatsUtilisation", function () {
 
+        $('#afficheStatsUtilisation').fadeIn();
+        $('#afficheDevice').hide();
+        $('#afficheOS').hide();
+        $('#affichePagesVisitees').hide();
+        $('#afficheSaisonnalite').hide();
+        $('#afficheTops').hide();
+
         $('#menuStatsUtilisation').css("background-color", "#428bca");
-        $('#menuDeviceOS').css("background-color", "#eeeeee");
+        $('#menuDevice').css("background-color", "#eeeeee");
+        $('#menuOS').css("background-color", "#eeeeee");
         $('#menuPagesVisitees').css("background-color", "#eeeeee");
         $('#menuSaisonnalite').css("background-color", "#eeeeee");
         $('#menuTops').css("background-color", "#eeeeee");
@@ -61,19 +101,21 @@
 
     $(document).on('click', "#menuTops", function () {
 
+        $('#afficheTops').fadeIn();
+        $('#afficheDevice').hide();
+        $('#afficheOS').hide();
+        $('#affichePagesVisitees').hide();
+        $('#afficheSaisonnalite').hide();
+        $('#afficheStatsUtilisation').hide();
+
         $('#menuTops').css("background-color", "#428bca");
-        $('#menuDeviceOS').css("background-color", "#eeeeee");
+        $('#menuDevice').css("background-color", "#eeeeee");
+        $('#menuOS').css("background-color", "#eeeeee");
         $('#menuPagesVisitees').css("background-color", "#eeeeee");
         $('#menuSaisonnalite').css("background-color", "#eeeeee");
         $('#menuStatsUtilisation').css("background-color", "#eeeeee");
 
     });
 
-    function combo(thelist, theinput) {
-        theinput = document.getElementById(theinput);
-        var idx = thelist.selectedIndex;
-        var content = thelist.options[idx].innerHTML;
-        theinput.value = content;
-    }
 
 });

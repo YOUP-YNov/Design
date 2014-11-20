@@ -12,7 +12,7 @@ namespace YOUP_Design.Models.Profile
             {
                 var u = ProfileCookie.GetCookie(filterContext.HttpContext);
                 if (u == null)
-                    filterContext.Result = new RedirectResult("~/Profile/Login");
+                    filterContext.Result = new RedirectResult("~/Home/Index");
             }
     }
 }

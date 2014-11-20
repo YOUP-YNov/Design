@@ -12,7 +12,16 @@
 <script type="text/javascript">
     $(document).ready(function () {
         evenementModule.initDetail(@ViewBag.idEvenement);
+        loadScript;
     });
+
+    function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false' +
+            'callback=initializeMap';
+        document.body.appendChild(script);
+    }
 </script>
 
 <div class="bodyEventDetails container">

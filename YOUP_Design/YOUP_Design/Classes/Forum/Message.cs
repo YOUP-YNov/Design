@@ -10,6 +10,9 @@ namespace YOUP_Design.Classes.Forum
     /// </summary>
     public class Message
     {
+
+        public Message()
+        {   }
         /// <summary>
         /// Assigne ou récupère l'id du message.
         /// </summary>
