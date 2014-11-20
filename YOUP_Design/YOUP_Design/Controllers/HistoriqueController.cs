@@ -76,9 +76,16 @@ namespace YOUP_Design.Controllers
             }
 
             if (string.IsNullOrEmpty(pseudoUser))
+            {
+                ViewBag.EventsByCategory = new Dictionary<string, int>();
                 return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", new Utilisateur());
+            }
             else
-                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser));
+            {
+                var user =WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser);
+                ViewBag.EventsByCategory = NbEvenementByCategorie(pseudoUser);
+                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",user );
+            }
           }
 
         public ActionResult Tops()

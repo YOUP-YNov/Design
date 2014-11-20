@@ -1,9 +1,6 @@
 ﻿@model YOUP_Design.Classes.Historique.Utilisateur
 <link href="~/Content/css/historique.css" rel="stylesheet" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('#SubmitButtonID').on('click', function () {
@@ -103,12 +100,24 @@
                     series: [{
                         name: 'Pourcentage',
                         data: [
-                            ['Sport', 45.0],//********libellé des catégories, pourcentage de répartition
-                            ['Musées', 26.8],
-                            ['Restaurants', 12.9],
-                            ['Musique', 8.5],
-                            ['Sortie', 6.2],
-                            ['Autres', 0.6]
+                            @foreach (var nb in ViewBag.EventsByCategory)
+                            {
+                                <text>[</text>@nb.Key <text>,</text> @nb.Value <text>],</text>
+                            }
+
+
+                            @*@for (int i = 0; i < ViewBag.EventByCategory.Count; i++)
+			                {
+			                      <text>[</text>@ViewBag.EventByCategory[i].Key <text>,</text> @ViewBag.EventByCategory[i].Value <text
+                            
+                            >]</text>*@
+			                //}
+                            //['Sport', 45.0],//********libellé des catégories, pourcentage de répartition
+                            //['Musées', 26.8],
+                            //['Restaurants', 12.9],
+                            //['Musique', 8.5],
+                            //['Sortie', 6.2],
+                            //['Autres', 0.6]
                         ]
                     }]
                 });
