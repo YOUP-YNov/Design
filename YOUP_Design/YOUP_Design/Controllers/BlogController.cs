@@ -48,6 +48,20 @@ namespace YOUP_Design.Controllers
 
         public ActionResult Blog_edit()
         {
+            var request = new RestRequest("api/Category", Method.GET);
+            var result = Execute<List<Categorie>>(request);
+            ViewData["Category"] = result as IEnumerable<Categorie>;
+
+            var requestCat = new RestRequest("api/Theme", Method.GET);
+            var resultCat = Execute<List<Theme>>(requestCat);
+
+
+            IEnumerable<Theme> themeImages = (resultCat as IEnumerable<Theme>).Where(x=> !string.IsNullOrEmpty(x.ImageChemin));
+            IEnumerable<Theme> themeCouleurs = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.Couleur));
+
+            IEnumerable<Theme> themes = themeCouleurs.Concat(themeImages);
+            ViewData["Theme"] = themes as IEnumerable<Theme>;
+
             return View();
         }
 
@@ -66,7 +80,12 @@ namespace YOUP_Design.Controllers
 
         public List<Article> GetBlog(int UserId, int BlogId)
         {
-            var request = new RestRequest("api/article?utilisateurId="+UserId+"&blogId="+BlogId, Method.GET);
+            //var request = new RestRequest("api/article?utilisateurId="+UserId+"&blogId="+BlogId, Method.GET);
+            var request = new RestRequest("api/article", Method.GET);
+
+            request.AddParameter("utilisateurId", UserId, ParameterType.UrlSegment);
+            request.AddParameter("blogId", BlogId, ParameterType.UrlSegment);
+
             var result = Execute<List<Article>>(request);
             return result;
         }
@@ -96,8 +115,18 @@ namespace YOUP_Design.Controllers
         {
             try
             {
-                Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
+                //Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
+
+                Blog blog = new Blog() { Utilisateur_id = 123, TitreBlog = model.TitreBlog, Categorie_id = model.CategorieId, Theme_id = model.ThemeId};
                 //httpclient (voir msdn)
+                
+                
+                var request = new RestRequest("api/blog", Method.POST);
+                request.AddObject(blog);
+                //request.AddParameter("blog", blog, ParameterType.GetOrPost);
+                
+                
+                var result = Execute<Blog>(request);
                 return RedirectToAction("Index");
             }
             catch
@@ -105,6 +134,37 @@ namespace YOUP_Design.Controllers
                 return View();
             }
         }
+
+
+
+        //[HttpPost, ValidateInput(false)]
+        //public ActionResult Discussion(MessageModel m, string editor1)
+        //{
+
+        //    Message message = new Message();
+        //    message.ContenuMessage = editor1;
+        //    setMessage(message);
+
+        //    //messages = this.getMessagesByTopicId(id);
+        //    return RedirectToAction("Index", "Forum");
+
+        //}
+
+        //public void setMessage(Message message)
+        //{
+        //    var request = new RestRequest("api/Message/", Method.POST);
+
+        //    request.AddParameter("Message_id", 10000);
+        //    request.AddParameter("Topic_id", 20);
+        //    request.AddParameter("Utilisateur_id", 7);
+        //    request.AddParameter("DatePoste", DateTime.Now.ToString(new CultureInfo("en-us")));
+        //    request.AddParameter("ContenuMessage", "" + message.ContenuMessage);
+        //    Execute<Message>(request);
+
+
+        //}
+
+
 
 
 
