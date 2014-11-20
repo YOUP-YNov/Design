@@ -44,8 +44,8 @@ namespace YOUP_Design.Models.Evenement.templatesObjects
             this.categorie = evt.Categorie_Libelle.ToString();
             this.nbParticipant = 0;
             this.nbMaxParticipant = 0;
-            this.imgOrganisateur = "";
-            this.organisateur = "";
+            this.imgOrganisateur = evt.OrganisateurImageUrl;
+            this.organisateur = evt.OrganisateurPseudo;
         }
 
          public evenementTimeLineObject(EvenementFront evt)
@@ -60,8 +60,8 @@ namespace YOUP_Design.Models.Evenement.templatesObjects
             this.categorie = evt.Categorie != null ? evt.Categorie.Libelle : "";
             this.nbParticipant = 0;
             this.nbMaxParticipant = evt.MaximumParticipant;
-            this.imgOrganisateur = "";
-            this.organisateur = evt.OrganisateurId.ToString();
+            this.imgOrganisateur = evt.OrganisateurImageUrl;
+            this.organisateur = evt.OrganisateurPseudo;
             this.hashTag = "";
             if (evt.HashTag != null)
             {

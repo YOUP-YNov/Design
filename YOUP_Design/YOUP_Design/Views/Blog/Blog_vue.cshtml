@@ -1,5 +1,4 @@
-﻿@model IEnumerable<YOUP_Design.Classes.Blog.Article>
-@{
+﻿@{
     ViewBag.Title = "Blog_vue";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
@@ -9,9 +8,7 @@
         Encart de publicité
     </div>
 
-
     @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
-
 
     <div class="row">
         <h2>Blog Title</h2>
@@ -25,19 +22,17 @@
             </div>
         </div>
     </div>
-@foreach (var e in Model)
-{
     <div class="row">
-        <h3>@e.TitreArticle</h3>
+        <h3>Article Title</h3>
         <div class="col-lg-offset-2 col-lg-8 text-center">
             <div class="article_blog">
                 <img src="http://www.pokertwitt.com/wp-content/uploads/2012/09/poker_night_by_gunblade132-d3ch6n81.jpg" alt="image" class="img-rounded">
-                <p>@e.ContenuArticle</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
             <div class="date_publication_article">
                 <div class="row list-group-item">
                     <div class="col-sm-4">
-                        Publié le : @e.DateCreation
+                        Publié le : XX/XX/XXXX
                     </div>
                     <div class="col-sm-4">
                         Likes : 30
@@ -50,6 +45,27 @@
             <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
         </div>
     </div>
-}
-    
+    <div class="row">
+        <h3>Article Title</h3>
+        <div class="col-lg-offset-2 col-lg-8 text-center">
+            <div class="article_blog">
+                <img src="http://www.pokertwitt.com/wp-content/uploads/2012/09/poker_night_by_gunblade132-d3ch6n81.jpg" alt="image" class="img-rounded">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="date_publication_article">
+                <div class="row list-group-item">
+                    <div class="col-sm-4">
+                        Publié le : XX/XX/XXXX
+                    </div>
+                    <div class="col-sm-4">
+                        Likes : 30
+                    </div>
+                    <div class="col-sm-4">
+                        Comments : 30
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
+        </div>
+    </div>
 </div>

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Converters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -20,8 +19,6 @@ namespace YOUP_Design
             // Pour éviter le traitement de requêtes inattendues ou malveillantes, utilisez les paramètres de validation définis sur QueryableAttribute pour valider les requêtes entrantes.
             // Pour plus d’informations, visitez http://go.microsoft.com/fwlink/?LinkId=279712.
             //config.EnableQuerySupport();
-            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(
-             new IsoDateTimeConverter());
         }
     }
 }

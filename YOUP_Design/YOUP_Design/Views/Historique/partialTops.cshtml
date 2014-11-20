@@ -1,5 +1,4 @@
-﻿@model IEnumerable<YOUP_Design.Classes.Historique.Utilisateur>
-<link href="~/Content/css/historique.css" rel="stylesheet" />
+﻿<link href="~/Content/css/historique.css" rel="stylesheet" />
 
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center">
@@ -7,37 +6,58 @@
     </div>
 </div>
 
-
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8 text-center">
+        <h3>Top 5 des amis</h3>
+        <div class=" topContainer">
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center">
-        @{int compt = 0;}
-
-        @foreach (var m in Model)
-        {
-            if (compt < 5)
-            {
-                if (compt == 0)
-                {
-                    <h3>Top 5 des amis</h3>
-                }
-                <div class=" topHisto">
-                    <img class="img-circle imgHistoTop" src=@m.CheminPhoto alt="">
-                    <p class="txtHisto"><span class="pseudoHisto">@m.Pseudo </span> - @m.NbAmis</p>
-                </div>
-            }
-            else
-            {
-                if (compt == 5)
-                {
-                    <h3 id="topCreateur">Top 5 des créateurs</h3>
-                }
-                <div class=" topHisto">
-                    <img class="img-circle imgHistoTop" src=@m.CheminPhoto alt="">
-                    <p class="txtHisto"><span class="pseudoHisto">@m.Pseudo </span> - @m.NbEvenmentPropose</p>
-                </div>
-            }
-            compt++;
-        }
+        <h3>Top 5 des créateurs</h3>
+        <div class=" topContainer">
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+            <div class=" topHisto">
+                <img class="img-circle imgHistoTop" src="~/Images/default_profil.png" alt="">
+                <p class="txtHisto">Pseudo - Nombre</p>
+            </div>
+        </div>
     </div>
 </div>
