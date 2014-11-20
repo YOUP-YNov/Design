@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YOUP_Design.Classes.Blog;
-using YOUP_Design.Classes.Evenement;
+using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Classes.Profile;
 using YOUP_Design.Classes.Historique;
 using System.Net.Http;
@@ -52,10 +52,10 @@ namespace YOUP_Design.Controllers
             return result;
         }
 
-        public List<EvenementTimeline> GetLastEvents()
+        public List<EvenementTimelineFront> GetLastEvents()
         {
             var request = new RestRequest("api/Evenement?max_result=3", Method.GET);
-            var result = EventRequest<List<EvenementTimeline>>(request);
+            var result = EventRequest<List<EvenementTimelineFront>>(request);
             return result;
         }
 
@@ -80,7 +80,7 @@ namespace YOUP_Design.Controllers
             ViewBag.LastProfiles = lastprofiles;
 
             //Derniers Evenements
-            List<EvenementTimeline> events = new List<EvenementTimeline>();
+            List<EvenementTimelineFront> events = new List<EvenementTimelineFront>();
             events = this.GetLastEvents();
 
             ViewBag.LastEvents = events;

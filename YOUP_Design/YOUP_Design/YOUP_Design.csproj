@@ -340,6 +340,7 @@
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\home-image-1.jpg" />
     <Content Include="Images\home-image-2.jpg" />
+    <Content Include="Images\loader.GIF" />
     <Content Include="Images\logo-petit.png" />
     <Content Include="Images\logo-tete.png" />
     <Content Include="Images\logo.png" />
