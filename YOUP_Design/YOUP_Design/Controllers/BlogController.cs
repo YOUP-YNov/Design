@@ -71,7 +71,7 @@ namespace YOUP_Design.Controllers
 
         public List<Article> GetBlog(int UserId, int BlogId)
         {
-            var request = new RestRequest("api/article?utilisateurId="+UserId+"&blogId="+BlogId, Method.GET);
+            var request = new RestRequest("api/article?utilisateurId=UserId&blogId=BlogId", Method.GET);
             var result = Execute<List<Article>>(request);
             return result;
         }

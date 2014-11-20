@@ -206,11 +206,11 @@ namespace YOUP_Design.Classes.Historique
         /// <summary>
         /// Liste de participants.
         /// </summary>
-        private List<Utilisateur> _Participants;
+        private IEnumerable<Utilisateur> _Participants;
         /// <summary>
         /// Assigne ou récupère une liste de participants.
         /// </summary>
-        public List<Utilisateur> Participants
+        public IEnumerable<Utilisateur> Participants
         {
             get
             {

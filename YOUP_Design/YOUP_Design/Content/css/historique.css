@@ -22,12 +22,11 @@ h2 {
 
 .topHisto {
     margin-bottom: 20px;
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
     margin-top: 20px;
     width: 25%;
     display: inline;
-    float: left;
 }
 
 .txtHisto {
@@ -52,8 +51,6 @@ h2 {
 
 .imgHistoTop {
     margin-bottom: 10px;
-    width: 150px;
-    height: 150px;
 }
 
 .comboHisto {
@@ -62,13 +59,4 @@ h2 {
 
 .comboHisto select {
     margin-right: 15px;
-}
-
-#topCreateur {
-    margin-top: 70%;
-}
-
-.pseudoHisto {
-    font-weight: bold;
-    color: #367bb7;
 }

@@ -10,7 +10,24 @@ namespace YOUP_Design.Models.Forum
 {
     public class MessageModel
     {
-        [Required]
+
+        public long Message_id { get; set; }
+        /// <summary>
+        /// Assigne ou récupère l'id du topic.
+        /// </summary>
+        public long Topic_id { get; set; }
+        /// <summary>
+        /// Assigne ou récupère l'id de l'utilisateur.
+        /// </summary>
+        public long Utilisateur_id { get; set; }
+        /// <summary>
+        /// Assigne ou récupère la date du post.
+        /// </summary>
+        public System.DateTime DatePoste { get; set; }
+        /// <summary>
+        /// Assigne ou récupère le contenu du message.
+        /// </summary>
+        [Required(ErrorMessage = "Le message ne peut être nul")]
         [Display(Name = "Contenu du message")]
         public string ContenuMessage { get; set; }
 
