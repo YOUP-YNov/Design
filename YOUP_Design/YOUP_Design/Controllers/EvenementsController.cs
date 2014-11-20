@@ -19,13 +19,19 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
+        private struct timeLineStruct
+        {
+            public List<EvenemenDate> liste;
+            public string lastDate;
+        }
+
         public JsonResult TimeLine(List<EvenementTimelineFront> listeEvenement)
         {
             var timeLine = transformObjects(listeEvenement);
             return Json(new { timeLine = timeLine });
         }
 
-        private List<EvenemenDate> transformObjects(List<EvenementTimelineFront> listeEvenementApi)
+        private timeLineStruct transformObjects(List<EvenementTimelineFront> listeEvenementApi)
         {
             var result = new List<EvenemenDate>();
             var dates = listeEvenementApi.Select(t => t.DateEvenement.Date).Distinct().ToList();
@@ -49,6 +55,8 @@ namespace YOUP_Design.Controllers
                 }
             }
 
+            dateString.Add("Plus tard ...");
+
             foreach (var date in dateString)
             {
                 var evtDate = new EvenemenDate();
@@ -62,8 +70,11 @@ namespace YOUP_Design.Controllers
 
                 result.Add(evtDate);
             }
+            var structRetour = new timeLineStruct();
 
-            return result;
+            structRetour.lastDate = DateTime.Now.AddDays(14).ToString("yyyy-MM-dd");
+            structRetour.liste = result;
+            return structRetour;
         }
 
         private List<EvenementTimelineFront> EvtParDatePourTimeLine(string date, List<EvenementTimelineFront> listeEvenementApi)
@@ -85,13 +96,25 @@ namespace YOUP_Design.Controllers
             else
             {
                 listeEvenementTotransforme = listeEvenementApi
-                    .Where(t => t.DateEvenement.Date <= DateTime.Now.AddDays(7).Date
-                    && t.DateEvenement.Date > DateTime.Now.AddDays(1).Date).ToList();
+                    .Where(t => t.DateEvenement.Date.ToString() == date).ToList();
             }
 
             return listeEvenementTotransforme;
         }
 
+
+        public JsonResult GestionScroll(List<EvenementTimelineFront> listeEvenement)
+        {
+            if (listeEvenement != null)
+            {
+                var timeLine = listeEvenement.Select(t => new evenementTimeLineObject(t)).ToList();
+                return Json(new { timeLine = timeLine });
+            }
+            else
+            {
+                return Json("");
+            }
+        }
         //
         // GET: /Evenement/Details/5
         public ActionResult Details(int id)

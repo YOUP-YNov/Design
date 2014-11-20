@@ -57,30 +57,30 @@
     }
     else
     {
-        <div class="col-lg-offset-2 col-lg-8 text-center">
+    <div class="col-lg-offset-2 col-lg-8 text-center">
             <p>Période sélectionnée</p>
             @Html.TextBox("DateDebut");
             @Html.TextBox("DateFin");
             <h3>Session et demandes pour device</h3>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
                         <th>Catégorie d'appareil</th>
-                        <th>Sessions</th>
-                        <th>Demande (taux conversion)</th>
-                    </tr>
-                </thead>
-                <tbody>
+                    <th>Sessions</th>
+                    <th>Demande (taux conversion)</th>
+                </tr>
+            </thead>
+            <tbody>
                     @foreach (var m in Model)
                     {                   
-                        <tr>
+                <tr>
                             <td>@m.DeviceCategory</td>
                             <td>@m.NbViews</td>
                             <td>@m.ConversionRate</td>
-                        </tr>
+                </tr>
                     }
-                </tbody>
-            </table>
-        </div> 
+            </tbody>
+        </table>
+    </div> 
     }
 </div>
