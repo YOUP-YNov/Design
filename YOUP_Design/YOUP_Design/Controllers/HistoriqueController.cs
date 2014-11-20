@@ -50,9 +50,16 @@ namespace YOUP_Design.Controllers
             return PartialView("~/Views/Historique/partialSaisonnalite.cshtml");
         }
 
-        public ActionResult StatsUsage()
+        public ActionResult StatsUsage(string pseudoUser)
         {
-            return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", WebApiHistoriqueController.GetUtilisateurs());
+            List<SelectListItem> pseudos = new List<SelectListItem>();
+            var users = WebApiHistoriqueController.GetUtilisateurs();
+            users.ForEach(x => pseudos.Add(new SelectListItem(){Text= x.Pseudo,Value= x.Pseudo}));
+            ViewBag.Pseudo = new SelectList(pseudos, "Value", "Text");
+            if(string.IsNullOrEmpty(pseudoUser))
+                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",new Utilisateur());
+            else
+                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser));
         }
 
         public ActionResult Tops()

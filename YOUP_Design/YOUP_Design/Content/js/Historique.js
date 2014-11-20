@@ -1,5 +1,24 @@
 ﻿$(document).ready(function () {
 
+
+    $("#SubmitButtonID").click(function () {
+        alert("Hola");
+            //// Get the value from 'Select1'
+            //var value = $("#Pseudo").val();
+
+            //var url = '@Url.Action("StatsUsage", "Historique", new { pseudoUser = "_pseudo_" })'
+            //    .replace('_pseudo_', value);
+
+            //$.get(url, '', function (data) {
+
+            //    $("#partialgoeshere").empty();
+            //    $("#partialgoeshere").html(data);
+
+            //});
+        });
+
+
+
     $(document).on('click', "#menuDeviceOS", function () {
 
         $('#menuDeviceOS').css("background-color", "#428bca");

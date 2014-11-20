@@ -56,5 +56,16 @@ namespace YOUP_Design.WebApi.Historique
             users.AddRange(GetTopEvenementCree());          
             return users;
         }
+
+        public static Utilisateur GetUtilisateurByPseudo(string pseudo)
+        {
+            var user = new Utilisateur();
+
+            WebClient wc = new WebClient();
+            string json = wc.DownloadString(string.Concat(_UrlWebAPi, "/api/utilisateur/",pseudo));
+
+            user = JsonConvert.DeserializeObject<Utilisateur>(json);
+            return user;
+        }
     }
 }
