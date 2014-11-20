@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -10,35 +11,29 @@ using YOUP_Design.Classes.Blog;
 using YOUP_Design.Models.Blog;
 
 namespace YOUP_Design.Controllers
+
 {
     public class BlogController : Controller
     {
-        //
-        // GET: /Blog/
 
-        public async Task<ActionResult> Index()
+        public T Execute<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient("http://youp-blog.azurewebsites.net/");
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
+        public List<Blog> GetBlogs()
+        {
+            var request = new RestRequest("api/blog", Method.GET);
+            var result = Execute<List<Blog>>(request);
+            return result;
+        }
+        public ActionResult Index()
         {
             List<Blog> blogs = new List<Blog>();
-            await GetBlogsAsync(blogs);
+            blogs = this.GetBlogs();
+            ViewBag.blogs = blogs;
             return View(blogs);
-
-        }
-
-        static async Task GetBlogsAsync(List<Blog> list)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://youp-blog.azurewebsites.net/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = await client.GetAsync("api/blog");
-
-                if (response.IsSuccessStatusCode)
-        {
-                    list = await response.Content.ReadAsAsync<List<Blog>>();
-                }
-            }
         }
 
         public ActionResult ModComment()
@@ -61,12 +56,22 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
-        public ActionResult Blog_liste_article()
+        public ActionResult Blog_vue(int UserId, int BlogId)
         {
-            return View();
+            List<Article> blog = new List<Article>();
+            blog = this.GetBlog(UserId, BlogId);
+            ViewBag.articles = blog;
+            return View(blog);
         }
 
-        public ActionResult Blog_vue()
+        public List<Article> GetBlog(int UserId, int BlogId)
+        {
+            var request = new RestRequest("api/article?utilisateurId=UserId&blogId=BlogId", Method.GET);
+            var result = Execute<List<Article>>(request);
+            return result;
+        }
+
+        public ActionResult Blog_liste_article()
         {
             return View();
         }
