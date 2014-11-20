@@ -1,4 +1,4 @@
-﻿namespace Historique.Models.Analytics
+﻿namespace YOUP_Design.Classes.Historique
 {
     public class DeviceTypeStatRow
     {
