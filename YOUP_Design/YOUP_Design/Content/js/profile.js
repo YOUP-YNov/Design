@@ -54,14 +54,59 @@
         }
     }
 
+    function initializeMapProfilInscription() {
+        var geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+            scaleControl: true,
+            center: new google.maps.LatLng(44.854092, -0.566066),
+            zoom: 15
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas-inscription'),
+            mapOptions);
+
+        var oA = document.getElementById('btnRechercheProfilIns');
+        oA.onclick = function () {
+            searchAddress(map);
+            return false;
+        };
+
+        /* SEARCH ADDRESS */
+        function searchAddress(map) {
+            var adresse = document.getElementById('exampleInputVille').value;
+            geocoder.geocode({ 'address': adresse }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+
+                    var latitude = marker.getPosition().lat();
+                    var longitude = marker.getPosition().lng();
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    }
+
+
     var initMapProfil = function () {
         initializeMapProfil();
     }
 
+    var initMapProfilIns = function () {
+        initializeMapProfilInscription();
+    }
+
     return {
-        initMapProfil: initMapProfil
+        initMapProfil: initMapProfil,
+        initMapProfilIns: initMapProfilIns
     }
 })();
+
 $(function () {
     $(':file').click(function (e) {
         e.stopImmediatePropagation();
@@ -79,7 +124,7 @@ $(function () {
             });
             $.ajax("http://" + location.host + "/Upload/UploadPicture?g=" + el[0].name, { type: "POST", data: d, cache: false, contentType: false, processData: false }).success(function (d) {
                 if (d != "fail")
-                    $("#photo-profil").attr("src",d); // id img à mettre a jour
+                    $("#photo-profil").attr("src", d); // id img à mettre a jour
                 else
                     alert("invalid file type.");
             }).fail(function () {
@@ -88,6 +133,7 @@ $(function () {
         }
     });
 });
+
 /*var ProfilModule = (function () {
 
     var apiUrl = "http://aspmoduleprofil.azurewebsites.net/api/";
