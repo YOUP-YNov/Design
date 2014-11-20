@@ -55,9 +55,18 @@ namespace YOUP_Design.Controllers
             }
         }
 
-        public ActionResult Saisonnalite()
+        public ActionResult Saisonnalite(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialSaisonnalite.cshtml");
+            if (string.IsNullOrEmpty(dateDebut) || string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialSaisonnalite.cshtml", new List<Evenement>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialSaisonnalite.cshtml", WebApiHistoriqueController.GetEvenementParSaisonalite(dateDebut, dateFin));
+            }
         }
 
         public ActionResult StatsUsage(string pseudoUser)
