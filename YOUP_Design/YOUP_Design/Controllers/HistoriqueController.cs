@@ -17,9 +17,18 @@ namespace YOUP_Design.Controllers
             return PartialView("~/Views/Historique/partialDeviceOS.cshtml");
         }
 
-        public ActionResult PageVisitee()
+        public ActionResult PageVisitee(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialPagesVisitees.cshtml");
+            if(string.IsNullOrEmpty(dateDebut)|| string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialPagesVisitees.cshtml", new List<PageVisitee>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialPagesVisitees.cshtml", WebApiHistoriqueController.GetPageVisitee(dateDebut,dateFin));
+            }
         }
 
         public ActionResult Saisonnalite()

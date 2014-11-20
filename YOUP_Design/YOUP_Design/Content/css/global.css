@@ -9,7 +9,8 @@
 .navbar-brand {
     background-image: url(/Images/logo-petit.png);
     background-repeat:no-repeat;
-    width:76px;
+    background-position:center center;
+    width:100px;
 }
 
 #youp-menu {

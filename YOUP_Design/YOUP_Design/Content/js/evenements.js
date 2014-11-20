@@ -18,19 +18,15 @@ var evenementModule = (function () {
     }
 
     function initializeMapCreation() {
+        var geocoder = new google.maps.Geocoder();
         var mapOptions = {
             scaleControl: true,
-            center: new google.maps.LatLng(Lat, Long),
+            center: new google.maps.LatLng(44.854092, -0.566066),
             zoom: 15
         };
 
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
+        var map = new google.maps.Map(document.getElementById('map-canvas-creation'),
             mapOptions);
-
-        var marker = new google.maps.Marker({
-            map: map,
-            position: map.getCenter()
-        });
 
         var oA = document.getElementById('btnRechercheAdresse');
         oA.onclick = function () {
@@ -40,30 +36,20 @@ var evenementModule = (function () {
 
         /* SEARCH ADDRESS */
         function searchAddress(map) {
-            console.log("Fonction search")
-            geocoder = new google.maps.Geocoder(); //Déclaration de la classe de géocodage de Google
-            geoOptions = {
-                'address': document.getElementById("adresse").value,
-                'region': 'FR'
-            };
-
-            //enlève tout les marqueurs
-            setAllMap(null);
-
-            geocoder.geocode(geoOptions, function (results, status) {
-                /* Si l'adresse a pu être géolocalisée */
+            var adresse = document.getElementById('exampleInputAdresse').value;
+            geocoder.geocode({ 'address': adresse }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    console.log("geocoder ok")
-                    var coords = results[0].geometry.location;
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
 
-                    boundsGlob = createCircle(coords);
-                    afficheMarker(map); //réaffiche tout les marqueurs étant dans le cercle.
-
-                    addMarker(map, geoOptions.address, coords, "Montitre", false);
-                    centerMap(map, coords, 14);
+                    var latitude = marker.getPosition().lat();
+                    var longitude = marker.getPosition().lng();
+                    
                 } else {
-                    console.log("adresse non trouvée")
-                    alert("L'adresse n'a pu être géocodée avec succès.");
+                    alert('Geocode was not successful for the following reason: ' + status);
                 }
             });
         }
@@ -211,9 +197,43 @@ var evenementModule = (function () {
         recupererEvenementParId(id);
     }
 
+    var initMapCreation = function () {
+        initializeMapCreation();
+    }
+
     return {
         init: init,
-        initDetail : initDetail
+        initDetail: initDetail,
+        initMapCreation : initMapCreation
+
     }
 })();
+
+$(function () {
+    $(':file').click(function (e) {
+        e.stopImmediatePropagation();
+    });
+
+    $(".upload-img-event").click(function () { // selecteur pour le clic
+        $(this).find(":file").click();
+    });
+
+    $(":file").change(function () {
+        var d = new FormData();
+        var el = $(this);
+        if (el[0].files[0]) {
+            jQuery.each(el[0].files, function (i, file) {
+                d.append('file-' + i, file);
+            });
+            $.ajax("http://" + location.host + "/Upload/UploadPicture?g=" + el[0].name, { type: "POST", data: d, cache: false, contentType: false, processData: false }).success(function (d) {
+                if (d != "fail")
+                    $("#photo-profil").attr("src", d); // id img à mettre a jour
+                else
+                    alert("invalid file type.");
+            }).fail(function () {
+                console.log("echec de l'appel à la methode upload.");
+            });
+        }
+    });
+});
 

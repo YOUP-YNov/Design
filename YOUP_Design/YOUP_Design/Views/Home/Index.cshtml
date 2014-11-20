@@ -1,4 +1,8 @@
-﻿@{
+﻿@using YOUP_Design.Classes.Blog;
+@using YOUP_Design.Classes.Evenement;
+@using YOUP_Design.Classes.Profile;
+@using YOUP_Design.Classes.Historique;
+@{
     ViewBag.Title = "Accueil";
     ViewBag.ActiveMenu = "Home";
 }
@@ -12,48 +16,220 @@
 </div>
 
 <div id="home-part-2" class="block home-fullscreen-bg">
-    <h1>Choisis ta ville :</h1>
+    <h1>Choisis ta région :</h1>
     <div id="map-canvas"></div>
 </div>
 
-<div id="home-part-3" class="container">
+<div id="home-part-3" class="container-fluid">
     <div class="row">
-        <div class="col-sm-8">
-            <div class="home-last-members">
-                <h1>Derniers inscrits</h1>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-3">
-                        <h2>Franky Vincent</h2>
-                        <h3>le 12/12/2012</h3>
-                        <div class="home-circle-img" style="background-image: url(http://lorempixel.com/400/200);"></div>
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
+        <div class="col-sm-8 home-border-col-right">
+            <div class="home-last-members home-section">
+                <div class="home-title">
+                    <h1>Derniers inscrits :</h1>
+                    <div class="home-title-border"></div>
+                </div>
+                <div class="row full-width-block">
+                    @foreach (var profil in ViewBag.LastProfiles)
+                    {
+                        <div class="col-xs-6 col-sm-3">
+                            <a class="home-last-member" href="#">
+                                <h2>@profil.Pseudo</h2>
+                                <div class="home-member-img" style="background-image: url(http://lorempixel.com/200/200/sports); "></div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="home-last-events home-section">
+                <div class="home-title">
+                    <h1>Derniers évènements :</h1>
+                    <div class="home-title-border"></div>
+                </div>
+                <div class="row full-width-block">
+                    <div class="col-xs-12 col-sm-6 home-border-col-right">
+                        @foreach (var evenenement in ViewBag.LastEvents)
+                        {
+                            <a href="#" class="home-last-event block">
+                                <div class="col-xs-4 no-padding">
+                                    <div class="home-event-img" style="background-image: url(http://lorempixel.com/200/200/sports);"></div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <h2>@evenenement.TitreEvenement</h2>
+                                    <h3>par: </h3>
+                                    <h4>le @evenenement.DateEvenement</h4>
+                                    <div class="home-event-categories">
+                                        <span class="label label-default">Sport</span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        }
 
                     </div>
-                    <div class="col-xs-6 col-sm-3">
-
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-
+                    <div class="col-sm-6 hidden-xs">
+                        <div>
+                            <iframe class="home-event-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="home-last-events">
-
-            </div>
-            <div class="home-last-articles">
-
+            <div class="home-last-articles home-section">
+                <div class="home-title">
+                    <h1>Derniers articles :</h1>
+                    <div class="home-title-border"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="#" class="home-last-article block">
+                            <div class="col-xs-4 no-padding">
+                                <div class="home-article-img" style="background-image: url(http://lorempixel.com/200/200/cats);"></div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h2>J'aime Les Petits Chats</h2>
+                                <h3>par: Francis Lalanne</h3>
+                                <h4>le 12/12/2012</h4>
+                                <div class="home-article-categories">
+                                    <span class="label label-default">Chats</span>
+                                    <span class="label label-default">Chattes</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <a href="#" class="home-last-article block">
+                            <div class="col-xs-4 no-padding">
+                                <div class="home-article-img" style="background-image: url(http://lorempixel.com/200/200/fashion);"></div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h2>J'aime La Mode</h2>
+                                <h3>par: Francis Lalanne</h3>
+                                <h4>le 12/12/2012</h4>
+                                <div class="home-article-categories">
+                                    <span class="label label-default">Gucci</span>
+                                    <span class="label label-default">Prada</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <a href="#" class="home-last-article block">
+                            <div class="col-xs-4 no-padding">
+                                <div class="home-article-img" style="background-image: url(http://lorempixel.com/200/200/sports);"></div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h2>J'aime Le Sport</h2>
+                                <h3>par: Francis Lalanne</h3>
+                                <h4>le 12/12/2012</h4>
+                                <div class="home-article-categories">
+                                    <span class="label label-default">Foot</span>
+                                    <span class="label label-default">Basket</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#" class="home-last-article block">
+                            <div class="col-xs-4 no-padding">
+                                <div class="home-article-img" style="background-image: url(http://lorempixel.com/200/200/cats);"></div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h2>J'aime Les Petits Chats</h2>
+                                <h3>par: Francis Lalanne</h3>
+                                <h4>le 12/12/2012</h4>
+                                <div class="home-article-categories">
+                                    <span class="label label-default">Chats</span>
+                                    <span class="label label-default">Chattes</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <a href="#" class="home-last-article block">
+                            <div class="col-xs-4 no-padding">
+                                <div class="home-article-img" style="background-image: url(http://lorempixel.com/200/200/fashion);"></div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h2>J'aime La Mode</h2>
+                                <h3>par: Francis Lalanne</h3>
+                                <h4>le 12/12/2012</h4>
+                                <div class="home-article-categories">
+                                    <span class="label label-default">Gucci</span>
+                                    <span class="label label-default">Prada</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <a href="#" class="home-last-article block">
+                            <div class="col-xs-4 no-padding">
+                                <div class="home-article-img" style="background-image: url(http://lorempixel.com/200/200/sports);"></div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h2>J'aime Le Sport</h2>
+                                <h3>par: Francis Lalanne</h3>
+                                <h4>le 12/12/2012</h4>
+                                <div class="home-article-categories">
+                                    <span class="label label-default">Foot</span>
+                                    <span class="label label-default">Basket</span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="home-top-5-actifs">
-
+            <div class="home-top-5-actifs home-section">
+                <div class="home-title">
+                    <h1>Top 5 des utilisateurs actifs :</h1>
+                    <div class="home-title-border"></div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/nightlife);"></a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/technics);"></a>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-6 home-center-col">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/business);"></a>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/fashion);"></a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/cats);"></a>
+                    </div>
+                </div>
             </div>
-            <div class="home-top-5-stars">
-
-            </div>
-            <div class="home-top-5-createurs">
-
+            <div class="home-top-5-createurs home-section">
+                <div class="home-title">
+                    <h1>Top 5 des créateurs d'évènements :</h1>
+                    <div class="home-title-border"></div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/abstract);"></a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/food);"></a>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-6 home-center-col">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/animals);"></a>
+                    </div>
+                </div>
+                <div class="row no-margin">
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/people);"></a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/cats);"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
