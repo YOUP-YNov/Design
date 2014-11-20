@@ -39,47 +39,46 @@
             <div class="dateHisto">
                 <p>Date début:</p>
                 <input type="date" class="form-control" id="exampleInputDateDebut" name="DateDebut">
-            </div>
+    </div>
 
             <div class="dateHisto">
                 <p>Date fin:</p>
-                <input type="date" class="form-control" id="exampleInputDateFin" name="DateFin">
-            </div>
+            <input type="date" class="form-control" id="exampleInputDateFin" name="DateFin">
+    </div>
             <input id="SubmitButtonID" class="btn btn-primary btnSearchPV" type="button" value="Rechercher" onclick="datecheck()" />
         </div>
 
         @if (Model.Count() == 0)
-        {
+    {
             <p>Pas de système d'exploitation disponible pour la période sélectionnée</p>
-        }
-        else
-        {
-            <div class="col-lg-offset-2 col-lg-8 text-center">
-                <p>Période sélectionnée</p>
-                @Html.TextBox("DateDebut");
-                @Html.TextBox("DateFin");
-                <h3>Sessions et demandes pour système d'exploitation</h3>
-                <table class="table table-striped">
-                    <thead>
+    }
+    else
+    {
+        <div class="col-lg-offset-2 col-lg-8 text-center">
+            <p>Période sélectionnée</p>
+            @Html.TextBox("DateDebut");
+            @Html.TextBox("DateFin");
+            <h3>Sessions et demandes pour système d'exploitation</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Système d'exploitation</th>
+                        <th>Sessions</th>
+                        <th>Demande (taux conversion)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var m in Model)
+                    {
                         <tr>
-                            <th>Système d'exploitation</th>
-                            <th>Sessions</th>
-                            <th>Demande (taux conversion)</th>
+                            <td>@m.OsType </td>
+                            <td>@m.NbViews</td>
+                            <td>@m.ConversionRate</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var m in Model)
-                        {
-                            <tr>
-                                <td>@m.OsType </td>
-                                <td>@m.NbViews</td>
-                                <td>@m.ConversionRate</td>
-                            </tr>
-                        }
-
-                    </tbody>
-                </table>
-            </div>
-        }
-    </div>
+                    }
+                    
+                </tbody>
+            </table>
+        </div>
+    }
 </div>

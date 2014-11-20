@@ -76,14 +76,60 @@ namespace YOUP_Design.Controllers
             }
 
             if (string.IsNullOrEmpty(pseudoUser))
+            {
+                ViewBag.EventsByCategory = new Dictionary<string, int>();
                 return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", new Utilisateur());
+            }
             else
-                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser));
+            {
+                var user =WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser);
+                ViewBag.EventsByCategory = NbEvenementByCategorie(pseudoUser);
+                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",user );
+            }
           }
 
         public ActionResult Tops()
         {
             return PartialView("~/Views/Historique/partialTops.cshtml", WebApiHistoriqueController.GetTops());
+        }
+
+        public static Dictionary<string,int> NbEvenementByCategorie(Utilisateur user)
+        {
+            var nbEvenementByCategorie = new Dictionary<string, int>();
+
+            foreach(var evenement in user.EvenementsParticipes)
+            {
+                if(nbEvenementByCategorie.ContainsKey(evenement.Categorie.Libelle))
+                {
+                    nbEvenementByCategorie[evenement.Categorie.Libelle] = nbEvenementByCategorie[evenement.Categorie.Libelle] + 1;
+                }
+                else
+                {
+                    nbEvenementByCategorie.Add(evenement.Categorie.Libelle, 1);
+                }
+            }
+            return nbEvenementByCategorie;
+        }
+
+        public static Dictionary<string, int> NbEvenementByCategorie(string pseudo)
+        {
+            var nbEvenementByCategorie = new Dictionary<string, int>();
+            var evenements = WebApiHistoriqueController.GetUtilisateurByPseudo(pseudo).EvenementsParticipes;
+            if(evenements != null)
+            {
+                foreach (var evenement in evenements)
+                {
+                    if (nbEvenementByCategorie.ContainsKey(evenement.Categorie.Libelle))
+                    {
+                        nbEvenementByCategorie[evenement.Categorie.Libelle] = nbEvenementByCategorie[evenement.Categorie.Libelle] + 1;
+                    }
+                    else
+                    {
+                        nbEvenementByCategorie.Add(evenement.Categorie.Libelle, 1);
+                    }
+                }
+            }            
+            return nbEvenementByCategorie;
         }
     }
 }
