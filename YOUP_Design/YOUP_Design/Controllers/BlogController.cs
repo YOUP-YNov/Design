@@ -86,10 +86,10 @@ namespace YOUP_Design.Controllers
         public List<Article> GetBlog(int UserId, int BlogId)
         {
             //var request = new RestRequest("api/article?utilisateurId="+UserId+"&blogId="+BlogId, Method.GET);
-            var request = new RestRequest("api/article", Method.GET);
+            var request = new RestRequest("api/article?utilisateurId=" + UserId + "&blogId=" + BlogId, Method.GET);
 
-            request.AddParameter("utilisateurId", UserId, ParameterType.UrlSegment);
-            request.AddParameter("blogId", BlogId, ParameterType.UrlSegment);
+            //request.AddParameter("utilisateurId", UserId, ParameterType.UrlSegment);
+            //request.AddParameter("blogId", BlogId, ParameterType.UrlSegment);
 
             var result = Execute<List<Article>>(request);
             return result;
@@ -122,7 +122,7 @@ namespace YOUP_Design.Controllers
             {
                 //Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
 
-                Blog blog = new Blog() { Utilisateur_id = 123, TitreBlog = model.TitreBlog, Categorie_id = model.CategorieId, Theme_id = model.ThemeId};
+                Blog blog = new Blog() { Utilisateur_id = 124, TitreBlog = model.TitreBlog, Categorie_id = model.CategorieId, Theme_id = model.ThemeId};
                 //httpclient (voir msdn)
                 
                 
