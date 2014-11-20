@@ -1,4 +1,13 @@
 ﻿$(document).ready(function () {
+    var couleur = $("#colorSexe").text();
+    if (couleur == "Masculin")
+    {
+        $("#pseudoColor").css("color", "blue");
+    }
+    else
+    {
+        $("#pseudoColor").css("color", "fuchsia");
+    }
 
     $('#afficheDeviceOS').fadeIn();
     $('#menuDeviceOS').css("background-color", "#428bca");

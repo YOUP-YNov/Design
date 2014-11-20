@@ -72,7 +72,7 @@ namespace YOUP_Design.Controllers
             else
             {
                 ViewBag.Pseudo = new SelectList(new List<SelectListItem>(), "Value", "Text");
-                ViewBag.Error = "Impossible de charger les utilisateurs";
+                ViewBag.MsgError = "Impossible de charger les utilisateurs";
             }
 
             if (string.IsNullOrEmpty(pseudoUser))

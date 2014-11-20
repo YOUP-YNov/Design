@@ -3,6 +3,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="/Content/js/Historique.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -26,12 +27,25 @@
 
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
-        <h2>Statistiques d'utilisation : @Model.Pseudo</h2>
-        @Html.TextBox("Error")
-        <div class="col-lg-12 comboHisto">
-            @Html.DropDownList("Pseudo", "Select user")
-            <input id="SubmitButtonID" class="btn btn-primary" type="submit" value="Envoyer" />
-        </div>
+        <h2>Statistiques d'utilisation</h2>
+        @Html.TextBox("MsgError")
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8 comboHisto">
+        @Html.DropDownList("Pseudo", "Select user")
+        <input id="SubmitButtonID" class="btn btn-primary" type="submit" value="Envoyer" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8 colorPseudo">
+        <span class="pseudostats" id="pseudoColor">
+            @Model.Pseudo
+        </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8 ">
         <div class="col-lg-4 text-center">
             <strong>Date d'inscription</strong>
             <p>@Model.DateInscription</p>
@@ -40,19 +54,21 @@
             <strong>Sexe</strong>
             @if (Model.IsHomme)
             {
-                <p>Masculin</p>
+                <p id="colorSexe">Masculin</p>
             }
             else
-	        {
-	            <p>Feminin</p>
-	        }
-            
+            {
+                <p id="colorSexe">Feminin</p>
+            }
+
         </div>
         <div class="col-lg-4 text-center">
             <strong>Age</strong>
             <p>@Model.Age</p>
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
         <div class="col-lg-4 text-center">
             <strong>Nombre d'évènements créés</strong>
@@ -67,10 +83,11 @@
             <p>@Model.NbEvenementParticipe</p>
         </div>
     </div>
+</div>
 
+<div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
         <strong>Catégories d'évènements</strong>
-         <p>Graphique</p>
         <div id="categorie" style="min-width: 310px; height: 320px; max-width: 500px; margin: 0 auto"></div> @*defini la taille du graphique et l'affiche*@
 
         <script>
@@ -85,7 +102,7 @@
                         type: 'pie', // type du graphique
                     },
                     title: {
-                        text: 'Catégories d\'évènements'
+                        text: ''
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>' // si on pointe sur un morceau, affiche : Pourcentage : xx%
