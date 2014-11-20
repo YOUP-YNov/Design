@@ -232,6 +232,7 @@
     <Compile Include="Models\Blog\CommentaireModel.cs" />
     <Compile Include="Models\Blog\PubliciteModel.cs" />
     <Compile Include="Models\Evenement\EvenementTimelineFront.cs" />
+    <Compile Include="Models\Evenement\EventCreation.cs" />
     <Compile Include="Models\Evenement\EventStateEnumFront.cs" />
     <Compile Include="Models\Evenement\templatesObjects\EvenemenDate.cs" />
     <Compile Include="Models\Evenement\templatesObjects\evenementTimeLineObject.cs" />
