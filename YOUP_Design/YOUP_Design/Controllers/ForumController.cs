@@ -14,18 +14,48 @@ namespace YOUP_Design.Controllers
 {
     public class ForumController : Controller
     {
-        //
-        // GET: /Forum/
-
-
+        // METHODE EXECUTION DES REQUETES SUR API
+        #region ExecuteRequest
+        /// <summary>
+        /// Requete sur API
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public T Execute<T>(RestRequest request) where T : new()
         {
             var client = new RestClient("http://forumyoup.apphb.com/");
             var response = client.Execute<T>(request);
             return response.Data;
         }
+        #endregion
 
+        // METHODES SUR LA VUE FORUM
+        #region Forums
 
+        /// <summary>
+        /// Retourne la vue Index qui représente la liste des forums.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
+        {
+
+            List<Forum> forums = new List<Forum>();
+            forums = this.GetForums();
+
+            List<Categorie> categs = new List<Categorie>();
+            categs = this.GetCategories();
+
+            ViewBag.forums = forums;
+            ViewBag.categs = categs;
+            return View(forums);
+
+        }
+
+        /// <summary>
+        /// GetForums permet de récupérer la liste complète des forums.
+        /// </summary>
+        /// <returns></returns>
         public List<Forum> GetForums()
         {
             var request = new RestRequest("api/Forums", Method.GET);
@@ -35,35 +65,87 @@ namespace YOUP_Design.Controllers
 
         }
 
-        public  ActionResult Index()
+        /// <summary>
+        /// Récupère la liste complète des catégories de forum.
+        /// </summary>
+        /// <returns></returns>
+        public List<Categorie> GetCategories()
         {
+            var request = new RestRequest("api/Category/", Method.GET);
+            var result = Execute<List<Categorie>>(request);
 
-            List<Forum> forums = new List<Forum>();
-            forums = this.GetForums();
-            ViewBag.forums = forums;
-            return View(forums);
+            return result;
 
         }
-        /*
-        static async Task GetForumsAsync(List<Forum> list)
+      
+        #endregion
+
+        // METHODES SUR LA VUE TOPIC
+        #region Topic
+        /// <summary>
+        /// Retourne la vue Topics qui représente la liste des topics du forum séléctionné.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Topics(int id)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://forumyoup.apphb.com/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("api/blog");
+            List<Topic> topics = new List<Topic>();
+            topics = this.GetTopicsByCategId(id);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    list = await response.Content.ReadAsAsync<List<Forum>>();
-                }
-            }
-        }*/
+            ViewBag.topics = topics;
+            return View(topics);
 
-        //
-        // GET: /Forum/Details/5
+        }
+        /// <summary>
+        /// 
+        /// </summary>Récupère la liste des topics de la catégorie séléctionnée.
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Topic> GetTopicsByCategId(int id)
+        {
+            var request = new RestRequest("api/TopicCategory/" + id, Method.GET);
+            var result = Execute<List<Topic>>(request);
+
+            return result;
+
+        }
+        #endregion
+
+        // METHODES SUR LA VUE DISCUSSION
+        #region Discussion
+       /// <summary>
+        /// Retourne la vue Discussion qui représente la liste des messages sur un topic.
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
+        public ActionResult Discussion(int id)
+        {
+            List<Message> messages = new List<Message>();
+            messages = this.getMessagesByTopicId(id);
+            ViewBag.messages = messages;
+            return View(messages);
+        }
+        /// <summary>
+        /// Récupère la liste des messages du topic séléctionné.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Message> getMessagesByTopicId(int id)
+        {
+            var request = new RestRequest("api/MessageTopic/"+id, Method.GET);
+            var result = Execute<List<Message>>(request);
+
+            return result;
+
+        }
+        #endregion
+
+
+
+
+        // METHODES NON UTILISEES
+        #region Unused
 
         public ActionResult Details(int id)
         {
@@ -94,36 +176,6 @@ namespace YOUP_Design.Controllers
             {
                 return View();
             }
-        }
-
-        public ActionResult ViewForum()
-        {
-            //try
-            //{
-            //    // TODO: Add insert logic here
-
-            //    return RedirectToAction("Forum");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
-            return View("ViewForum");
-        }
-
-        public ActionResult Discussion()
-        {
-            //try
-            //{
-            //    // TODO: Add insert logic here
-
-            //    return RedirectToAction("Forum");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
-            return View("Discussion");
         }
 
 
@@ -178,5 +230,7 @@ namespace YOUP_Design.Controllers
                 return View();
             }
         }
+
+        #endregion
     }
 }
