@@ -117,6 +117,9 @@
         /// Assigne ou récupère la visibilité de l'évènement
         /// </summary>
         public bool  Payant { get; set; }
+        public string OrganisateurPseudo { get; set; }
+        public string OrganisateurImageUrl { get; set; }
+
         /// <summary>
         /// Constructeur de EvenementFront
         /// </summary>
