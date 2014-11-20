@@ -6,7 +6,12 @@
 <script src="~/Scripts/jquery-1.8.2.min.js"></script>
 
 <script type="text/javascript">
+    $(window).load(function () {
+        $('#preloader').hide();
+    });
+
     $(document).ready(function () {
+
         function LoadPartialViewDevice() {
 
             $.get("@Url.Action("Device", "Historique")",'', function (data) {
@@ -17,8 +22,21 @@
             });
 
         }
-        $('#menuDeviceOS').on('click', function () {
+        $('#menuDevice').on('click', function () {
             LoadPartialViewDevice();
+        });
+        function LoadPartialViewOS() {
+
+            $.get("@Url.Action("OS", "Historique")",'', function (data) {
+
+                $("#partialgoeshere").empty();
+                $("#partialgoeshere").html(data);
+
+            });
+
+        }
+        $('#menuOS').on('click', function () {
+            LoadPartialViewOS();
         });
 
         function LoadPartialViewPagesVisitees() {
@@ -76,12 +94,17 @@
     });
 </script>
 
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+
 <div class="container divAllHistorique">
     <div class="row ">
         <div class="col-lg-offset-2 col-lg-8 text-center">
             <h1>Historique</h1>
             <div class=" btn-group btn-group-justified menuProfil">
-                <a id="menuDeviceOS" class="btn btn-default">Type de device/OS</a>
+                <a id="menuOS" class="btn btn-default">Type de OS</a>
+                <a id="menuDevice" class="btn btn-default">Type de device</a>
                 <a id="menuPagesVisitees" class="btn btn-default">Pages les + visitées</a>
                 <a id="menuSaisonnalite" class="btn btn-default">Saisonnalité</a>
                 <a id="menuStatsUtilisation" class="btn btn-default">Stats d'utilisation</a>

@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,6 +48,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -189,6 +191,7 @@
     <Compile Include="Classes\Blog\Categorie.cs" />
     <Compile Include="Classes\Blog\Commentaire.cs" />
     <Compile Include="Classes\Blog\Publicite.cs" />
+    <Compile Include="Classes\Blog\Theme.cs" />
     <Compile Include="Classes\Evenement\EvenementCategorieFront.cs" />
     <Compile Include="Classes\Evenement\EvenementFront.cs" />
     <Compile Include="Classes\Evenement\EvenementTimeline.cs" />
@@ -335,6 +338,10 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\youp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\youp - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\youp-disign - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\youp-disign - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\default_profil.png" />
     <Content Include="Images\favicon.ico" />
@@ -398,7 +405,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Evenements\Index.cshtml" />
     <Content Include="Views\Forum\Index.cshtml" />
@@ -409,7 +418,7 @@
     <Content Include="Views\Profile\partialProfil.cshtml" />
     <Content Include="Views\Profile\partialAmis.cshtml" />
     <Content Include="Views\Historique\Index.cshtml" />
-    <Content Include="Views\Historique\partialDeviceOS.cshtml" />
+    <Content Include="Views\Historique\partialDevice.cshtml" />
     <Content Include="Views\Historique\partialPagesVisitees.cshtml" />
     <Content Include="Views\Historique\partialSaisonnalite.cshtml" />
     <Content Include="Views\Historique\partialStatsUtilisation.cshtml" />
@@ -429,6 +438,8 @@
     <Content Include="Views\Blog\Blog_voir_plus.cshtml" />
     <Content Include="Views\Blog\partialRechercheBlog.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
+    <Content Include="Views\Blog\partialDeviceOS.cshtml" />
+    <Content Include="Views\Historique\partialOS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
