@@ -75,11 +75,8 @@
     }
 
     function resize_map() {
-        paper.setSize($(window).width(), $(window).height()/1.5);
+        paper.setSize($(window).width()-30, $(window).height()/1.5);
     }
-
-    
-
 
     /*=================================================================================================
 			DOCUMENT READY
@@ -145,7 +142,13 @@
 	=================================================================================================*/
 
     $(window).scroll(function () {
-
+        $('.home-section').each(function () {
+            if ($(window).scrollTop() > ($(this).offset().top - window.innerHeight * 0.7)) {
+                $(this).css('opacity', 1);
+                $(this).animo({ animation: 'bounceIn', duration: 0.5, keep: true });
+                
+            }
+        });
     });
 
 }(jQuery));

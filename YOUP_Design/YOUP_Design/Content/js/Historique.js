@@ -1,20 +1,25 @@
 ﻿$(document).ready(function () {
 
-    $('#afficheDeviceOS').fadeIn();
-    $('#menuDeviceOS').css("background-color", "#428bca");
 
-    $('#affichePagesVisitees').hide();
-    $('#afficheSaisonnalite').hide();
-    $('#afficheStatsUtilisation').hide();
-    $('#afficheTops').hide();
+    $("#SubmitButtonID").click(function () {
+        alert("Hola");
+            //// Get the value from 'Select1'
+            //var value = $("#Pseudo").val();
+
+            //var url = '@Url.Action("StatsUsage", "Historique", new { pseudoUser = "_pseudo_" })'
+            //    .replace('_pseudo_', value);
+
+            //$.get(url, '', function (data) {
+
+            //    $("#partialgoeshere").empty();
+            //    $("#partialgoeshere").html(data);
+
+            //});
+        });
+
+
 
     $(document).on('click', "#menuDeviceOS", function () {
-
-        $('#afficheDeviceOS').fadeIn();
-        $('#affichePagesVisitees').hide();
-        $('#afficheSaisonnalite').hide();
-        $('#afficheStatsUtilisation').hide();
-        $('#afficheTops').hide();
 
         $('#menuDeviceOS').css("background-color", "#428bca");
         $('#menuPagesVisitees').css("background-color", "#eeeeee");
@@ -26,12 +31,6 @@
 
     $(document).on('click', "#menuPagesVisitees", function () {
 
-        $('#affichePagesVisitees').fadeIn();
-        $('#afficheDeviceOS').hide();
-        $('#afficheSaisonnalite').hide();
-        $('#afficheStatsUtilisation').hide();
-        $('#afficheTops').hide();
-
         $('#menuPagesVisitees').css("background-color", "#428bca");
         $('#menuDeviceOS').css("background-color", "#eeeeee");
         $('#menuSaisonnalite').css("background-color", "#eeeeee");
@@ -41,12 +40,6 @@
     });
 
     $(document).on('click', "#menuSaisonnalite", function () {
-
-        $('#afficheSaisonnalite').fadeIn();
-        $('#afficheDeviceOS').hide();
-        $('#affichePagesVisitees').hide();
-        $('#afficheStatsUtilisation').hide();
-        $('#afficheTops').hide();
 
         $('#menuSaisonnalite').css("background-color", "#428bca");
         $('#menuDeviceOS').css("background-color", "#eeeeee");
@@ -58,12 +51,6 @@
 
     $(document).on('click', "#menuStatsUtilisation", function () {
 
-        $('#afficheStatsUtilisation').fadeIn();
-        $('#afficheDeviceOS').hide();
-        $('#affichePagesVisitees').hide();
-        $('#afficheSaisonnalite').hide();
-        $('#afficheTops').hide();
-
         $('#menuStatsUtilisation').css("background-color", "#428bca");
         $('#menuDeviceOS').css("background-color", "#eeeeee");
         $('#menuPagesVisitees').css("background-color", "#eeeeee");
@@ -74,12 +61,6 @@
 
     $(document).on('click', "#menuTops", function () {
 
-        $('#afficheTops').fadeIn();
-        $('#afficheDeviceOS').hide();
-        $('#affichePagesVisitees').hide();
-        $('#afficheSaisonnalite').hide();
-        $('#afficheStatsUtilisation').hide();
-
         $('#menuTops').css("background-color", "#428bca");
         $('#menuDeviceOS').css("background-color", "#eeeeee");
         $('#menuPagesVisitees').css("background-color", "#eeeeee");
@@ -88,5 +69,11 @@
 
     });
 
+    function combo(thelist, theinput) {
+        theinput = document.getElementById(theinput);
+        var idx = thelist.selectedIndex;
+        var content = thelist.options[idx].innerHTML;
+        theinput.value = content;
+    }
 
 });
