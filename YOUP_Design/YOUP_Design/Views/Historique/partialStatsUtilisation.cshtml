@@ -36,7 +36,15 @@
         </div>
         <div class="col-lg-4 text-center">
             <strong>Sexe</strong>
-            <p>@Model.IsHomme</p>
+            @if (Model.IsHomme)
+            {
+                <p>Masculin</p>
+            }
+            else
+	        {
+	            <p>Feminin</p>
+	        }
+            
         </div>
         <div class="col-lg-4 text-center">
             <strong>Age</strong>
