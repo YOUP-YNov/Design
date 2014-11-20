@@ -1,0 +1,310 @@
+﻿Template knockOut
+<div class="panel panel-default " data-bind="foreach: { data: listeEvenementDate, as: 'evenementDate' }">
+    <div class=" panel-heading text-center">
+        <h3 class="panel-title" data-bind="text: evenementDate.day()">Aujourd'hui</h3>
+    </div>
+    <div class="panel-body">
+        <!-- code à générer pour un event -->
+        <div data-bind="foreach: { data: evenementDate.listeEvenements, as: 'evt' }">
+            <a class="row" href="#" data-bind="'evenementId': idEvenement">
+                <div class="col-lg-2">
+                    <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement" data-bind="src: evt.imgEvt">
+                </div>
+                <div class="col-lg-10">
+                    <span class="titreTimelineEvent" data-bind="text: evt.titre"></span>
+                    <div>
+                        <img class="photoTimelineProfil img-circle" src="~/Images/default_profil.png" alt="photo evenement">
+                        <span class="parUtilisateur" data-bind="text: evt.utilisateur">Par Francis Lalane</span>
+                    </div>
+                    <div class="descriptionEventTimeline" data-bind="text: evt.description">
+                        Quidem hoc sumenda habeat aut de accedunt eorum sunt impetrare novit velint sed de
+                        aut hoc accedunt eorum sapientiam perfecta rectum qui quidem velimus perfecta sapienti
+                        a exempla hoc vidimus quos accepimus sunt simus qui ab quidem maxime impetrare numero de
+                        simus amicis quos vita vel vel iis vel si loquimur.
+                    </div>
+                    <div class="dateEtVille">
+                        Le <span class="dateEventTimeline" data-bind="text: evt.date">15/11/2014</span> à <span class="villeEventTimeline" data-bind="text: evt.ville">Bordeaux</span>
+                    </div>
+
+                    <div class="row text-left informationEventTimeline">
+                        <div class="col-lg-6">
+                            Catégorie : <span class="categorieEventTimeline" data-bind="text: evt.catégorie">Sport</span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="nombrePartEventTimeline" data-bind="text: evt.nbParticipant">3</span>/<span data-bind="text: evt.nbMaxParticipant">5</span> participants
+                        </div>
+                    </div>
+
+                    <div class="row text-left informationEventTimeline">
+                        <div class="col-lg-6">
+                            <span class="nombreAttenteEventTimeline" data-bind="text: evt.nbAttenteParticipant">5</span> personnes en attente.
+                        </div>
+                        <div class="col-lg-6">
+                            Evènenement <span class="typeEventTimeline" data-bind="text: evt.prix">Gratuit</span>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+        <!-- FIN du code à générer pour un event -->
+    </div>
+</div>
+
+
+
+ <!-- Panel Aujourd'hui -->
+<div class="panel panel-default ">
+    <div class="panel-heading text-center">
+        <h3 class="panel-title">Aujourd'hui</h3>
+    </div>
+    <div class="panel-body">
+        <!-- code à générer pour un event -->
+        <a class="row" href="#">
+            <div class="col-lg-2">
+                <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement">
+            </div>
+            <div class="col-lg-10">
+                <span class="titreTimelineEvent">Titre de l'évènement</span>
+                <div>
+                    <img class="photoTimelineProfil img-circle" src="~/Images/default_profil.png" alt="photo evenement">
+                    <span class="parUtilisateur">Par Francis Lalane</span>
+                </div>
+                <div class="descriptionEventTimeline">
+                    Quidem hoc sumenda habeat aut de accedunt eorum sunt impetrare novit velint sed de
+                    aut hoc accedunt eorum sapientiam perfecta rectum qui quidem velimus perfecta sapienti
+                    a exempla hoc vidimus quos accepimus sunt simus qui ab quidem maxime impetrare numero de
+                    simus amicis quos vita vel vel iis vel si loquimur.
+                </div>
+                <div class="dateEtVille">
+                    Le <span class="dateEventTimeline">15/11/2014</span> à <span class="villeEventTimeline">Bordeaux</span>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        Catégorie : <span class="categorieEventTimeline">Sport</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="nombrePartEventTimeline">3/5</span> participants
+                    </div>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        <span class="nombreAttenteEventTimeline">5</span> personnes en attente.
+                    </div>
+                    <div class="col-lg-6">
+                        Evènenement <span class="typeEventTimeline">Gratuit</span>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+        <!-- FIN du code à générer pour un event -->
+    </div>
+</div>
+
+<!-- Demain avec aucun event -->
+<div class="panel panel-default ">
+    <div class="panel-heading text-center">
+        <h3 class="panel-title">Demain</h3>
+    </div>
+    <div class="panel-body">
+
+        <div class="text-center">
+            Il n'y a aucun évènement pour demain... Courage !
+        </div>
+
+    </div>
+</div>
+
+<!-- La semaine pro avec 2 events -->
+<div class="panel panel-default ">
+    <div class="panel-heading text-center">
+        <h3 class="panel-title">La semaine prochaine</h3>
+    </div>
+    <div class="panel-body">
+
+        <!-- code à générer pour un event -->
+        <a class="row" href="#">
+            <div class="col-lg-2">
+                <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement">
+            </div>
+            <div class="col-lg-10">
+                <span class="titreTimelineEvent">Titre de l'évènement</span>
+                <div>
+                    <img class="photoTimelineProfil img-circle" src="~/Images/default_profil.png" alt="photo evenement">
+                    <span class="parUtilisateur">Par Francis Lalane</span>
+                </div>
+                <div class="descriptionEventTimeline">
+                    Quidem hoc sumenda habeat aut de accedunt eorum sunt impetrare novit velint sed de
+                    aut hoc accedunt eorum sapientiam perfecta rectum qui quidem velimus perfecta sapienti
+                    a exempla hoc vidimus quos accepimus sunt simus qui ab quidem maxime impetrare numero de
+                    simus amicis quos vita vel vel iis vel si loquimur.
+                </div>
+                <div class="dateEtVille">
+                    Le <span class="dateEventTimeline">15/11/2014</span> à <span class="villeEventTimeline">Bordeaux</span>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        Catégorie : <span class="categorieEventTimeline">Sport</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="nombrePartEventTimeline">3/5</span> participants
+                    </div>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        <span class="nombreAttenteEventTimeline">5</span> personnes en attente.
+                    </div>
+                    <div class="col-lg-6">
+                        Evènenement <span class="typeEventTimeline">Gratuit</span>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+        <!-- FIN du code à générer pour un event -->
+        <!-- code à générer pour un 2eme event, juste la classe moreOneEvent à rajouter pour tirer un trait entre 2 events -->
+        <a class="row moreOneEvent" href="#">
+            <div class="col-lg-2">
+                <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement">
+            </div>
+            <div class="col-lg-10">
+                <span class="titreTimelineEvent">Titre de l'évènement</span>
+                <div>
+                    <img class="photoTimelineProfil img-circle" src="~/Images/default_profil.png" alt="photo evenement">
+                    <span class="parUtilisateur">Par Francis Lalane</span>
+                </div>
+                <div class="descriptionEventTimeline">
+                    Quidem hoc sumenda habeat aut de accedunt eorum sunt impetrare novit velint sed de
+                    aut hoc accedunt eorum sapientiam perfecta rectum qui quidem velimus perfecta sapienti
+                    a exempla hoc vidimus quos accepimus sunt simus qui ab quidem maxime impetrare numero de
+                    simus amicis quos vita vel vel iis vel si loquimur.
+                </div>
+                <div class="dateEtVille">
+                    Le <span class="dateEventTimeline">15/11/2014</span> à <span class="villeEventTimeline">Bordeaux</span>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        Catégorie : <span class="categorieEventTimeline">Sport</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="nombrePartEventTimeline">3/5</span> participants
+                    </div>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        <span class="nombreAttenteEventTimeline">5</span> personnes en attente.
+                    </div>
+                    <div class="col-lg-6">
+                        Evènenement <span class="typeEventTimeline">Gratuit</span>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+        <!-- FIN du code à générer pour un event -->
+
+    </div>
+</div>
+
+ <!-- Panel Premium -->
+<div class=" col-lg-3 contenuTimelinePremium">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h3 class="panel-title">Premium</h3>
+        </div>
+        <div class="panel-body contenuTimeline ">
+            <!-- code à générer pour un event -->
+            <a class="" href="#">
+                <div class="imgPremiumTimeline">
+                    <img class="photoTimelineEvent img-responsive img-rounded" src="~/Images/default_profil.png" alt="photo evenement">
+                </div>
+
+                <span class="titreTimelineEvent">Titre de l'évènement</span>
+                <div>
+                    <img class="photoTimelineProfil img-circle" src="~/Images/default_profil.png" alt="photo evenement">
+                    <span class="parUtilisateur">Par Francis Lalane</span>
+                </div>
+                <div class="descriptionEventTimeline">
+                    Quidem hoc sumenda habeat aut de accedunt eorum sunt impetrare novit velint sed de
+                    aut hoc accedunt eorum sapientiam perfecta rectum qui quidem velimus perfecta sapienti
+                    a exempla hoc vidimus quos accepimus sunt simus qui ab quidem maxime impetrare numero de
+                    simus amicis quos vita vel vel iis vel si loquimur.
+                </div>
+                <div class="dateEtVille">
+                    Le <span class="dateEventTimeline">15/11/2014</span> à <span class="villeEventTimeline">Bordeaux</span>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        Catégorie : <span class="categorieEventTimeline">Sport</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="nombrePartEventTimeline">3/5</span> participants
+                    </div>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        <span class="nombreAttenteEventTimeline">5</span> personnes en attente.
+                    </div>
+                    <div class="col-lg-6">
+                        Evènenement <span class="typeEventTimeline">Gratuit</span>
+                    </div>
+                </div>
+
+            </a>
+
+            <!-- FIN du code à générer pour un event -->
+            <!-- code à générer pour 2eme event premium avec tjrs la classe moreOneEvent -->
+            <a class="moreOneEvent" href="#">
+                <div class="imgPremiumTimeline">
+                    <img class="photoTimelineEvent img-responsive img-rounded" src="~/Images/default_profil.png" alt="photo evenement">
+                </div>
+
+                <span class="titreTimelineEvent">Titre de l'évènement</span>
+                <div>
+                    <img class="photoTimelineProfil img-circle" src="~/Images/default_profil.png" alt="photo evenement">
+                    <span class="parUtilisateur">Par Francis Lalane</span>
+                </div>
+                <div class="descriptionEventTimeline">
+                    Quidem hoc sumenda habeat aut de accedunt eorum sunt impetrare novit velint sed de
+                    aut hoc accedunt eorum sapientiam perfecta rectum qui quidem velimus perfecta sapienti
+                    a exempla hoc vidimus quos accepimus sunt simus qui ab quidem maxime impetrare numero de
+                    simus amicis quos vita vel vel iis vel si loquimur.
+                </div>
+                <div class="dateEtVille">
+                    Le <span class="dateEventTimeline">15/11/2014</span> à <span class="villeEventTimeline">Bordeaux</span>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        Catégorie : <span class="categorieEventTimeline">Sport</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="nombrePartEventTimeline">3/5</span> participants
+                    </div>
+                </div>
+
+                <div class="row text-left informationEventTimeline">
+                    <div class="col-lg-6">
+                        <span class="nombreAttenteEventTimeline">5</span> personnes en attente.
+                    </div>
+                    <div class="col-lg-6">
+                        Evènenement <span class="typeEventTimeline">Gratuit</span>
+                    </div>
+                </div>
+
+            </a>
+
+            <!-- FIN du code à générer pour un event -->
+        </div>
+    </div>
+</div>
+

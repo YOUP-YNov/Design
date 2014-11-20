@@ -11,6 +11,10 @@ namespace YOUP_Design.WebApi.Evenement
 {
     public class webApiEvenementController
     {
+        /// <summary>
+        /// appel à la méthode PutEvenement de la webApi evenement
+        /// </summary>
+        /// <param name="evenement">contient un evenement et une liste d'id des amis à invité pour l'évenement</param>
         public async void PutEvent(EvenementCreate evenement)
         {
             using (var client = new HttpClient())
@@ -19,9 +23,9 @@ namespace YOUP_Design.WebApi.Evenement
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                // New code:
+                
                 HttpResponseMessage response = await client
-                    .PutAsJsonAsync<EvenementCreate>("api/Evenement", evenement);
+                    .PostAsJsonAsync<EvenementCreate>("api/Evenement", evenement);
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("ajout de l'évènement");

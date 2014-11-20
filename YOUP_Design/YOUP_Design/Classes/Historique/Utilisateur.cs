@@ -157,11 +157,11 @@ namespace YOUP_Design.Classes.Historique
         /// <summary>
         /// Evenement auxquels l'utilisateur a participer.
         /// </summary>
-        private IEnumerable<Evenement> _EvenementsParticipes;
+        private List<Evenement> _EvenementsParticipes;
         /// <summary>
         /// Assigne ou récupère les évenement auxquels l'utilisateur a participer.
         /// </summary>
-        public IEnumerable<Evenement> EvenementsParticipes
+        public List<Evenement> EvenementsParticipes
         {
             get
             {
@@ -174,11 +174,11 @@ namespace YOUP_Design.Classes.Historique
         /// <summary>
         /// Evenement créés par l'utilisateur.
         /// </summary>
-        private IEnumerable<Evenement> _EvenementsCrees;
+        private List<Evenement> _EvenementsCrees;
         /// <summary>
         /// Assigne ou récupère les évenement créés par l'utilisateur.
         /// </summary>
-        public IEnumerable<Evenement> EvenementsCrees
+        public List<Evenement> EvenementsCrees
         {
             get
             {

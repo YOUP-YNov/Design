@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.Models.Evenement.webApiObjects;
+using YOUP_Design.Models.Evenement.templatesObjects;
+using YOUP_Design.Classes.Evenement;
 
 namespace YOUP_Design.Controllers
 {
@@ -16,17 +19,97 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
+        public JsonResult TimeLine(List<EvenementTimelineFront> listeEvenement)
+        {
+            var timeLine = transformObjects(listeEvenement);
+            return Json(new { timeLine = timeLine });
+        }
+
+        private List<EvenemenDate> transformObjects(List<EvenementTimelineFront> listeEvenementApi)
+        {
+            var result = new List<EvenemenDate>();
+            var dates = listeEvenementApi.Select(t => t.DateEvenement.Date).Distinct().ToList();
+
+            var dateString = new List<String>();
+            dateString.Add("Aujourd'hui");
+            dateString.Add("demain");
+
+            foreach(var date in dates)
+            {
+                if (date.Date > DateTime.Now.AddDays(7) && date.Date < DateTime.Now.AddDays(14))
+                {
+                    dateString.Add(string.Format("La semaine prochaine (entre le {0} et le {1})"
+                        , DateTime.Now.AddDays(7).ToShortDateString()
+                        , DateTime.Now.AddDays(14).ToShortDateString()));
+                }
+                //on ne veux que les date supérieur à ajourd'hui et demain
+                else if (date.Date > DateTime.Now.AddDays(1))
+                {
+                    dateString.Add(date.ToString());
+                }
+            }
+
+            foreach (var date in dateString)
+            {
+                var evtDate = new EvenemenDate();
+                evtDate.date = date;
+
+                var listeEvenementTotransforme = EvtParDatePourTimeLine(date, listeEvenementApi);
+
+                //on transforme les Objet venant de l'api en objet à affcher
+                var listeTimeLineObjects = listeEvenementTotransforme.Select(t => new evenementTimeLineObject(t)).ToList();
+                evtDate.listeEvenements = listeTimeLineObjects;
+
+                result.Add(evtDate);
+            }
+
+            return result;
+        }
+
+        private List<EvenementTimelineFront> EvtParDatePourTimeLine(string date, List<EvenementTimelineFront> listeEvenementApi)
+        {
+            var listeEvenementTotransforme = new List<EvenementTimelineFront>();
+            if (date == "Aujourd'hui")
+            {
+                listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date == DateTime.Now.Date).ToList();
+            }
+            else if (date == "demain")
+            {
+                listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date == DateTime.Now.AddDays(1).Date).ToList();
+            }
+            else if (date == "La semaine prochaine")
+            {
+                listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date > DateTime.Now.AddDays(7).Date).ToList();
+            }
+            //les dates entre demain et la semaine prochaine
+            else
+            {
+                listeEvenementTotransforme = listeEvenementApi
+                    .Where(t => t.DateEvenement.Date <= DateTime.Now.AddDays(7).Date
+                    && t.DateEvenement.Date > DateTime.Now.AddDays(1).Date).ToList();
+            }
+
+            return listeEvenementTotransforme;
+        }
+
         //
         // GET: /Evenement/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.idEvenement = id;
             return View();
+        }
+
+        public JsonResult DetailEvenement(EvenementFront listeEvenementApi)
+        {
+            var result = new evenementTimeLineObject(listeEvenementApi);
+            return Json(result);
         }
 
         //
         // GET: /Evenement/Create
 
-        public ActionResult Create()
+        public ActionResult Creation()
         {
             return View();
         }

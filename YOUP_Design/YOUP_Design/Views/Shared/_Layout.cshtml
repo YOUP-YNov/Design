@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta charset="utf-8" />
         <title>@ViewBag.Title - YOUP</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="~/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
 
         @Styles.Render("~/Content/css/bootstrap.css")
@@ -19,7 +19,8 @@
         @Scripts.Render("~/bundles/modernizr")
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="//cdn.ckeditor.com/4.4.5/basic/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.4.5/basic/ckeditor.js"></script>        
+        @Scripts.Render("~/Scripts/date.js")
         @Scripts.Render("~/Content/js/animo.js")
         @Scripts.Render("~/Content/js/raphael-min.js")
     </head>
@@ -39,7 +40,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"></a>
+                            <a class="navbar-brand" href="/"></a>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -76,15 +77,18 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-4">
-                            Logo
+                            <a href="/">
+                                <img src="/Images/logo.png"/>
+                            </a>
                         </div>
                         <div class="col-sm-4">
                             <ul class="footer-links">
                                 <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                                <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                                <li>@Html.ActionLink("Profile", "Index", "Profil")</li>
                                 <li>@Html.ActionLink("Evenements", "Index", "Evenements")</li>
                                 <li>@Html.ActionLink("Forum", "Index", "Forum")</li>
                                 <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
+                                <li>@Html.ActionLink("Historique", "Index", "Historique")</li>
                             </ul>
                         </div>
                         <div class="col-sm-4">
@@ -115,7 +119,7 @@
         @if (@ViewBag.ActiveMenu == "Evenements"){@Scripts.Render("~/Content/js/evenements.js") }
         @if (@ViewBag.ActiveMenu == "Forum"){@Scripts.Render("~/Content/js/forum.js") }
         @if (@ViewBag.ActiveMenu == "Blog"){@Scripts.Render("~/Content/js/blog.js") }
-        @Scripts.Render("~/Content/js/historique.js")
+        @Scripts.Render("~/Content/js/Historique.js")
         @RenderSection("scripts", required: false)
         <!-- Preloader -->
         <script type="text/javascript">

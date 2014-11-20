@@ -1,4 +1,6 @@
-﻿@{
+﻿@using YOUP_Design.Classes.Forum;
+@model IEnumerable<YOUP_Design.Classes.Forum.Forum>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Forum";
@@ -16,16 +18,14 @@
             CATEGORIES
                 TOPICS
                     MESSAGES
-    -->
-    <div class="rechercheForum">
-        <div class="moduleRecherche form-group input-group">
-            <input type="text" class="form-control" placeholder="Recherche Forum">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-    </div>  
-
+    --><div class="rechercheForum">
+    <div class="moduleRecherche form-group input-group">
+        <input type="text" class="form-control" placeholder="Recherche Forum">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+        </span>
+    </div>
+</div>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
@@ -34,35 +34,20 @@
                         Général
                     </a>
                 </h2>
-            </div>
-            <div id="Forum-Categorie-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            </div><div id="Forum-Categorie-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                     <ul>
-                        <li><a href="/Forum/ViewForum">Forum 1</a></li>
-                        <li><a href="/Forum/ViewForum">Forum 2</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h2 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#Forum-Categorie-2" aria-expanded="true" aria-controls="collapseOne">
-                        Profession
-                    </a>
-                </h2>
-            </div>
-            <div id="Forum-Categorie-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                    <ul>
-                        <li><a href="#">Forum 1</a></li>
-                        <li><a href="#">Forum 2</a></li>
-                        <li><a href="#">Forum 3</a></li>
-                        <li><a href="#">Forum 4</a></li>
+                        @foreach (var f in Model)
+                        {
 
+                            <li><a href="/Forum/ViewForum">@f.Nom</a></li>
+
+                        }
                     </ul>
                 </div>
             </div>
+
+
+
         </div>
     </div>
-</div>
