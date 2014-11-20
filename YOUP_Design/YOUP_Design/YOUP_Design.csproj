@@ -47,6 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -408,7 +409,7 @@
     <Content Include="Views\Profile\partialProfil.cshtml" />
     <Content Include="Views\Profile\partialAmis.cshtml" />
     <Content Include="Views\Historique\Index.cshtml" />
-    <Content Include="Views\Historique\partialDeviceOS.cshtml" />
+    <Content Include="Views\Historique\partialDevice.cshtml" />
     <Content Include="Views\Historique\partialPagesVisitees.cshtml" />
     <Content Include="Views\Historique\partialSaisonnalite.cshtml" />
     <Content Include="Views\Historique\partialStatsUtilisation.cshtml" />
@@ -428,6 +429,8 @@
     <Content Include="Views\Blog\Blog_voir_plus.cshtml" />
     <Content Include="Views\Blog\partialRechercheBlog.cshtml" />
     <Content Include="Views\Profile\Login.cshtml" />
+    <Content Include="Views\Blog\partialDeviceOS.cshtml" />
+    <Content Include="Views\Historique\partialOS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
