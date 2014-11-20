@@ -35,7 +35,7 @@ namespace YOUP_Design.Controllers
         {
             return View();
         }
-        public ActionResult Device()
+        public ActionResult Device(string dateDebut, string dateFin)
         {
             return PartialView("~/Views/Historique/partialDeviceOS.cshtml");
         }
