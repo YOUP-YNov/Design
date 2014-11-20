@@ -24,7 +24,6 @@
             
         var url2 = url +"&dateFin="+dateFin;
 
-
         $.get(url2, '', function (data) {
             
             $("#partialgoeshere").empty();
@@ -36,27 +35,27 @@
     <div class="col-lg-offset-2 col-lg-8 text-center">
         <h2>Pages les plus visitées</h2>
         <div class="form-group input-group-sm">
-            @*@Html.TextBoxFor(model => model.StartDate, "{0:dd/MM/yyyy}", new { @class = "datefield" })*@
-            @*@model DateTime
-            @Html.TextBox("", Model.ToString("dd/mm/yyyy"), new { @class = "date" })*@
             <p>
                 Date début:
-                <input type="date" class="form-control" id="exampleInputDateDebut">
+                <input type="date" class="form-control" id="exampleInputDateDebut" name="DateDebut">
             </p>   
             
             <p>
                 Date fin:
-                <input type="date" class="form-control" id="exampleInputDateFin">
+                <input type="date" class="form-control" id="exampleInputDateFin" name="DateFin">
             </p>     
             <input id="SubmitButtonID" class="btn btn-primary" type="button" value="Rechercher" onclick="datecheck()"/>
         </div>      
             
         @if(Model.Count()==0)
-        {
-             <p>Pas de pages visitées pour la période sélectionnée</p>       
+        {            
+            <p>Pas de pages visitées pour la période sélectionnée</p>       
         }
         else
         {      
+            <p>Période sélectionnée</p>   
+            @Html.TextBox("DateDebut");
+            @Html.TextBox("DateFin");
             <table class="table table-striped">    
             <thead>
                 <tr>

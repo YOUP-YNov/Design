@@ -48,6 +48,8 @@ namespace YOUP_Design.Controllers
             }
             else
             {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
                 return PartialView("~/Views/Historique/partialPagesVisitees.cshtml", WebApiHistoriqueController.GetPageVisitee(dateDebut,dateFin));
             }
         }
