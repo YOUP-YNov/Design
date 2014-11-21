@@ -116,12 +116,84 @@ var evenementModule = (function () {
 
     var timeLineViewModel = function (data) {
         var self = this;
+        self.lastDate = new Date(data.lastDate);
 
         self.listeEvenementDate = ko.observableArray();
 
 
-        for (var i = 0; i < data.length; i++)
-            self.listeEvenementDate.push(new listeEvenementDate(data[i]));
+        for (var i = 0; i < data.liste.length; i++)
+            self.listeEvenementDate.push(new listeEvenementDate(data.liste[i]));
+
+        this.loadReports = function () {
+            if (self.lastDate == null)
+            {
+                var dateString = self.RecupererDerniereDate();
+                var annee = dateString.split('/')[2];
+                var mois = dateString.split('/')[1];
+                var jour = dateString.split('/')[0];
+                var dateDebut = annee + '-' + mois + '-' + jour;
+                self.lastDate = new Date(dateDebut);
+            }
+            var startRange = new Date(self.lastDate.addDays(1));
+            var StartDateToGo = startRange.toString('yyyy/MM/dd');
+            var endRange = startRange.addDays(7);
+            self.lastDate = endRange;
+            parameters = '?startRange=' + StartDateToGo + '&endRange=' + endRange.toString('yyyy/MM/dd');
+            $.ajax({
+                type: "GET",
+                url: apiUrl + 'Evenement' + parameters,
+                contentType: 'application/json',
+                success: function (msg) {
+                    var datas = msg;
+                    if (msg != "") {
+                        self.traiterData(datas);
+                    }
+                }
+            });
+        };
+
+        self.RecupererDernierId = function () {
+            var LastListeEvtDate;
+            for (var i = self.listeEvenementDate().length - 1; i >= 0; i--)
+            {
+                if (self.listeEvenementDate()[i].listeEvenements().length > 0)
+                    LastListeEvtDate = self.listeEvenementDate()[i];
+            }
+            return LastListeEvtDate.listeEvenements()[LastListeEvtDate.listeEvenements().length - 1].idEvenement();
+        }
+
+        self.RecupererDerniereDate = function () {
+            var LastListeEvtDate;
+            for (var i = self.listeEvenementDate().length - 1; i >= 0; i--) {
+                if (self.listeEvenementDate()[i].listeEvenements().length > 0)
+                    LastListeEvtDate = self.listeEvenementDate()[i];
+            }
+            return LastListeEvtDate.listeEvenements()[LastListeEvtDate.listeEvenements().length - 1].date();
+        }
+
+        self.traiterData = function (data) {
+            $.ajax({
+                type: "POST",
+                url: 'Evenements/GestionScroll',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(data),
+                success: function (msg) {
+                    var datas = msg.timeLine;
+                    var lastEvent = self.listeEvenementDate()[self.listeEvenementDate().length - 1];
+                    for (var i = 0; i < datas.length; i++)
+                    {
+                        lastEvent.listeEvenements.push(new evenement(datas[i]));
+                    }
+                }
+            });
+        }
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                self.loadReports();
+            }
+        });
     }
 
     var apiUrl = "http://youp-evenementapi.azurewebsites.net/api/";
@@ -142,7 +214,6 @@ var evenementModule = (function () {
     }
 
     var traiterListeEvenement = function (data) {
-        
         $.ajax({
             type: "POST",
             url: 'Evenements/TimeLine',
@@ -187,7 +258,7 @@ var evenementModule = (function () {
             }
         });
     }
-    
+
     var init = function () {
         $("#timeLineEvent").hide();
         recuperationListeEvenements();

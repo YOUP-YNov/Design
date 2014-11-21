@@ -23,7 +23,7 @@ namespace YOUP_Design.Models.Profile
                 HttpResponseMessage response = await client.GetAsync("api/UserPublic/" + id);
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<UtilisateurPublic>();
                 }
                 return null;
             }

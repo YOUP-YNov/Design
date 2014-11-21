@@ -21,7 +21,7 @@ namespace YOUP_Design.Models.Profile
                 var response = await client.PostAsJsonAsync(urlAction + "?event_id=" + event_id + "&user_id=" + user_id + "&invit_id=" + invit_id, new object());
                 if (response.IsSuccessStatusCode)
                 {
-                    return true;
+                    return await response.Content.ReadAsAsync<bool>();
                 }
                 return false;
             }

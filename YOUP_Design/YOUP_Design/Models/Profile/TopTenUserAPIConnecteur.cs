@@ -24,7 +24,7 @@ namespace YOUP_Design.Models.Profile
                 HttpResponseMessage response = await client.GetAsync(urlAction);
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<UtilisateurSmall>();
                 }
                 return null;
             }

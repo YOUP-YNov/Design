@@ -1,4 +1,5 @@
-﻿@{
+﻿@model YOUP_Design.Classes.Profile.Utilisateur
+@{
     ViewBag.Title = "Profil";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Profile";
@@ -6,14 +7,50 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        ProfilModule.initProfil(@ViewBag.idProfil);
+
+        $('#afficheProfil').fadeIn();
+        $('#lienPro').css("background-color", "#428bca");
+
+        $('#afficheActivite').hide();
+        $('#afficheAmis').hide();
+
+        $(document).on('click', "#lienAm", function () {
+
+            $('#afficheProfil').hide();
+            $('#afficheActivite').hide();
+            $('#afficheAmis').fadeIn();
+
+            $('#lienAct').css("background-color", "#eeeeee");
+            $('#lienPro').css("background-color", "#eeeeee");
+            $('#lienAm').css("background-color", "#428bca");
+
+        });
+
+        $(document).on('click', "#lienPro", function () {
+
+            $('#afficheProfil').fadeIn();
+            $('#afficheActivite').hide();
+            $('#afficheAmis').hide();
+
+            $('#lienAct').css("background-color", "#eeeeee");
+            $('#lienPro').css("background-color", "#428bca");
+            $('#lienAm').css("background-color", "#eeeeee");
+
+        });
+
+        $(document).on('click', "#lienAct", function () {
+
+            $('#afficheProfil').hide();
+            $('#afficheActivite').fadeIn();
+            $('#afficheAmis').hide();
+
+            $('#lienAct').css("background-color", "#428bca");
+            $('#lienPro').css("background-color", "#eeeeee");
+            $('#lienAm').css("background-color", "#eeeeee");
+
+        });
     });
 </script>
-
-
-<p>Utilisateur_id : <span data-bind="text: Utilisateur_id"></span></p>
-<p>Nom : <span data-bind="text: Nom"></span></p>
-<p>Prenom : <span data-bind="text: Prenom"></span></p>
 
 <div class="container divAllProfil">
     <div class="encartPoub well">
@@ -28,7 +65,7 @@
             </span>
         </div>
         <div class="btnModifPhoto">
-            <button type="submit" class="btn btn-default">Modifier ma photo</button>
+            <button type="button" class="btn btn-default" onclick="location.href = 'http://' + location.host + '/profile/logout';">Deconnexion</button>
         </div>
     </div>
 
@@ -36,13 +73,13 @@
         <div class="row parentDecoProfil">
             <div class="col-lg-offset-2 col-lg-3 decoPhotoProfil "></div>
             <div class="col-lg-2">
-                <img id="idPhotoProfil" src="~/Images/default_profil.png" alt="photo profil" class="img-circle">
+                <img id="idPhotoProfil" src="@Model.PhotoChemin" alt="photo profil" class="img-circle">
             </div>
             <div class="col-lg-3 decoPhotoProfil"></div>
         </div>
 
         <br />
-        <h3 class="helloUtil">Salut Florian Laubier !</h3>
+        <h3 class="helloUtil">Salut @Model.Prenom @Model.Nom !</h3>
     </div>
 
     <div class="row ">
@@ -56,14 +93,14 @@
     </div>
 
     <div id="afficheActivite">
-        @Html.Partial("~/Views/Profile/partialActivite.cshtml")
+        @Html.Partial("~/Views/Profile/partialActivite.cshtml", Model)
     </div>
 
     <div id="afficheProfil">
-        @Html.Partial("~/Views/Profile/partialProfil.cshtml")
+        @Html.Partial("~/Views/Profile/partialProfil.cshtml", Model)
     </div>
 
     <div id="afficheAmis">
-        @Html.Partial("~/Views/Profile/partialAmis.cshtml")
+        @Html.Partial("~/Views/Profile/partialAmis.cshtml", Model)
     </div>
 </div>

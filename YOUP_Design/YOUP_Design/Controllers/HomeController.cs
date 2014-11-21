@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YOUP_Design.Classes.Blog;
-using YOUP_Design.Classes.Evenement;
+using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Classes.Profile;
 using YOUP_Design.Classes.Historique;
+using YOUP_Design.WebApi.Historique;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -37,12 +38,6 @@ namespace YOUP_Design.Controllers
             return response.Data;
         }
 
-        public T HistoriqueRequest<T>(RestRequest request) where T : new()
-        {
-            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
-            var response = client.Execute<T>(request);
-            return response.Data;
-        }
 
 
         public List<UtilisateurSmall> GetLastProfiles()
@@ -52,10 +47,10 @@ namespace YOUP_Design.Controllers
             return result;
         }
 
-        public List<EvenementTimeline> GetLastEvents()
+        public List<EvenementTimelineFront> GetLastEvents()
         {
             var request = new RestRequest("api/Evenement?max_result=3", Method.GET);
-            var result = EventRequest<List<EvenementTimeline>>(request);
+            var result = EventRequest<List<EvenementTimelineFront>>(request);
             return result;
         }
 
@@ -80,12 +75,22 @@ namespace YOUP_Design.Controllers
             ViewBag.LastProfiles = lastprofiles;
 
             //Derniers Evenements
-            List<EvenementTimeline> events = new List<EvenementTimeline>();
+            List<EvenementTimelineFront> events = new List<EvenementTimelineFront>();
             events = this.GetLastEvents();
+            if (events == null)
+                events = new List<EvenementTimelineFront>();
 
             ViewBag.LastEvents = events;
 
+
+            //Tops
+            ViewBag.TopAmis = WebApiHistoriqueController.GetTopAmis();
+            ViewBag.TopEvents = WebApiHistoriqueController.GetTopEvenementCree();
+            ViewBag.TopParticipe = WebApiHistoriqueController.GetTopEvenementParticipe();
+
+
             return View();
+
         }
     }
 }

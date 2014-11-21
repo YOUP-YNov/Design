@@ -1,68 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.Classes.Profile;
+using YOUP_Design.Models.Profile;
 
 namespace YOUP_Design.Controllers
 {
     public class ProfileController : Controller
     {
-        //
-        // GET: /Profile/
-
+        [YoupAuthorize]
         public ActionResult Index()
         {
-            return View();
+            var u = ProfileCookie.GetCookie(HttpContext);
+            if (u != null)
+                return View(u);
+            return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Profile/Details/5
-
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Login()
         {
             return View();
         }
 
-        //
-        // GET: /Profile/Create
-
-        public ActionResult Create()
+        public async Task<ActionResult> Detail(int id)
         {
-            return View();
-        }
 
-        //
-        // POST: /Profile/Create
+            var u = await UserPublicAPIConnecteur.Get(id);
+
+            if (u == null)
+
+                return RedirectToAction("Index", "Home");
+
+            return View(u);
+
+        }
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Login(LoginModelBinding model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                var u = await AuthAPIConnecteur.Post(model.Email, model.Password);
+                if (u != null)
+                {
+                    ProfileCookie.CreateCookie(HttpContext, u);
+                    return RedirectToAction("Index", "Home");
+                }
+                ViewBag.Error = "Email / Mot de passe incorrect";
             }
-            catch
-            {
-                return View();
-            }
+            else
+                ViewBag.Error = "Veuillez saisir votre Email et votre mot de passe.";
+            return View();
         }
 
-        //
-        // GET: /Profile/Edit/5
+        public async Task<ActionResult> Create()
+        {
+            return View("inscription");
+        }
 
-        public ActionResult Edit(int id)
+
+        [HttpPost]
+        public async Task<ActionResult> Create(UtilisateurInscriptModelBinding model)
+        {
+            if(ModelState.IsValid)
+            {
+                var u = await UserAPIConnecteur.Post(new Utilisateur()
+                {
+                    Pseudo = model.Pseudo,
+                    Prenom = model.Prenom,
+                    Nom = model.Nom,
+                    MotDePasse = model.Password,
+                    Ville = model.Ville,
+                    CodePostal = model.CodePostal,
+                    AdresseMail = model.Email,
+                    DateNaissance = model.DateNaissance.AddHours(12), // pour ne pas avoir -1j au format EN
+                    DateInscription = DateTime.Now,
+                    Categories = new List<Categorie>(),
+                    Amis = new List<UtilisateurSmall>(),
+                    Actif = true,
+                    Sexe = true,
+                    Partenaire = false,
+                    Metier = "",
+                    PhotoChemin = model.PhotoUrl,
+                    Situation = "",
+                    Presentation = ""
+                });
+                if(u != null)
+                {
+                    ProfileCookie.CreateCookie(HttpContext, u);
+                    return RedirectToAction("Index", "Home");
+                }
+                ViewBag.Error = "Impossible de creer le compte à partir des données renseigné.";
+                return View("inscription");
+            }
+            ViewBag.Error = "Veuillez remplir tout les champs pour créer votre compte.";
+            return View("inscription");
+        }
+
+        [YoupAuthorize]
+        public async Task<ActionResult> Edit(int id)
         {
             return View();
         }
 
-        //
-        // POST: /Profile/Edit/5
-
+        [YoupAuthorize]
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(int id, FormCollection collection)
         {
             try
             {
@@ -76,19 +122,17 @@ namespace YOUP_Design.Controllers
             }
         }
 
-        //
-        // GET: /Profile/Delete/5
-
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Logout()
         {
-            return View();
+            var u = ProfileCookie.GetCookie(HttpContext);
+            if (u != null)
+                ProfileCookie.RemoveCookie(HttpContext);
+            return RedirectToAction("Index", "Home");
         }
 
-        //
-        // POST: /Profile/Delete/5
-
+        [YoupAuthorize]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {

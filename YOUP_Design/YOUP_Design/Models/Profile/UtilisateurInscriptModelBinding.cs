@@ -7,23 +7,18 @@ using System.Threading.Tasks;
 
 namespace YOUP_Design.Models.Profile
 {
-    public class UtilisateurModel
+    public class UtilisateurInscriptModelBinding
     {
 
         [Required]
-        [Display(Name = "Pseudo de l'utilisateur")]
+        [Display(Name = "Pseudo")]
         public string Pseudo { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 5)]
+        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 3)]
         [Display(Name = "Mot de passe")]
         public string Password { get; set; }
-
-        [Required]
-        [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
-        [Display(Name = "Confirmez le mot de passe")]
-        public string ConfirmPassword { get; set; }
 
         [Required]
         [Display(Name = "Nom de l'utilisateur")]
@@ -39,8 +34,15 @@ namespace YOUP_Design.Models.Profile
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Adresse de l'utilisateur")]
-        public string Adresse { get; set; }
+        public DateTime DateNaissance { get; set; }
+
+        public string PhotoUrl { get; set; }
+
+        [Required]
+        public string CodePostal { get; set; }
+
+        [Required]
+        public string Ville { get; set; }
 
     }
 }

@@ -23,7 +23,7 @@ namespace YOUP_Design.Models.Profile
                 var response = await client.PostAsJsonAsync("api/Auth/?Email=" + email + "&Pass=" + pass+ "&Device=" +device, new object());
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<Utilisateur>();
                 }
                 return null;
             }

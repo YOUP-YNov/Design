@@ -49,6 +49,28 @@ namespace YOUP_Design.WebApi.Historique
             return users;
         }
 
+        public static List<Utilisateur> GetTopEvenementParticipe()
+        {
+            var users = new List<Utilisateur>();
+
+            WebClient wc = new WebClient();
+            string json = wc.DownloadString(string.Concat(_UrlWebAPi, "/api/utilisateur/TopEventParticipe/5"));
+
+            users = JsonConvert.DeserializeObject<List<Utilisateur>>(json);
+            return users;
+        }
+
+        public static List<YOUP_Design.Classes.Historique.Evenement> GetEvenementParSaisonalite(string dateDebut, string dateFin)
+        {
+            var events = new List<YOUP_Design.Classes.Historique.Evenement>();
+
+            WebClient wc = new WebClient();
+            string json = wc.DownloadString(string.Concat(_UrlWebAPi, "/api/analytics/views/Saisonnalite?startDate=", dateDebut, "&endDate=", dateFin));
+
+            events = JsonConvert.DeserializeObject<List<YOUP_Design.Classes.Historique.Evenement>>(json);
+            return events;
+        }
+
         public static List<Utilisateur> GetTops()
         {
             var users = new List<Utilisateur>();
