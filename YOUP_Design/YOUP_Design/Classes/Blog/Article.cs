@@ -34,7 +34,7 @@ namespace YOUP_Design.Classes.Blog
         /// <summary>
         /// Assigne ou récupère l'id de l'événement.
         /// </summary>
-        public int Evenement_id { get; set; }
+        public int? Evenement_id { get; set; }
         /// <summary>
         /// Assigne ou récupère la date de création.
         /// </summary>
@@ -47,6 +47,8 @@ namespace YOUP_Design.Classes.Blog
         /// Assigne ou récupère si le Blog est actif ou non.
         /// </summary>
         public bool Actif { get; set; }
+
+        public List<HashTagArticles> ListTags { get; set; }
         /// <summary>
         /// Constructeur vide de la classe article.
         /// </summary>

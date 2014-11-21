@@ -202,6 +202,7 @@
     <Compile Include="Classes\Blog\Blog.cs" />
     <Compile Include="Classes\Blog\Categorie.cs" />
     <Compile Include="Classes\Blog\Commentaire.cs" />
+    <Compile Include="Classes\Blog\HashTagArticles.cs" />
     <Compile Include="Classes\Blog\Publicite.cs" />
     <Compile Include="Classes\Blog\Theme.cs" />
     <Compile Include="Classes\Evenement\EvenementCategorieFront.cs" />
@@ -397,6 +398,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Images\barre.png" />
+    <Content Include="UploadsPic\pixelblanc.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
