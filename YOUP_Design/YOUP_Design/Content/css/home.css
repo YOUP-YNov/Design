@@ -136,6 +136,19 @@
     transform: scale(1.2);
 }
 
+.home-top-5-actifs h2, .home-top-5-createurs h2, .home-top-5-stars h2 {
+    text-align:center;
+    font-size:16px;
+}
+
+.home-top-5-actifs h3, .home-top-5-createurs h3, .home-top-5-stars h3 {
+    margin-top:0;
+    text-align:center;
+    color:#888;
+    font-size:12px;
+}
+
+
 /*---------------------------------------------------------------------------------------------
 		Last Members
 ---------------------------------------------------------------------------------------------*/

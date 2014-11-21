@@ -32,10 +32,10 @@
                     @foreach (var profil in ViewBag.LastProfiles)
                     {
                         <div class="col-xs-6 col-sm-3">
-                            <a class="home-last-member" href="#">
+                            <div class="home-last-member">
                                 <h2>@profil.Pseudo</h2>
                                 <div class="home-member-img" style="background-image: url(@profil.PhotoChemin); "></div>
-                            </a>
+                            </div>
                         </div>
                     }
                 </div>
@@ -75,7 +75,7 @@
             </div>
             <div class="home-last-articles home-section">
                 <div class="home-title">
-                    <h1>Derniers articles :</h1>
+                    <h1>Derniers blogs :</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row">
@@ -184,15 +184,17 @@
                 </div>
                 <div class="row no-margin">
                 @{ int count = 0; }
-                @foreach(var user in ViewBag.TopAmis) 
+                @foreach (var user in ViewBag.TopParticipe) 
                 {
                     
                     if(count == 2) {
                         <text>
                             <div class="row no-margin">
                                 <div class="col-xs-6 home-center-col">
-                                    <a href="#" class="home-top-img" style="background-image: url(@if (user.CheminPhoto != "")
-                                                                                                  { @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></a>
+                                    <div href="#" class="home-top-img" style="background-image: url(@if (user.CheminPhoto != "")
+                                                                                                  { @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></div>
+                                    <h2>@user.Pseudo</h2>
+                                    <h3>@user.NbEvenementParticipe Participations à des évènements</h3>
                                 </div>
                             </div>
                         </text>
@@ -201,7 +203,9 @@
                     {
                         <text>
                             <div class="col-xs-6">
-                                <a href="#" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></a>
+                                <div href="#" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></div>
+                                <h2>@user.Pseudo</h2>
+                                <h3>@user.NbEvenementParticipe Participations à des évènements</h3>
                             </div>
                         </text>
                     }
@@ -216,25 +220,74 @@
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row no-margin">
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/abstract);"></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/food);"></a>
-                    </div>
+                    @{ count = 0; }
+                    @foreach (var user in ViewBag.TopEvents)
+                    {
+
+                        if (count == 2)
+                        {
+                            <text>
+                                <div class="row no-margin">
+                                    <div class="col-xs-6 home-center-col">
+                                        <div href="#" class="home-top-img" style="background-image: url(@if (user.CheminPhoto != "")
+                                                                                                  { @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></div>
+                                        <h2>@user.Pseudo</h2>
+                                        <h3>@user.NbEvenmentPropose Evènements créés</h3>
+                                    </div>
+                                </div>
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                <div class="col-xs-6">
+                                    <div class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></div>
+                                    <h2>@user.Pseudo</h2>
+                                    <h3>@user.NbEvenmentPropose Evènements créés</h3>
+                                </div>
+                            </text>
+                        }
+
+                        count++;
+                    }
+                </div>
+            </div>
+            <div class="home-top-5-stars home-section">
+                <div class="home-title">
+                    <h1>Top 5 des célébrités :</h1>
+                    <div class="home-title-border"></div>
                 </div>
                 <div class="row no-margin">
-                    <div class="col-xs-6 home-center-col">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/animals);"></a>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/people);"></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/cats);"></a>
-                    </div>
+                    @{ count = 0; }
+                    @foreach (var user in ViewBag.TopAmis)
+                    {
+
+                        if (count == 2)
+                        {
+                            <text>
+                                <div class="row no-margin">
+                                    <div class="col-xs-6 home-center-col">
+                                        <div href="#" class="home-top-img" style="background-image: url(@if (user.CheminPhoto != "")
+                                                                                                  { @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></div>
+                                        <h2>@user.Pseudo</h2>
+                                        <h3>@user.NbAmis Amis</h3>
+                                    </div>
+                                </div>
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                <div class="col-xs-6">
+                                    <div href="#" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></div>
+                                    <h2>@user.Pseudo</h2>
+                                    <h3>@user.NbAmis Amis</h3>
+                                </div>
+                            </text>
+                        }
+
+                        count++;
+                    }
                 </div>
             </div>
         </div>
