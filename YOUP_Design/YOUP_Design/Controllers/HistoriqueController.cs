@@ -92,7 +92,7 @@ namespace YOUP_Design.Controllers
             else
             {
                 var user =WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser);
-                ViewBag.EventsByCategory = NbEvenementByCategorie(pseudoUser);
+                ViewBag.EventsByCategory = NbEvenementByCategorie(user.Id);
                 return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",user );
             }
           }
@@ -120,10 +120,10 @@ namespace YOUP_Design.Controllers
             return nbEvenementByCategorie;
         }
 
-        public static Dictionary<string, int> NbEvenementByCategorie(string pseudo)
+        public static Dictionary<string, int> NbEvenementByCategorie(int userId)
         {
             var nbEvenementByCategorie = new Dictionary<string, int>();
-            var evenements = WebApiHistoriqueController.GetUtilisateurByPseudo(pseudo).EvenementsParticipes;
+            var evenements = WebApiHistoriqueController.GetEvenementParticipeByUser(userId);
             if(evenements != null)
             {
                 foreach (var evenement in evenements)

@@ -65,7 +65,7 @@ namespace YOUP_Design.WebApi.Historique
             var events = new List<YOUP_Design.Classes.Historique.Evenement>();
 
             WebClient wc = new WebClient();
-            string json = wc.DownloadString(string.Concat(_UrlWebAPi, "/api/analytics/views/Saisonnalite?startDate=", dateDebut, "&endDate=", dateFin));
+            string json = wc.DownloadString(string.Concat(_UrlWebAPi, "/api/evenement/EvenementParSaisonalite/", dateDebut, "/", dateFin));
 
             events = JsonConvert.DeserializeObject<List<YOUP_Design.Classes.Historique.Evenement>>(json);
             return events;
@@ -89,6 +89,31 @@ namespace YOUP_Design.WebApi.Historique
             user = JsonConvert.DeserializeObject<Utilisateur>(json);
             return user;
         }
+
+        public static List<YOUP_Design.Classes.Historique.Evenement> GetEvenementParticipeByUser(int userId)
+        {
+            var evenements = new List<YOUP_Design.Classes.Historique.Evenement>();
+            string json = string.Empty;
+            WebClient wc = new WebClient();
+            try
+            {
+                json = wc.DownloadString(string.Concat(_UrlWebAPi, "/api/utilisateur/", userId, "/EvenementsParticipes"));
+                evenements = JsonConvert.DeserializeObject<List<YOUP_Design.Classes.Historique.Evenement>>(json);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return evenements;
+        }
+
+        //[Route("{userId}/EvenementsParticipes")]
+        //public List<Evenement> GetEvenementsParticipes(int userId)
+        //{
+        //    var evenements = _historiqueApiServiceService.GetEvenementParticipeByUserId(userId).ToList();
+
+        //    return evenements;
+        //}
 
         public static List<PageVisitee> GetPageVisitee(string dateDebut,string dateFin)
         {
