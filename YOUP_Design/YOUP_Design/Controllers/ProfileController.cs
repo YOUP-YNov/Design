@@ -1,42 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using YOUP_Design.Classes.Profile;
+using YOUP_Design.Models.Profile;
 
 namespace YOUP_Design.Controllers
 {
     public class ProfileController : Controller
     {
-        //
-        // GET: /Profile/
-
+        [YoupAuthorize]
         public ActionResult Index()
         {
-            return View();
+            var u = ProfileCookie.GetCookie(HttpContext);
+            if (u != null)
+                return View(u);
+            return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Profile/Details/5
-
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Login()
         {
             return View();
         }
-
-        //
-        // GET: /Profile/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Profile/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Login(LoginModelBinding model)
+        {
+            if (ModelState.IsValid)
+            {
+                var u = await AuthAPIConnecteur.Post(model.Email, model.Password);
+                if (u != null)
+                {
+                    ProfileCookie.CreateCookie(HttpContext, u);
+                    return RedirectToAction("Index", "Home");
+                }
+                ViewBag.Error = "Email / Mot de passe incorrect";
+            }
+            else
+                ViewBag.Error = "Veuillez saisir votre Email et votre mot de passe.";
+            return View();
+        }
+
+        public async Task<ActionResult> Create()
+        {
+            return View("inscription");
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> Create(FormCollection collection)
         {
             try
             {
@@ -50,19 +64,15 @@ namespace YOUP_Design.Controllers
             }
         }
 
-        //
-        // GET: /Profile/Edit/5
-
-        public ActionResult Edit(int id)
+        [YoupAuthorize]
+        public async Task<ActionResult> Edit(int id)
         {
             return View();
         }
 
-        //
-        // POST: /Profile/Edit/5
-
+        [YoupAuthorize]
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(int id, FormCollection collection)
         {
             try
             {
@@ -76,19 +86,17 @@ namespace YOUP_Design.Controllers
             }
         }
 
-        //
-        // GET: /Profile/Delete/5
-
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Logout()
         {
-            return View();
+            var u = ProfileCookie.GetCookie(HttpContext);
+            if (u != null)
+                ProfileCookie.RemoveCookie(HttpContext);
+            return RedirectToAction("Index", "Home");
         }
 
-        //
-        // POST: /Profile/Delete/5
-
+        [YoupAuthorize]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {
