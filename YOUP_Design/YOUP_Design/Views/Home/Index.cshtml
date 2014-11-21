@@ -183,25 +183,31 @@
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row no-margin">
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/nightlife);"></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/technics);"></a>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-6 home-center-col">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/business);"></a>
-                    </div>
-                </div>
-                <div class="row no-margin">
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/fashion);"></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="#" class="home-top-img" style="background-image: url(http://lorempixel.com/200/200/cats);"></a>
-                    </div>
+                @{ int count = 0; }
+                @foreach(var user in ViewBag.TopAmis) 
+                {
+                    
+                    if(count == 2) {
+                        <text>
+                            <div class="row no-margin">
+                                <div class="col-xs-6 home-center-col">
+                                    <a href="#" class="home-top-img" style="background-image: url(@if (user.CheminPhoto != "")
+                                                                                                  { @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></a>
+                                </div>
+                            </div>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <div class="col-xs-6">
+                                <a href="#" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>http://lorempixel.com/200/200/</text> });"></a>
+                            </div>
+                        </text>
+                    }
+
+                    count++;
+                }
                 </div>
             </div>
             <div class="home-top-5-createurs home-section">

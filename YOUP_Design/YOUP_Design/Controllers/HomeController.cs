@@ -7,6 +7,7 @@ using YOUP_Design.Classes.Blog;
 using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Classes.Profile;
 using YOUP_Design.Classes.Historique;
+using YOUP_Design.WebApi.Historique;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -37,12 +38,6 @@ namespace YOUP_Design.Controllers
             return response.Data;
         }
 
-        public T HistoriqueRequest<T>(RestRequest request) where T : new()
-        {
-            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
-            var response = client.Execute<T>(request);
-            return response.Data;
-        }
 
 
         public List<UtilisateurSmall> GetLastProfiles()
@@ -85,7 +80,12 @@ namespace YOUP_Design.Controllers
 
             ViewBag.LastEvents = events;
 
+            ViewBag.TopAmis = WebApiHistoriqueController.GetTopAmis();
+            ViewBag.TopEvents = WebApiHistoriqueController.GetTopEvenementCree();
+
+
             return View();
+
         }
     }
 }
