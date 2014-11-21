@@ -368,6 +368,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\projet-youp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\projet-youp - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\youp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\youp - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\youp-disign - FTP.pubxml" />
