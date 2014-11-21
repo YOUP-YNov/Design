@@ -55,9 +55,9 @@
                             </ul>
                             <form class="navbar-form navbar-left" role="search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Rechercher">
+                                    <input type="text" class="form-control" placeholder="Rechercher" id="searchbox">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                        <button class="btn btn-default" type="button" onclick="location.href = 'http://' + location.host + 'Recherche?keyword=' + $('#searchbox').val()"><i class="fa fa-search"></i></button>
                                     </span>
                                 </div>
                             </form>
@@ -132,6 +132,10 @@
             //]]>
         </script>
         <script>
+            $("#searchbox").keyup(function (e) {
+                if (e.which == 13)
+                    location.href = 'http://' + location.host + '/Recherche?keyword=' + $('#searchbox').val();
+            })
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
                     (i[r].q = i[r].q || []).push(arguments)
