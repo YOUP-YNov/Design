@@ -23,7 +23,7 @@ namespace YOUP_Design.Models.Profile
                 HttpResponseMessage response = await client.GetAsync("api/User/" + id);
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<Utilisateur>();
                 }
                 return null;
             }
@@ -39,7 +39,7 @@ namespace YOUP_Design.Models.Profile
                 var response = await client.PutAsJsonAsync("api/User/", utilisateur);
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<Utilisateur>();
                 }
                 return null;
             }
@@ -55,7 +55,7 @@ namespace YOUP_Design.Models.Profile
                 var response = await client.PostAsJsonAsync("api/User/", utilisateur);
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<Utilisateur>();
                 }
                 return null;
             }
@@ -71,7 +71,7 @@ namespace YOUP_Design.Models.Profile
                 var response = await client.DeleteAsync("api/User/" + id_user);
                 if (response.IsSuccessStatusCode)
                 {
-                    return true;
+                    return await response.Content.ReadAsAsync<bool>();
                 }
                 return false;
             }

@@ -24,7 +24,7 @@ namespace YOUP_Design.Models.Profile
                 HttpResponseMessage response = await client.GetAsync(urlAction + id);
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<Categorie>();
                 }
                 return null;
             }
@@ -40,7 +40,7 @@ namespace YOUP_Design.Models.Profile
                 var response = await client.PostAsJsonAsync(urlAction + "?token=" + token, categorie);
                 if (response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return await response.Content.ReadAsAsync<List<Categorie>>();
                 }
                 return null;
             }
@@ -56,7 +56,7 @@ namespace YOUP_Design.Models.Profile
                 var response = await client.DeleteAsync(urlAction + "?token=" + token + "&categori_id="  +categorie_id);
                 if (response.IsSuccessStatusCode)
                 {
-                    return true;
+                    return await response.Content.ReadAsAsync<bool>();
                 }
                 return false;
             }

@@ -16,12 +16,30 @@ namespace YOUP_Design.Controllers
         }
         public ActionResult Device(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialDevice.cshtml");
+            if (string.IsNullOrEmpty(dateDebut) || string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialDevice.cshtml", new List<DeviceCategoryStatRow>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialDevice.cshtml", WebApiHistoriqueController.GetDeviceCategorie(dateDebut, dateFin));
+            }
         }
 
         public ActionResult OS(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialOS.cshtml");
+            if (string.IsNullOrEmpty(dateDebut) || string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialOS.cshtml", new List<DeviceTypeStatRow>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialOS.cshtml", WebApiHistoriqueController.GetDeviceType(dateDebut, dateFin));
+            }
         }
         public ActionResult PageVisitee(string dateDebut, string dateFin)
         {
@@ -37,9 +55,18 @@ namespace YOUP_Design.Controllers
             }
         }
 
-        public ActionResult Saisonnalite()
+        public ActionResult Saisonnalite(string dateDebut, string dateFin)
         {
-            return PartialView("~/Views/Historique/partialSaisonnalite.cshtml");
+            if (string.IsNullOrEmpty(dateDebut) || string.IsNullOrEmpty(dateFin))
+            {
+                return PartialView("~/Views/Historique/partialSaisonnalite.cshtml", new List<Evenement>());
+            }
+            else
+            {
+                ViewBag.DateDebut = dateDebut;
+                ViewBag.DateFin = dateFin;
+                return PartialView("~/Views/Historique/partialSaisonnalite.cshtml", WebApiHistoriqueController.GetEvenementParSaisonalite(dateDebut, dateFin));
+            }
         }
 
         public ActionResult StatsUsage(string pseudoUser)
@@ -54,18 +81,64 @@ namespace YOUP_Design.Controllers
             else
             {
                 ViewBag.Pseudo = new SelectList(new List<SelectListItem>(), "Value", "Text");
-                ViewBag.Error = "Impossible de charger les utilisateurs";
+                ViewBag.MsgError = "Impossible de charger les utilisateurs";
             }
 
             if (string.IsNullOrEmpty(pseudoUser))
+            {
+                ViewBag.EventsByCategory = new Dictionary<string, int>();
                 return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", new Utilisateur());
+            }
             else
-                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml", WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser));
+            {
+                var user =WebApiHistoriqueController.GetUtilisateurByPseudo(pseudoUser);
+                ViewBag.EventsByCategory = NbEvenementByCategorie(pseudoUser);
+                return PartialView("~/Views/Historique/partialStatsUtilisation.cshtml",user );
+            }
           }
 
         public ActionResult Tops()
         {
             return PartialView("~/Views/Historique/partialTops.cshtml", WebApiHistoriqueController.GetTops());
+        }
+
+        public static Dictionary<string,int> NbEvenementByCategorie(Utilisateur user)
+        {
+            var nbEvenementByCategorie = new Dictionary<string, int>();
+
+            foreach(var evenement in user.EvenementsParticipes)
+            {
+                if(nbEvenementByCategorie.ContainsKey(evenement.Categorie.Libelle))
+                {
+                    nbEvenementByCategorie[evenement.Categorie.Libelle] = nbEvenementByCategorie[evenement.Categorie.Libelle] + 1;
+                }
+                else
+                {
+                    nbEvenementByCategorie.Add(evenement.Categorie.Libelle, 1);
+                }
+            }
+            return nbEvenementByCategorie;
+        }
+
+        public static Dictionary<string, int> NbEvenementByCategorie(string pseudo)
+        {
+            var nbEvenementByCategorie = new Dictionary<string, int>();
+            var evenements = WebApiHistoriqueController.GetUtilisateurByPseudo(pseudo).EvenementsParticipes;
+            if(evenements != null)
+            {
+                foreach (var evenement in evenements)
+                {
+                    if (nbEvenementByCategorie.ContainsKey(evenement.Categorie.Libelle))
+                    {
+                        nbEvenementByCategorie[evenement.Categorie.Libelle] = nbEvenementByCategorie[evenement.Categorie.Libelle] + 1;
+                    }
+                    else
+                    {
+                        nbEvenementByCategorie.Add(evenement.Categorie.Libelle, 1);
+                    }
+                }
+            }            
+            return nbEvenementByCategorie;
         }
     }
 }

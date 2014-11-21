@@ -1,4 +1,37 @@
-﻿<link href="~/Content/css/historique.css" rel="stylesheet" />
+﻿@model YOUP_Design.Classes.Historique.Evenement
+
+<link href="~/Content/css/historique.css" rel="stylesheet" />
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        $('#exampleInputDateDebut').on('change',function () {
+            //alert(this.value);         //Date in full format alert(new Date(this.value));
+            var inputDate = new Date(this.value);
+        });
+
+        $('#exampleInputDateFin').on('change', function () {
+            //alert(this.value);         //Date in full format alert(new Date(this.value));
+            var inputDate = new Date(this.value);
+        });
+    });
+
+    function datecheck() {
+        // Returns Color code.
+        var dateDebut = document.getElementById('exampleInputDateDebut').value;
+        var dateFin = document.getElementById('exampleInputDateFin').value;
+
+        var url = '@Url.Action("Saisonnalite", "Historique", new { dateDebut = "_dateDebut_" })'
+            .replace('_dateDebut_', dateDebut);
+
+        var url2 = url +"&dateFin="+dateFin;
+
+        $.get(url2, '', function (data) {
+
+            $("#partialgoeshere").empty();
+            $("#partialgoeshere").html(data);
+        });
+    }
+</script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -6,9 +39,22 @@
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center">
         <h2>Saisonnalité</h2>
-        <div id="nbreven" style="width: 100%; height: 400px;"></div> @*defini la taille du graphique et l'affiche*@
-        <script>
 
+        <div class="form-group input-group-sm">
+            <p>
+                Date début:
+                <input type="date" class="form-control" id="exampleInputDateDebut" name="DateDebut">
+            </p>
+
+            <p>
+                Date fin:
+                <input type="date" class="form-control" id="exampleInputDateFin" name="DateFin">
+            </p>
+            <input id="SubmitButtonID" class="btn btn-primary" type="button" value="Rechercher" onclick="datecheck()" />
+        </div>
+        <div id="nbreven" style="width: 100%; height: 400px;"></div> @*defini la taille du graphique et l'affiche*@
+        
+        <script>
             $(document).ready(function () {
                 var chart1 = new Highcharts.Chart({
 
