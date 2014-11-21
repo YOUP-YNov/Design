@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using YOUP_Design.Classes.Recherche;
 using YOUP_Design.Classes.Profile;
+using YOUP_Design.Models.Evenement.webApiObjects;
 
 namespace YOUP_Design.Controllers
 {
@@ -26,6 +27,12 @@ namespace YOUP_Design.Controllers
             var response = client.Execute<T>(request);
             return response.Data;
         }
+        public T ExecuteEvent<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
         public RechercheGenerique GetRecherche(string keyword)
         {
             var request = new RestRequest("search/get?keyword=" + keyword, Method.GET);
@@ -40,6 +47,13 @@ namespace YOUP_Design.Controllers
             return result;
         }
 
+        public EvenementTimelineFront GetEvents(int id)
+        {
+            var request = new RestRequest("api/Evenement/" + id, Method.GET);
+            var result = ExecuteEvent<EvenementTimelineFront>(request);
+            return result;
+        }
+
         //
         // GET: /Recherche/
         public ActionResult Index(string keyword)
@@ -50,6 +64,7 @@ namespace YOUP_Design.Controllers
             }
             RechercheGenerique results = new RechercheGenerique();
             results = this.GetRecherche(keyword);
+
             List<Utilisateur> users = new List<Utilisateur>();
             if (results.Gprofile != null)
             {
@@ -67,6 +82,25 @@ namespace YOUP_Design.Controllers
                 }
             }
             ViewBag.usersResults = users;
+            
+            List<EvenementTimelineFront> events = new List<EvenementTimelineFront>();
+            if (results.Gevent != null)
+            {
+                foreach (var youpevent in results.Gevent)
+                {
+                    try
+                    {
+                        events.Add(GetEvents(Convert.ToInt32(youpevent._source.Id)));
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                }
+            }
+            ViewBag.eventsResults = events;
+
             return View();
         }
     }
