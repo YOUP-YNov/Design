@@ -74,6 +74,115 @@ var ProfilModule = (function () {
     }
 })();
 
+var profilModule = (function () {
+
+    function initializeMap(Lat, Long) {
+        var mapOptions = {
+            scaleControl: true,
+            center: new google.maps.LatLng(Lat, Long),
+            zoom: 15
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: map.getCenter()
+        });
+    }
+
+    function initializeMapProfil() {
+        var geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+            scaleControl: true,
+            center: new google.maps.LatLng(44.854092, -0.566066),
+            zoom: 15
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas-profil'),
+            mapOptions);
+
+        var oA = document.getElementById('btnRechercheAdresseProfil');
+        oA.onclick = function () {
+            searchAddress(map);
+            return false;
+        };
+
+        /* SEARCH ADDRESS */
+        function searchAddress(map) {
+            var adresse = document.getElementById('exampleInputAdresse').value;
+            geocoder.geocode({ 'address': adresse }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+
+                    var latitude = marker.getPosition().lat();
+                    var longitude = marker.getPosition().lng();
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    }
+
+    function initializeMapProfilInscription() {
+        var geocoder = new google.maps.Geocoder();
+        var mapOptions = {
+            scaleControl: true,
+            center: new google.maps.LatLng(44.854092, -0.566066),
+            zoom: 15
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas-inscription'),
+            mapOptions);
+
+        var oA = document.getElementById('btnRechercheProfilIns');
+        oA.onclick = function () {
+            searchAddress(map);
+            return false;
+        };
+
+        /* SEARCH ADDRESS */
+        function searchAddress(map) {
+            var adresse = document.getElementById('exampleInputVille').value;
+            geocoder.geocode({ 'address': adresse }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+
+                    var latitude = marker.getPosition().lat();
+                    var longitude = marker.getPosition().lng();
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    }
+
+
+    var initMapProfil = function () {
+        initializeMapProfil();
+    }
+
+    var initMapProfilIns = function () {
+        initializeMapProfilInscription();
+    }
+
+    return {
+        initMapProfil: initMapProfil,
+        initMapProfilIns: initMapProfilIns
+    }
+})();
+
 $(function () {
     $(':file').click(function (e) {
         e.stopImmediatePropagation();

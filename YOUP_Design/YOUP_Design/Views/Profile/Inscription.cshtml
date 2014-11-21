@@ -4,6 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Profile";
 }
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false">
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        profilModule.initMapProfilIns();
+    });
+</script>
+
 <p style="text-align:center; margin:auto;">@ViewBag.Error</p>
 <div class="bodyProfil">
     @using (Html.BeginForm("Create", "Profile", FormMethod.Post))
