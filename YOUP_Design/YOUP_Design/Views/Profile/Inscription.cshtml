@@ -5,11 +5,12 @@
     ViewBag.ActiveMenu = "Profile";
 }
 
+<script src="~/Content/js/profile.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false">
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        profilModule.initMapProfilIns();
+        ProfilModule.initMapProfilIns();
     });
 </script>
 
@@ -22,7 +23,7 @@
             <img src="~/Images/default_profil.png" id="photo-profil" width="150" height="150" style="" />
             <p>Ajouter une photo </p>
         </div>
-        <input type="hidden" id="PhotoUrl" name="PhotoUrl" value=""/>
+        <input type="hidden" id="PhotoUrl" name="PhotoUrl" value="" />
         <div class="row">
             <div class="col-lg-2 text-center">
             </div>
