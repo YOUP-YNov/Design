@@ -10,18 +10,14 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using RestSharp;
 using System.Globalization;
-using YOUP_Design.Models.Profile;
 namespace YOUP_Design.Controllers
 {
-    /// <summary>
-    /// Classe de controller de la partie Forum.
-    /// </summary>
     public class ForumController : Controller
     {
         // METHODE EXECUTION DES REQUETES SUR API
         #region ExecuteRequest
         /// <summary>
-        ///  Requete sur API Forum
+        /// Requete sur API
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="request"></param>
@@ -32,12 +28,7 @@ namespace YOUP_Design.Controllers
             var response = client.Execute<T>(request);
             return response.Data;
         }
-        /// <summary>
-        ///  Requete sur API Profil
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="request"></param>
-        /// <returns></returns>
+
         public T ExecuteProfil<T>(RestRequest request) where T : new()
         {
             var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
@@ -108,9 +99,7 @@ namespace YOUP_Design.Controllers
 
             List<Topic> topics = new List<Topic>();
             topics = this.GetTopicsByCategId(id);
-            List<YOUP_Design.Classes.Profile.Utilisateur> users = new List<Classes.Profile.Utilisateur>();
-            users = getUsers();
-            ViewBag.users = users;
+
             ViewBag.topics = topics;
             return View(topics);
 
@@ -127,63 +116,6 @@ namespace YOUP_Design.Controllers
 
             return result;
 
-        }
-
-        /// <summary>
-        /// Envois vers la vue de création d'un topic.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult NewTopic(int id)
-        {
-
-           
-            return View(id);
-
-        }
-
-
-        /// <summary>
-        /// Méthode de récupération du post.
-        /// Le POST ne fonctionne que si l'utilisateur est connecté ! 
-        /// </summary>
-        /// <param name="t"></param>
-        /// <param name="editor1"></param>
-        /// <param name="TitreTopic"></param>
-        /// <param name="idCateg"></param>
-        /// <returns></returns>
-        [HttpPost, ValidateInput(false)]
-        public ActionResult NewTopic(Topic t, string editor1, string TitreTopic, int idCateg)
-        {
-            
-            Topic topic = new Topic();
-            topic.Nom = TitreTopic;
-            topic.DescriptifTopic = editor1;
-            topic.Sujet_id = idCateg;
-            setTopic(topic);
-       
-            return RedirectToAction("Index", "Forum");
-
-        }
-        /// <summary>
-        /// Ajout du topic créé.
-        /// Ne fonctionne que si l'utilisateur est connecté (cookies)
-        /// </summary>
-        /// <param name="topic"></param>
-        public void setTopic(Topic topic)
-        {
-            var request = new RestRequest("api/Topic/", Method.POST);
-            var u = ProfileCookie.GetCookie(HttpContext);
-            if (u!=null){
-            request.AddParameter("Sujet_id", topic.Sujet_id);
-            request.AddParameter("Nom", topic.Nom);
-            request.AddParameter("Resolu", 0);
-            request.AddParameter("Utilisateur_id", u.Utilisateur_Id );
-            request.AddParameter("DateCreation",DateTime.Now.ToString(new CultureInfo("en-us")));
-            request.AddParameter("DescriptifTopic", "" + topic.DescriptifTopic);
-            Execute<Topic>(request);
-
-            }
         }
         #endregion
 
@@ -217,59 +149,135 @@ namespace YOUP_Design.Controllers
             return result;
 
         }
-        /// <summary>
-        /// Récupère la liste des utilisateurs.
-        /// </summary>
-        /// <returns></returns>
+
         public List<YOUP_Design.Classes.Profile.Utilisateur> getUsers()
         {
-            var request = new RestRequest("api/UserSmall/", Method.GET);
+            var request = new RestRequest("api/MessageTopic/", Method.GET);
             var result = ExecuteProfil<List<YOUP_Design.Classes.Profile.Utilisateur>>(request);
 
             return result;
 
         }
 
-        /// <summary>
-        /// Méthode de récupération du post.
-        /// Le POST ne fonctionne que si l'utilisateur est connecté ! 
-        /// </summary>
-        /// <param name="m"></param>
-        /// <param name="editor1"></param>
-        /// <param name="idTopic"></param>
-        /// <returns></returns>
+
         [HttpPost, ValidateInput(false)]
-        public ActionResult Discussion(MessageModel m, string editor1, int idTopic)
+        public ActionResult Discussion(MessageModel m, string editor1)
         {
      
                 Message message = new Message();
                 message.ContenuMessage = editor1;
-                message.Topic_id = idTopic;
                 setMessage(message);
 
                 //messages = this.getMessagesByTopicId(id);
                 return RedirectToAction("Index", "Forum");
  
         }
-        /// <summary>
-        /// Ajout du message créé.
-        /// Ne fonctionne que si l'utilisateur est connecté (cookies)
-        /// </summary>
-        /// <param name="message"></param>
+
         public void setMessage(Message message)
         {
             var request = new RestRequest("api/Message/", Method.POST);
-            var u = ProfileCookie.GetCookie(HttpContext);
-            if (u != null)
-            {
-                request.AddParameter("Topic_id", message.Topic_id);
-                request.AddParameter("Utilisateur_id", u.Utilisateur_Id);
-                request.AddParameter("DatePoste", DateTime.Now.ToString(new CultureInfo("en-us")));
-                request.AddParameter("ContenuMessage", "" + message.ContenuMessage);
-                Execute<Message>(request);
-            }
+
+            request.AddParameter("Message_id",10000);
+            request.AddParameter("Topic_id",20);
+            request.AddParameter("Utilisateur_id",7);
+            request.AddParameter("DatePoste", DateTime.Now.ToString(new CultureInfo("en-us")));
+            request.AddParameter("ContenuMessage",""+message.ContenuMessage);
+            Execute<Message>(request);
+
 
         }
+        #endregion
+
+
+
+
+        // METHODES NON UTILISEES
+        #region Unused
+
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        //
+        // GET: /Forum/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Forum/Create
+
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        //
+        // GET: /Forum/Edit/5
+
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        //
+        // POST: /Forum/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //
+        // GET: /Forum/Delete/5
+
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        //
+        // POST: /Forum/Delete/5
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         #endregion
     }
 }

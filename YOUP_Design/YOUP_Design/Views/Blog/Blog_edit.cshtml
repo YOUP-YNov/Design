@@ -5,7 +5,6 @@
     ViewBag.ActiveMenu = "Blog";
     IEnumerable<Categorie> categories = ViewData["Category"] as IEnumerable<Categorie>;
     IEnumerable<Theme> themes = ViewData["Theme"] as IEnumerable<Theme>;
-    Blog userBlog = ViewData["UserBlog"] as Blog;
 }
 <div class="container">
     <div class="publicite well">
@@ -21,7 +20,7 @@
                 //<button type="submit" class="btn btn-primary">Enregistrer</button>
                 <div class="form-group">
                     <label for="inputTitre">Titre</label>
-                    <input type="text" class="form-control" id="inputTitre" name="TitreBlog" value="@(userBlog != null ? userBlog.TitreBlog : string.Empty)">
+                    <input type="text" class="form-control" id="inputTitre" name="TitreBlog">
                 </div>
                 <div class="form-group">
                     <label for="CategorieId">Categorie </label>

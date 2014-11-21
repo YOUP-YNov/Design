@@ -1,20 +1,18 @@
-﻿@using YOUP_Design.Classes.Blog
-@model IEnumerable<YOUP_Design.Classes.Blog.Article>
+﻿@model IEnumerable<YOUP_Design.Classes.Blog.Article>
 @{
     ViewBag.Title = "Blog_vue";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
-    Blog blog = ViewData["Blog"] as Blog;
 }
-<div class="container" style="background-image:url(@blog.Theme.ImageChemin); background-">
+<div class="container" style="background-color:blueviolet;">
     <div class="publicite well">
         Encart de publicité
     </div>
-    
+
     @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
 
     <div class="row">
-        <h2>@blog.TitreBlog</h2>
+        <h2>Blog Title</h2>
         <div class="photoProfil">
             <div class="row_blog parentDecoProfil">
                 <div class="col-lg-2">
@@ -31,8 +29,8 @@
             <h3>@e.TitreArticle</h3>
             <div class="col-lg-offset-2 col-lg-8 text-center">
                 <div class="article_blog">
-                    <img src="@e.ImageChemin" alt="image" class="img-rounded">
-                    <p>@Html.Raw(e.ContenuArticle)</p>
+                    <img src="http://www.pokertwitt.com/wp-content/uploads/2012/09/poker_night_by_gunblade132-d3ch6n81.jpg" alt="image" class="img-rounded">
+                    <p>@e.ContenuArticle</p>
                 </div>
                 <div class="date_publication_article">
                     <div class="row list-group-item">
@@ -46,17 +44,6 @@
                             Comments : 30
                         </div>
                     </div>
-                </div>
-                <div class="row list-group-item">
-                    <p>
-                        @if(e.ListTags != null)
-                        { 
-                            foreach(var t in e.ListTags)
-                            {
-                                <span>#@t.Mots </span>
-                            }
-                        }
-                    </p>
                 </div>
                 <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
             </div>

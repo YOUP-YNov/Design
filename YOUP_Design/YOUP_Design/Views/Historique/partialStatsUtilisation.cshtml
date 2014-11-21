@@ -1,5 +1,5 @@
 ﻿@model YOUP_Design.Classes.Historique.Utilisateur
-<link href="~/Content/css/Historique.css" rel="stylesheet" />
+<link href="~/Content/css/historique.css" rel="stylesheet" />
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -22,14 +22,16 @@
 
 
 <div class="row">
-    <div class="col-lg-offset-2 col-lg-4 text-center StatsUser">
+    <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
         <h2>Statistiques d'utilisation</h2>
         @Html.TextBox("MsgError")
     </div>
-    <div class="col-lg-4 comboHisto StatsUser StatsUserSelect" >
-        @Html.DropDownList("Pseudo", "Select user")
-        <input id="SubmitButtonID" class="btn btn-primary" type="submit" value="Envoyer" />
-    </div>
+</div>
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-8 comboHisto">
+            @Html.DropDownList("Pseudo", "Select user")
+            <input id="SubmitButtonID" class="btn btn-primary" type="submit" value="Envoyer" />
+        </div>
 </div>
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 colorPseudo">
@@ -81,7 +83,7 @@
 
 <div class="row">
     <div class="col-lg-offset-2 col-lg-8 text-center StatsUser">
-        <strong>Catégories d'évènements participés</strong>
+        <strong>Catégories d'évènements</strong>
         <div id="categorie" style="min-width: 310px; height: 320px; max-width: 500px; margin: 0 auto"></div> @*defini la taille du graphique et l'affiche*@
 
         <script>

@@ -44,7 +44,6 @@ namespace YOUP_Design.Classes.Blog
         /// </summary>
         public int Theme_id { get; set; }
         public Theme Theme { get; set; }
-
         /// <summary>
         /// COnstructeur vide du blog.
         /// </summary>

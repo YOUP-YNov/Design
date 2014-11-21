@@ -5,10 +5,6 @@
     margin-top: 2%;
 }
 
-.StatsUserSelect {
-    margin-top: 3.5%;
-}
-
 h2 {
     font-size: 18px;
     text-align: left;
@@ -62,7 +58,6 @@ h2 {
 
 .comboHisto {
     margin-bottom: 20px;
-    margin-top: 3.5%;
 }
 
 .comboHisto select {

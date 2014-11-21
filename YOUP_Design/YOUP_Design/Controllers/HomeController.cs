@@ -54,34 +54,89 @@ namespace YOUP_Design.Controllers
             return result;
         }
 
+        public List<Classes.Blog.Blog> GetBlogs()
+        {
+            var request = new RestRequest("api/blog", Method.GET);
+            var result = BlogRequest<List<Classes.Blog.Blog>>(request);
+            return result;
+        }
+
+        public List<Classes.Blog.Categorie> GetBlogsCategories()
+        {
+            var request = new RestRequest("api/Categories", Method.GET);
+            var result = BlogRequest<List<Classes.Blog.Categorie>>(request);
+            return result;
+        }
+
         public ActionResult Index()
         {
             //Derniers Utilisateurs
             List<UtilisateurSmall> profiles = new List<UtilisateurSmall>();
             List<UtilisateurSmall> lastprofiles = new List<UtilisateurSmall>();
+            List<UtilisateurSmall> lastprofiles2 = new List<UtilisateurSmall>();
             profiles = this.GetLastProfiles();
+            
             int count = 0;
-
-            foreach (UtilisateurSmall profil in profiles)
+            if (profiles != null)
             {
-                if (count < 4)
+                foreach (UtilisateurSmall profil in profiles)
                 {
-                    lastprofiles.Add(profil);
-                }
+                    if (count < 4)
+                    {
+                        lastprofiles.Add(profil);
+                    }
+                    else if (count >= 4 && count < 8)
+                    {
+                        lastprofiles2.Add(profil);
+                    }
+                    else
+                    {
+                        break;
+                    }
 
-                count++;
+                    count++;
+                }
             }
+            
 
             ViewBag.LastProfiles = lastprofiles;
+            ViewBag.LastProfiles2 = lastprofiles2;
 
             //Derniers Evenements
             List<EvenementTimelineFront> events = new List<EvenementTimelineFront>();
             events = this.GetLastEvents();
             if (events == null)
-                events = new List<EvenementTimelineFront>();
+            {
+                ViewBag.LastEvents = new List<EvenementTimelineFront>();
+            }
+            else
+            {
+                ViewBag.LastEvents = events;
+            }
+            //Derniers Blogs
+            List<Classes.Blog.Blog> blogs = new List<Classes.Blog.Blog>();
+            List<Classes.Blog.Blog> lastblogs = new List<Classes.Blog.Blog>();
+            
+            blogs = this.GetBlogs();
+            count = 0;
+            if (blogs != null)
+            {
+                foreach (Blog blog in blogs)
+                {
+                    if (count < 8)
+                    {
+                        lastblogs.Add(blog);
+                    }
+                    else
+                    {
+                        break;
+                    }
 
-            ViewBag.LastEvents = events;
+                    count++;
+                }
+            }
 
+            ViewBag.LastBlogs = lastblogs;
 
             //Tops
             ViewBag.TopAmis = WebApiHistoriqueController.GetTopAmis();

@@ -1,7 +1,6 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,10 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using YOUP_Design.Classes.Blog;
-using YOUP_Design.Classes.Evenement;
 using YOUP_Design.Models.Blog;
-using YOUP_Design.Models.Profile;
-using YOUP_Design.Classes.Profile;
 
 namespace YOUP_Design.Controllers
 
@@ -26,14 +22,6 @@ namespace YOUP_Design.Controllers
             var response = client.Execute<T>(request);
             return response.Data;
         }
-
-        public T ExecuteEvent<T>(RestRequest request) where T : new()
-        {
-            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
-            var response = client.Execute<T>(request);
-            return response.Data;
-        }
-
         public List<Blog> GetBlogs()
         {
             var request = new RestRequest("api/blog", Method.GET);
@@ -65,69 +53,34 @@ namespace YOUP_Design.Controllers
 
         public ActionResult Blog_edit()
         {
-            var u = ProfileCookie.GetCookie(HttpContext);
+            var request = new RestRequest("api/Category", Method.GET);
+            var result = Execute<List<Categorie>>(request);
+            ViewData["Category"] = result as IEnumerable<Categorie>;
 
-            if (GetBlogUser(u.Utilisateur_Id) == null)
-            {
-                var request = new RestRequest("api/Category", Method.GET);
-                var result = Execute<List<YOUP_Design.Classes.Blog.Categorie>>(request);
-                ViewData["Category"] = result as IEnumerable<YOUP_Design.Classes.Blog.Categorie>;
-
-                var requestCat = new RestRequest("api/Theme", Method.GET);
-                var resultCat = Execute<List<Theme>>(requestCat);
+            var requestCat = new RestRequest("api/Theme", Method.GET);
+            var resultCat = Execute<List<Theme>>(requestCat);
 
 
-                IEnumerable<Theme> themeImages = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.ImageChemin));
-                IEnumerable<Theme> themeCouleurs = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.Couleur));
+            IEnumerable<Theme> themeImages = (resultCat as IEnumerable<Theme>).Where(x=> !string.IsNullOrEmpty(x.ImageChemin));
+            IEnumerable<Theme> themeCouleurs = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.Couleur));
 
-                IEnumerable<Theme> themes = themeCouleurs.Concat(themeImages);
-                ViewData["Theme"] = themes as IEnumerable<Theme>;
-            }
-            else
-            {
-                var request = new RestRequest("api/Category", Method.GET);
-                var result = Execute<List<YOUP_Design.Classes.Blog.Categorie>>(request);
-                ViewData["Category"] = result as IEnumerable<YOUP_Design.Classes.Blog.Categorie>;
+            IEnumerable<Theme> themes = themeCouleurs.Concat(themeImages);
+            ViewData["Theme"] = themes as IEnumerable<Theme>;
 
-                var requestCat = new RestRequest("api/Theme", Method.GET);
-                var resultCat = Execute<List<Theme>>(requestCat);
-
-
-                IEnumerable<Theme> themeImages = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.ImageChemin));
-                IEnumerable<Theme> themeCouleurs = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.Couleur));
-
-                IEnumerable<Theme> themes = themeCouleurs.Concat(themeImages);
-                ViewData["Theme"] = themes as IEnumerable<Theme>;
-
-                Blog userBlog = GetBlogUser(u.Utilisateur_Id);
-                ViewData["UserBlog"] = userBlog as Blog;
-            }
             return View();
         }
 
+        public ActionResult Blog_article_edit()
+        {
+            return View();
+        }
 
         public ActionResult Blog_vue(int UserId, int BlogId)
         {
-            List<Article> articles = new List<Article>();
-            articles = this.GetBlog(UserId, BlogId);
-            ViewBag.articles = articles;
-
-            Blog blogs = new Blog();
-            blogs = this.GetBlogUser(UserId);
-            ViewData["Blog"] = blogs as Blog;
-
-            return View(articles);
-        }
-        public Blog GetBlogUser(int UserId)
-        {
-            //var request = new RestRequest("api/article?utilisateurId="+UserId+"&blogId="+BlogId, Method.GET);
-            var request = new RestRequest("api/blog?userId=" + UserId, Method.GET);
-
-            //request.AddParameter("utilisateurId", UserId, ParameterType.UrlSegment);
-            //request.AddParameter("blogId", BlogId, ParameterType.UrlSegment);
-
-            var result = Execute<Blog>(request);
-            return result;
+            List<Article> blog = new List<Article>();
+            blog = this.GetBlog(UserId, BlogId);
+            ViewBag.articles = blog;
+            return View(blog);
         }
 
         public List<Article> GetBlog(int UserId, int BlogId)
@@ -168,8 +121,8 @@ namespace YOUP_Design.Controllers
             try
             {
                 //Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
-                 var u = ProfileCookie.GetCookie(HttpContext);
-                Blog blog = new Blog() { Utilisateur_id = u.Utilisateur_Id, TitreBlog = model.TitreBlog, Categorie_id = model.CategorieId, Theme_id = model.ThemeId};
+
+                Blog blog = new Blog() { Utilisateur_id = 124, TitreBlog = model.TitreBlog, Categorie_id = model.CategorieId, Theme_id = model.ThemeId};
                 //httpclient (voir msdn)
                 
                 
@@ -188,77 +141,6 @@ namespace YOUP_Design.Controllers
         }
 
 
-        public ActionResult Blog_article_edit()
-        {
-            var request = new RestRequest("api/Profil/99/Evenements", Method.GET);
-            var result = ExecuteEvent<List<EvenementFront>>(request);
-            ViewData["Evenements"] = result as IEnumerable<EvenementFront>;
-
-
-            return View();
-        }
-
-        //
-        // POST: /Blog/CreateArticle
-        [HttpPost, ValidateInput(false)]
-        public ActionResult CreateArticle(ArticleModel model)
-        {
-            try
-            {
-                //Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
-                var u = ProfileCookie.GetCookie(HttpContext);
-
-                List<HashTagArticles> tagList = new List<HashTagArticles>();
-                if(!string.IsNullOrEmpty(model.Tags))
-                {
-                    string[] tags;
-                    tags = model.Tags.Split(';');
-                    for (int i = 0; i < tags.Length; i++)
-                    {
-                        tagList.Add(new HashTagArticles { Mots = tags[i] });
-                    }
-                }
-                
-                
-
-                Article article = new Article() { Blog_id = GetBlogUser(u.Utilisateur_Id).Blog_id, ListTags=tagList, TitreArticle = model.TitreArticle, ImageChemin = Session["images"] as string, ContenuArticle = model.ContenuArticle, Evenement_id = (model.EventId != -1 ? (int?)model.EventId : null) };
-                //httpclient (voir msdn)
-
-
-                var request = new RestRequest("api/article", Method.POST);
-                request.AddObject(article);
-                //request.AddParameter("blog", blog, ParameterType.GetOrPost);
-
-
-                var result = Execute<Article>(request);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public string UploadPicture()
-        {
-            if (Request.Files.Count > 0)
-            {
-                var file = Request.Files[0];
-
-                if (file != null && file.ContentLength > 0 &&
-                    (file.ContentType.Contains("jpg") || file.ContentType.Contains("png") || file.ContentType.Contains("jpeg")))
-                {
-                    string guid = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/UploadsPic/"), guid);
-                    file.SaveAs(path);
-                    var pictUrl = "http://" + Request.Url.Authority + "/UploadsPic/" + guid;
-                   
-                    Session["images"] = pictUrl;
-                    return pictUrl;
-                }
-            }
-            return "fail";
-        }
 
         //[HttpPost, ValidateInput(false)]
         //public ActionResult Discussion(MessageModel m, string editor1)

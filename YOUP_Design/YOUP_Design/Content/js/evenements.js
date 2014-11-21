@@ -36,7 +36,7 @@ var evenementModule = (function () {
 
         /* SEARCH ADDRESS */
         function searchAddress(map) {
-            var adresse = document.getElementById('Adresse').value;
+            var adresse = document.getElementById('exampleInputAdresse').value;
             geocoder.geocode({ 'address': adresse }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
@@ -47,10 +47,6 @@ var evenementModule = (function () {
 
                     var latitude = marker.getPosition().lat();
                     var longitude = marker.getPosition().lng();
-
-                    $('#Latitude').val(latitude);
-                    $('#Longitude').val(longitude);
-
                     
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
@@ -301,11 +297,8 @@ $(function () {
                 d.append('file-' + i, file);
             });
             $.ajax("http://" + location.host + "/Upload/UploadPicture?g=" + el[0].name, { type: "POST", data: d, cache: false, contentType: false, processData: false }).success(function (d) {
-                if (d != "fail"){
+                if (d != "fail")
                     $("#photo-profil").attr("src", d); // id img à mettre a jour
-                    $("#ImageUrl").val(d);
-                }
-                    
                 else
                     alert("invalid file type.");
             }).fail(function () {
