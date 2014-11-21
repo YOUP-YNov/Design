@@ -50,18 +50,41 @@ namespace YOUP_Design.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Create(FormCollection collection)
+        public async Task<ActionResult> Create(UtilisateurInscriptModelBinding model)
         {
-            try
+            if(ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                var u = await UserAPIConnecteur.Post(new Utilisateur()
+                {
+                    Pseudo = model.Pseudo,
+                    Prenom = model.Prenom,
+                    Nom = model.Nom,
+                    MotDePasse = model.Password,
+                    Ville = model.Ville,
+                    CodePostal = model.CodePostal,
+                    AdresseMail = model.Email,
+                    DateNaissance = model.DateNaissance.AddHours(12), // pour ne pas avoir -1j au format EN
+                    DateInscription = DateTime.Now,
+                    Categories = new List<Categorie>(),
+                    Amis = new List<UtilisateurSmall>(),
+                    Actif = true,
+                    Sexe = true,
+                    Partenaire = false,
+                    Metier = "",
+                    PhotoChemin = model.PhotoUrl,
+                    Situation = "",
+                    Presentation = ""
+                });
+                if(u != null)
+                {
+                    ProfileCookie.CreateCookie(HttpContext, u);
+                    return RedirectToAction("Index", "Home");
+                }
+                ViewBag.Error = "Impossible de creer le compte à partir des données renseigné.";
+                return View("inscription");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.Error = "Veuillez remplir tout les champs pour créer votre compte.";
+            return View("inscription");
         }
 
         [YoupAuthorize]

@@ -1,88 +1,87 @@
-﻿@{
+﻿@model YOUP_Design.Models.Profile.UtilisateurInscriptModelBinding
+@{
     ViewBag.Title = "Inscription";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Profile";
 }
+<p style="text-align:center; margin:auto;">@ViewBag.Error</p>
 <div class="bodyProfil">
-    <div class="upload-img" style="text-align:center;">
-        <input type="file" id="picture-profile" style="display:none;" name="label" width="100" height="100" />
-        <img src="~/Images/default_profil.png" id="photo-profil" width="150" height="150" style="" />
-        <p>Ajouter une photo </p>
-    </div>
     @using (Html.BeginForm("Create", "Profile", FormMethod.Post))
     {
+        <div class="upload-img" style="text-align:center;">
+            <input type="file" id="picture-profile" style="display:none;" name="label" width="100" height="100" />
+            <img src="~/Images/default_profil.png" id="photo-profil" width="150" height="150" style="" />
+            <p>Ajouter une photo </p>
+        </div>
+        <input type="hidden" id="PhotoUrl" name="PhotoUrl" value=""/>
         <div class="row">
             <div class="col-lg-2 text-center">
             </div>
             <div class="col-lg-4 col-lg-4Profil text-center border-right border-rightProfil" style="margin-top:0;">
                 <div class="panel-body">
-                    <form role="form" class="formProfil">
-                        <div class="form-group">
-                            <label for="exampleInputPseudo">Pseudo</label>
-                            <input type="text" class="form-control" id="exampleInputPSeudo">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail">Email </label>
-                            <input type="text" class="form-control" id="exampleInputEmail">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Mot de passe</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputNom">Nom</label>
-                            <input type="text" class="form-control" id="exampleInputNom">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPrenom">Prénom</label>
-                            <input type="text" class="form-control" id="exampleInputPrenom">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputDate">Date de naissance</label>
-                            <input type="date" class="form-control" id="exampleInputDate">
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <label for="exampleInputPseudo">Pseudo</label>
+                        @Html.TextBoxFor(x => x.Pseudo, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Email </label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mot de passe</label>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputNom">Nom</label>
+                        @Html.TextBoxFor(x => x.Nom, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPrenom">Prénom</label>
+                        @Html.TextBoxFor(x => x.Prenom, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputDate">Date de naissance</label>
+                        <input type="date" class="form-control" id="DateNaissance" name="DateNaissance">
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-lg-4Profil text-center" style="margin-top:0;">
                 <div class="panel-body">
-                    <form role="form" class="formProfil">
-                        <div class="form-group">
-                            <label for="exampleInputCodePostal">Code Postale</label>
-                            <input type="text" class="form-control" id="exampleInputCodePostal">
+                    <div class="form-group">
+                        <label for="exampleInputCodePostal">Code Postal</label>
+                        @Html.TextBoxFor(x => x.CodePostal, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputVille">Ville</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="exampleInputVille" name="Ville">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="btnRechercheProfilIns" type="button">Go!</button>
+                            </span>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputVille">Ville</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="exampleInputVille">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" id="btnRechercheProfilIns" type="button">Go!</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div id="map-canvas-inscription" class="googleProfil"></div>
-                        <!--<iframe class="googleProfil" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
-                        -->
-                        <div class="form-group">
-                            <label>Centres d'intérêts</label>
-                            <select multiple="" class="form-control">
-                                <option>Sport</option>
-                                <option>Visite</option>
-                                <option>Apéro entre amis</option>
-                                <option>Marche a pied</option>
-                            </select>
-                        </div>
-                    </form>
+                    </div>
+                    <div id="map-canvas-inscription" class="googleProfil"></div>
+                    <!--<iframe class="googleProfil" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
+                    -->
+                    <div class="form-group">
+                        <label>Centres d'intérêts</label>
+                        <select multiple="" class="form-control">
+                            <option>Sport</option>
+                            <option>Visite</option>
+                            <option>Apéro entre amis</option>
+                            <option>Marche a pied</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-2 text-center">
             </div>
         </div>
+
+
+        <div class=" row barBtnInscription">
+            <button type="button" class="btn btn-default btn-defaultProfil" onclick="location.href = 'http://' + location.host + '/home';">Annuler</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
     }
-
-    <div class=" row barBtnInscription">
-        <button type="submit" class="btn btn-default btn-defaultProfil">Annuler</button>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    </div>
 </div>
-
