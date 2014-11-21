@@ -471,6 +471,7 @@
     <Content Include="Views\Historique\partialOS.cshtml" />
     <Content Include="Views\Profile\Detail.cshtml" />
     <Content Include="Views\Recherche\Index.cshtml" />
+    <Content Include="Views\Forum\NewTopic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
