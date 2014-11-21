@@ -1,6 +1,6 @@
-﻿@model YOUP_Design.Classes.Profile.Utilisateur
+﻿@model YOUP_Design.Classes.Profile.UtilisateurPublic
 @{
-    Layout = null;
+    ViewBag.Title = "Detail";
 }
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false">
@@ -12,6 +12,19 @@
 </script>
 
 <div class="bodyProfil">
+    <div class="photoProfil" style="margin-top : 30px;">
+        <div class="row parentDecoProfil">
+            <div class="col-lg-offset-2 col-lg-3 decoPhotoProfil "></div>
+            <div class="col-lg-2">
+                <img id="idPhotoProfil" src="@Model.PhotoChemin" alt="photo profil" class="img-circle">
+            </div>
+            <div class="col-lg-3 decoPhotoProfil"></div>
+        </div>
+
+        <br />
+        <h3 class="helloUtil">Salut @Model.Prenom !</h3>
+    </div>
+
     <div class="row">
         <div class="col-lg-2 text-center">
         </div>
@@ -20,27 +33,27 @@
                 <form role="form" class="formProfil">
                     <div class="form-group">
                         <label for="exampleInputPseudo">Pseudo</label>
-                        <input type="email" class="form-control" id="exampleInputPSeudo" value="@Model.Pseudo">
+                        <input type="email" class="form-control" id="exampleInputPSeudo" value="@Model.Pseudo" disabled>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail">Email </label>
-                        <input type="email" class="form-control" id="exampleInputEmail" value="@Model.AdresseMail">
+                        <input type="email" class="form-control" id="exampleInputEmail" value="Privé" disabled>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mot de passe</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" value="@Model.MotDePasse">
+                        <input type="password" class="form-control" id="exampleInputPassword1" value="Privé" disabled>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputNom">Nom</label>
-                        <input type="text" class="form-control" id="exampleInputNom" value="@Model.Nom">
+                        <input type="text" class="form-control" id="exampleInputNom" value="Privé" disabled>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPrenom">Prénom</label>
-                        <input type="text" class="form-control" id="exampleInputPrenom" value="@Model.Prenom">
+                        <input type="text" class="form-control" id="exampleInputPrenom" value="@Model.Prenom" disabled>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputDate">Date de naissance</label>
-                        <input type="date" class="form-control" id="exampleInputDate" value="@Model.DateNaissance.Value.ToString("yyyy-MM-dd")">
+                        <input type="date" class="form-control" id="exampleInputDate" value="Privé" disabled>
                     </div>
                 </form>
             </div>
@@ -50,16 +63,11 @@
                 <form role="form" class="formProfil">
                     <div class="form-group">
                         <label for="exampleInputAdresse">Ville</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="exampleInputAdresse" value="@Model.Ville">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" id="btnRechercheProfilIns" type="button">Go!</button>
-                            </span>
-                        </div>
+                        <input type="text" class="form-control" id="exampleInputAdresse" value="@Model.Ville" disabled>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputAdresse">Code Postal</label>
-                        <input type="text" class="form-control" id="exampleInputAdresse" value="@Model.CodePostal">
+                        <input type="text" class="form-control" id="exampleInputAdresse" value="Privé" disabled>
                     </div>
                     <iframe class="googleProfil" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
                     <div class="form-group">
@@ -77,6 +85,5 @@
         <div class="col-lg-2 text-center">
         </div>
     </div>
-    <button type="submit" class="btn btn-default btn-defaultProfil">Annuler</button>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button type="submit" class="btn btn-default btn-defaultProfil">Retour</button>
 </div>

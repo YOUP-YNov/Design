@@ -25,6 +25,19 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
+        public async Task<ActionResult> Detail(int id)
+        {
+
+            var u = await UserPublicAPIConnecteur.Get(id);
+
+            if (u == null)
+
+                return RedirectToAction("Index", "Home");
+
+            return View(u);
+
+        }
+
         [HttpPost]
         public async Task<ActionResult> Login(LoginModelBinding model)
         {

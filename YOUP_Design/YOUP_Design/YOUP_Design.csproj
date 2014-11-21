@@ -465,6 +465,7 @@
     <Content Include="Views\Profile\Login.cshtml" />
     <Content Include="Views\Blog\partialDeviceOS.cshtml" />
     <Content Include="Views\Historique\partialOS.cshtml" />
+    <Content Include="Views\Profile\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
