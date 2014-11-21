@@ -41,7 +41,7 @@
                 <h2><a href="/Forum/Discussion?id=@t.Topic_id">@t.Nom</a></h2>
                 <p><img class="img-circle forumImg" src="@listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().PhotoChemin" /> Par @listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().Pseudo</p>
                 <p>Dernier message</p> 
-                <p>Description : @t.DescriptifTopic</p>
+                <p>Description : @Html.Raw(t.DescriptifTopic)</p>
                 <p>@t.DateCreation</p>
             </div>
         </div>
@@ -49,6 +49,6 @@
        
     <center> <div><a href="/Forum/NewTopic?id=@Request["id"]"><input type="button" class="btn btn-primary" value="Créer une nouvelle discution" /></a></div></center>
         
-    <br />
+    <br />  
 </div>
 </div>
