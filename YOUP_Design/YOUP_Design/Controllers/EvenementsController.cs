@@ -7,11 +7,68 @@ using System.Web.Mvc;
 using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Models.Evenement.templatesObjects;
 using YOUP_Design.Classes.Evenement;
+using RestSharp;
+using YOUP_Design.Models.Evenement;
+using YOUP_Design.Models.Profile;
 
 namespace YOUP_Design.Controllers
 {
     public class EvenementsController : Controller
     {
+
+        public T Execute<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
+
+        public void setEvent(EventCreation e, int id_utilisateur, Guid token)
+        {
+            var request = new RestRequest("api/Evenement?token="+token.ToString(), Method.POST);
+            string[] adr = e.Adresse.Split(',');
+
+            decimal lat;
+            Decimal.TryParse(e.Latitude, out lat);
+            decimal lon;
+            Decimal.TryParse(e.Longitude, out lon);
+
+            var ev = new EvenementFront()
+            {
+                TitreEvenement = e.TitreEvenement,
+                DescriptionEvenement = e.DescriptionEvenement,
+                DateEvenement = e.DateEvenement,
+                CreateDate = DateTime.Now,
+                MaximumParticipant = e.MaximumParticipant,
+                Price = e.Prix,
+                Payant = e.Prix > 0,
+                Public = e.Public,
+                HashTag = e.MotsCles.Split(','),
+                EventAdresse = new EventLocationFront()
+                {
+                    Adresse = adr[0],
+                    Ville = adr[1],
+                    Pays = "France",
+                    Latitude = lat,
+                    Longitude = lon
+                },
+                OrganisateurId = id_utilisateur,
+                Galleries = new List<EventImageFront>()
+                {
+                    new EventImageFront()
+                    {
+                        Url = e.ImageUrl
+                    }
+                }
+            };
+
+            request.AddParameter("evenement", ev);
+            request.AddParameter("evenement", ev);
+
+            Execute<EventCreation>(request);
+
+        }
+
         //
         // GET: /Evenement/
         public  ActionResult Index()
@@ -135,6 +192,27 @@ namespace YOUP_Design.Controllers
         public ActionResult Creation()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Creation(EventCreation model)
+        {
+            if(ModelState.IsValid)
+            {
+                var u = ProfileCookie.GetCookie(HttpContext);
+                if(u == null)
+                {
+                    ViewBag.Error = "Vous devez être authentifié.";
+                    return View(model);
+                }
+                setEvent(model, u.Utilisateur_Id, u.Token);
+
+                return RedirectToAction("Index", "Evenements");
+            }
+
+            ViewBag.Error = "Veuillez remplir tous les champs.";
+
+            return View(model);
         }
 
         //

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using YOUP_Design.Classes.Recherche;
 using YOUP_Design.Classes.Profile;
 using YOUP_Design.Models.Evenement.webApiObjects;
+using YOUP_Design.Classes.Blog;
 
 namespace YOUP_Design.Controllers
 {
@@ -30,6 +31,12 @@ namespace YOUP_Design.Controllers
         public T ExecuteEvent<T>(RestRequest request) where T : new()
         {
             var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
+        public T ExecuteBlog<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient("http://youp-blog.azurewebsites.net/");
             var response = client.Execute<T>(request);
             return response.Data;
         }
@@ -54,6 +61,12 @@ namespace YOUP_Design.Controllers
             return result;
         }
 
+        public List<Blog> GetBlogs(string keyword)
+        {
+            var request = new RestRequest("api/blog?keyword=" + keyword, Method.GET);
+            var result = ExecuteBlog<List<Blog>>(request);
+            return result;
+        }
         //
         // GET: /Recherche/
         public ActionResult Index(string keyword)
@@ -100,6 +113,10 @@ namespace YOUP_Design.Controllers
                 }
             }
             ViewBag.eventsResults = events;
+
+            List<Blog> blogs = new List<Blog>();
+            blogs = this.GetBlogs(keyword);
+            ViewBag.blogsResults = blogs;
 
             return View();
         }
