@@ -77,6 +77,8 @@ namespace YOUP_Design.Controllers
             //Derniers Evenements
             List<EvenementTimelineFront> events = new List<EvenementTimelineFront>();
             events = this.GetLastEvents();
+            if (events == null)
+                events = new List<EvenementTimelineFront>();
 
             ViewBag.LastEvents = events;
 
