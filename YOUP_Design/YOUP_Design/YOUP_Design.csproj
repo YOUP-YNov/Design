@@ -228,6 +228,9 @@
     <Compile Include="Classes\Profile\Utilisateur.cs" />
     <Compile Include="Classes\Profile\UtilisateurPublic.cs" />
     <Compile Include="Classes\Profile\UtilisateurSmall.cs" />
+    <Compile Include="Classes\Recherche\Recherche.cs" />
+    <Compile Include="Classes\Recherche\RechercheGenerique.cs" />
+    <Compile Include="Classes\Recherche\Source.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\HistoriqueController.cs" />
@@ -237,6 +240,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MentionsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\RechercheController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -466,6 +470,7 @@
     <Content Include="Views\Blog\partialDeviceOS.cshtml" />
     <Content Include="Views\Historique\partialOS.cshtml" />
     <Content Include="Views\Profile\Detail.cshtml" />
+    <Content Include="Views\Recherche\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
