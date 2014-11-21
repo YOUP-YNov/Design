@@ -1,4 +1,5 @@
-﻿@{
+﻿@using YOUP_Design.Classes.Profile;
+@{
     ViewBag.Title = "Forum";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Forum";
@@ -25,7 +26,10 @@
     </div>
 
     <div class="list-group"><div class="list-group-item">Forum > Jeux > Poker </div></div>
+    @{
+        List<YOUP_Design.Classes.Profile.Utilisateur> listUsers = ViewBag.users;
 
+    }
     <div class="list-group">
         @foreach (var t in ViewBag.topics)
         {
@@ -35,7 +39,7 @@
             </div>
             <div class="col-sm-8">
                 <h2><a href="/Forum/Discussion?id=@t.Topic_id">@t.Nom</a></h2>
-                <p><img class="img-circle forumImg" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" />Par FLorian Laubier</p>
+                <p><img class="img-circle forumImg" src="@listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().PhotoChemin" /> Par @listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().Pseudo</p>
                 <p>Dernier message</p> 
                 <p>Description : @t.DescriptifTopic</p>
                 <p>@t.DateCreation</p>
@@ -43,7 +47,7 @@
         </div>
         }
        
-    <center> <div><input type="button" class="btn btn-primary" value="Créer une nouvelle discution" /></div></center>
+    <center> <div><a href="/Forum/NewTopic?id=@Request["id"]"><input type="button" class="btn btn-primary" value="Créer une nouvelle discution" /></a></div></center>
         
     <br />
 </div>

@@ -99,7 +99,9 @@ namespace YOUP_Design.Controllers
 
             List<Topic> topics = new List<Topic>();
             topics = this.GetTopicsByCategId(id);
-
+            List<YOUP_Design.Classes.Profile.Utilisateur> users = new List<Classes.Profile.Utilisateur>();
+            users = getUsers();
+            ViewBag.users = users;
             ViewBag.topics = topics;
             return View(topics);
 
@@ -116,6 +118,44 @@ namespace YOUP_Design.Controllers
 
             return result;
 
+        }
+
+
+        public ActionResult NewTopic(int id)
+        {
+
+           
+            return View(id);
+
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult NewTopic(Topic t, string editor1, string TitreTopic, int idCateg)
+        {
+
+            Topic topic = new Topic();
+            topic.Nom = TitreTopic;
+            topic.DescriptifTopic = editor1;
+            topic.Sujet_id = idCateg;
+            setTopic(topic);
+
+            return RedirectToAction("Index", "Forum");
+
+        }
+
+        public void setTopic(Topic topic)
+        {
+            var request = new RestRequest("api/Topic/", Method.POST);
+
+            request.AddParameter("Sujet_id", topic.Sujet_id);
+            request.AddParameter("Nom", topic.Nom);
+            request.AddParameter("Resolu", 0);
+            request.AddParameter("Utilisateur_id", 7);
+            request.AddParameter("DateCreation",DateTime.Now.ToString(new CultureInfo("en-us")));
+            request.AddParameter("DescriptifTopic", "" + topic.DescriptifTopic);
+            Execute<Topic>(request);
+
+            
         }
         #endregion
 
@@ -152,7 +192,7 @@ namespace YOUP_Design.Controllers
 
         public List<YOUP_Design.Classes.Profile.Utilisateur> getUsers()
         {
-            var request = new RestRequest("api/MessageTopic/", Method.GET);
+            var request = new RestRequest("api/UserSmall/", Method.GET);
             var result = ExecuteProfil<List<YOUP_Design.Classes.Profile.Utilisateur>>(request);
 
             return result;
