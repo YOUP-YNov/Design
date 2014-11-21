@@ -20,6 +20,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="//cdn.ckeditor.com/4.4.5/basic/ckeditor.js"></script>        
+        <script src="http://code.highcharts.com/highcharts.js"></script>
         @Scripts.Render("~/Scripts/date.js")
         @Scripts.Render("~/Content/js/animo.js")
         @Scripts.Render("~/Content/js/raphael-min.js")
@@ -119,7 +120,7 @@
         @if (@ViewBag.ActiveMenu == "Evenements"){@Scripts.Render("~/Content/js/evenements.js") }
         @if (@ViewBag.ActiveMenu == "Forum"){@Scripts.Render("~/Content/js/forum.js") }
         @if (@ViewBag.ActiveMenu == "Blog"){@Scripts.Render("~/Content/js/blog.js") }
-        @*@Scripts.Render("~/Content/js/historique.js")*@
+        @Scripts.Render("~/Content/js/Historique.js")
         @RenderSection("scripts", required: false)
         <script type="text/javascript">
             //<![CDATA[
