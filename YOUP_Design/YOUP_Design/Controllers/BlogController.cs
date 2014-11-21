@@ -11,6 +11,8 @@ using System.Web.Mvc;
 using YOUP_Design.Classes.Blog;
 using YOUP_Design.Classes.Evenement;
 using YOUP_Design.Models.Blog;
+using YOUP_Design.Models.Profile;
+using YOUP_Design.Classes.Profile;
 
 namespace YOUP_Design.Controllers
 
@@ -63,20 +65,43 @@ namespace YOUP_Design.Controllers
 
         public ActionResult Blog_edit()
         {
-            var request = new RestRequest("api/Category", Method.GET);
-            var result = Execute<List<Categorie>>(request);
-            ViewData["Category"] = result as IEnumerable<Categorie>;
+            var u = ProfileCookie.GetCookie(HttpContext);
 
-            var requestCat = new RestRequest("api/Theme", Method.GET);
-            var resultCat = Execute<List<Theme>>(requestCat);
+            if (GetBlogUser(u.Utilisateur_Id) == null)
+            {
+                var request = new RestRequest("api/Category", Method.GET);
+                var result = Execute<List<YOUP_Design.Classes.Blog.Categorie>>(request);
+                ViewData["Category"] = result as IEnumerable<YOUP_Design.Classes.Blog.Categorie>;
+
+                var requestCat = new RestRequest("api/Theme", Method.GET);
+                var resultCat = Execute<List<Theme>>(requestCat);
 
 
-            IEnumerable<Theme> themeImages = (resultCat as IEnumerable<Theme>).Where(x=> !string.IsNullOrEmpty(x.ImageChemin));
-            IEnumerable<Theme> themeCouleurs = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.Couleur));
+                IEnumerable<Theme> themeImages = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.ImageChemin));
+                IEnumerable<Theme> themeCouleurs = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.Couleur));
 
-            IEnumerable<Theme> themes = themeCouleurs.Concat(themeImages);
-            ViewData["Theme"] = themes as IEnumerable<Theme>;
+                IEnumerable<Theme> themes = themeCouleurs.Concat(themeImages);
+                ViewData["Theme"] = themes as IEnumerable<Theme>;
+            }
+            else
+            {
+                var request = new RestRequest("api/Category", Method.GET);
+                var result = Execute<List<YOUP_Design.Classes.Blog.Categorie>>(request);
+                ViewData["Category"] = result as IEnumerable<YOUP_Design.Classes.Blog.Categorie>;
 
+                var requestCat = new RestRequest("api/Theme", Method.GET);
+                var resultCat = Execute<List<Theme>>(requestCat);
+
+
+                IEnumerable<Theme> themeImages = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.ImageChemin));
+                IEnumerable<Theme> themeCouleurs = (resultCat as IEnumerable<Theme>).Where(x => !string.IsNullOrEmpty(x.Couleur));
+
+                IEnumerable<Theme> themes = themeCouleurs.Concat(themeImages);
+                ViewData["Theme"] = themes as IEnumerable<Theme>;
+
+                Blog userBlog = GetBlogUser(u.Utilisateur_Id);
+                ViewData["UserBlog"] = userBlog as Blog;
+            }
             return View();
         }
 
@@ -143,8 +168,8 @@ namespace YOUP_Design.Controllers
             try
             {
                 //Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
-
-                Blog blog = new Blog() { Utilisateur_id = 124, TitreBlog = model.TitreBlog, Categorie_id = model.CategorieId, Theme_id = model.ThemeId};
+                 var u = ProfileCookie.GetCookie(HttpContext);
+                Blog blog = new Blog() { Utilisateur_id = u.Utilisateur_Id, TitreBlog = model.TitreBlog, Categorie_id = model.CategorieId, Theme_id = model.ThemeId};
                 //httpclient (voir msdn)
                 
                 
@@ -181,8 +206,22 @@ namespace YOUP_Design.Controllers
             try
             {
                 //Blog blog = new Blog() { TitreBlog = model.TitreBlog, Actif = true, Categorie_id = model.CategorieId, Promotion = false, DateCreation = DateTime.Now, Theme_id = model.ThemeId};
+                var u = ProfileCookie.GetCookie(HttpContext);
 
-                Article article = new Article() { Blog_id = 128, TitreArticle = model.TitreArticle, ImageChemin = Session["images"] as string, ContenuArticle = model.ContenuArticle, Evenement_id = (model.EventId != -1 ? (int?)model.EventId : null) };
+                List<HashTagArticles> tagList = new List<HashTagArticles>();
+                if(!string.IsNullOrEmpty(model.Tags))
+                {
+                    string[] tags;
+                    tags = model.Tags.Split(';');
+                    for (int i = 0; i < tags.Length; i++)
+                    {
+                        tagList.Add(new HashTagArticles { Mots = tags[i] });
+                    }
+                }
+                
+                
+
+                Article article = new Article() { Blog_id = GetBlogUser(u.Utilisateur_Id).Blog_id, ListTags=tagList, TitreArticle = model.TitreArticle, ImageChemin = Session["images"] as string, ContenuArticle = model.ContenuArticle, Evenement_id = (model.EventId != -1 ? (int?)model.EventId : null) };
                 //httpclient (voir msdn)
 
 

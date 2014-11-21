@@ -47,6 +47,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="row list-group-item">
+                    <p>
+                        @if(e.ListTags != null)
+                        { 
+                            foreach(var t in e.ListTags)
+                            {
+                                <span>#@t.Mots </span>
+                            }
+                        }
+                    </p>
+                </div>
                 <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
             </div>
         </div>

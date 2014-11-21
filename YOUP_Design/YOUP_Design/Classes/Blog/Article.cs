@@ -47,6 +47,8 @@ namespace YOUP_Design.Classes.Blog
         /// Assigne ou récupère si le Blog est actif ou non.
         /// </summary>
         public bool Actif { get; set; }
+
+        public List<HashTagArticles> ListTags { get; set; }
         /// <summary>
         /// Constructeur vide de la classe article.
         /// </summary>
