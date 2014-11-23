@@ -41,12 +41,16 @@ namespace YOUP_Design.Models.Evenement.templatesObjects
             this.prix = evt.Prix.ToString();
             this.description = evt.DescriptionEvenement;
             this.date = evt.DateEvenement.ToShortDateString();
-            this.categorie = evt.Categorie_Libelle.ToString();
-            this.nbParticipant = 0;
-            this.nbMaxParticipant = 0;
+            this.categorie = evt.Categorie_Libelle != null ? evt.Categorie_Libelle : "";
+            this.nbParticipant = evt.NbParticipant;
+            this.nbMaxParticipant = evt.MaximumParticipant;
             this.imgOrganisateur = evt.OrganisateurImageUrl;
             this.organisateur = evt.OrganisateurPseudo;
-            this.nbParticipant = evt.NbParticipant;
+            this.hashTag = "";
+            this.dateFinInscription = "";
+            this.premium = evt.Premium;
+            //attribut public
+            this.visible = true;// evt.Public;
         }
 
          public evenementTimeLineObject(EvenementFront evt)

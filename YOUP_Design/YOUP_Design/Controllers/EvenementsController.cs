@@ -14,6 +14,8 @@ namespace YOUP_Design.Controllers
     public class EvenementsController : Controller
     {
         string ApiEvenement = System.Configuration.ConfigurationManager.AppSettings["ApiEvenement"];
+        
+        #region TimeLine
         //
         // GET: /Evenement/
         public  ActionResult Index()
@@ -135,15 +137,17 @@ namespace YOUP_Design.Controllers
                 return Json("");
             }
         }
+        #endregion
         //
         // GET: /Evenement/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.apiEvenement = ApiEvenement;
             ViewBag.idEvenement = id;
             return View();
         }
 
-        public JsonResult DetailEvenement(EvenementFront listeEvenementApi)
+        public JsonResult DetailEvenement(EvenementTimelineFront listeEvenementApi)
         {
             var result = new evenementTimeLineObject(listeEvenementApi);
             return Json(result);

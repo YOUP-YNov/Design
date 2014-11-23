@@ -11,6 +11,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        evenementModule.apiUrl = "@ViewBag.apiEvenement";
         evenementModule.initDetail(@ViewBag.idEvenement);
         loadScript;
     });
@@ -64,11 +65,10 @@
             <div class="decoEvent"></div>
         </div>
         <div class="col-lg-offset-2 col-lg-4 text-center">
-            <p>Nombre de participants : <span data-bind="text: nbParticipant"/></p>
+            <p>Nombre de participants : <span data-bind="text: nbParticipant"></span> / <span data-bind="text: nbMaxParticipant"></span>  </p>
             <p>Date : <span data-bind="text: date" /></p>
         </div>
         <div class="col-lg-4 text-center">
-            <p>Liste d'attente : 5 personnes</p>
             <p>Date de fin d'inscription : <span data-bind="text: dateFinInscription"/></p>
         </div>
     </div>

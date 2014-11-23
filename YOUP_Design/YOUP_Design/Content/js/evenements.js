@@ -106,15 +106,25 @@ var evenementModule = (function () {
 
     function adresseEvt(data) {
         var self = this;
-
-        self.id = ko.observable(data.Id);
-        self.ville = ko.observable(data.Ville);
-        self.codePostale = ko.observable(data.CodePostale);
-        self.adresse = ko.observable(data.Adresse);
-        self.longitude = ko.observable(data.Longitude);
-        self.latitude = ko.observable(data.Latitude);
-        self.pays = ko.observable(data.Pays);
-        self.nom = ko.observable(data.Nom);
+        if (data != null) {
+            self.id = ko.observable(data.Id);
+            self.ville = ko.observable(data.Ville);
+            self.codePostale = ko.observable(data.CodePostale);
+            self.adresse = ko.observable(data.Adresse);
+            self.longitude = ko.observable(data.Longitude);
+            self.latitude = ko.observable(data.Latitude);
+            self.pays = ko.observable(data.Pays);
+            self.nom = ko.observable(data.Nom);
+        } else {
+            self.id = ko.observable(0);
+            self.ville = ko.observable("");
+            self.codePostale = ko.observable("");
+            self.adresse = ko.observable("");
+            self.longitude = ko.observable("");
+            self.latitude = ko.observable("");
+            self.pays = ko.observable("");
+            self.nom = ko.observable("");
+        }
     }
 
     var timeLineViewModel = function (data, trieDepartement) {
