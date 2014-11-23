@@ -15,7 +15,7 @@ namespace YOUP_Design.WebApi.Historique
 {
     public class WebApiHistoriqueController
     {
-        private static string _UrlWebAPi = "http://youphistorique-wepapi.apphb.com/";
+        private static string _UrlWebAPi = System.Configuration.ConfigurationManager.AppSettings["ApiHistorique"];
         public static List<Utilisateur> GetUtilisateurs()
         {
             var users = new List<Utilisateur>();

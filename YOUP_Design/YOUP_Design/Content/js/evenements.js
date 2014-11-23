@@ -39,7 +39,8 @@ var evenementModule = (function () {
 
         /* SEARCH ADDRESS */
         function searchAddress(map) {
-            var adresse = document.getElementById('exampleInputAdresse').value;
+            var adresse = document.getElementById('Adresse').value;
+
             geocoder.geocode({ 'address': adresse }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
@@ -50,6 +51,10 @@ var evenementModule = (function () {
 
                     var latitude = marker.getPosition().lat();
                     var longitude = marker.getPosition().lng();
+                    //alert(marker.Adresse());
+
+                    $('#Latitude').val(latitude);
+                    $('#Longitude').val(longitude);
                     
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);

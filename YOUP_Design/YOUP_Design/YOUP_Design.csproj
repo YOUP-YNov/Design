@@ -248,6 +248,8 @@
     <Compile Include="Models\Blog\CommentaireModel.cs" />
     <Compile Include="Models\Blog\PubliciteModel.cs" />
     <Compile Include="Models\Common\DepartementParRegion.cs" />
+    <Compile Include="Models\Evenement\CustomEvenementCreate.cs" />
+    <Compile Include="Models\Evenement\EvenementCreate.cs" />
     <Compile Include="Models\Evenement\EvenementTimelineFront.cs" />
     <Compile Include="Models\Evenement\EventCreation.cs" />
     <Compile Include="Models\Evenement\EventStateEnumFront.cs" />

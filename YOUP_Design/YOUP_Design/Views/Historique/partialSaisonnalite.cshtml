@@ -33,6 +33,54 @@
     }
 </script>
 
+@*Code à intégrer (pour le changement de la date au format voulu)*@
+@*<script>
+    //var events = @Html.Raw(Model);
+    console.log(@Json.Encode(Html.Raw(ViewBag.Events)));
+    //    {id : 1,
+    //        dateEvent : "2015-02-06T00:00:00"},
+    //    {id : 1,
+    //        dateEvent : "2015-06-06T00:00:00"},
+    //    {id : 1,
+    //        dateEvent : "2015-07-06T00:00:00"},
+    //    {id : 1,
+    //        dateEvent : "2015-02-06T00:00:00"},
+    //    {id : 1,
+    //        dateEvent : "2015-09-06T00:00:00"},
+
+    //];
+
+    var date = moment("2015-02-06T00:00:00").format('YYYY, MM, DD');
+    var month = moment("2015-02-06T00:00:00").format("MM");
+
+    var startMonth = moment("2015-02-06T00:00:00").format("MM");
+    var endMonth = moment("2015-09-06T00:00:00").format("MM");
+    var nbMmonths = endMonth - startMonth;
+
+    console.log(nbMmonths);
+
+    var eventsByMonth = new Array();
+
+    for (var i = 0; i <= nbMmonths; i++) {
+        eventsByMonth.push({ month: parseInt(startMonth) + i });
+    }
+
+    console.log(eventsByMonth);
+
+
+    for (var i = 0; i < eventsByMonth.length; i++) {
+        var nbEventsByMonth = 0;
+        events.forEach(function (element, index) {
+            if (moment(element.DateEvenement).format("MM") == eventsByMonth[i].month) {
+                nbEventsByMonth++;
+            }
+        });
+        eventsByMonth[i].nbEvents = nbEventsByMonth;
+    }
+
+    console.log(eventsByMonth);
+</script>*@
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 

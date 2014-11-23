@@ -8,6 +8,10 @@ using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Models.Evenement.templatesObjects;
 using YOUP_Design.Classes.Evenement;
 using YOUP_Design.Models.Common;
+using YOUP_Design.Models.Evenement;
+using YOUP_Design.Models.Profile;
+using RestSharp;
+using Service.Evenement.ExpositionAPI.Models.ModelCreate;
 using YOUP_Design.WebApi.Evenement;
 
 namespace YOUP_Design.Controllers
@@ -15,6 +19,61 @@ namespace YOUP_Design.Controllers
     public class EvenementsController : Controller
     {
         string ApiEvenement = System.Configuration.ConfigurationManager.AppSettings["ApiEvenement"];
+
+        public T Execute<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
+
+        public void setEvent(EventCreation e, int id_utilisateur, Guid token)
+        {
+            var request = new RestRequest("api/Evenement?token=" + token.ToString(), Method.POST);
+            string[] adr = e.Adresse.Split(',');
+
+            decimal lat;
+            Decimal.TryParse(e.Latitude, out lat);
+            decimal lon;
+            Decimal.TryParse(e.Longitude, out lon);
+
+            var evenement = new EvenementCreate()
+            {
+                TitreEvenement = e.TitreEvenement,
+                DescriptionEvenement = e.DescriptionEvenement,
+                DateEvenement = e.DateEvenement,
+                MaximumParticipant = e.MaximumParticipant,
+                Price = e.Prix,
+                Payant = e.Prix > 0,
+                Public = e.Public,
+                HashTag = e.MotsCles.Split(','),
+                EventAdresse = new EventLocationFront()
+                {
+                    Adresse = adr[0],
+                    Ville = adr[1],
+                    CodePostale = "33300",
+                    Pays = "France",
+                    Latitude = lat,
+                    Longitude = lon
+                },
+                Galleries = new List<EventImageFront>()
+                    {
+                        new EventImageFront()
+                        {
+                            Url = e.ImageUrl
+                        }
+                    }
+            };
+
+            var friends = new List<long>();
+
+            request.AddParameter("", evenement);
+            request.AddParameter("", friends);
+
+            Execute<EventCreation>(request);
+
+        }
+
         
         #region TimeLine
         public struct region
@@ -187,6 +246,28 @@ namespace YOUP_Design.Controllers
         public ActionResult Creation()
         {
             return View();
+        }
+
+        
+        [HttpPost]
+        public ActionResult Creation(EventCreation model)
+        {
+            if(ModelState.IsValid)
+            {
+                var u = ProfileCookie.GetCookie(HttpContext);
+                if(u == null)
+                {
+                    ViewBag.Error = "Vous devez être authentifié.";
+                    return View(model);
+                }
+                setEvent(model, u.Utilisateur_Id, u.Token);
+
+                return RedirectToAction("Index", "Evenements");
+            }
+
+            ViewBag.Error = "Veuillez remplir tous les champs.";
+
+            return View(model);
         }
 
         //
