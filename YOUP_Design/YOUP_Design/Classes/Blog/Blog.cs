@@ -43,6 +43,7 @@ namespace YOUP_Design.Classes.Blog
         /// Assigne ou récupère l'id du thème.
         /// </summary>
         public int Theme_id { get; set; }
+        public Theme Theme { get; set; }
         /// <summary>
         /// COnstructeur vide du blog.
         /// </summary>
