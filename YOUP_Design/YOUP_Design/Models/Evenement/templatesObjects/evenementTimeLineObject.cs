@@ -36,7 +36,7 @@ namespace YOUP_Design.Models.Evenement.templatesObjects
         {
             this.idEvenement = evt.Evenement_id;
             this.titre = evt.TitreEvenement;
-            this.imgEvt = evt.ImageUrl ?? "";
+            this.imgEvt = string.IsNullOrEmpty(evt.ImageUrl) ? "/Images/default_evenement.jpg" : evt.ImageUrl;
             this.adresse = evt.Adresse;
             this.prix = evt.Prix.ToString();
             this.description = evt.DescriptionEvenement;
@@ -46,6 +46,7 @@ namespace YOUP_Design.Models.Evenement.templatesObjects
             this.nbMaxParticipant = 0;
             this.imgOrganisateur = evt.OrganisateurImageUrl;
             this.organisateur = evt.OrganisateurPseudo;
+            this.nbParticipant = evt.NbParticipant;
         }
 
          public evenementTimeLineObject(EvenementFront evt)
@@ -53,12 +54,13 @@ namespace YOUP_Design.Models.Evenement.templatesObjects
             this.idEvenement = evt.Id;
             this.titre = evt.TitreEvenement;
             this.imgEvt = evt.Galleries != null && evt.Galleries.FirstOrDefault() != null ? evt.Galleries.FirstOrDefault().Url : "";
+            this.imgEvt = string.IsNullOrEmpty(this.imgEvt) ? "/Images/default_evenement.jpg" : this.imgEvt;
             this.adresse = evt.EventAdresse;
             this.prix = evt.Price.ToString();
             this.description = evt.DescriptionEvenement;
             this.date = evt.DateEvenement.ToShortDateString();
             this.categorie = evt.Categorie != null ? evt.Categorie.Libelle : "";
-            this.nbParticipant = 0;
+            this.nbParticipant = evt.NbParticipant;
             this.nbMaxParticipant = evt.MaximumParticipant;
             this.imgOrganisateur = evt.OrganisateurImageUrl;
             this.organisateur = evt.OrganisateurPseudo;

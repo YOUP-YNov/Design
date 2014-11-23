@@ -7,16 +7,27 @@ using System.Web.Mvc;
 using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Models.Evenement.templatesObjects;
 using YOUP_Design.Classes.Evenement;
+using YOUP_Design.Models.Common;
 
 namespace YOUP_Design.Controllers
 {
     public class EvenementsController : Controller
     {
+        string ApiEvenement = System.Configuration.ConfigurationManager.AppSettings["ApiEvenement"];
         //
         // GET: /Evenement/
         public  ActionResult Index()
         {
+            ViewBag.apiEvenement = ApiEvenement;
             return View();
+        }
+
+        public ActionResult VueParRegion(string region)
+        {
+            List<int> departements = DepartementParRegion.ListeDepartementParRegion[region];
+            ViewBag.listeDepartementToView = departements.ToArray();
+            ViewBag.apiEvenement = ApiEvenement;
+            return View("Index");
         }
 
         private struct timeLineStruct
@@ -25,9 +36,10 @@ namespace YOUP_Design.Controllers
             public string lastDate;
         }
 
+        [HttpPost]
         public JsonResult TimeLine(List<EvenementTimelineFront> listeEvenement)
         {
-            var timeLine = transformObjects(listeEvenement);
+            var timeLine = listeEvenement != null ? transformObjects(listeEvenement) : new timeLineStruct();
             return Json(new { timeLine = timeLine });
         }
 
@@ -38,18 +50,23 @@ namespace YOUP_Design.Controllers
 
             var dateString = new List<String>();
             dateString.Add("Aujourd'hui");
-            dateString.Add("demain");
+            dateString.Add("Demain");
 
             foreach(var date in dates)
             {
                 if (date.Date > DateTime.Now.AddDays(7) && date.Date < DateTime.Now.AddDays(14))
                 {
-                    dateString.Add(string.Format("La semaine prochaine (entre le {0} et le {1})"
+                    var nextWeekString = string.Format("La semaine prochaine (entre le {0} et le {1})"
                         , DateTime.Now.AddDays(7).ToShortDateString()
-                        , DateTime.Now.AddDays(14).ToShortDateString()));
+                        , DateTime.Now.AddDays(14).ToShortDateString());
+
+                    if (!dateString.Contains(nextWeekString))
+                    {
+                        dateString.Add(nextWeekString);
+                    }
                 }
                 //on ne veux que les date supérieur à ajourd'hui et demain
-                else if (date.Date > DateTime.Now.AddDays(1))
+                else if (date.Date > DateTime.Now.AddDays(1) && date.Date <= DateTime.Now.AddDays(7))
                 {
                     dateString.Add(date.ToString());
                 }
@@ -84,13 +101,16 @@ namespace YOUP_Design.Controllers
             {
                 listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date == DateTime.Now.Date).ToList();
             }
-            else if (date == "demain")
+            else if (date == "Demain")
             {
                 listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date == DateTime.Now.AddDays(1).Date).ToList();
             }
             else if (date == "La semaine prochaine")
             {
-                listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date > DateTime.Now.AddDays(7).Date).ToList();
+                listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date > DateTime.Now.AddDays(7).Date && t.DateEvenement.Date < DateTime.Now.AddDays(14).Date).ToList();
+            }else if (date == "Plus tard ...")
+            {
+                listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date >= DateTime.Now.AddDays(14)).ToList();
             }
             //les dates entre demain et la semaine prochaine
             else

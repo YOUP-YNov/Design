@@ -8,7 +8,8 @@
 @Scripts.Render("~/Content/js/evenements.js")
 <script type="text/javascript">
     $(document).ready(function () {
-        evenementModule.init();
+        evenementModule.apiUrl = "@ViewBag.apiEvenement";
+        evenementModule.init(@Html.Raw(Json.Encode(ViewBag.listeDepartementToView)));
     });
 </script>
 
@@ -90,12 +91,12 @@
                     <div data-bind="foreach: { data: evenementDate.listeEvenements, as: 'evt' }">
                         <a class="row moreOneEvent" href="#" data-bind="'evenementId': idEvenement, visible: visible, click: goDetail">
                             <div class="col-lg-2">
-                                <img class="photoTimelineEvent img-responsive img-rounded text-center" src="~/Images/default_profil.png" alt="photo evenement" data-bind="src: evt.imgEvt()">
+                                <img class="photoTimelineEvent img-responsive img-rounded text-center" src="" alt="photo evenement" data-bind="attr: {src: evt.imgEvt()}">
                             </div>
                             <div class="col-lg-10">
                                 <span class="titreTimelineEvent" data-bind="text: evt.titre"></span>
                                 <div>
-                                    <img class="photoTimelineProfil img-circle" src="~/Images/default_profil.png" alt="photo evenement">
+                                    <img class="photoTimelineProfil img-circle" src="" alt="photo evenement" data-bind="attr: {src: evt.imgOrganisateur()}">
                                     <span class="parUtilisateur" data-bind="text: evt.utilisateur"></span>
                                 </div>
                                 <div class="descriptionEventTimeline" data-bind="text: evt.description">

@@ -24,5 +24,6 @@ namespace YOUP_Design.Models.Evenement.webApiObjects
         public string ImageUrl { get; set; }
         public string OrganisateurPseudo { get; set; }	
         public string OrganisateurImageUrl { get; set; }
+        public int NbParticipant { get; set; }
     }
 }

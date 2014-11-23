@@ -1,5 +1,8 @@
 ﻿
 var evenementModule = (function () {
+    var apiUrl = "";
+    var departements;
+    var trieDepartement;
 
     function initializeMap(Lat, Long) {
         var mapOptions = {
@@ -76,7 +79,7 @@ var evenementModule = (function () {
 
         self.idEvenement = ko.observable(data.idEvenement);
         self.titre = ko.observable(data.titre);
-        self.imgEvt = ko.observable(data.imgEvt == "" || data.imgEvt == null ? "~/Images/default_profil.png" : data.imgEvt);
+        self.imgEvt = ko.observable(data.imgEvt == "" || data.imgEvt == null ? "/Images/default_evenement.jpg" : data.imgEvt);
         self.prix = ko.observable(data.prix == 0 ? "gratuit" : data.prix + " €");
         self.description = ko.observable(data.description);
         self.date = ko.observable(data.date);
@@ -114,8 +117,9 @@ var evenementModule = (function () {
         self.nom = ko.observable(data.Nom);
     }
 
-    var timeLineViewModel = function (data) {
+    var timeLineViewModel = function (data, trieDepartement) {
         var self = this;
+        self.trieDepartement = trieDepartement;
         self.lastDate = new Date(data.lastDate);
 
         self.listeEvenementDate = ko.observableArray();
@@ -124,7 +128,7 @@ var evenementModule = (function () {
         for (var i = 0; i < data.liste.length; i++)
             self.listeEvenementDate.push(new listeEvenementDate(data.liste[i]));
 
-        this.loadReports = function () {
+        self.loadReports = function () {
             if (self.lastDate == null)
             {
                 var dateString = self.RecupererDerniereDate();
@@ -141,7 +145,7 @@ var evenementModule = (function () {
             parameters = '?startRange=' + StartDateToGo + '&endRange=' + endRange.toString('yyyy/MM/dd');
             $.ajax({
                 type: "GET",
-                url: apiUrl + 'Evenement' + parameters,
+                url: evenementModule.apiUrl + 'Evenement' + parameters,
                 contentType: 'application/json',
                 success: function (msg) {
                     var datas = msg;
@@ -189,14 +193,14 @@ var evenementModule = (function () {
             });
         }
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                self.loadReports();
-            }
-        });
+        if (self.trieDepartement == false) {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > ($(document).height() - $(window).height()) - 250) {
+                    self.loadReports();
+                }
+            });
+        }
     }
-
-    var apiUrl = "http://youp-evenementapi.azurewebsites.net/api/";
 
     var recuperationListeEvenements = function () {
         var startRange = Date.today().toString('yyyy/MM/dd');
@@ -204,26 +208,44 @@ var evenementModule = (function () {
         parameters = '?startRange=' + startRange + '&endRange=' + endRange;
         $.ajax({
             type: "GET",
-            url: apiUrl + 'Evenement' + parameters,
+            url: evenementModule.apiUrl + 'Evenement' + parameters,
             contentType: 'application/json',
             success: function (msg) {
                 var datas = msg;
-                traiterListeEvenement(datas);
+                traiterListeEvenement(datas,false);
             }
         });
     }
 
-    var traiterListeEvenement = function (data) {
+    var recuperationListeEvenementParDepartement = function () {
+        var Dpts = evenementModule.departements;
+
         $.ajax({
             type: "POST",
-            url: 'Evenements/TimeLine',
+            url: evenementModule.apiUrl + 'Evenement/Dept',
+            data: JSON.stringify(Dpts),
+            contentType: 'application/json',
+            success: function (msg) {
+                var datas = msg;
+                traiterListeEvenement(datas, true);
+            }
+        });
+    }
+
+    var traiterListeEvenement = function (data, trieDepartement) {
+        if (data.length > 50)
+        {
+            data = data.slice(0, 20);
+        }
+        $.ajax({
+            type: "POST",
+            url: '/Evenements/TimeLine',
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify(data ),
+            data: JSON.stringify(data),
             success: function (msg) {
                 var datas = msg.timeLine;
-
-                ko.applyBindings(new timeLineViewModel(datas));
+                ko.applyBindings(new timeLineViewModel(datas, trieDepartement));
                 $("#timeLineEvent").show();
             }
         });
@@ -233,7 +255,7 @@ var evenementModule = (function () {
     {
         $.ajax({
             type: "GET",
-            url: apiUrl + 'Evenement/' + id,
+            url: evenementModule.apiUrl + 'Evenement/' + id,
             success: function (data) {
                 DetaillerEvenement(data);
             }
@@ -259,9 +281,14 @@ var evenementModule = (function () {
         });
     }
 
-    var init = function () {
+    var init = function (data) {
+        if (data != null) {
+            evenementModule.departements = data;
+            recuperationListeEvenementParDepartement(data);
+        } else {
+            recuperationListeEvenements();
+        }
         $("#timeLineEvent").hide();
-        recuperationListeEvenements();
     }
 
     var initDetail = function (id) {

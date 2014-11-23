@@ -17,6 +17,8 @@
         /// </summary>
         public long Id { get; set; }
 
+        public int NbParticipant { get; set; }
+
         /// <summary>
         /// Assigne ou récupère l'id de l'organisateur de l'évenement.
         /// </summary>
