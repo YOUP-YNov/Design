@@ -63,6 +63,7 @@ var evenementModule = (function () {
 
         self.date = ko.observable(data.date);
         self.listeEvenements = ko.observableArray();
+        self.show = ko.observable(true);
 
         self.init = function(data)
         {
@@ -96,11 +97,17 @@ var evenementModule = (function () {
         self.public = ko.observable(data.visible);
         self.hashTag = ko.observable(data.hashTag);
 
+        self.show = ko.observable(true);
+
         self.goDetail = function () {
 
             var id = self.idEvenement();
             var url = '/Evenements/details/' + id;
             window.location.href = url;
+        }
+
+        self.setShow = function (show) {
+            self.show(show);
         }
     }
 
@@ -131,12 +138,99 @@ var evenementModule = (function () {
         var self = this;
         self.trieDepartement = trieDepartement;
         self.lastDate = new Date(data.lastDate);
-
         self.listeEvenementDate = ko.observableArray();
-
-
         for (var i = 0; i < data.liste.length; i++)
             self.listeEvenementDate.push(new listeEvenementDate(data.liste[i]));
+
+        self.search = function () {
+            var categorie = $(".selectCategorieEvent select").val();
+            var region = $(".selectRegionEvent select").val();
+            var dpt = $(".selectRegionEvent select option:selected").attr("dpts");
+            var date = $("#dateEvt").val();
+            var texte = $("#txtRechercheEvt").val();
+
+            for (var i = 0; i < self.listeEvenementDate().length; i++) {
+                var evenementDate = self.listeEvenementDate()[i];
+                for (var j = 0; j < evenementDate.listeEvenements().length; j++) {
+                    var evenement = evenementDate.listeEvenements()[j];
+                    evenement.show(true);
+                }
+                evenementDate.show(true);
+            }
+
+            if (region != "Région") {
+                for (var i = 0; i < self.listeEvenementDate().length; i++) {
+                    var evenementDate = self.listeEvenementDate()[i];
+                    var show = false;
+                    for (var j = 0; j < evenementDate.listeEvenements().length; j++) {
+                        var evenement = evenementDate.listeEvenements()[j];
+                        if (dpt.indexOf(evenement.adresse().codePostale().substr(0, 2)) == "-1") {
+                            evenement.setShow(false);
+                        } else {
+                            evenement.setShow(true);
+                            show = true;
+                        }
+                    }
+                    evenementDate.show(show);
+                }
+            }
+            if (texte != "") {
+                for (var i = 0; i < self.listeEvenementDate().length; i++) {
+                    var evenementDate = self.listeEvenementDate()[i];
+                    var show = false;
+                    for (var j = 0; j < evenementDate.listeEvenements().length; j++) {
+                        var evenement = evenementDate.listeEvenements()[j];
+
+                        if (evenement.titre().indexOf(texte) == "-1" && evenement.description().indexOf(texte) == "-1") {
+                            evenement.setShow(false);
+                        } else {
+                            show = true;
+                        }
+                    }
+                    evenementDate.show(show);
+                }
+            }
+            if(categorie != "Catégories")
+            {
+                for (var i = 0; i < self.listeEvenementDate().length; i++) {
+                    var evenementDate = self.listeEvenementDate()[i];
+                    var show = false;
+                    for (var j = 0; j < evenementDate.listeEvenements().length; j++) {
+                        var evenement = evenementDate.listeEvenements()[j];
+
+                        if (categorie != evenement.categorie()) {
+                            evenement.setShow(false);
+                        } else {
+                            show = true;
+                        }
+                    }
+                    evenementDate.show(show);
+                }
+            }
+            if (date != "")
+            {
+                jour = date.split('-')[2];
+                mois = date.split('-')[1];
+                annee = date.split('-')[0];
+                var dateToCompare = jour + "/" + mois + "/" + annee;
+                for(var i = 0; i < self.listeEvenementDate().length; i++)
+                {
+                    var evenementDate = self.listeEvenementDate()[i];
+                    var show = false;
+                    for (var j = 0; j < evenementDate.listeEvenements().length; j++) {
+                        var evenement = evenementDate.listeEvenements()[j];
+                        
+                        if (dateToCompare != evenement.date())
+                        {
+                            evenement.setShow(false);
+                        } else {
+                            show = true;
+                        }
+                    }
+                    evenementDate.show(show);
+                }
+            }
+        }
 
         self.loadReports = function () {
             if (self.lastDate == null)

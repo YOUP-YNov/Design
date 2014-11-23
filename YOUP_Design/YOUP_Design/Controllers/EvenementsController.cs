@@ -8,6 +8,7 @@ using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Models.Evenement.templatesObjects;
 using YOUP_Design.Classes.Evenement;
 using YOUP_Design.Models.Common;
+using YOUP_Design.WebApi.Evenement;
 
 namespace YOUP_Design.Controllers
 {
@@ -16,11 +17,36 @@ namespace YOUP_Design.Controllers
         string ApiEvenement = System.Configuration.ConfigurationManager.AppSettings["ApiEvenement"];
         
         #region TimeLine
+        public struct region
+        {
+            public string libelle;
+            public string dpts;
+        }
+
+        public List<region> getRegion()
+        {
+            var listeRegion = new List<region>();
+            foreach (var region in DepartementParRegion.ListeDepartementParRegion)
+            {
+                var regionAdd = new region();
+                regionAdd.libelle = region.Key;
+                foreach (var dpt in region.Value)
+                {
+                    regionAdd.dpts += dpt.ToString() + ";";
+                }
+                listeRegion.Add(regionAdd);
+            }
+            return listeRegion;
+        }
+
         //
         // GET: /Evenement/
         public  ActionResult Index()
         {
             ViewBag.apiEvenement = ApiEvenement;
+            ViewBag.listeCategorie = webApiEvenementController.getCategorie();
+
+            ViewBag.region = getRegion();
             return View();
         }
 
@@ -29,6 +55,7 @@ namespace YOUP_Design.Controllers
             List<int> departements = DepartementParRegion.ListeDepartementParRegion[region];
             ViewBag.listeDepartementToView = departements.ToArray();
             ViewBag.apiEvenement = ApiEvenement;
+            ViewBag.listeCategorie = webApiEvenementController.getCategorie();
             return View("Index");
         }
 
@@ -70,7 +97,7 @@ namespace YOUP_Design.Controllers
                 //on ne veux que les date supérieur à ajourd'hui et demain
                 else if (date.Date > DateTime.Now.AddDays(1) && date.Date <= DateTime.Now.AddDays(7))
                 {
-                    dateString.Add(date.ToString());
+                    dateString.Add(date.ToShortDateString());
                 }
             }
 
@@ -118,7 +145,7 @@ namespace YOUP_Design.Controllers
             else
             {
                 listeEvenementTotransforme = listeEvenementApi
-                    .Where(t => t.DateEvenement.Date.ToString() == date).ToList();
+                    .Where(t => t.DateEvenement.Date.ToShortDateString() == date).ToList();
             }
 
             return listeEvenementTotransforme;
@@ -137,6 +164,7 @@ namespace YOUP_Design.Controllers
                 return Json("");
             }
         }
+        
         #endregion
         //
         // GET: /Evenement/Details/5
