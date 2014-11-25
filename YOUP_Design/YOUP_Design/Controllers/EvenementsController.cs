@@ -43,7 +43,9 @@ namespace YOUP_Design.Controllers
                 DescriptionEvenement = e.DescriptionEvenement,
                 DateEvenement = e.DateEvenement,
                 MaximumParticipant = e.MaximumParticipant,
+                MinimumParticipant = 0,
                 Price = e.Prix,
+                Premium = false,
                 Payant = e.Prix > 0,
                 Public = e.Public,
                 HashTag = e.MotsCles.Split(','),
@@ -262,7 +264,7 @@ namespace YOUP_Design.Controllers
                 }
                 setEvent(model, u.Utilisateur_Id, u.Token);
 
-                return RedirectToAction("Index", "Evenements");
+                //return RedirectToAction("Index", "Evenements");
             }
 
             ViewBag.Error = "Veuillez remplir tous les champs.";

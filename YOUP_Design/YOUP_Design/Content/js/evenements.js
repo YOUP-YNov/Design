@@ -433,8 +433,10 @@ $(function () {
                 d.append('file-' + i, file);
             });
             $.ajax("http://" + location.host + "/Upload/UploadPicture?g=" + el[0].name, { type: "POST", data: d, cache: false, contentType: false, processData: false }).success(function (d) {
-                if (d != "fail")
+                if (d != "fail") {
                     $("#photo-profil").attr("src", d); // id img à mettre a jour
+                    $('#ImageUrl').val(d);
+                }
                 else
                     alert("invalid file type.");
             }).fail(function () {

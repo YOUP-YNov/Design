@@ -6,8 +6,6 @@
     ViewBag.ActiveMenu = "Evenements";
 }
 
-<script src="~/Content/js/bootstrap-filestyle.min.js"></script>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false">
 </script>
 <script type="text/javascript">
@@ -30,7 +28,8 @@
             <img class="img-rounded" src="~/Images/nav-logo.png" id="photo-profil" width="150" height="150" style="" />
             <p>Ajouter une photo </p>
         </div>
-        <input type="hidden" name="ImageUrl" id="ImageUrl" value="" />
+        @*<input type="hidden" name="ImageUrl" id="ImageUrl" value="" />*@
+        @Html.TextBoxFor(x => x.ImageUrl, new { @type = "hidden" })
 
         <div class="row">
             <div class="col-lg-2 text-center">
@@ -48,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputDate">Date</label>
-                        <input type="date" class="form-control" name="DateEvenement" id="DateEvenement" value=" " />
+                        <input type="date" class="form-control" name="DateEvenement" id="DateEvenement" value="" />
                     </div>
                     <div class="form-group">
                         <label for="exampleInputNombre">Nombre de personnes max</label>
