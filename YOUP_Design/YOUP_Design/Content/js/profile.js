@@ -1,49 +1,4 @@
-﻿$(document).ready(function () {
-
-    $('#afficheProfil').fadeIn();
-    $('#lienPro').css("background-color", "#428bca");
-
-    $('#afficheActivite').hide();
-    $('#afficheAmis').hide();
-
-    $(document).on('click', "#lienAm", function () {
-
-        $('#afficheProfil').hide();
-        $('#afficheActivite').hide();
-        $('#afficheAmis').fadeIn();
-
-        $('#lienAct').css("background-color", "#eeeeee");
-        $('#lienPro').css("background-color", "#eeeeee");
-        $('#lienAm').css("background-color", "#428bca");
-
-    });
-
-    $(document).on('click', "#lienPro", function () {
-
-        $('#afficheProfil').fadeIn();
-        $('#afficheActivite').hide();
-        $('#afficheAmis').hide();
-
-        $('#lienAct').css("background-color", "#eeeeee");
-        $('#lienPro').css("background-color", "#428bca");
-        $('#lienAm').css("background-color", "#eeeeee");
-
-    });
-
-    $(document).on('click', "#lienAct", function () {
-
-        $('#afficheProfil').hide();
-        $('#afficheActivite').fadeIn();
-        $('#afficheAmis').hide();
-
-        $('#lienAct').css("background-color", "#428bca");
-        $('#lienPro').css("background-color", "#eeeeee");
-        $('#lienAm').css("background-color", "#eeeeee");
-
-    });
-});
-
-var ProfilModule = (function () {
+﻿var ProfilModule = (function () {
 
     var apiUrl = "http://aspmoduleprofil.azurewebsites.net/api/";
 
@@ -64,17 +19,6 @@ var ProfilModule = (function () {
             }
         });
     }
-
-    var initProfil = function (id) {
-        recupererProfilParId(id);
-    }
-
-    return {
-        initProfl: initProfil
-    }
-})();
-
-var profilModule = (function () {
 
     function initializeMap(Lat, Long) {
         var mapOptions = {
@@ -102,6 +46,8 @@ var profilModule = (function () {
 
         var map = new google.maps.Map(document.getElementById('map-canvas-profil'),
             mapOptions);
+
+        searchAddress(map);
 
         var oA = document.getElementById('btnRechercheAdresseProfil');
         oA.onclick = function () {
@@ -177,7 +123,12 @@ var profilModule = (function () {
         initializeMapProfilInscription();
     }
 
+    var initProfil = function (id) {
+        recupererProfilParId(id);
+    }
+
     return {
+        initProfl: initProfil,
         initMapProfil: initMapProfil,
         initMapProfilIns: initMapProfilIns
     }
