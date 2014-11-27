@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>
 @foreach (var user in ViewBag.usersResults)
 {
     <h1>@user.Nom</h1>
@@ -11,4 +11,51 @@
 @foreach (var youpevent in ViewBag.eventsResults)
 {
     <h1>@youpevent.TitreEvenement</h1>
-}
+}*@
+<div style="height:40px;">
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 panel panel-primary">
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">Profil</h3>
+            </div>
+            <div class="panel-body">
+                @foreach (var user in ViewBag.usersResults)
+                {
+                    <div class="row well">
+                        <div class="col-lg-2 text-center">
+                            <img src="@user.PhotoChemin" alt="Image de profil de @user.Pseudo" class="img-circle" style="height: 80px; width: 80px;" />
+                        </div>
+                        <div class="col-lg-6">
+                            <h3>@user.Pseudo - <small>@user.Prenom @user.Nom</small></h3>
+                            <p>@user.Ville (@user.CodePostal)</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p>@user.DateNaissance</p>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">Evenements</h3>
+            </div>
+            <div class="panel-body">
+                @foreach (var yevent in ViewBag.eventsResults)
+                {
+
+                }
+            </div>
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">Blogs</h3>
+            </div>
+            <div class="panel-body">
+                @foreach (var blog in ViewBag.blogsResults)
+                {
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
