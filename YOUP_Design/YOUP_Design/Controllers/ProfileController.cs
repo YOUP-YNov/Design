@@ -47,7 +47,7 @@ namespace YOUP_Design.Controllers
                 if (u != null)
                 {
                     ProfileCookie.CreateCookie(HttpContext, u);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Profile");
                 }
                 ViewBag.Error = "Email / Mot de passe incorrect";
             }
@@ -91,7 +91,7 @@ namespace YOUP_Design.Controllers
                 if(u != null)
                 {
                     ProfileCookie.CreateCookie(HttpContext, u);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Profile");
                 }
                 ViewBag.Error = "Impossible de creer le compte à partir des données renseigné.";
                 return View("inscription");

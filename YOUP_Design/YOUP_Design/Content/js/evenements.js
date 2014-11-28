@@ -3,6 +3,7 @@ var evenementModule = (function () {
     var apiUrl = "";
     var departements;
     var trieDepartement;
+    var markers = [];
 
     function initializeMap(Lat, Long) {
         var mapOptions = {
@@ -18,6 +19,7 @@ var evenementModule = (function () {
             map: map,
             position: map.getCenter()
         });
+        markers.push(marker);
     }
 
     function initializeMapCreation() {
@@ -33,6 +35,7 @@ var evenementModule = (function () {
 
         var oA = document.getElementById('btnRechercheAdresse');
         oA.onclick = function () {
+            setAllMap(null);
             searchAddress(map);
             return false;
         };
@@ -48,7 +51,7 @@ var evenementModule = (function () {
                         map: map,
                         position: results[0].geometry.location
                     });
-
+                    markers.push(marker);
                     var latitude = marker.getPosition().lat();
                     var longitude = marker.getPosition().lng();
                     //alert(marker.Adresse());
@@ -60,6 +63,12 @@ var evenementModule = (function () {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }
             });
+        }
+    }
+
+    function setAllMap(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
         }
     }
 

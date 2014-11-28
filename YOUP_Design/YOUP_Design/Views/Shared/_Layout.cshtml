@@ -62,7 +62,8 @@
                                     </span>
                                 </div>
                             </form>
-                            <a href="Profile/Login" class="btn btn-default navbar-btn navbar-right"> @if (cookieuser != null) { <text>Deconnexion</text> } else { <text>Connexion</text>}</a>
+                            <a @if (cookieuser != null) { <text> onclick="location.href = 'http://' + location.host + '/profile/logout';" </text> } else { <text> href="Profile/Login" </text> } class="btn btn-default navbar-btn navbar-right"> @if (cookieuser != null) { <text>Deconnexion</text> } else { <text>Connexion</text>}
+                            </a>
                         </div>
                     </div>
                     <div class="container-fluid nav-border">
