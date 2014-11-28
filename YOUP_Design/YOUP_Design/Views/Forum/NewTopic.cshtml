@@ -1,50 +1,42 @@
-﻿@using YOUP_Design.Classes.Profile;
+﻿@using YOUP_Design.Classes.Forum
 @{
-    ViewBag.Title = "Forum";
+    ViewBag.Title = "NewTopic";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Forum";
 }
-
-
 <div class="container">
-
-    @{
-        YOUP_Design.Classes.Forum.Categorie forum = ViewBag.forum;
-
-    }
-    <h1>@forum.Nom</h1>
-
     <div class="publicite well">
         Encart de publicité
     </div>
+    <div class="row">
+        <h2>Création Topic</h2>
+        <div class="panel-body">
 
+            @using (Html.BeginForm())
+            {
+                //<button type="submit" class="btn btn-primary">Enregistrer</button>
+                <div class="form-group">
+                    <label for="TitreTopic">Titre</label>
+                    <input type="text" class="form-control" id="TitreTopic" name="TitreTopic">
+                    <br>
 
+                    <label for="editor1">Informations supplémentaires :</label>
 
-    @{
-        List<YOUP_Design.Classes.Profile.Utilisateur> listUsers = ViewBag.users;
-
-    }
-    <div class="list-group">
-        @foreach (var t in ViewBag.topics)
-        {
-            <div class="row list-group-item">
-                <div class="col-sm-2">
-                    <br />
-                    <img class="img-circle  forumImg" src="@listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().PhotoChemin" alt=" user" />
+                    <textarea name="editor1" id="editor1" rows="10" style="width:100%" class="input-sm"></textarea>
+                    <script>
+                        // Replace the <textarea id="editor1"> with a CKEditor
+                        // instance, using default configuration.
+                        CKEDITOR.replace('editor1');
+                    </script>
 
                 </div>
-                <div class="col-sm-10">
-                    <h2><a href="/Forum/Discussion?id=@t.Topic_id">@t.Nom</a></h2>
-                    <p>Dernier message</p>
-                    <p>Description : @Html.Raw(t.DescriptifTopic)</p>
-                    <p>@t.DateCreation</p>
-                    <p>Par @listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().Pseudo</p>
-                </div>
-            </div>
-        }
 
-        <center> <div><a href="/Forum/NewTopic?id=@Request["id"]"><input type="button" class="btn btn-primary" value="Créer une nouvelle discution" /></a></div></center>
+                // ON PASSE L'ID DE LA CATEGORIE OU ON CREE LE TOPIC !
+                <input type="hidden" name="idCateg" id="idCateg" value="@Request["id"]" />
+                <input type="submit" value="envoyer" class="btn btn-primary" />
+            }
 
-        <br />
+
+        </div>
     </div>
 </div>

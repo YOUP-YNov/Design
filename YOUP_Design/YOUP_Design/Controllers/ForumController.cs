@@ -149,7 +149,10 @@ namespace YOUP_Design.Controllers
         public ActionResult NewTopic(int id)
         {
 
-
+            Categorie forum = new Categorie();
+            forum = this.GetForum(id);
+          
+            ViewBag.forum = forum;
             return View(id);
 
         }
