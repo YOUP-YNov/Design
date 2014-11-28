@@ -6,25 +6,16 @@
 }
 <div class="container">
     <h1>Index</h1>
-    <div class="publicite well">
-        Encart de publicité
-    </div>
-    <div class="rechercheForum">
-        <div class="moduleRecherche form-group input-group">
-            <input type="text" class="form-control" placeholder="Recherche Forum">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-    </div>
+
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            @{int i = 0;}
-            @foreach (var f in ViewBag.forums)
-            {
 
+        @{int i = 0;}
+        @foreach (var f in ViewBag.forums)
+        {
 
-                i += 1;
+            i += 1;
+            <div class="panel panel-default">
+
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h2 class="panel-title">
 
@@ -39,18 +30,19 @@
                         <ul>
                             @foreach (var c in ViewBag.categs)
                             {
-                                if (c.Forum_id == f.Forum_id) { 
-                                        
-                                        <li><a href="/Forum/Topics?id=@c.Sujet_id">@c.Nom</a></li>
+                                if (c.Forum_id == f.Forum_id)
+                                {
+
+                                    <li><a href="/Forum/Topics?id=@c.Sujet_id">@c.Nom</a></li>
                                 }
                             }
                         </ul>
                     </div>
                 </div>
 
-            }
+            </div>
 
-        </div>
+        }
 
     </div>
 </div>

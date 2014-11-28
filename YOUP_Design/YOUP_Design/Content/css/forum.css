@@ -2,11 +2,25 @@
 }
 
 .forumImg{
-    height:30px;
+    height:150px    ;
 }
 .forumImgDisc {
      height:150px;
 }
 .forumCatg{
     width:100%;
+}
+
+.panel-heading {
+    border-bottom-left-radius:12px;
+    border-bottom-right-radius:12px;
+}
+.panel-body{
+    
+    border-bottom-left-radius:12px;
+    border-bottom-right-radius:12px;
+}
+li{
+    list-style-type : none;
+    text-transform : capitalize;
 }

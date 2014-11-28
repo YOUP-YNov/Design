@@ -469,6 +469,7 @@
     <Content Include="Views\Blog\partialDeviceOS.cshtml" />
     <Content Include="Views\Historique\partialOS.cshtml" />
     <Content Include="Views\Profile\Detail.cshtml" />
+    <Content Include="Views\Forum\NewTopic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
