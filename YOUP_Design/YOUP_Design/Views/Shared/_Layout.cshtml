@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using YOUP_Design.Models.Profile;
+@{
+    var cookieuser = ProfileCookie.GetCookie(this.Context);
+}
+
+<!DOCTYPE html>
 <html lang="fr">
     <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -32,7 +37,6 @@
             <header>
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                     <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#youp-menu">
                                 <span class="sr-only">Toggle navigation</span>
@@ -42,12 +46,10 @@
                             </button>
                             <a class="navbar-brand" href="/"></a>
                         </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="youp-menu">
                             <ul class="nav navbar-nav">
                                 <li @if (@ViewBag.ActiveMenu == "Home") { <text> class="active" </text>   }>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                                <li @if (@ViewBag.ActiveMenu == "Profile") { <text> class="active" </text>  }>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                                <li @if (@ViewBag.ActiveMenu == "Profile") { <text> class="active" </text>  }>@Html.ActionLink("Profil", "Index", "Profile")</li>
                                 <li @if (@ViewBag.ActiveMenu == "Evenements") { <text> class="active" </text>  }>@Html.ActionLink("Evenements", "Index", "Evenements")</li>
                                 <li @if (@ViewBag.ActiveMenu == "Forum") { <text> class="active" </text>  }>@Html.ActionLink("Forum", "Index", "Forum")</li>
                                 <li @if (@ViewBag.ActiveMenu == "Blog") { <text> class="active" </text>  }>@Html.ActionLink("Blog", "Index", "Blog")</li>
@@ -60,7 +62,8 @@
                                     </span>
                                 </div>
                             </form>
-                            <a href="Profile/Create" class="btn btn-default navbar-btn navbar-right">Connexion</a>
+                            <a @if (cookieuser != null) { <text> onclick="location.href = 'http://' + location.host + '/profile/logout';" </text> } else { <text> href="Profile/Login" </text> } class="btn btn-default navbar-btn navbar-right"> @if (cookieuser != null) { <text>Deconnexion</text> } else { <text>Connexion</text>}
+                            </a>
                         </div>
                     </div>
                     <div class="container-fluid nav-border">
@@ -85,7 +88,7 @@
                         <div class="col-sm-4">
                             <ul class="footer-links">
                                 <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                                <li>@Html.ActionLink("Profile", "Index", "Profil")</li>
+                                <li>@Html.ActionLink("Profil", "Index", "Profile")</li>
                                 <li>@Html.ActionLink("Evenements", "Index", "Evenements")</li>
                                 <li>@Html.ActionLink("Forum", "Index", "Forum")</li>
                                 <li>@Html.ActionLink("Blog", "Index", "Blog")</li>
@@ -99,7 +102,7 @@
                                     Suivez Nous <br />
                                     <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
                                     <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-                                    <a href="#"><i class="fa fa-github-square fa-2x"></i></a>
+                                    <a href="https://github.com/YOUP-YNov"><i class="fa fa-github-square fa-2x"></i></a>
                                 </li>
                             </ul>
                         </div>
