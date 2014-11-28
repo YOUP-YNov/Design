@@ -5,30 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Forum";
 }
+
 <div class="container">
-    <h1>Forum</h1>
+    <a name="hautpage" id="hautpage"></a>
+
+    @{
+        YOUP_Design.Classes.Forum.Topic top = ViewBag.topic;
+
+    }
+    <h1>@top.Nom</h1>
 
     <div class="publicite well">
         Encart de publicité
     </div>
 
-    <div class="rechercheForum">
-        <div class="moduleRecherche form-group input-group">
-            <input type="text" class="form-control" placeholder="Recherche Forum">
-            <select class="form-control">
-                <option value="Categorie">Categorie</option>
-            </select>
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-    </div>
-    <a name="hautpage" id="hautpage"></a>
-    <div class="list-group"><div class="list-group-item">Forum > Jeux > Poker > Texas Hold'Em </div></div>
+
 
     @{
         List<YOUP_Design.Classes.Profile.Utilisateur> listUsers = ViewBag.users;
-          
+
     }
     @foreach (var m in ViewBag.messages)
     {
@@ -48,26 +43,28 @@
 
         </div>
     }
-    
+
     @using (Html.BeginForm())
     {
-       
-    
-        <div style="text-align:center;">
-        <h3>Ecris ton message :</h3>
-        @Html.ValidationMessageFor(Model => Model.ContenuMessage)
 
-        
-        <textarea name="editor1" id="editor1" rows="10" style="width:100%"  class="input-sm"></textarea>
-        <script>
-            // Replace the <textarea id="editor1"> with a CKEditor
-            // instance, using default configuration.
-            CKEDITOR.replace('editor1');
-        </script>
-        <br /><center> <div><input type="submit" class="btn btn-primary" value="Envoyer" /></div></center>
-        <br />
-    </div>
+
+        <div style="text-align:center;">
+            <h3>Ecris ton message :</h3>
+            @Html.ValidationMessageFor(Model => Model.ContenuMessage)
+
+
+            <textarea name="editor1" id="editor1" rows="10" style="width:100%" class="input-sm"></textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace('editor1');
+            </script>
+            <input type="hidden" name="idTopic" id="idTopic" value="@Request["id"]" />
+
+            <br /><center> <div><input type="submit" class="btn btn-primary" value="Envoyer" /></div></center>
+            <br />
+        </div>
     }
-    <a href="#hautpage"><div id="btntop"><input type="button" name="top" title="TOP" value="TOP" /></div></a>
-   
+    <a href="#hautpage"><img src="http://redecouvrirdieu.com/img/B1.svg" alt="top" /></a>
+
 </div>
