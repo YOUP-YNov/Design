@@ -1,0 +1,50 @@
+﻿@model YOUP_Design.Models.Blog.CommentaireModel
+@using YOUP_Design.Classes.Blog
+@using YOUP_Design.Classes.Profile
+@{
+    ViewBag.Title = "Blog_commentaire";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Blog";
+    List<Commentaire> comments = ViewData["ArticleComments"] as List<Commentaire>;
+    List<UtilisateurSmall> users = ViewData["ArticleCommentsOwner"] as List<UtilisateurSmall>;
+}
+<div class="container">
+
+
+    <div class="row">
+        <h2>Commentaire de l'article</h2>
+        <div class="list-group">
+            @for (int i = 0; i < comments.Count; i++ )
+            {
+                <div class="row list-group-item">
+                    <div class="col-sm-2">
+                        <p><img class="img-rounded article_view_image" src="@users[i].PhotoChemin" /></p>
+                        <p>@users[i].Pseudo</p>
+                    </div>
+                    <div class="col-sm-10">
+                        <p>@Html.Raw(comments[i].ContenuCommentaire)</p>
+                        <p>Commenté le : @comments[i].DateCreation</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm("CreateCommentaire", "Blog", FormMethod.Post))
+    {
+        <center>
+            <h3>Ecris ton message :</h3>
+            <input type="hidden" name="ArticleId" value="@ViewBag.articleId" />
+            <textarea name="ContenuCommentaire" id="editor1" rows="10" cols="80" class="input-sm"></textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace('editor1');
+            </script>
+        </center>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    </div>
+    }
+</div>

@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Blog_article_trueedit";
+}
+@using YOUP_Design.Classes.Blog
+@using YOUP_Design.Classes.Evenement
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Blog_article_edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ActiveMenu = "Blog";
+    IEnumerable<EvenementFront> events = ViewData["Evenements"] as IEnumerable<EvenementFront>;
+    Article article = ViewData["selectedArticle"] as Article;
+
+    var actualArticle = Html.Raw(JsonConvert.SerializeObject(article, new JsonSerializerSettings()
+    {
+        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+    }));
+}
+
+<div class="container">
+    <div class="publicite well">
+        Encart de publicité
+    </div>
+    <div class="row">
+        <h2>Création / Edition Article</h2>
+        <div class="panel-body">
+            @using (Html.BeginForm("UpdateArticle", "Blog", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <input type="hidden" name="Id" value="@article.Article_id" />
+                </div>
+                <div class="form-group">
+                    <label for="inputTitre">Titre</label>
+                    <input type="text" class="form-control" id="inputTitre" name="TitreArticle">
+                </div>
+                <div class="form-group">
+                    <label for="select_event">Evénement </label>
+                    <select name="EventId" class="form-control" id="select_event">
+                        <option value="-1">Aucun événement</option>
+                        @if (events != null)
+                        {
+                            foreach (var e in events)
+                            {
+                                <option value="@e.Id">@e.TitreEvenement</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Image</label>
+                    <div id="picPreview"></div>
+                    <input type="file" id="eventPicture1">
+                    <input type="hidden" name="ImageChemin" id="imageValue">
+                </div>
+                @*<div class="form-group">
+                        <label for="inputTags">Tags</label>
+                        <input type="text" class="form-control" id="inputTags" name="Tags">
+                        <p class="help-block">Merci de séparer les tags par des ";"</p>
+                    </div>*@
+                <div class="form-group">
+                    <label for="select_statut">Statut</label>
+                    <select name="Actif" class="form-control" id="select_statut">
+                        <option value="true" selected>Actif</option>
+                        <option value="false">Inactif</option>
+                    </select>
+                </div>
+                <center>
+                    <h3>Ecris ton message :</h3>
+                    <textarea name="ContenuArticle" id="editor1" rows="10" cols="80" class="input-sm"></textarea>
+                    <script>
+                        // Replace the <textarea id="editor1"> with a CKEditor
+                        // instance, using default configuration.
+                        CKEDITOR.replace('editor1');
+                    </script>
+                </center>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var a = @actualArticle;
+    $("#inputTitre").val(a.TitreArticle);
+    if(a.Evenement_id == null) 
+        $("#select_event option[value=-1]").attr('selected', 'selected');
+    else
+    $("#select_event option[value="+a.Evenement_id+"]").attr('selected', 'selected');
+    $("#imageValue").val(a.ImageChemin);
+    $("#picPreview").html("<img src='" + a.ImageChemin + "' width='50' height='50' />");
+    $("#select_statut option[value="+a.Actif+"]").attr('selected', 'selected');
+    $("#editor1").html(a.ContenuArticle);
+
+
+
+    $(":file").change(function () {
+        var d = new FormData();
+        var el = $(this);
+        if (el[0].files[0]) {
+            jQuery.each(el[0].files, function (i, file) {
+                d.append('file-' + i, file);
+            });
+            $.ajax("http://" + location.host + "/Blog/UploadPicture", { type: "POST", data: d, cache: false, contentType: false, processData: false }).success(function (d) {
+                if (d != "fail")
+                    $("#picPreview").html("<img src='" + d + "' width='50' height='50' />");
+                else
+                    alert("invalid file type.");
+            }).fail(function () {
+                console.log("echec de l'appel à la methode upload.");
+            });
+        }
+    });
+
+
+
+</script>
+
