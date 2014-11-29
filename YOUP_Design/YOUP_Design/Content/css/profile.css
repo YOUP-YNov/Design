@@ -83,6 +83,15 @@
     margin-bottom : 20px;
 }
 
+.btnDeleteProf{
+    margin-top:50px; 
+    color : red;
+}
+
+.btnDeleteProf a{
+    color : red;
+}
+
 /* CSS partialProfil */
 
 .bodyProfil {
