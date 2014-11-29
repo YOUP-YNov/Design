@@ -258,6 +258,7 @@
     <Compile Include="Models\Evenement\templatesObjects\evenementTimeLineObject.cs" />
     <Compile Include="Models\Forum\MessageModel.cs" />
     <Compile Include="Models\Forum\TopicModel.cs" />
+    <Compile Include="Models\Profile\AcceptFriendAPIConnecteur.cs" />
     <Compile Include="Models\Profile\AuthAPIConnecteur.cs" />
     <Compile Include="Models\Profile\CategorieAPIConnecteur.cs" />
     <Compile Include="Models\Profile\FriendAPIConnecteur.cs" />

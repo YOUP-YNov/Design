@@ -127,6 +127,24 @@ namespace YOUP_Design.Controllers
             var u = ProfileCookie.GetCookie(HttpContext);
             if (u != null)
                 ProfileCookie.RemoveCookie(HttpContext);
+            return RedirectToAction("Index", "Profile");
+        }
+
+        public async Task<ActionResult> DeleteFriend(int idF)
+        {
+            var u = ProfileCookie.GetCookie(HttpContext);
+
+            if (u != null)
+            {
+                var f = await FriendAPIConnecteur.Delete(u.Utilisateur_Id, idF);
+
+                if (f != null)
+                {
+                    return RedirectToAction("Index", "Profile");
+                }
+                return RedirectToAction("Index", "Profile");
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
