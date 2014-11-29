@@ -60,20 +60,22 @@
         <span class="titreAmis">En attente :</span>
         <div class="panel panel-default panelAmis">
             <ul class="panel-body list-group">
-                <li class="list-group-item liAmis">
-                    Vous n'avez pas d'amis ? Prenez un curly ;)
-                </li>
-
-                @*@foreach (UtilisateurSmall us in ViewBag.AcceptFriendRequest)
+                @*<li class="list-group-item liAmis">
+                        Vous n'avez pas d'amis ? Prenez un curly ;)
+                    </li>*@
+                @if (ViewBag.AcceptFriendRequest != null)
                 {
-                    <li class="list-group-item liAmis">
-                        <img class="photoProfilAmis img-circle" @if (@us.PhotoChemin != null) { <text> src="@us.PhotoChemin" </text>     } else { <text> src="/Images/default_profil.png" </text>     } alt="photo profil Amis">
-                        @us.Pseudo
-                        <button type="button" class=" badge btn btn-balanced btn-xs">
-                            Accepter
-                        </button>
-                    </li>
-                }*@
+                    foreach (UtilisateurSmall us in ViewBag.AcceptFriendRequest)
+                    {
+                        <li class="list-group-item liAmis">
+                            <img class="photoProfilAmis img-circle" @if (@us.PhotoChemin != null) { <text> src="@us.PhotoChemin" </text>        } else { <text> src="/Images/default_profil.png" </text>        } alt="photo profil Amis">
+                            @us.Pseudo
+                            <button type="button" class="accept-friend badge btn btn-balanced btn-xs" value="@us.Utilisateur_Id">
+                                Accepter
+                            </button>
+                        </li>
+                    }
+                }
 
             </ul>
         </div>
@@ -89,7 +91,7 @@
                     {
                         <li class="list-group-item liAmis">
                             <a href="Profile/Detail/@a.Utilisateur_Id">
-                                <img class="photoProfilAmis img-circle" @if (@a.PhotoChemin != null) { <text> src="@a.PhotoChemin" </text>     } else { <text> src="/Images/default_profil.png" </text>     } alt="photo profil Amis">
+                                <img class="photoProfilAmis img-circle" @if (@a.PhotoChemin != null) { <text> src="@a.PhotoChemin" </text>      } else { <text> src="/Images/default_profil.png" </text>      } alt="photo profil Amis">
                             </a>
                             @a.Pseudo
                             <a href="Profile/DeleteFriend/@a.Utilisateur_Id" class="badge btn btn-assertive btn-xs" name="@user.Utilisateur_Id">
@@ -110,3 +112,14 @@
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $(".accept-friend").click(function () {
+            var id = $(this).val();
+            $.ajax("http://" + location.host + "/Profile/AcceptFriend/" + id, {}).success(function (r) {
+                if (r)
+                    location.reload();
+            });
+        });
+    })
+</script>

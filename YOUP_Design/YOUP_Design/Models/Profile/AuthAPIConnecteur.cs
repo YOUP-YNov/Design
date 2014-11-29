@@ -28,6 +28,22 @@ namespace YOUP_Design.Models.Profile
                 return null;
             }
         }
+        public static async Task<Utilisateur> Get(Guid id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ProfileConstantes.UrlAPIProfile);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                // HTTP POST
+                var response = await client.GetAsync("api/Auth/" + id.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsAsync<Utilisateur>();
+                }
+                return null;
+            }
+        }
     }
 }

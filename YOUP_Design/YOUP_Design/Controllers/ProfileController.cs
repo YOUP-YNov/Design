@@ -142,9 +142,10 @@ namespace YOUP_Design.Controllers
             {
                 var f = await FriendAPIConnecteur.Delete(u.Utilisateur_Id, id);
 
-                if (f != null)
+                if (f)
                 {
                     u.Amis.Remove(u.Amis.FirstOrDefault(x => x.Utilisateur_Id == id));
+                    ProfileCookie.CreateCookie(HttpContext, u);
                     return RedirectToAction("Index", "Profile");
                 }
                 return RedirectToAction("Index", "Profile");
@@ -160,16 +161,35 @@ namespace YOUP_Design.Controllers
             if (u != null)
             {
                 var f = await FriendAPIConnecteur.Post(u.Utilisateur_Id, id);
-
-                if (f != null)
+                if (f)
                 {
-                    u.Amis.Add(u.Amis.FirstOrDefault(x => x.Utilisateur_Id == id));
-                    return RedirectToAction("Index", "Profile");
+                    var nu = await AuthAPIConnecteur.Get(u.Token);
+                    if (nu != null)
+                    {
+                        ProfileCookie.CreateCookie(HttpContext, nu);
+                        return RedirectToAction("Index", "Profile");
+                    }
                 }
                 return RedirectToAction("Index", "Profile");
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<ActionResult> AcceptFriend(int id)
+        {
+            var u = ProfileCookie.GetCookie(HttpContext);
+            var rep = await AcceptFriendAPIConnecteur.Post(u.Utilisateur_Id, id);
+            if(rep)
+            {
+                var nu = await AuthAPIConnecteur.Get(u.Token);
+                if (nu != null)
+                {
+                    ProfileCookie.CreateCookie(HttpContext, nu);
+                    return RedirectToAction("Index", "Profile");
+                }
+            }
+            return RedirectToAction("Index", "Profile");
         }
 
         [YoupAuthorize]

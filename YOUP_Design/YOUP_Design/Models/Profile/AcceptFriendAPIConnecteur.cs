@@ -13,9 +13,9 @@ namespace YOUP_Design.Models.Profile
 {
     public static class AcceptFriendAPIConnecteur
     {
-        public static readonly string urlAction = "api/AcceptFriend";
+        public static readonly string urlAction = "api/AcceptFriend/";
 
-        public static async Task<UtilisateurSmall> Get(int id)
+        public static async Task<IEnumerable<UtilisateurSmall>> Get(int id)
         {
             using (var client = new HttpClient())
             {
@@ -27,9 +27,7 @@ namespace YOUP_Design.Models.Profile
                 HttpResponseMessage response = await client.GetAsync(urlAction + id);
                 if (response.IsSuccessStatusCode)
                 {
-                    var rep = await response.Content.ReadAsStringAsync();
-                    //return new JavaScriptSerializer().Deserialize<List<UtilisateurSmall>>(rep);
-                    return await response.Content.ReadAsAsync<UtilisateurSmall>();
+                    return await response.Content.ReadAsAsync<IEnumerable<UtilisateurSmall>>();
                 }
                 return null;
             }

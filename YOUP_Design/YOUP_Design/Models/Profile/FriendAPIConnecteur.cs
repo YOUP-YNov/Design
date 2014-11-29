@@ -11,7 +11,7 @@ namespace YOUP_Design.Models.Profile
 {
     public static class FriendAPIConnecteur
     {
-        public static readonly string urlAction = "api/friend";
+        public static readonly string urlAction = "api/friend/";
         public static async Task<UtilisateurSmall> Get(int id)
         {
             using (var client = new HttpClient())
