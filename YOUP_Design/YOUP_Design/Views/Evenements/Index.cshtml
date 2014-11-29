@@ -8,7 +8,7 @@
 @Scripts.Render("~/Content/js/evenements.js")
 <script type="text/javascript">
     $(document).ready(function () {
-        evenementModule.apiUrl = "@ViewBag.apiEvenement";
+        evenementModule.apiUrl = "@ViewBag.apiEvenement" + "api/";
         evenementModule.init(@Html.Raw(Json.Encode(ViewBag.listeDepartementToView)));
     });
 </script>

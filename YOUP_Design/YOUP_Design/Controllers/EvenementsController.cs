@@ -114,6 +114,7 @@ namespace YOUP_Design.Controllers
             ViewBag.listeDepartementToView = departements.ToArray();
             ViewBag.apiEvenement = ApiEvenement;
             ViewBag.listeCategorie = webApiEvenementController.getCategorie();
+            ViewBag.region = getRegion();
             return View("Index");
         }
 

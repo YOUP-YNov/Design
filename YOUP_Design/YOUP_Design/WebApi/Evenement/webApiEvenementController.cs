@@ -19,7 +19,7 @@ namespace YOUP_Design.WebApi.Evenement
         public static List<EvenementCategorieFront> getCategorie ()
         {
             WebClient wc = new WebClient();
-            string json = wc.DownloadString(string.Concat(_apiEvenement, "/Categories"));
+            string json = wc.DownloadString(string.Concat(_apiEvenement, "api/Categories"));
             List<EvenementCategorieFront> result = new List<EvenementCategorieFront>();
             result.AddRange(JsonConvert.DeserializeObject<List<EvenementCategorieFront>>(json));
             return result;
