@@ -71,11 +71,6 @@ namespace Service.Evenement.ExpositionAPI.Models.ModelCreate
         public bool Premium { get; set; }
 
         /// <summary>
-        /// Assigne ou récupère la date de mise en avant de l'évenement
-        /// </summary>
-        public DateTime DateMiseEnAvant { get; set; }
-
-        /// <summary>
         /// Assigne ou récupère la visibilité de l'évènement
         /// </summary>
         public bool Public { get; set; }
@@ -84,11 +79,5 @@ namespace Service.Evenement.ExpositionAPI.Models.ModelCreate
         /// Assigne ou récupère la visibilité de l'évènement
         /// </summary>
         public bool Payant { get; set; }
-
-        /// <summary>
-        /// Assigne ou récupère l'id d'un topic
-        /// </summary>
-        public int Topic_id { get; set; }
-
     }
 }

@@ -22,7 +22,7 @@ namespace YOUP_Design.Controllers
     {
         string ApiEvenement = System.Configuration.ConfigurationManager.AppSettings["ApiEvenement"];
 
-        public void setEvent(EventCreation e, int id_utilisateur, Guid token)
+        public bool setEvent(EventCreation e, int id_utilisateur, Guid token)
         {
             string[] adr = e.Adresse.Split(',');
 
@@ -70,7 +70,15 @@ namespace YOUP_Design.Controllers
             WebClient client = new WebClient();
             client.Headers[HttpRequestHeader.ContentType] = "application/json";
             string json = JsonConvert.SerializeObject(customEvent);
-            string result = client.UploadString(ApiEvenement + "api/Evenement?token=" + token.ToString(), json);
+            try
+            {
+                string result = client.UploadString(ApiEvenement + "api/Evenement?token=" + token.ToString(), json);
+            }
+            catch (WebException we)
+            {
+                return false;
+            }
+            return true;
         }
 
 
@@ -261,9 +269,11 @@ namespace YOUP_Design.Controllers
                     ViewBag.Error = "Vous devez être authentifié.";
                     return View(model);
                 }
-                setEvent(model, u.Utilisateur_Id, u.Token);
-
-                //return RedirectToAction("Index", "Evenements");
+                
+                if(setEvent(model, u.Utilisateur_Id, u.Token))
+                {
+                    return RedirectToAction("Index", "Evenements");
+                }
             }
 
             ViewBag.Error = "Veuillez remplir tous les champs.";
