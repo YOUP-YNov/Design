@@ -15,6 +15,7 @@ using Service.Evenement.ExpositionAPI.Models.ModelCreate;
 using YOUP_Design.WebApi.Evenement;
 using System.Net;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace YOUP_Design.Controllers
 {
@@ -27,9 +28,9 @@ namespace YOUP_Design.Controllers
             string[] adr = e.Adresse.Split(',');
 
             decimal lat;
-            Decimal.TryParse(e.Latitude, out lat);
+            Decimal.TryParse(e.Latitude, NumberStyles.Float, CultureInfo.InvariantCulture,  out lat);
             decimal lon;
-            Decimal.TryParse(e.Longitude, out lon);
+            Decimal.TryParse(e.Longitude, NumberStyles.Float, CultureInfo.InvariantCulture, out lon);
 
             CustomEvenementCreate customEvent = new CustomEvenementCreate()
             {
