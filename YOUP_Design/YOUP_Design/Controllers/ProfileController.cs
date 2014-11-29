@@ -144,6 +144,26 @@ namespace YOUP_Design.Controllers
 
                 if (f != null)
                 {
+                    u.Amis.Remove(u.Amis.FirstOrDefault(x => x.Utilisateur_Id == id));
+                    return RedirectToAction("Index", "Profile");
+                }
+                return RedirectToAction("Index", "Profile");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<ActionResult> AddFriendRequest(int id)
+        {
+            var u = ProfileCookie.GetCookie(HttpContext);
+
+            if (u != null)
+            {
+                var f = await FriendAPIConnecteur.Post(u.Utilisateur_Id, id);
+
+                if (f != null)
+                {
+                    u.Amis.Add(u.Amis.FirstOrDefault(x => x.Utilisateur_Id == id));
                     return RedirectToAction("Index", "Profile");
                 }
                 return RedirectToAction("Index", "Profile");

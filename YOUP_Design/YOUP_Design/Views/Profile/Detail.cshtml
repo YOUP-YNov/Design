@@ -89,11 +89,11 @@
         <div class="col-lg-2 text-center">
         </div>
     </div>
-    <a href="javascript:history.back()" class="btn btn-default btn-defaultProfil">Retour</a>
+    <a href="javascript:history.back()" class="btn btn-default btn-defaultProfil" style="margin-bottom : 30px;">Retour</a>
 
     @if (Model.Amis.FirstOrDefault(x => x.Utilisateur_Id == idUser.Utilisateur_Id) == null)
-    {
-        <button type="submit" class="btn btn-primary btn-defaultProfil" style="margin-bottom : 30px;">Demander en ami</button>
-    }
+{
+    <a type="submit" class="btn btn-primary btn-defaultProfil" href="/Profile/AddFriendRequest/@Model.Utilisateur_Id" style="margin-bottom : 30px;">Demander en ami</a>
+}
 
 </div>
