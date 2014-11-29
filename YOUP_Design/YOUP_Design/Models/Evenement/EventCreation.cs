@@ -27,7 +27,6 @@ namespace YOUP_Design.Models.Evenement
         [Required]
         public bool Public { get; set; }
 
-        [Required]
         public string MotsCles { get; set; }
 
         [Required]
