@@ -6,67 +6,76 @@
 </div>
 <div class="container">
     <div class="panel panel-primary">
-        <div class="panel-heading text-center">
-            <h3 class="panel-title">Profil</h3>
-        </div>
-        <div class="panel-body">
-            @foreach (var user in ViewBag.usersResults)
-            {
-                <div class="row well">
-                    <div class="col-lg-2 text-center">
-                        <img src="@user.PhotoChemin" alt="Image de profil de @user.Pseudo" class="img-circle" style="height: 80px; width: 80px;" />
+        @if(ViewBag.usersResults.Count > 0)
+        {
+            <div class="panel-heading text-center">
+                <a style="color:white;" href="/Recherche/Profil?keyword=@ViewBag.keyword&from=0&take=20"><h3 class="panel-title">Profil</h3></a>
+            </div>
+            <div class="panel-body">
+                @foreach (var user in ViewBag.usersResults)
+                {
+                    <div class="row well">
+                        <div class="col-lg-2 text-center">
+                            <img src="@user.PhotoChemin" alt="Image de profil de @user.Pseudo" class="img-circle" style="height: 80px; width: 80px;" />
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="/Profil/Detail/@user.Utilisateur_Id"><h3>@user.Pseudo - <small>@user.Prenom @user.Nom</small></h3></a>
+                            <p>@user.Ville (@user.CodePostal)</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p>@user.DateNaissance</p>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <h3>@user.Pseudo - <small>@user.Prenom @user.Nom</small></h3>
-                        <p>@user.Ville (@user.CodePostal)</p>
+                }
+            </div>
+        }
+        @if (ViewBag.eventsResults.Count > 0)
+        { 
+            <div class="panel-heading text-center">
+                <a style="color:white;" href="/Recherche/Evenement?keyword=@ViewBag.keyword&from=0&take=20"><h3 class="panel-title">Evenements</h3></a>
+            </div>
+            <div class="panel-body">
+                @foreach (var yevent in ViewBag.eventsResults)
+                {
+                    <div class="row well">
+                        <div class="col-lg-2 text-center">
+                            <img src="@yevent.ImageUrl" alt="Image l'évenement @yevent.TitreEvenement'" class="img-circle" style="height: 80px; width: 80px;" />
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="/Evenement/Details/@yevent.Evenement_id"><h3>@yevent.TitreEvenement <small>by @yevent.OrganisateurPseudo</small></h3></a>
+                            <p>@yevent.Adresse</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p>@yevent.Categorie_Libelle</p>
+                            <p>@yevent.DateEvenement</p>
+                            <p>@yevent.NbParticipant / @yevent.MaximumParticipant</p>
+                            <p>@yevent.Prix €</p>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <p>@user.DateNaissance</p>
+                }
+            </div>
+        }
+        @if (ViewBag.blogsResults.Count > 0)
+        {
+            <div class="panel-heading text-center">
+                <a style="color:white;" href="/Recherche/Blog?keyword=@ViewBag.keyword"><h3 class="panel-title">Blogs</h3></a>
+            </div>
+            <div class="panel-body">
+                @foreach (var blog in ViewBag.blogsResults)
+                {
+                    <div class="row well">
+                        <div class="col-lg-6 text-center">
+                            <a href="/Blog/Blog_vue?UserId=@blog.Utilisateur_id&BlogId=@blog.Blog_id"><p>@blog.TitreBlog</p></a>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <p>@blog.DateCreation</p>
+                        </div>
+                        <div class="col-lg-2 text-center">
+                            <p>Actif : @blog.Actif</p>
+                        </div>
                     </div>
-                </div>
-            }
-        </div>
-        <div class="panel-heading text-center">
-            <h3 class="panel-title">Evenements</h3>
-        </div>
-        <div class="panel-body">
-            @foreach (var yevent in ViewBag.eventsResults)
-            {
-                <div class="row well">
-                    <div class="col-lg-2 text-center">
-                        <img src="@yevent.ImageUrl" alt="Image l'évenement @yevent.TitreEvenement'" class="img-circle" style="height: 80px; width: 80px;" />
-                    </div>
-                    <div class="col-lg-6">
-                        <h3>@yevent.TitreEvenement <small>by @yevent.OrganisateurPseudo</small></h3>
-                        <p>@yevent.Adresse</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <p>@yevent.Categorie_Libelle</p>
-                        <p>@yevent.DateEvenement</p>
-                        <p>@yevent.NbParticipant / @yevent.MaximumParticipant</p>
-                        <p>@yevent.Prix €</p>
-                    </div>
-                </div>
-            }
-        </div>
-        <div class="panel-heading text-center">
-            <h3 class="panel-title">Blogs</h3>
-        </div>
-        <div class="panel-body">
-            @foreach (var blog in ViewBag.blogsResults)
-            {
-                <div class="row well">
-                    <div class="col-lg-6 text-center">
-                        <p>@blog.TitreBlog</p>
-                    </div>
-                    <div class="col-lg-4 text-center">
-                        <p>@blog.DateCreation</p>
-                    </div>
-                    <div class="col-lg-2 text-center">
-                        <p>Actif : @blog.Actif</p>
-                    </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        }
     </div>
 </div>
