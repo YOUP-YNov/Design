@@ -58,16 +58,16 @@
     </div>
 
     @*<div class="rechercheProfil">
-        <div class="moduleRecherche form-group input-group">
-            <input type="text" class="form-control" placeholder="Rechercher dans le Profil">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-        <div class="btnModifPhoto">
-            <button type="button" class="btn btn-default" onclick="location.href = 'http://' + location.host + '/profile/logout';">Deconnexion</button>
-        </div>
-    </div>*@
+            <div class="moduleRecherche form-group input-group">
+                <input type="text" class="form-control" placeholder="Rechercher dans le Profil">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <div class="btnModifPhoto">
+                <button type="button" class="btn btn-default" onclick="location.href = 'http://' + location.host + '/profile/logout';">Deconnexion</button>
+            </div>
+        </div>*@
 
     <div class="photoProfil">
         <div class="row parentDecoProfil">
@@ -93,14 +93,14 @@
     </div>
 
     @*<div id="afficheActivite">
-        @Html.Partial("~/Views/Profile/partialActivite.cshtml", Model)
-    </div>*@
+            @Html.Partial("~/Views/Profile/partialActivite.cshtml", Model)
+        </div>*@
 
     <div id="afficheProfil">
         @Html.Partial("~/Views/Profile/partialProfil.cshtml", Model)
     </div>
 
     <div id="afficheAmis">
-        @Html.Partial("~/Views/Profile/partialAmis.cshtml", Model)
+        @Html.Partial("~/Views/Profile/partialAmis.cshtml", (object)ViewBag.AcceptFriendRequest)
     </div>
 </div>

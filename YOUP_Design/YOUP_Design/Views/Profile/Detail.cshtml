@@ -19,7 +19,7 @@
         <div class="row parentDecoProfil">
             <div class="col-lg-offset-2 col-lg-3 decoPhotoProfil "></div>
             <div class="col-lg-2">
-                <img id="idPhotoProfil" src="@Model.PhotoChemin" alt="photo profil" class="img-circle">
+                <img id="idPhotoProfil" @if (@Model.PhotoChemin != null) { <text> src="@Model.PhotoChemin" </text>      } else { <text> src="/Images/default_profil.png" </text>      } alt="photo profil" class="img-circle">
             </div>
             <div class="col-lg-3 decoPhotoProfil"></div>
         </div>
@@ -39,17 +39,17 @@
                         <input type="email" class="form-control" id="exampleInputPSeudo" value="@Model.Pseudo" disabled>
                     </div>
                     @*<div class="form-group">
-                        <label for="exampleInputEmail">Email </label>
-                        <input type="email" class="form-control" id="exampleInputEmail" value="Privé" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Mot de passe</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" value="Privé" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputNom">Nom</label>
-                        <input type="text" class="form-control" id="exampleInputNom" value="Privé" disabled>
-                    </div>*@
+                            <label for="exampleInputEmail">Email </label>
+                            <input type="email" class="form-control" id="exampleInputEmail" value="Privé" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Mot de passe</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" value="Privé" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputNom">Nom</label>
+                            <input type="text" class="form-control" id="exampleInputNom" value="Privé" disabled>
+                        </div>*@
                     <div class="form-group">
                         <label for="exampleInputPrenom">Prénom</label>
                         <input type="text" class="form-control" id="exampleInputPrenom" value="@Model.Prenom" disabled>
@@ -70,19 +70,19 @@
                     </div>
                     <div id="map-canvas-profil" class="googleProfil"></div>
                     @*<div class="form-group">
-                        <label for="exampleInputAdresse">Code Postal</label>
-                        <input type="text" class="form-control" id="exampleInputAdresse" value="Privé" disabled>
-                    </div>
-                    <iframe class="googleProfil" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
-                    <div class="form-group">
-                        <label>Centres d'intérêts</label>
-                        <select multiple="" class="form-control">
-                            <option>Sport</option>
-                            <option>Visite</option>
-                            <option>Apéro entre amis</option>
-                            <option>Marche a pied</option>
-                        </select>
-                    </div>*@
+                            <label for="exampleInputAdresse">Code Postal</label>
+                            <input type="text" class="form-control" id="exampleInputAdresse" value="Privé" disabled>
+                        </div>
+                        <iframe class="googleProfil" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
+                        <div class="form-group">
+                            <label>Centres d'intérêts</label>
+                            <select multiple="" class="form-control">
+                                <option>Sport</option>
+                                <option>Visite</option>
+                                <option>Apéro entre amis</option>
+                                <option>Marche a pied</option>
+                            </select>
+                        </div>*@
                 </form>
             </div>
         </div>
@@ -90,10 +90,10 @@
         </div>
     </div>
     <a href="javascript:history.back()" class="btn btn-default btn-defaultProfil">Retour</a>
-    
+
     @if (Model.Amis.FirstOrDefault(x => x.Utilisateur_Id == idUser.Utilisateur_Id) == null)
     {
         <button type="submit" class="btn btn-primary btn-defaultProfil" style="margin-bottom : 30px;">Demander en ami</button>
     }
-    
+
 </div>
