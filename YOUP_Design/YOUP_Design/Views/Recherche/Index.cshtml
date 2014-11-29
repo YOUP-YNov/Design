@@ -71,7 +71,14 @@
                             <p>@blog.DateCreation</p>
                         </div>
                         <div class="col-lg-2 text-center">
-                            <p>Actif : @blog.Actif</p>
+                            @if (blog.Actif)
+                            {
+                                <p>Actif</p>
+                            }
+                            else
+                            {
+                                <p>Inactif</p>
+                            }
                         </div>
                     </div>
                 }
