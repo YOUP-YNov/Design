@@ -12,9 +12,13 @@ namespace YOUP_Design.Controllers
     public class ProfileController : Controller
     {
         [YoupAuthorize]
-        public ActionResult Index()
+        public async  Task<ActionResult> Index()
         {
             var u = ProfileCookie.GetCookie(HttpContext);
+
+            ViewBag.AcceptFriendRequest = await AcceptFriendAPIConnecteur.Get(u.Utilisateur_Id);
+
+
             if (u != null)
                 return View(u);
             return RedirectToAction("Index", "Home");
@@ -130,13 +134,13 @@ namespace YOUP_Design.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
-        public async Task<ActionResult> DeleteFriend(int idF)
+        public async Task<ActionResult> DeleteFriend(int id)
         {
             var u = ProfileCookie.GetCookie(HttpContext);
 
             if (u != null)
             {
-                var f = await FriendAPIConnecteur.Delete(u.Utilisateur_Id, idF);
+                var f = await FriendAPIConnecteur.Delete(u.Utilisateur_Id, id);
 
                 if (f != null)
                 {

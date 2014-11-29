@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Script.Serialization;
 using YOUP_Design.Classes.Profile;
 
 namespace YOUP_Design.Models.Profile
@@ -25,6 +27,8 @@ namespace YOUP_Design.Models.Profile
                 HttpResponseMessage response = await client.GetAsync(urlAction + id);
                 if (response.IsSuccessStatusCode)
                 {
+                    var rep = await response.Content.ReadAsStringAsync();
+                    //return new JavaScriptSerializer().Deserialize<List<UtilisateurSmall>>(rep);
                     return await response.Content.ReadAsAsync<UtilisateurSmall>();
                 }
                 return null;
