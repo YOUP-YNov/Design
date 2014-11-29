@@ -45,8 +45,8 @@ namespace YOUP_Design.Controllers
                     Price = e.Prix,
                     Premium = false,
                     Payant = e.Prix > 0,
-                    Public = e.Public,
-                    HashTag = e.MotsCles.Split(','),
+                    //Public = e.Public,
+                    //HashTag = e.MotsCles.Split(','),
                     EventAdresse = new EventLocationFront()
                     {
                         Adresse = adr[0],
