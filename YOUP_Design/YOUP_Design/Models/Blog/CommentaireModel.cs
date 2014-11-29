@@ -12,5 +12,9 @@ namespace YOUP_Design.Models.Blog
         [Required]
         [Display(Name = "Contenu du commentaire")]
         public string ContenuCommentaire { get; set; }
+
+        [Required]
+        [Display(Name = "Id de l'article du commentaire")]
+        public int ArticleId { get; set; }
     }
 }

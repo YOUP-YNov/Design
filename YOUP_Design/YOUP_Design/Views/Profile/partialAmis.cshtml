@@ -1,108 +1,109 @@
-﻿@{
+﻿@using YOUP_Design.Models.Profile;
+@{
     Layout = null;
+    var user = ProfileCookie.GetCookie(this.Context);
 }
 
 <div class="row divAmis">
-    <div class="col-lg-4">
-        <span class="titreAmis">Suggestion :</span>
-        <div class="panel panel-default panelAmis">
-            <ul class="panel-body list-group">
+    @*<div class="col-lg-4">
+            <span class="titreAmis">Suggestion :</span>
+            <div class="panel panel-default panelAmis">
+                <ul class="panel-body list-group">
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                    <li class="list-group-item liAmis">
+                        <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
+                        Dupont Jean charle
+                        <button type="button" class=" badge btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                    <li class="list-group-item liAmis">
+                        <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
+                        Dupont Jean charle
+                        <button type="button" class=" badge btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                    <li class="list-group-item liAmis">
+                        <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
+                        Dupont Jean charle
+                        <button type="button" class=" badge btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                    <li class="list-group-item liAmis">
+                        <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
+                        Dupont Jean charle
+                        <button type="button" class=" badge btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                    <li class="list-group-item liAmis">
+                        <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
+                        Dupont Jean charle
+                        <button type="button" class=" badge btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </li>
 
-            </ul>
-        </div>
-    </div>
-    <div class="col-lg-4">
+                </ul>
+            </div>
+        </div>*@
+    <div class="col-lg-offset-1 col-lg-5">
         <span class="titreAmis">En attente :</span>
         <div class="panel panel-default panelAmis">
             <ul class="panel-body list-group">
-
                 <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
+                    Vous n'avez pas d'amis ? Prenez un curly ;)
                 </li>
+                @*@if (Model != null)
+                    {
+                        foreach (var a in Model.Amis)
+                        {
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                            <li class="list-group-item liAmis">
+                                <img class="photoProfilAmis img-circle" src="@a.PhotoChemin" alt="photo profil Amis">
+                                @a.Pseudo
+                                <button type="button" class=" badge btn btn-balanced btn-xs">
+                                    Accepter
+                                </button>
+                            </li>
+
+                        }
+                    }*@
 
             </ul>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         <span class="titreAmis">Amis :</span>
         <div class="panel panel-default panelAmis">
             <ul class="panel-body list-group">
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                @if (Model.Amis != null)
+                {
+                    foreach (var a in Model.Amis)
+                    {
+                        <li class="list-group-item liAmis">
+                            <img class="photoProfilAmis img-circle" @if (@a.PhotoChemin != null) { <text> src="@a.PhotoChemin" </text>   } else { <text> src="/Images/default_profil.png" </text>   } alt="photo profil Amis">
+                            @a.Pseudo
+                            <button type="button" onclick="location.href = 'http://' + location.host + '/profile/deletefriend(10213)';" class="badge btn btn-assertive btn-xs" name="@user.Utilisateur_Id">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </li>
 
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
-
-                <li class="list-group-item liAmis">
-                    <img class="photoProfilAmis img-circle" src="~/Images/default_profil.png" alt="photo profil Amis">
-                    Dupont Jean charle
-                    <button type="button" class=" badge btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </li>
+                    }
+                }
+                else
+                {
+                    <li class="list-group-item liAmis">
+                        Vous n'avez pas d'amis ? Prenez un curly ;)
+                    </li>
+                }
 
             </ul>
         </div>

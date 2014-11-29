@@ -1,52 +1,65 @@
-﻿@model IEnumerable<YOUP_Design.Classes.Blog.Article>
+﻿﻿@using YOUP_Design.Classes.Blog
+﻿@using YOUP_Design.Classes.Profile
+@model IEnumerable<YOUP_Design.Classes.Blog.Article>
 @{
     ViewBag.Title = "Blog_vue";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Blog";
-}
-<div class="container" style="background-color:blueviolet;">
-    <div class="publicite well">
-        Encart de publicité
-    </div>
-
-    @Html.Partial("~/Views/Blog/partialRechercheBlog.cshtml")
-
-    <div class="row">
-        <h2>Blog Title</h2>
-        <div class="photoProfil">
-            <div class="row_blog parentDecoProfil">
-                <div class="col-lg-2">
-                    <img id="idPhotoProfil" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" alt="photo profil" class="img-circle">
-                </div>
-                <div class="col-lg-2">Florian Laubier</div>
-                <div class="col-lg-3 decoPhotoProfil"></div>
-            </div>
-        </div>
-    </div>
-    @foreach (var e in Model)
+    Blog blog = ViewData["Blog"] as Blog;
+    UtilisateurSmall user = ViewData["UserBlogVue"] as UtilisateurSmall;
+    string blogTheme;
+    if (!string.IsNullOrEmpty(blog.Theme.Couleur))
     {
+        blogTheme = "background-color:"+blog.Theme.Couleur+";";
+    }
+    else
+    {
+        blogTheme = "background-image:url(" + blog.Theme.ImageChemin + ");";
+    }
+    
+}
+
+
+    <div class="container" style="@blogTheme background-size: contain; color:white">
+        <div class="publicite well">
+            Encart de publicité
+        </div>
+
+
         <div class="row">
-            <h3>@e.TitreArticle</h3>
-            <div class="col-lg-offset-2 col-lg-8 text-center">
-                <div class="article_blog">
-                    <img src="http://www.pokertwitt.com/wp-content/uploads/2012/09/poker_night_by_gunblade132-d3ch6n81.jpg" alt="image" class="img-rounded">
-                    <p>@e.ContenuArticle</p>
-                </div>
-                <div class="date_publication_article">
-                    <div class="row list-group-item">
-                        <div class="col-sm-4">
-                            Publié le : @e.DateCreation
-                        </div>
-                        <div class="col-sm-4">
-                            Likes : 30
-                        </div>
-                        <div class="col-sm-4">
-                            Comments : 30
-                        </div>
+            <h2>@blog.TitreBlog</h2>
+            <div class="photoProfil">
+                <div class="row_blog parentDecoProfil">
+                    <div class="col-lg-2">
+                        <img id="idPhotoProfil" src="@user.PhotoChemin" alt="photo profil" class="img-circle">
                     </div>
+                    <div class="col-lg-2">@user.Pseudo</div>
+                    <div class="col-lg-3 decoPhotoProfil"></div>
                 </div>
-                <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
             </div>
         </div>
-    }
-</div>
+        @foreach (var e in Model)
+        {
+            <div class="row">
+                <h3 style="margin-left:10px;">@e.TitreArticle</h3>
+                <div class="col-lg-offset-2 col-lg-8 text-center">
+                    <div class="article_blog">
+                        <img src="@e.ImageChemin" alt="image" class="img-rounded">
+                        <p>@Html.Raw(e.ContenuArticle)</p>
+                    </div>
+                    <div class="date_publication_article">
+                        <div class="row ">
+                            <div class="col-sm-6">
+                                <strong>Publié le </strong>@e.DateCreation
+                            </div>
+                            <div class="col-sm-6">
+                                <a class="blog_commentaire" href="Blog_commentaire?ArticleId=@e.Article_id" style="color:white">Commentaires</a> : @e.NbComments
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                    <div class="col-lg-offset-4 col-lg-4 decoSeparationTxt"></div>
+                </div>
+            </div>
+        }
+    </div>

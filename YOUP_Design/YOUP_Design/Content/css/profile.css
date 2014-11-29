@@ -136,14 +136,21 @@
     overflow-y: scroll;
 }
 
-    .panelAmis .panel-body {
-        padding: 0;
-    }
+.panelAmis .panel-body {
+    padding: 0;
+}
 
-    .panelAmis::-webkit-scrollbar {
-        display: none;
-    }
+.panelAmis::-webkit-scrollbar {
+    display: none;
+}
 
+.panelAmis .btn-balanced{
+    background-color : #66cc33 !important;
+}
+
+.panelAmis .btn-assertive{
+    background-color : #ef4e3a !important;
+}
 .panel > .list-group:last-child .list-group-item:last-child {
     border-bottom: 0;
     border-bottom-right-radius: 0px;

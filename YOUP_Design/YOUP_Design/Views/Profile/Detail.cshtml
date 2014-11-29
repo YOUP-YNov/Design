@@ -1,7 +1,10 @@
 ﻿@model YOUP_Design.Classes.Profile.UtilisateurPublic
+@using YOUP_Design.Models.Profile;
 @{
     ViewBag.Title = "Detail";
+    var idUser = ProfileCookie.GetCookie(this.Context);
 }
+
 <script src="~/Content/js/profile.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false">
 </script>
@@ -22,7 +25,7 @@
         </div>
 
         <br />
-        <h3 class="helloUtil">Vous êtres entrain d'espionner <strong>@Model.Prenom</strong> !</h3>
+        <h3 class="helloUtil">Vous êtes entrain d'espionner <strong>@Model.Prenom</strong> !</h3>
     </div>
 
     <div class="row">
@@ -87,4 +90,10 @@
         </div>
     </div>
     <a href="javascript:history.back()" class="btn btn-default btn-defaultProfil">Retour</a>
+    
+    @if (Model.Amis.FirstOrDefault(x => x.Utilisateur_Id == idUser.Utilisateur_Id) == null)
+    {
+        <button type="submit" class="btn btn-primary btn-defaultProfil" style="margin-bottom : 30px;">Demander en ami</button>
+    }
+    
 </div>

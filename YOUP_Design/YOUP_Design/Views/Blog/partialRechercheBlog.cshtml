@@ -1,4 +1,5 @@
-﻿@{
+﻿@model bool
+@{
     Layout = null;
 }
 <div class="row">
@@ -27,13 +28,28 @@
             @{
                 if (ViewBag.Title != "Index")
                 {
-                    <a href="Blog_edit" class="btn btn-primary" role="button">Créer / Gérer mon Blog</a>
+                    if(Model)
+                    {
+                        <a href="Blog_trueedit" class="btn btn-primary" role="button">Gérer mon Blog</a>
+                    }
+                    else
+                    {
+                        <a href="Blog_edit" class="btn btn-primary" role="button">Créer mon Blog</a>
+                    }
+
                 }
                 else
                 {
-                    <a href="Blog/Blog_edit" class="btn btn-primary" role="button">Créer / Gérer mon Blog</a>
+                    if (Model)
+                    {
+                        <a href="Blog/Blog_trueedit" class="btn btn-primary" role="button">Gérer mon Blog</a>
+                    }
+                    else
+                    {
+                        <a href="Blog/Blog_edit" class="btn btn-primary" role="button">Créer mon Blog</a>
+                    }
                 }
-            }
+}
 
         </div>
     </div>

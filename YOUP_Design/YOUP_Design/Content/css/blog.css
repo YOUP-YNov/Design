@@ -25,6 +25,11 @@
 
 }
 
+.article_view_image{
+    max-height: 150px;
+    max-width: 150px;
+}
+
 .article_blog img{
     width:600px;
 }
