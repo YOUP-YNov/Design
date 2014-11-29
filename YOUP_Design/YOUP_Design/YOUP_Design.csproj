@@ -202,6 +202,7 @@
     <Compile Include="Classes\Blog\Blog.cs" />
     <Compile Include="Classes\Blog\Categorie.cs" />
     <Compile Include="Classes\Blog\Commentaire.cs" />
+    <Compile Include="Classes\Blog\HashTagArticles.cs" />
     <Compile Include="Classes\Blog\Publicite.cs" />
     <Compile Include="Classes\Blog\Theme.cs" />
     <Compile Include="Classes\Evenement\EvenementCategorieFront.cs" />
@@ -469,6 +470,9 @@
     <Content Include="Views\Blog\partialDeviceOS.cshtml" />
     <Content Include="Views\Historique\partialOS.cshtml" />
     <Content Include="Views\Profile\Detail.cshtml" />
+    <Content Include="Views\Blog\Blog_commentaire.cshtml" />
+    <Content Include="Views\Blog\Blog_trueedit.cshtml" />
+    <Content Include="Views\Blog\Blog_article_trueedit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
