@@ -470,6 +470,7 @@
     <Content Include="Views\Blog\partialDeviceOS.cshtml" />
     <Content Include="Views\Historique\partialOS.cshtml" />
     <Content Include="Views\Profile\Detail.cshtml" />
+    <Content Include="Views\Forum\NewTopic.cshtml" />
     <Content Include="Views\Blog\Blog_commentaire.cshtml" />
     <Content Include="Views\Blog\Blog_trueedit.cshtml" />
     <Content Include="Views\Blog\Blog_article_trueedit.cshtml" />

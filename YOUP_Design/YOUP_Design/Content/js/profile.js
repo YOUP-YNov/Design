@@ -1,5 +1,5 @@
 ﻿var ProfilModule = (function () {
-
+    var markers = [];
     var apiUrl = "http://aspmoduleprofil.azurewebsites.net/api/";
 
     var recupererProfilParId = function (id) {
@@ -51,6 +51,7 @@
 
         var oA = document.getElementById('btnRechercheAdresseProfil');
         oA.onclick = function () {
+            setAllMap(null);
             searchAddress(map);
             return false;
         };
@@ -66,6 +67,7 @@
                         position: results[0].geometry.location
                     });
 
+                    markers.push(marker);
                     var latitude = marker.getPosition().lat();
                     var longitude = marker.getPosition().lng();
 
@@ -89,6 +91,7 @@
 
         var oA = document.getElementById('btnRechercheProfilIns');
         oA.onclick = function () {
+            setAllMap(null);
             searchAddress(map);
             return false;
         };
@@ -103,7 +106,7 @@
                         map: map,
                         position: results[0].geometry.location
                     });
-
+                    markers.push(marker);
                     var latitude = marker.getPosition().lat();
                     var longitude = marker.getPosition().lng();
 
@@ -114,6 +117,11 @@
         }
     }
 
+    function setAllMap(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
 
     var initMapProfil = function () {
         initializeMapProfil();

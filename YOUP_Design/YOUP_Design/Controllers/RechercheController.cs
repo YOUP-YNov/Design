@@ -40,9 +40,9 @@ namespace YOUP_Design.Controllers
             var response = client.Execute<T>(request);
             return response.Data;
         }
-        public RechercheGenerique GetRecherche(string keyword)
+        public RechercheGenerique GetRecherche(string keyword, int from, int take)
         {
-            var request = new RestRequest("search/get?keyword=" + keyword, Method.GET);
+            var request = new RestRequest("search/get?keyword=" + keyword + "&from=" + from + "&take=" + take, Method.GET);
             var result = Execute<RechercheGenerique>(request);
             return result;
         }
@@ -76,7 +76,7 @@ namespace YOUP_Design.Controllers
                 keyword = "";
             }
             RechercheGenerique results = new RechercheGenerique();
-            results = this.GetRecherche(keyword);
+            results = this.GetRecherche(keyword, 0, 20);
 
             List<Utilisateur> users = new List<Utilisateur>();
             if (results.Gprofile != null)
@@ -117,6 +117,91 @@ namespace YOUP_Design.Controllers
             List<Blog> blogs = new List<Blog>();
             blogs = this.GetBlogs(keyword);
             ViewBag.blogsResults = blogs;
+
+            ViewBag.keyword = keyword;
+
+            return View();
+        }
+
+        public ActionResult Profil(string keyword, int from, int take)
+        {
+            if (keyword == null)
+            {
+                keyword = "";
+            }
+            RechercheGenerique results = new RechercheGenerique();
+            results = this.GetRecherche(keyword, from, take);
+
+
+            List<Utilisateur> users = new List<Utilisateur>();
+            if (results.Gprofile != null)
+            {
+                foreach (var user in results.Gprofile)
+                {
+                    try
+                    {
+                        users.Add(GetUser(Convert.ToInt32(user._source.Id)));
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                }
+            }
+            ViewBag.usersResults = users;
+
+            ViewBag.keyword = keyword;
+            ViewBag.from = from;
+            ViewBag.take = take;
+            ViewBag.nb = users.Count;
+
+            return View();
+        }
+
+        public ActionResult Evenement(string keyword, int from, int take)
+        {
+            if (keyword == null)
+            {
+                keyword = "";
+            }
+            RechercheGenerique results = new RechercheGenerique();
+            results = this.GetRecherche(keyword, from, take);
+
+
+            List<EvenementTimelineFront> events = new List<EvenementTimelineFront>();
+            if (results.Gevent != null)
+            {
+                foreach (var yevent in results.Gevent)
+                {
+                    try
+                    {
+                        events.Add(GetEvents(Convert.ToInt32(yevent._source.Id)));
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                }
+            }
+            ViewBag.eventsResults = events;
+
+            ViewBag.keyword = keyword;
+            ViewBag.from = from;
+            ViewBag.take = take;
+            ViewBag.nb = events.Count;
+
+            return View();
+        }
+
+        public ActionResult Blog(string keyword)
+        {
+            List<Blog> blogs = new List<Blog>();
+            blogs = this.GetBlogs(keyword);
+            ViewBag.blogsResults = blogs;
+
+            ViewBag.keyword = keyword;
 
             return View();
         }

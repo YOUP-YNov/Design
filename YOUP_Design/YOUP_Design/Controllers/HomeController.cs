@@ -38,8 +38,6 @@ namespace YOUP_Design.Controllers
             return response.Data;
         }
 
-
-
         public List<UtilisateurSmall> GetLastProfiles()
         {
             var request = new RestRequest("api/TopTenUser", Method.GET);
@@ -72,71 +70,31 @@ namespace YOUP_Design.Controllers
         {
             //Derniers Utilisateurs
             List<UtilisateurSmall> profiles = new List<UtilisateurSmall>();
-            List<UtilisateurSmall> lastprofiles = new List<UtilisateurSmall>();
-            List<UtilisateurSmall> lastprofiles2 = new List<UtilisateurSmall>();
+            ViewBag.LastProfiles = profiles;
             profiles = this.GetLastProfiles();
-            
-            int count = 0;
             if (profiles != null)
             {
-                foreach (UtilisateurSmall profil in profiles)
-                {
-                    if (count < 4)
-                    {
-                        lastprofiles.Add(profil);
-                    }
-                    else if (count >= 4 && count < 8)
-                    {
-                        lastprofiles2.Add(profil);
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                    count++;
-                }
+                ViewBag.LastProfiles = profiles;
             }
             
-
-            ViewBag.LastProfiles = lastprofiles;
-            ViewBag.LastProfiles2 = lastprofiles2;
 
             //Derniers Evenements
             List<EvenementTimelineFront> events = new List<EvenementTimelineFront>();
+            ViewBag.LastEvents = events;
             events = this.GetLastEvents();
-            if (events == null)
-            {
-                ViewBag.LastEvents = new List<EvenementTimelineFront>();
-            }
-            else
+            if (events != null)
             {
                 ViewBag.LastEvents = events;
             }
+
             //Derniers Blogs
             List<Classes.Blog.Blog> blogs = new List<Classes.Blog.Blog>();
-            List<Classes.Blog.Blog> lastblogs = new List<Classes.Blog.Blog>();
-            
+            ViewBag.LastBlogs = blogs;
             blogs = this.GetBlogs();
-            count = 0;
             if (blogs != null)
             {
-                foreach (Blog blog in blogs)
-                {
-                    if (count < 8)
-                    {
-                        lastblogs.Add(blog);
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                    count++;
-                }
+                ViewBag.LastBlogs = blogs;
             }
-
-            ViewBag.LastBlogs = lastblogs;
 
             //Tops
             ViewBag.TopAmis = WebApiHistoriqueController.GetTopAmis();

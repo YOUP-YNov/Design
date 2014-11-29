@@ -1,4 +1,5 @@
-﻿@{
+﻿@using YOUP_Design.Classes.Profile;
+@{
     ViewBag.Title = "Forum";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.ActiveMenu = "Forum";
@@ -6,45 +7,44 @@
 
 
 <div class="container">
-    <h1>Forum</h1>
+
+    @{
+        YOUP_Design.Classes.Forum.Categorie forum = ViewBag.forum;
+
+    }
+    <h1>@forum.Nom</h1>
 
     <div class="publicite well">
         Encart de publicité
     </div>
 
-    <div class="rechercheForum">
-        <div class="moduleRecherche form-group input-group">
-            <input type="text" class="form-control" placeholder="Recherche Forum">
-            <select class="form-control">
-                <option value="Categorie">Categorie</option>
-            </select>
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
-    </div>
 
-    <div class="list-group"><div class="list-group-item">Forum > Jeux > Poker </div></div>
 
+    @{
+        List<YOUP_Design.Classes.Profile.Utilisateur> listUsers = ViewBag.users;
+
+    }
     <div class="list-group">
         @foreach (var t in ViewBag.topics)
         {
-         <div class="row list-group-item">
-            <div class="col-sm-4">
-                <img class="img-rounded img-responsive forumCatg" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSRNcESvdaAT4XyUVIu3NnDnS-GnFMVd2kNbWZIugobaPqCFlnAtA" alt="serpent" />
+            <div class="row list-group-item">
+                <div class="col-sm-2">
+                    <br />
+                    <img class="img-circle  forumImg" src="@listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().PhotoChemin" alt=" user" />
+
+                </div>
+                <div class="col-sm-10">
+                    <h2><a href="/Forum/Discussion?id=@t.Topic_id">@t.Nom</a></h2>
+                    <p>Dernier message</p>
+                    <p>Description : @Html.Raw(t.DescriptifTopic)</p>
+                    <p>@t.DateCreation</p>
+                    <p>Par @listUsers.Where(o => o.Utilisateur_Id == t.Utilisateur_id).FirstOrDefault().Pseudo</p>
+                </div>
             </div>
-            <div class="col-sm-8">
-                <h2><a href="/Forum/Discussion?id=@t.Topic_id">@t.Nom</a></h2>
-                <p><img class="img-circle forumImg" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c39.0.320.320/p320x320/1465201_10152079042699598_252532563_n.jpg?oh=42a2b986128ca825c658b5f1a2e3ab4f&oe=54F65A80&__gda__=1425048200_7f56b84403432326abeb54c24eb071ce" />Par FLorian Laubier</p>
-                <p>Dernier message</p> 
-                <p>Description : @t.DescriptifTopic</p>
-                <p>@t.DateCreation</p>
-            </div>
-        </div>
         }
-       
-    <center> <div><input type="button" class="btn btn-primary" value="Créer une nouvelle discution" /></div></center>
-        
-    <br />
-</div>
+
+        <center> <div><a href="/Forum/NewTopic?id=@Request["id"]"><input type="button" class="btn btn-primary" value="Créer une nouvelle discution" /></a></div></center>
+
+        <br />
+    </div>
 </div>

@@ -7,7 +7,8 @@
     ViewBag.ActiveMenu = "Home";
     int count = 0;
 }
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5aG3SalAPxB6pobhr5WdcIURagJWSXjk&sensor=false">
+</script>
 <div id="home-part-1" class="block home-fullscreen-bg">
     <div class="text-center">
         <h1> Bienvenue sur YOUP </h1>
@@ -26,45 +27,42 @@
         <div class="col-sm-8 home-border-col-right">
             <div class="home-last-members home-section">
                 <div class="home-title">
-                    <h1>Derniers inscrits :</h1>
+                    <h1>Derniers inscrits</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row full-width-block">
+                    @{ count = 0; }
                     @foreach (var profil in ViewBag.LastProfiles)
                     {
+                        if (count < 4)
+                        {
                         <div class="col-xs-6 col-sm-3">
-                            <div class="home-last-member">
+                            <a href="Profile/Detail/@profil.Utilisateur_Id" class="home-last-member">
                                 <h2>@profil.Pseudo</h2>
                                 <div class="home-member-img" style="background-image: url(@if (profil.PhotoChemin != "") { @profil.PhotoChemin } else { <text>../../Images/default_profil.png</text> }); "></div>
-                            </div>
+                            </a>
                         </div>
-                    }
-                </div>
-                <div class="row full-width-block">
-                    @foreach (var profil in ViewBag.LastProfiles2)
-                    {
-                        <div class="col-xs-6 col-sm-3">
-                            <div class="home-last-member">
-                                <h2>@profil.Pseudo</h2>
-                                <div class="home-member-img" style="background-image: url(@if (profil.PhotoChemin != "") { @profil.PhotoChemin } else { <text>../../Images/default_profil.png</text> }); "></div>
-                            </div>
-                        </div>
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        count++;
                     }
                 </div>
             </div>
             <div class="home-last-events home-section">
                 <div class="home-title">
-                    <h1>Derniers évènements :</h1>
+                    <h1>Derniers évènements</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row full-width-block">
                     <div class="col-xs-12 col-sm-6 home-border-col-right">
-                        @{ count = 0; }
                         @foreach (var evenement in ViewBag.LastEvents)
                         {
                             <a href="/Evenements/details/@evenement.Evenement_id" class="home-last-event block">
                                 <div class="col-xs-4 no-padding">
-                                    <div class="home-event-img" style="background-image: url(@if(evenement.ImageUrl != ""){ @evenement.ImageUrl } else { <text>http://lorempixel.com/200/200/</text>@count });"></div>
+                                    <div class="home-event-img" style="background-image: url(@if(evenement.ImageUrl != ""){ @evenement.ImageUrl } else { <text>/Images/default_evenement.jpg</text> });"></div>
                                 </div>
                                 <div class="col-xs-8">
                                     <h2>@evenement.TitreEvenement</h2>
@@ -76,66 +74,85 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </a>
-                            count++;
                         }
-
                     </div>
                     <div class="col-sm-6 hidden-xs">
-                        <div>
-                            <iframe class="home-event-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
+                        <div id="home-event-map">
+                            @foreach (var evenement in ViewBag.LastEvents)
+                            {
+                                <div class="marker" data-lng="@evenement.Adresse.Longitude" data-lat="@evenement.Adresse.Latitude">
+                                    <div class="marker-info">
+                                        <h1>@evenement.TitreEvenement</h1>
+                                    </div>
+                                </div>
+                            }
+                            @*<iframe class="home-event-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>*@
                         </div>
                     </div>
                 </div>
             </div>
             <div class="home-last-articles home-section">
                 <div class="home-title">
-                    <h1>Derniers blogs :</h1>
+                    <h1>Derniers blogs</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row">
                     @{ count = 0; }
                     @foreach (var blog in ViewBag.LastBlogs)
                     {
-                        <div class="col-xs-6">
-                            <a href="#" class="home-last-article block" style="background-image: url(@if (blog.Theme.ImageChemin != "")
+                        if (count < 6)
+                        {
+                            <div class="col-sm-6">
+                                <a href="/Blog/Blog_vue?UserId=@blog.Utilisateur_id&BlogId=@blog.Blog_id" class="home-last-article block" style="background-image: url(@if (blog.Theme.ImageChemin != "")
                                                                                                      { @blog.Theme.ImageChemin } else { <text>http://lorempixel.com/600/200/abstract/</text>@count });">
-                                <div class="col-xs-12">
-                                    <h2>@blog.TitreBlog</h2>
-                                    <h4>le @blog.DateCreation</h4>
-                                    <div class="home-article-categories">
-                                        <span class="label label-default">@if (blog.Promotion == true)
-                                        { <text>Promoted</text> }
-                                        else
-                                        { <text>Standard</text> }</span>
+                                    <div class="col-xs-12">
+                                        <h2>@blog.TitreBlog</h2>
+                                        <h4>le @blog.DateCreation</h4>
+                                        <div class="home-article-categories">
+                                            <span class="label label-default">
+                                                @if (blog.Promotion == true)
+                                                { <text>Promoted</text> }
+                                                else
+                                                { <text>Standard</text> }
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            break;
+                        }
                         count++;
                     }
-                    
+
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="home-top-5-actifs home-section">
                 <div class="home-title">
-                    <h1>Top des utilisateurs actifs :</h1>
+                    <h1>Top des utilisateurs actifs</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row no-margin">
                 @{ count = 0; }
-                @foreach (var user in ViewBag.TopParticipe) 
+                @foreach (var user in ViewBag.TopParticipe)
                 {
-                    
+
                     if(count < 4)
                     {
                         <div class="col-xs-6">
-                            <div href="#" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>../../Images/default_profil.png</text> });"></div>
+                            <a href="Profile/Detail/@user.Id" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>/Images/default_profil.png</text> });"></a>
                             <h2>@user.Pseudo</h2>
                             <h3>@user.NbEvenementParticipe Participations à des évènements</h3>
                         </div>
+                    }
+                    else
+                    {
+                        break;
                     }
 
                     count++;
@@ -144,7 +161,7 @@
             </div>
             <div class="home-top-5-createurs home-section">
                 <div class="home-title">
-                    <h1>Top des créateurs d'évènements :</h1>
+                    <h1>Top des créateurs d'évènements</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row no-margin">
@@ -155,10 +172,14 @@
                         if (count < 4)
                         {
                             <div class="col-xs-6">
-                                <div class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>../../Images/default_profil.png</text> });"></div>
+                                <a href="Profile/Detail/@user.Id" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>/Images/default_profil.png</text> });"></a>
                                 <h2>@user.Pseudo</h2>
                                 <h3>@user.NbEvenmentPropose Evènements créés</h3>
                             </div>
+                        }
+                        else
+                        {
+                            break;
                         }
 
                         count++;
@@ -167,7 +188,7 @@
             </div>
             <div class="home-top-5-stars home-section">
                 <div class="home-title">
-                    <h1>Top des célébrités :</h1>
+                    <h1>Top des célébrités</h1>
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row no-margin">
@@ -178,10 +199,14 @@
                         if (count < 4)
                         {
                             <div class="col-xs-6">
-                                <div href="#" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>../../Images/default_profil.png</text> });"></div>
+                                <a href="Profile/Detail/@user.Id" class="home-top-img" style="background-image: url(@if(user.CheminPhoto != ""){ @user.CheminPhoto } else { <text>../../Images/default_profil.png</text> });"></a>
                                 <h2>@user.Pseudo</h2>
                                 <h3>@user.NbAmis Amis</h3>
                             </div>
+                        }
+                        else
+                        {
+                            break;
                         }
 
                         count++;

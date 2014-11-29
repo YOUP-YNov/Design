@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Blog";
+}
+<div style="height:40px;">
+
+</div>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+            <a style="color:white;" href="/Recherche/Blog?keyword=@ViewBag.keyword"><h3 class="panel-title">Blogs</h3></a>
+        </div>
+        <div class="panel-body">
+            @foreach (var blog in ViewBag.blogsResults)
+            {
+                <div class="row well">
+                    <div class="col-lg-6 text-center">
+                        <a href="/Blog/Blog_vue?UserId=@blog.Utilisateur_id&BlogId=@blog.Blog_id"><p>@blog.TitreBlog</p></a>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <p>@blog.DateCreation</p>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        @if(blog.Actif)
+                        {
+                            <p>Actif</p>
+                        }
+                        else
+                        {
+                            <p>Inactif</p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

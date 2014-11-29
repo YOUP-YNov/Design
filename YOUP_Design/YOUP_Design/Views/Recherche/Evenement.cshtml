@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Evenement";
+}
+<div style="height:40px;">
+
+</div>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+            <a style="color:white;" href="/Recherche/Evenement?keyword=@ViewBag.keyword&from=0&take=20"><h3 class="panel-title">Evenements</h3></a>
+        </div>
+        <div class="panel-body">
+            @foreach (var yevent in ViewBag.eventsResults)
+            {
+                <div class="row well">
+                    <div class="col-lg-2 text-center">
+                        <img src="@yevent.ImageUrl" alt="Image l'évenement @yevent.TitreEvenement'" class="img-circle" style="height: 80px; width: 80px;" />
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="Evenement/Details/@yevent.Evenement_id"><h3>@yevent.TitreEvenement <small>by @yevent.OrganisateurPseudo</small></h3></a>
+                        <p>@yevent.Adresse</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>@yevent.Categorie_Libelle</p>
+                        <p>@yevent.DateEvenement</p>
+                        <p>@yevent.NbParticipant / @yevent.MaximumParticipant</p>
+                        <p>@yevent.Prix €</p>
+                    </div>
+                </div>
+            }
+            @if (ViewBag.nb == 20 || ViewBag.from != 0)
+            {
+                <div class="row well text-center">
+                    @if (ViewBag.from != 0)
+                    {
+                        <a href="/Recherche/Evenement?keyword=@ViewBag.keyword&from=@(ViewBag.from - 20)&take=20">Précedant </a>
+                    }
+                    @if (ViewBag.nb == 20)
+                    {
+                        <a href="/Recherche/Evenement?keyword=@ViewBag.keyword&from=@(ViewBag.from + 20)&take=20">Suivant</a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

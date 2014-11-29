@@ -57,7 +57,7 @@
         Encart de publicité
     </div>
 
-    <div class="rechercheProfil">
+    @*<div class="rechercheProfil">
         <div class="moduleRecherche form-group input-group">
             <input type="text" class="form-control" placeholder="Rechercher dans le Profil">
             <span class="input-group-btn">
@@ -67,7 +67,7 @@
         <div class="btnModifPhoto">
             <button type="button" class="btn btn-default" onclick="location.href = 'http://' + location.host + '/profile/logout';">Deconnexion</button>
         </div>
-    </div>
+    </div>*@
 
     <div class="photoProfil">
         <div class="row parentDecoProfil">
@@ -85,16 +85,16 @@
     <div class="row ">
         <div id="menuProfile" class="col-lg-offset-2 col-lg-8 text-center">
             <div class=" btn-group btn-group-justified menuProfil">
-                <a id="lienAct" class="btn btn-default">Activité</a>
+                @*<a id="lienAct" class="btn btn-default">Activité</a>*@
                 <a id="lienPro" class="btn btn-default">Profil</a>
                 <a id="lienAm" class="btn btn-default">Amis</a>
             </div>
         </div>
     </div>
 
-    <div id="afficheActivite">
+    @*<div id="afficheActivite">
         @Html.Partial("~/Views/Profile/partialActivite.cshtml", Model)
-    </div>
+    </div>*@
 
     <div id="afficheProfil">
         @Html.Partial("~/Views/Profile/partialProfil.cshtml", Model)

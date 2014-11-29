@@ -72,7 +72,7 @@
                     <div id="map-canvas-inscription" class="googleProfil"></div>
                     <!--<iframe class="googleProfil" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="280" frameborder="0" style="border:0"></iframe>
                     -->
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label>Centres d'intérêts</label>
                         <select multiple="" class="form-control">
                             <option>Sport</option>
@@ -80,7 +80,7 @@
                             <option>Apéro entre amis</option>
                             <option>Marche a pied</option>
                         </select>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-lg-2 text-center">
@@ -89,7 +89,7 @@
 
 
         <div class=" row barBtnInscription">
-            <button type="button" class="btn btn-default btn-defaultProfil" onclick="location.href = 'http://' + location.host + '/home';">Annuler</button>
+            <a href="javascript:history.back()" class="btn btn-default btn-defaultProfil">Annuler</a>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
     }

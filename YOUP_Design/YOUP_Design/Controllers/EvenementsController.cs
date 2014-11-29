@@ -13,6 +13,8 @@ using YOUP_Design.Models.Profile;
 using RestSharp;
 using Service.Evenement.ExpositionAPI.Models.ModelCreate;
 using YOUP_Design.WebApi.Evenement;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace YOUP_Design.Controllers
 {
@@ -20,16 +22,8 @@ namespace YOUP_Design.Controllers
     {
         string ApiEvenement = System.Configuration.ConfigurationManager.AppSettings["ApiEvenement"];
 
-        public T Execute<T>(RestRequest request) where T : new()
-        {
-            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
-            var response = client.Execute<T>(request);
-            return response.Data;
-        }
-
         public void setEvent(EventCreation e, int id_utilisateur, Guid token)
         {
-            var request = new RestRequest("api/Evenement?token=" + token.ToString(), Method.POST);
             string[] adr = e.Adresse.Split(',');
 
             decimal lat;
@@ -37,46 +31,49 @@ namespace YOUP_Design.Controllers
             decimal lon;
             Decimal.TryParse(e.Longitude, out lon);
 
-            var evenement = new EvenementCreate()
+            CustomEvenementCreate customEvent = new CustomEvenementCreate()
             {
-                TitreEvenement = e.TitreEvenement,
-                DescriptionEvenement = e.DescriptionEvenement,
-                DateEvenement = e.DateEvenement,
-                MaximumParticipant = e.MaximumParticipant,
-                MinimumParticipant = 0,
-                Price = e.Prix,
-                Premium = false,
-                Payant = e.Prix > 0,
-                Public = e.Public,
-                HashTag = e.MotsCles.Split(','),
-                EventAdresse = new EventLocationFront()
+                evenement = new EvenementCreate()
                 {
-                    Adresse = adr[0],
-                    Ville = adr[1],
-                    CodePostale = "33300",
-                    Pays = "France",
-                    Latitude = lat,
-                    Longitude = lon
-                },
-                Galleries = new List<EventImageFront>()
+                    Categorie = new EvenementCategorieFront() { Id = 2 },
+                    TitreEvenement = e.TitreEvenement,
+                    DescriptionEvenement = e.DescriptionEvenement,
+                    DateEvenement = e.DateEvenement,
+                    MaximumParticipant = e.MaximumParticipant,
+                    MinimumParticipant = 0,
+                    Price = e.Prix,
+                    Premium = false,
+                    Payant = e.Prix > 0,
+                    Public = e.Public,
+                    HashTag = e.MotsCles.Split(','),
+                    EventAdresse = new EventLocationFront()
                     {
-                        new EventImageFront()
+                        Adresse = adr[0],
+                        Ville = adr[1],
+                        CodePostale = "33300",
+                        Pays = "France",
+                        Latitude = lat,
+                        Longitude = lon,
+                        Nom = string.Empty
+                    },
+                    Galleries = new List<EventImageFront>()
                         {
-                            Url = e.ImageUrl
+                            new EventImageFront()
+                            {
+                                Url = e.ImageUrl
+                            }
                         }
-                    }
+                },
+                friends = new List<long>()
             };
 
-            var friends = new List<long>();
-
-            request.AddParameter("", evenement);
-            request.AddParameter("", friends);
-
-            Execute<EventCreation>(request);
-
+            WebClient client = new WebClient();
+            client.Headers[HttpRequestHeader.ContentType] = "application/json";
+            string json = JsonConvert.SerializeObject(customEvent);
+            string result = client.UploadString(ApiEvenement + "api/Evenement?token=" + token.ToString(), json);
         }
 
-        
+
         #region TimeLine
         public struct region
         {
@@ -102,7 +99,7 @@ namespace YOUP_Design.Controllers
 
         //
         // GET: /Evenement/
-        public  ActionResult Index()
+        public ActionResult Index()
         {
             ViewBag.apiEvenement = ApiEvenement;
             ViewBag.listeCategorie = webApiEvenementController.getCategorie();
@@ -142,7 +139,7 @@ namespace YOUP_Design.Controllers
             dateString.Add("Aujourd'hui");
             dateString.Add("Demain");
 
-            foreach(var date in dates)
+            foreach (var date in dates)
             {
                 if (date.Date > DateTime.Now.AddDays(7) && date.Date < DateTime.Now.AddDays(14))
                 {
@@ -198,7 +195,8 @@ namespace YOUP_Design.Controllers
             else if (date == "La semaine prochaine")
             {
                 listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date > DateTime.Now.AddDays(7).Date && t.DateEvenement.Date < DateTime.Now.AddDays(14).Date).ToList();
-            }else if (date == "Plus tard ...")
+            }
+            else if (date == "Plus tard ...")
             {
                 listeEvenementTotransforme = listeEvenementApi.Where(t => t.DateEvenement.Date >= DateTime.Now.AddDays(14)).ToList();
             }
@@ -225,7 +223,7 @@ namespace YOUP_Design.Controllers
                 return Json("");
             }
         }
-        
+
         #endregion
         //
         // GET: /Evenement/Details/5
@@ -250,14 +248,14 @@ namespace YOUP_Design.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         public ActionResult Creation(EventCreation model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var u = ProfileCookie.GetCookie(HttpContext);
-                if(u == null)
+                if (u == null)
                 {
                     ViewBag.Error = "Vous devez être authentifié.";
                     return View(model);
