@@ -112,18 +112,39 @@ namespace YOUP_Design.Controllers
 
         [YoupAuthorize]
         [HttpPost]
-        public async Task<ActionResult> Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var u = ProfileCookie.GetCookie(HttpContext);
+            
+            string nom = collection.Get("Nom");
+            string prenom = collection.Get("Prenom");
+            string pseudo = collection.Get("Pseudo");
+            DateTime DateNaisse = DateTime.Parse(collection.Get("DateNaissance"));
+            string ville = collection.Get("Ville");
+            string codepostal = collection.Get("CodePostal");
+            string motdepasse = collection.Get("Password");
+            if (!string.IsNullOrEmpty(nom))
+                u.Nom = nom;
+            if (!string.IsNullOrEmpty(prenom))
+                u.Prenom = prenom;
+            if (!string.IsNullOrEmpty(pseudo))
+                u.Pseudo = pseudo;
+            if (!string.IsNullOrEmpty(ville))
+                u.Ville = ville;
+            if (!string.IsNullOrEmpty(codepostal))
+                u.CodePostal = codepostal;
+            if (DateNaisse != null)
+                u.DateNaissance = DateNaisse.AddHours(12);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (motdepasse != "default")
+                u.MotDePasse = Encrypt.hashSHA256(motdepasse);
+
+            var nu = await UserAPIConnecteur.Put(u);
+            if(nu != null)
             {
-                return View();
+                ProfileCookie.CreateCookie(HttpContext, nu);
             }
+            return RedirectToAction("Index", "Profile");
         }
 
         public async Task<ActionResult> Logout()
@@ -132,6 +153,18 @@ namespace YOUP_Design.Controllers
             if (u != null)
                 ProfileCookie.RemoveCookie(HttpContext);
             return RedirectToAction("Index", "Profile");
+        }
+
+        public async Task UpdatePicture()
+        {
+            string img = Request.Params.Get("img");
+            var u = ProfileCookie.GetCookie(HttpContext);
+            if( u != null)
+            {
+                u.PhotoChemin = img;
+                ProfileCookie.CreateCookie(HttpContext, u);
+                await UserAPIConnecteur.Put(u);
+            }
         }
 
         public async Task<ActionResult> DeleteFriend(int id)

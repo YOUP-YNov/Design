@@ -94,3 +94,33 @@
         </div>
     }
 </div>
+<script>
+    $(function () {
+        $(':file').click(function (e) {
+            e.stopImmediatePropagation();
+        });
+        $(".upload-img").click(function () { // selecteur pour le clic
+            $(this).find(":file").click();
+        });
+
+        $(":file").change(function () {
+            var d = new FormData();
+            var el = $(this);
+            if (el[0].files[0]) {
+                jQuery.each(el[0].files, function (i, file) {
+                    d.append('file-' + i, file);
+                });
+                $.ajax("http://" + location.host + "/Upload/UploadPicture?g=" + el[0].name, { type: "POST", data: d, cache: false, contentType: false, processData: false }).success(function (d) {
+                    if (d != "fail") {
+                        $("#photo-profil").attr("src", d); // id img à mettre a jour
+                        $("#PhotoUrl").val(d);
+                    }
+                    else
+                        alert("invalid file type.");
+                }).fail(function () {
+                    console.log("echec de l'appel à la methode upload.");
+                });
+            }
+        });
+    });
+</script>

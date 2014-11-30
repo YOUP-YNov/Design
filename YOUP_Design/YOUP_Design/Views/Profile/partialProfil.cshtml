@@ -10,52 +10,51 @@
         ProfilModule.initMapProfil();
     });
 </script>
+@using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
+{
+    <div class="bodyProfil">
+        <div class="row">
+            <div class="col-lg-2 text-center">
+            </div>
 
-<div class="bodyProfil">
-    <div class="row">
-        <div class="col-lg-2 text-center">
-        </div>
-        <div class="col-lg-4 col-lg-4Profil text-center border-right border-rightProfil">
-            <div class="panel-body">
-                <form role="form" class="formProfil">
+            <div class="col-lg-4 col-lg-4Profil text-center border-right border-rightProfil">
+                <div class="panel-body">
                     <div class="form-group">
                         <label for="exampleInputPseudo">Pseudo</label>
-                        <input type="email" class="form-control" id="exampleInputPSeudo" value="@Model.Pseudo">
+                        <input type="text" class="form-control" name="Pseudo" id="exampleInputPSeudo" value="@Model.Pseudo">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail">Email </label>
-                        <input type="email" class="form-control" id="exampleInputEmail" value="@Model.AdresseMail">
+                        <input type="email" class="form-control" id="exampleInputEmail" value="@Model.AdresseMail" disabled>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mot de passe</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" value="@Model.MotDePasse">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="Password" value="default">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputNom">Nom</label>
-                        <input type="text" class="form-control" id="exampleInputNom" value="@Model.Nom">
+                        <input type="text" class="form-control" id="exampleInputNom" name="Nom" value="@Model.Nom">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPrenom">Prénom</label>
-                        <input type="text" class="form-control" id="exampleInputPrenom" value="@Model.Prenom">
+                        <input type="text" class="form-control" id="exampleInputPrenom" name="Prenom" value="@Model.Prenom">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputDate">Date de naissance</label>
-                        <input type="date" class="form-control" id="exampleInputDate" value="@Model.DateNaissance.Value.ToString("yyyy-MM-dd")">
+                        <input type="date" class="form-control" id="exampleInputDate" name="DateNaissance" value="@Model.DateNaissance.Value.ToString("yyyy-MM-dd")">
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-lg-4Profil text-center">
-            <div class="panel-body">
-                <form role="form" class="formProfil">
+            <div class="col-lg-4 col-lg-4Profil text-center">
+                <div class="panel-body">
                     <div class="form-group">
                         <label for="exampleInputAdresse">Code Postal</label>
-                        <input type="text" class="form-control" value="@Model.CodePostal">
+                        <input type="text" class="form-control" name="CodePostal" value="@Model.CodePostal">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputAdresse">Ville</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="exampleInputAdresse" value="@Model.Ville">
+                            <input type="text" class="form-control"  name="Ville" id="exampleInputAdresse" value="@Model.Ville">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" id="btnRechercheAdresseProfil" type="button">Go!</button>
                             </span>
@@ -63,20 +62,21 @@
                     </div>
                     <div id="map-canvas-profil" class="googleProfil"></div>
                     @*<div class="form-group">
-                        <label>Centres d'intérêts</label>
-                        <select multiple="" class="form-control">
-                            <option>Sport</option>
-                            <option>Visite</option>
-                            <option>Apéro entre amis</option>
-                            <option>Marche a pied</option>
-                        </select>
-                    </div>*@
-                </form>
+                            <label>Centres d'intérêts</label>
+                            <select multiple="" class="form-control">
+                                <option>Sport</option>
+                                <option>Visite</option>
+                                <option>Apéro entre amis</option>
+                                <option>Marche a pied</option>
+                            </select>
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="col-lg-2 text-center">
             </div>
         </div>
-        <div class="col-lg-2 text-center">
-        </div>
+        <a href="javascript:history.back()" class="btn btn-default btn-defaultProfil">Annuler</a>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
     </div>
-    <a href="javascript:history.back()" class="btn btn-default btn-defaultProfil">Annuler</a>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
-</div>
+}

@@ -73,7 +73,11 @@
         <div class="row parentDecoProfil">
             <div class="col-lg-offset-2 col-lg-3 decoPhotoProfil "></div>
             <div class="col-lg-2">
-                <img id="idPhotoProfil" src="@Model.PhotoChemin" alt="photo profil" class="img-circle">
+                <div class="upload-img" style="text-align:center;">
+                    <input type="file" id="picture-profile" style="display:none;" name="label" width="100" height="100" />
+                    <img src="@Model.PhotoChemin" id="photo-profil" width="150" height="150" style="" />
+                    <p>modifier photo</p>
+                </div>
             </div>
             <div class="col-lg-3 decoPhotoProfil"></div>
         </div>
@@ -104,3 +108,40 @@
         @Html.Partial("~/Views/Profile/partialAmis.cshtml", (object)ViewBag.AcceptFriendRequest)
     </div>
 </div>
+<script>
+    $(function () {
+        $(':file').click(function (e) {
+            e.stopImmediatePropagation();
+        });
+        $(".upload-img").click(function () { // selecteur pour le clic
+            $(this).find(":file").click();
+        });
+
+        $(":file").change(function () {
+            var d = new FormData();
+            var el = $(this);
+            if (el[0].files[0]) {
+                jQuery.each(el[0].files, function (i, file) {
+                    d.append('file-' + i, file);
+                });
+                $.ajax("http://" + location.host + "/Upload/UploadPicture?g=" + el[0].name, { type: "POST", data: d, cache: false, contentType: false, processData: false }).success(function (d) {
+                    if (d != "fail") {
+                        $("#photo-profil").attr("src", d); // id img à mettre a jour
+                        $.ajax("http://" + location.host + "/Profile/UpdatePicture/", {
+                            method: "post",
+                            data: {
+                                img: d
+                            }
+                        }).success(function (r) {
+
+                        });
+                    }
+                    else
+                        alert("invalid file type.");
+                }).fail(function () {
+                    console.log("echec de l'appel à la methode upload.");
+                });
+            }
+        });
+    });
+</script>

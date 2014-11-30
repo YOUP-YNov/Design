@@ -226,6 +226,7 @@
     <Compile Include="Classes\Historique\PageVisitee.cs" />
     <Compile Include="Classes\Historique\Utilisateur.cs" />
     <Compile Include="Classes\Profile\Categorie.cs" />
+    <Compile Include="Classes\Profile\Encrypt.cs" />
     <Compile Include="Classes\Profile\Utilisateur.cs" />
     <Compile Include="Classes\Profile\UtilisateurPublic.cs" />
     <Compile Include="Classes\Profile\UtilisateurSmall.cs" />
