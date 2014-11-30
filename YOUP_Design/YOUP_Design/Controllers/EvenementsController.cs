@@ -16,6 +16,8 @@ using YOUP_Design.WebApi.Evenement;
 using System.Net;
 using Newtonsoft.Json;
 using System.Globalization;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace YOUP_Design.Controllers
 {
@@ -23,7 +25,7 @@ namespace YOUP_Design.Controllers
     {
         string ApiEvenement = System.Configuration.ConfigurationManager.AppSettings["ApiEvenement"];
 
-        public bool setEvent(EventCreation e, int id_utilisateur, Guid token)
+        public async Task<bool> setEvent(EventCreation e, int id_utilisateur, Guid token)
         {
             string[] adr = e.Adresse.Split(',');
 
@@ -48,6 +50,8 @@ namespace YOUP_Design.Controllers
                     DateFinInscription = e.DateFinInscription,
                     //Public = e.Public,
                     //HashTag = e.MotsCles.Split(','),
+                    Public = true,
+                    HashTag = new List<string>(),
                     EventAdresse = new EventLocationFront()
                     {
                         Adresse = adr[0],
@@ -69,18 +73,31 @@ namespace YOUP_Design.Controllers
                 friends = new List<long>()
             };
 
-            WebClient client = new WebClient();
-            client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            string json = JsonConvert.SerializeObject(customEvent);
-            try
+            //WebClient client = new WebClient();
+            //client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+            //string json = JsonConvert.SerializeObject(customEvent);
+            //try
+            //{
+            //    string result = client.UploadString(ApiEvenement + "api/Evenement?token=" + token.ToString(), "=" + json);
+            //}
+            //catch (WebException)
+            //{
+            //    return false;
+            //}
+            //return true;
+
+            using (var client = new HttpClient())
             {
-                string result = client.UploadString(ApiEvenement + "api/Evenement?token=" + token.ToString(), json);
-            }
-            catch (WebException)
-            {
+                client.BaseAddress = new Uri(ApiEvenement);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await client.PostAsJsonAsync("api/Evenement?token=" + token.ToString(), customEvent);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
                 return false;
             }
-            return true;
         }
 
 
@@ -262,13 +279,14 @@ namespace YOUP_Design.Controllers
 
 
         [HttpPost]
-        public ActionResult Creation(EventCreation model)
+        public async Task<ActionResult> Creation(EventCreation model)
         {
             if (ModelState.IsValid)
             {
                 var u = ProfileCookie.GetCookie(HttpContext);
                 if (u == null)
                 {
+                    ViewBag.listeCategorie = webApiEvenementController.getCategorie();
                     return View(model);
                 }
 
@@ -277,7 +295,7 @@ namespace YOUP_Design.Controllers
                 if (model.DateFinInscription > model.DateEvenement)
                     ModelState.AddModelError(string.Empty, "La date de fin d'inscription doit être inférieure à la date de l'évènement");
                 
-                if(ModelState.IsValid && setEvent(model, u.Utilisateur_Id, u.Token))
+                if(ModelState.IsValid && await setEvent(model, u.Utilisateur_Id, u.Token))
                 {
                     return RedirectToAction("Index", "Evenements");
                 }
