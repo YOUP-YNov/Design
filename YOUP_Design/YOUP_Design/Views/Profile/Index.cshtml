@@ -107,6 +107,10 @@
     <div id="afficheAmis">
         @Html.Partial("~/Views/Profile/partialAmis.cshtml", (object)ViewBag.AcceptFriendRequest)
     </div>
+
+    <div class="col-lg-offset-5 col-lg-2 btnDeleteProf">
+        <a type="submit" class="btn btn-assertive" href="/Profile/Delete/@Model.Utilisateur_Id">Désactiver mon compte</a>
+    </div>
 </div>
 <script>
     $(function () {

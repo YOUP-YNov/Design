@@ -225,20 +225,19 @@ namespace YOUP_Design.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
-        [YoupAuthorize]
-        [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {
-            try
+            var d = await UserAPIConnecteur.Delete(id);
+            if (d)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                var u = ProfileCookie.GetCookie(HttpContext);
+                if (u != null)
+                {
+                    ProfileCookie.RemoveCookie(HttpContext);
+                    return RedirectToAction("Index", "Profile");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
