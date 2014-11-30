@@ -265,12 +265,11 @@ namespace YOUP_Design.Controllers
         {
             if (ModelState.IsValid)
             {
-                var u = new YOUP_Design.Classes.Profile.Utilisateur();
-                //var u = ProfileCookie.GetCookie(HttpContext);
-                //if (u == null)
-                //{
-                //    return View(model);
-                //}
+                var u = ProfileCookie.GetCookie(HttpContext);
+                if (u == null)
+                {
+                    return View(model);
+                }
 
                 if (model.DateEvenement < DateTime.Now.Date)
                     ModelState.AddModelError(string.Empty, "La date de l'évènement doit être superieure à la date d'aujourd'hui");
