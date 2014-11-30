@@ -84,5 +84,16 @@
                 }
             </div>
         }
+        @if (ViewBag.blogsResults.Count == 0 && ViewBag.eventsResults.Count == 0 && ViewBag.usersResults.Count == 0)
+        {
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">Recherche</h3>
+            </div>
+            <div class="panel-body">
+                    <div class="row well">
+                        <p>Aucun résultat ne correspond à votre recherche.</p>
+                    </div>
+            </div>
+        }
     </div>
 </div>
