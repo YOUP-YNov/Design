@@ -287,6 +287,7 @@ namespace YOUP_Design.Controllers
                 if (u == null)
                 {
                     ViewBag.listeCategorie = webApiEvenementController.getCategorie();
+                    ModelState.AddModelError(string.Empty, "Vous devez être connecté pour créer un événement");
                     return View(model);
                 }
 
