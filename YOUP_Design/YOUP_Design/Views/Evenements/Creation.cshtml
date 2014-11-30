@@ -23,6 +23,7 @@
     </div>
     @using (Html.BeginForm("Creation", "Evenements", FormMethod.Post))
     {
+        @Html.ValidationSummary(false)
         <div class="upload-img-event" style="text-align:center;">
             <input type="file" id="picture-profile" style="display:none;" name="label" width="100" height="100" />
             <img class="img-rounded" src="~/Images/nav-logo.png" id="photo-profil" width="150" height="150" style="" />
@@ -37,26 +38,33 @@
             <div class="col-lg-4 col-lg-4Profil text-center border-right border-rightProfil">
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="exampleInputTitre">Titre de l'évènement</label>
+                        <label for="TitreEvenement">Titre de l'évènement</label>
                         @*<input type="text" class="form-control" id="exampleInputTitre" name="exampleInputTitre">*@
                         @Html.TextBoxFor(x => x.TitreEvenement, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputDescription">Description</label>
+                        <label for="DescriptionEvenement">Description</label>
                         @Html.TextAreaFor(x => x.DescriptionEvenement, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputDate">Date</label>
+                        <label for="DateEvenement">Date</label>
                         <input type="date" class="form-control" name="DateEvenement" id="DateEvenement" value="" />
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputNombre">Nombre de personnes max</label>
+                        <label for="DateEvenement">Heure</label>
+                        <input type="time" class="form-control" name="Heure" id="Heure" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MaximumParticipant">Nombre de personnes max</label>
                         <input type="number" class="form-control" name="MaximumParticipant" id="MaximumParticipant" value=" " />
                     </div>
-
                     <div class="form-group">
-                        <label for="exampleInputPayant">Prix</label>
+                        <label for="Prix">Prix</label>
                         @Html.TextBoxFor(x => x.Prix, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="DateFinInscription">Date limite pour l'inscription</label>
+                        <input type="date" class="form-control" name="DateFinInscription" id="DateFinInscription" value="" />
                     </div>
 
                     @*<div class="form-group">
@@ -76,7 +84,7 @@
             <div class="col-lg-4 col-lg-4Profil text-center">
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="exampleInputAdresse">Adresse</label>
+                        <label for="Adresse">Adresse</label>
                         <div class="input-group">
                             @Html.TextBoxFor(x => x.Adresse, new { @class = "form-control" })
                             <span class="input-group-btn">

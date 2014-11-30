@@ -10,22 +10,34 @@ namespace YOUP_Design.Models.Evenement
     public class EventCreation
     {
         [Required]
+        [MinLength(3)]
         public string TitreEvenement { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime DateEvenement { get; set; }
 
         [Required]
+        [DataType(DataType.Time)]
+        public DateTime Heure { get; set; }
+
+        [Required]
+        [MinLength(10)]
         public string DescriptionEvenement { get; set; }
 
         [Required]
+        [Range(2, 10000)]
         public int MaximumParticipant { get; set; }
 
         [Required]
+        [Range(0, 10000)]
         public int Prix { get; set; }
 
-        [Required]
         public bool Public { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime DateFinInscription { get; set; }
 
         public string MotsCles { get; set; }
 
@@ -36,7 +48,6 @@ namespace YOUP_Design.Models.Evenement
         public string Longitude { get; set; }
 
         public string ImageUrl { get; set; }
-
 
         public long OrganisateurId { get; set; }
 

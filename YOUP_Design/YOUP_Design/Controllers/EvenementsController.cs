@@ -39,12 +39,13 @@ namespace YOUP_Design.Controllers
                     Categorie = new EvenementCategorieFront() { Id = 2 },
                     TitreEvenement = e.TitreEvenement,
                     DescriptionEvenement = e.DescriptionEvenement,
-                    DateEvenement = e.DateEvenement,
+                    DateEvenement = new DateTime(e.DateEvenement.Year, e.DateEvenement.Month, e.DateEvenement.Day, e.Heure.Hour, e.Heure.Minute, 0),
                     MaximumParticipant = e.MaximumParticipant,
                     MinimumParticipant = 0,
                     Price = e.Prix,
                     Premium = false,
                     Payant = e.Prix > 0,
+                    DateFinInscription = e.DateFinInscription,
                     //Public = e.Public,
                     //HashTag = e.MotsCles.Split(','),
                     EventAdresse = new EventLocationFront()
@@ -75,7 +76,7 @@ namespace YOUP_Design.Controllers
             {
                 string result = client.UploadString(ApiEvenement + "api/Evenement?token=" + token.ToString(), json);
             }
-            catch (WebException we)
+            catch (WebException)
             {
                 return false;
             }
@@ -264,20 +265,23 @@ namespace YOUP_Design.Controllers
         {
             if (ModelState.IsValid)
             {
-                var u = ProfileCookie.GetCookie(HttpContext);
-                if (u == null)
-                {
-                    ViewBag.Error = "Vous devez être authentifié.";
-                    return View(model);
-                }
+                var u = new YOUP_Design.Classes.Profile.Utilisateur();
+                //var u = ProfileCookie.GetCookie(HttpContext);
+                //if (u == null)
+                //{
+                //    return View(model);
+                //}
+
+                if (model.DateEvenement < DateTime.Now.Date)
+                    ModelState.AddModelError(string.Empty, "La date de l'évènement doit être superieure à la date d'aujourd'hui");
+                if (model.DateFinInscription > model.DateEvenement)
+                    ModelState.AddModelError(string.Empty, "La date de fin d'inscription doit être inférieure à la date de l'évènement");
                 
-                if(setEvent(model, u.Utilisateur_Id, u.Token))
+                if(ModelState.IsValid && setEvent(model, u.Utilisateur_Id, u.Token))
                 {
                     return RedirectToAction("Index", "Evenements");
                 }
             }
-
-            ViewBag.Error = "Veuillez remplir tous les champs.";
 
             return View(model);
         }

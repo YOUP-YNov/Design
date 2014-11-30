@@ -51,11 +51,7 @@
         <button type="submit" class="btn btn-primary btnRechercherEvenement" data-bind="click: search">Rechercher</button>
 
         <div class="col-lg-2">
-
-            @using (Html.BeginForm("Creation", "Evenements"))
-            {
-                <button type="submit" class="btn btn-primary btnRechercherEvenement">Créer un évènement</button>
-            }
+            <a href="/Evenements/Creation" class="btn btn-primary btnRechercherEvenement">Créer un évènement</a>
         </div>
     </div>
     <!--
