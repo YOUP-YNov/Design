@@ -36,7 +36,7 @@ namespace YOUP_Design.Controllers
             {
                 evenement = new EvenementCreate()
                 {
-                    Categorie = new EvenementCategorieFront() { Id = 2 },
+                    Categorie = new EvenementCategorieFront() { Id = e.Categorie },
                     TitreEvenement = e.TitreEvenement,
                     DescriptionEvenement = e.DescriptionEvenement,
                     DateEvenement = new DateTime(e.DateEvenement.Year, e.DateEvenement.Month, e.DateEvenement.Day, e.Heure.Hour, e.Heure.Minute, 0),
@@ -256,6 +256,7 @@ namespace YOUP_Design.Controllers
 
         public ActionResult Creation()
         {
+            ViewBag.listeCategorie = webApiEvenementController.getCategorie();
             return View();
         }
 
@@ -282,6 +283,7 @@ namespace YOUP_Design.Controllers
                 }
             }
 
+            ViewBag.listeCategorie = webApiEvenementController.getCategorie();
             return View(model);
         }
 

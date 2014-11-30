@@ -44,6 +44,9 @@ namespace YOUP_Design.Models.Evenement
         [Required]
         public string Adresse { get; set; }
 
+        [Required]
+        public int Categorie { get; set; }
+
         public string Latitude { get; set; }
         public string Longitude { get; set; }
 

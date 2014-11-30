@@ -95,6 +95,16 @@
                     <div id="map-canvas-creation" class="googleProfil"></div>
                     <input type="hidden" name="Latitude" id="Latitude" value="" />
                     <input type="hidden" name="Longitude" id="Longitude" value="" />
+
+                    <div class="form-group">
+                        <label for="Categorie">Catégorie</label>
+                        <select class="form-control" id="Categorie" name="Categorie">
+                            @foreach (YOUP_Design.Classes.Evenement.EvenementCategorieFront categorie in ViewBag.listeCategorie)
+                            {
+                                <option value="@categorie.Id">@categorie.Libelle</option>
+                            }
+                        </select>
+                    </div>
                     <!--<iframe class="googleProfil" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2828.402902027907!2d-0.5660659999999815!3d44.854092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55287c2c0f1d0d%3A0x39d74ef785e4ccb7!2sIng%C3%A9sup+Bordeaux!5e0!3m2!1sfr!2sfr!4v1415376131336" width="400" height="250" frameborder="0" style="border:0"></iframe> -->
                     @*<div class="form-group">
                         <button type="submit" class="btn btn-primary">Inviter des amis</button>
