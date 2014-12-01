@@ -62,7 +62,11 @@
                                     </span>
                                 </div>
                             </form>
-                            <a @if (cookieuser != null) { <text> onclick="location.href = 'http://' + location.host + '/profile/logout';" </text> } else { <text> href="Profile/Login" </text> } class="btn btn-default navbar-btn navbar-right"> @if (cookieuser != null) { <text>Deconnexion</text> } else { <text>Connexion</text>}
+                            <a @if (cookieuser != null) { <text> onclick="location.href = 'http://' + location.host + '/profile/logout';" </text>  } else { <text> onclick="location.href = 'http://' + location.host + '/Profile/Login';" </text>  } class="btn btn-default navbar-btn navbar-right">
+                                @if (cookieuser != null)
+                                { <text>Deconnexion</text> }
+                                else
+                                { <text>Connexion</text>}
                             </a>
                         </div>
                     </div>

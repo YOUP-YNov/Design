@@ -51,7 +51,7 @@ namespace YOUP_Design.Controllers
                 if (u != null)
                 {
                     ProfileCookie.CreateCookie(HttpContext, u);
-                    return RedirectToAction("Index", "Profile");
+                    return RedirectToAction("Index", "Evenements");
                 }
                 ViewBag.Error = "Email / Mot de passe incorrect";
             }
