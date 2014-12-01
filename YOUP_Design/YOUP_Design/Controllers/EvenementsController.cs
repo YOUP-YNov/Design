@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web.Routing;
 
 namespace YOUP_Design.Controllers
 {
@@ -255,10 +256,30 @@ namespace YOUP_Design.Controllers
         #endregion
         //
         // GET: /Evenement/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id, bool registered = false, bool skipCheck = false)
         {
             ViewBag.apiEvenement = ApiEvenement;
             ViewBag.idEvenement = id;
+            ViewBag.IsRegistered = registered;
+
+            if (!skipCheck)
+            {
+                var u = ProfileCookie.GetCookie(HttpContext);
+                if (u != null)
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri(ApiEvenement);
+                        client.DefaultRequestHeaders.Accept.Clear();
+                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        var response = await client.GetAsync("api/Profil/" + u.Utilisateur_Id + "/Evenement/" + id);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            ViewBag.IsRegistered = await response.Content.ReadAsAsync<bool>();
+                        }
+                    }
+                }
+            }
             return View();
         }
 
@@ -287,7 +308,7 @@ namespace YOUP_Design.Controllers
                 if (u == null)
                 {
                     ViewBag.listeCategorie = webApiEvenementController.getCategorie();
-                    ModelState.AddModelError(string.Empty, "Vous devez être connecté pour créer un événement");
+                    ViewBag.Error = "Vous devez être connecté pour créer un événement";
                     return View(model);
                 }
 
@@ -305,6 +326,31 @@ namespace YOUP_Design.Controllers
             ViewBag.listeCategorie = webApiEvenementController.getCategorie();
             return View(model);
         }
+
+
+        public async Task<ActionResult> Subscribe(int id, bool registered)
+        {
+            var u = ProfileCookie.GetCookie(HttpContext);
+            if (u == null)
+            {
+                ViewBag.Error = "Vous devez être connecté pour vous inscrire";
+                return RedirectToAction("Details", new { id = id, registered = registered});
+            }
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ApiEvenement);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await client.PostAsJsonAsync("api/Evenement/"+ id + "/Inscription?token=" + u.Token, new object());
+                if (response.IsSuccessStatusCode)
+                {
+                    registered = !registered;
+                }
+            }
+            return RedirectToAction("Details", new { id = id, registered = registered, skipCheck = true });
+        }
+
 
         //
         // POST: /Evenement/Create
