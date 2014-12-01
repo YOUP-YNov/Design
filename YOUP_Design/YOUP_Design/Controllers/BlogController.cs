@@ -86,27 +86,33 @@ namespace YOUP_Design.Controllers
         public ActionResult Index()
         {
             var u = ProfileCookie.GetCookie(HttpContext);
-            Blog blog = GetBlogUser(u.Utilisateur_Id);
-            if (blog == null)
-                ViewData["hasBlog"] = false;
-            else
-                ViewData["hasBlog"] = true;
-
-            List<Blog> blogs = new List<Blog>();
-            blogs = this.GetBlogs();
-
-            List<UtilisateurSmall> users = new List<UtilisateurSmall>();
-            List<YOUP_Design.Classes.Blog.Categorie> blogsCategory = new List<YOUP_Design.Classes.Blog.Categorie>();
-            foreach(Blog b in blogs)
+            if (u != null)
             {
-                users.Add(GetUserSmall(b.Utilisateur_id));
-                blogsCategory.Add(GetBlogCategorie(b.Categorie_id));
+                Blog blog = GetBlogUser(u.Utilisateur_Id);
+                if (blog == null)
+                    ViewData["hasBlog"] = false;
+                else
+                    ViewData["hasBlog"] = true;
+
+                List<Blog> blogs = new List<Blog>();
+                blogs = this.GetBlogs();
+
+                List<UtilisateurSmall> users = new List<UtilisateurSmall>();
+                List<YOUP_Design.Classes.Blog.Categorie> blogsCategory = new List<YOUP_Design.Classes.Blog.Categorie>();
+                foreach (Blog b in blogs)
+                {
+                    users.Add(GetUserSmall(b.Utilisateur_id));
+                    blogsCategory.Add(GetBlogCategorie(b.Categorie_id));
+                }
+
+                ViewData["BlogSmall"] = blogs as List<Blog>;
+                ViewData["BlogSmallUser"] = users as List<UtilisateurSmall>;
+                ViewData["BlogCategories"] = blogsCategory as List<YOUP_Design.Classes.Blog.Categorie>;
+                return View();
             }
 
-            ViewData["BlogSmall"] = blogs as List<Blog>;
-            ViewData["BlogSmallUser"] = users as List<UtilisateurSmall>;
-            ViewData["BlogCategories"] = blogsCategory as List<YOUP_Design.Classes.Blog.Categorie>;
-            return View();
+            return RedirectToAction("Login", "Profile");
+
         }
 
         public ActionResult ModComment()
