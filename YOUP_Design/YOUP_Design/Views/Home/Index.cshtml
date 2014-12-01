@@ -57,23 +57,32 @@
                     <div class="home-title-border"></div>
                 </div>
                 <div class="row full-width-block">
-                    <div class="col-xs-12 col-sm-6 home-border-col-right">
+                    <div class="col-xs-12 col-sm-6 home-border-col-right">                        
+                        @{ count = 0; }
                         @foreach (var evenement in ViewBag.LastEvents)
                         {
-                            <a href="/Evenements/details/@evenement.Evenement_id" class="home-last-event block">
-                                <div class="col-xs-4 no-padding">
-                                    <div class="home-event-img" style="background-image: url(@if(evenement.ImageUrl != ""){ @evenement.ImageUrl } else { <text>/Images/default_evenement.jpg</text> });"></div>
-                                </div>
-                                <div class="col-xs-8">
-                                    <h2>@evenement.TitreEvenement</h2>
-                                    <h3>par: @evenement.OrganisateurPseudo</h3>
-                                    <h4>le @evenement.DateEvenement</h4>
-                                    <div class="home-event-categories">
-                                        <span class="label label-default">@evenement.Categorie_Libelle</span>
+                            if (count < 3)
+                            {
+                                <a href="/Evenements/details/@evenement.Evenement_id" class="home-last-event block">
+                                    <div class="col-xs-4 no-padding">
+                                        <div class="home-event-img" style="background-image: url(@if(evenement.ImageUrl != ""){ @evenement.ImageUrl } else { <text>/Images/default_evenement.jpg</text> });"></div>
                                     </div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </a>
+                                    <div class="col-xs-8">
+                                        <h2>@evenement.TitreEvenement</h2>
+                                        <h3>par: @evenement.OrganisateurPseudo</h3>
+                                        <h4>le @evenement.DateEvenement</h4>
+                                        <div class="home-event-categories">
+                                            <span class="label label-default">@evenement.Categorie_Libelle</span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            count++;
                         }
                     </div>
                     <div class="col-sm-6 hidden-xs">
