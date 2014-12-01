@@ -38,25 +38,28 @@
     <div class="row">
         <div class="col-lg-12 text-center border-right contentDetailsEvent">
             <h1 data-bind="text: titre"></h1>
-            <p data-bind="text: organisateur"></p>
+            Par  <span data-bind="text: organisateur"></span>
             <!--<img id="idPhotoProfil" src="/Images/default_profil.png" alt="Image de l'auteur" class="img-circle imgauteur" />-->
             <img id="idPhotoProfil" alt="Image de l'auteur" class="img-circle imgauteur" data-bind="attr: {'src': imgOrganisateur}" />
-            <img id="idPhotoEvent" alt="Image de l'evenement" class="imgevent" data-bind="attr: {'src': imgEvt}" />
+            <div class="col-lg-12">
+                <img id="idPhotoEvent" alt="Image de l'evenement" class="imgevent" data-bind="attr: {'src': imgEvt}" />
+            </div>
+            
         </div>
     </div>
     <div class="row margtop">
         <div class="col-lg-offset-2 col-lg-4 text-center border-right">
-            <h4>Description</h4>
+            <h4><strong>Description</strong></h4>
             <p id="descEvent" data-bind="text: description"></p>
-            <h4 class="inline">Prix :</h4>
+            <h4 class="inline"><strong>Prix : </strong></h4>
             <p class="inline" data-bind="text: prix"></p><br/><br />
             @*<h4 class="inline">Mots clés :</h4>
             <p class="inline" data-bind="text: hashTag"></p><br /><br />*@
-            <h4 class="inline">Catégorie :</h4>
+            <h4 class="inline"><strong>Catégorie : </strong></h4>
             <p class="inline" data-bind="text: categorie"></p>
         </div>
         <div class="col-lg-4 text-center border-right">
-            <h4>Lieu de l'évènement</h4>
+            <h4><strong>Adresse de l'évènement</strong></h4>
             <p><span data-bind="text: adresse().adresse"></span>, <span data-bind="text: adresse().codePostale"></span> <span data-bind="text: adresse().ville"></span></p>
             <div id="map-canvas" class="googleProfil" ></div>
         </div>
@@ -75,7 +78,7 @@
     </div>
     <div class="row">
         <div class="col-lg-offset-2 col-lg-8">
-            <div class="col-lg-7" style="text-align: right;">
+            <div class="col-lg-7" style="text-align: right; margin-bottom:30px;">
                 @if (!ViewBag.IsRegistered)
                 {
                     <a href="/Evenements/Subscribe?id=@ViewBag.idEvenement&registered=false" class="btn btn-primary">S'inscrire</a>
@@ -88,10 +91,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-offset-2 col-lg-8">
-            <div class="decoEvent"></div>
-        </div>
 </div>
 
 <!--<div class="container divAllEvenement">

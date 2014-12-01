@@ -434,6 +434,16 @@ $(function () {
         $(this).find(":file").click();
     });
 
+    function noCharSpec(s) {
+        var temp = s.replace(/[àâä]/gi, "a");
+        temp = temp.replace(/[éèêë]/gi, "e");
+        temp = temp.replace(/[îï]/gi, "i");
+        temp = temp.replace(/[ôö]/gi, "o");
+        temp = temp.replace(/[ùûü]/gi, "u");
+        temp = temp.replace(/[ ]/gi, "_");
+        return temp;
+    }
+
     $(":file").change(function () {
         var d = new FormData();
         var el = $(this);
