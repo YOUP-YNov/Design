@@ -54,10 +54,31 @@ var evenementModule = (function () {
                     markers.push(marker);
                     var latitude = marker.getPosition().lat();
                     var longitude = marker.getPosition().lng();
-                    //alert(marker.Adresse());
+
+                    var address = results[0].address_components;
+                    var addressNb = "";
+                    var addressRoute = "";
+                    var addressCity = "";
+                    var addressZip = "";
+                    var addressCountry = "";
+
+                    for (var i in address)
+                    {
+                        if (address[i].types[0] == "street_number" && address[i].long_name)
+                            addressNb = address[i].long_name;
+                        else if (address[i].types[0] == "route" && address[i].long_name)
+                            addressRoute = address[i].long_name;
+                        else if (address[i].types[0] == "locality" && address[i].long_name)
+                            addressCity = address[i].long_name;
+                        else if (address[i].types[0] == "postal_code" && address[i].long_name)
+                            addressZip = address[i].long_name;
+                        else if (address[i].types[0] == "country" && address[i].long_name)
+                            addressCountry = address[i].long_name;
+                    }
 
                     $('#Latitude').val(latitude);
                     $('#Longitude').val(longitude);
+                    $('#Address').val(addressNb + " " + addressRoute + ", " + addressZip + ", " + addressCity + ", " + addressCountry);
                     
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);

@@ -28,7 +28,7 @@ namespace YOUP_Design.Controllers
 
         public async Task<bool> setEvent(EventCreation e, int id_utilisateur, Guid token)
         {
-            string[] adr = e.Adresse.Split(',');
+            string[] adr = e.Address.Split(',');
 
             decimal lat;
             Decimal.TryParse(e.Latitude, NumberStyles.Float, CultureInfo.InvariantCulture,  out lat);
@@ -55,10 +55,10 @@ namespace YOUP_Design.Controllers
                     HashTag = new List<string>(),
                     EventAdresse = new EventLocationFront()
                     {
-                        Adresse = adr[0],
-                        Ville = adr[1],
-                        CodePostale = "33300",
-                        Pays = "France",
+                        Adresse = adr.Length > 0 ? adr[0] : string.Empty,
+                        Ville = adr.Length > 1 ? adr[1] : string.Empty,
+                        CodePostale = adr.Length > 2 ? adr[2] : string.Empty,
+                        Pays = adr.Length > 3 ? adr[3] : string.Empty,
                         Latitude = lat,
                         Longitude = lon,
                         Nom = string.Empty
@@ -73,19 +73,6 @@ namespace YOUP_Design.Controllers
                 },
                 friends = new List<long>()
             };
-
-            //WebClient client = new WebClient();
-            //client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
-            //string json = JsonConvert.SerializeObject(customEvent);
-            //try
-            //{
-            //    string result = client.UploadString(ApiEvenement + "api/Evenement?token=" + token.ToString(), "=" + json);
-            //}
-            //catch (WebException)
-            //{
-            //    return false;
-            //}
-            //return true;
 
             using (var client = new HttpClient())
             {
