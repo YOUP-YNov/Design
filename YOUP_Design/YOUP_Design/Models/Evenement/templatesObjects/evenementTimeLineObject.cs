@@ -47,7 +47,7 @@ namespace YOUP_Design.Models.Evenement.templatesObjects
             this.imgOrganisateur = evt.OrganisateurImageUrl;
             this.organisateur = evt.OrganisateurPseudo;
             this.hashTag = "";
-            this.dateFinInscription = "";
+            this.dateFinInscription = evt.DateFinInscription.ToShortDateString();
             this.premium = evt.Premium;
             //attribut public
             this.visible = true;// evt.Public;
