@@ -72,8 +72,8 @@
             <p>Nombre de participants : <span data-bind="text: nbParticipant"></span> / <span data-bind="text: nbMaxParticipant"></span>  </p>
             <p>Date : <span data-bind="text: date" /></p>
         </div>
-        <div class="col-lg-4 text-center">
-            <p>Date de fin d'inscription : <span data-bind="text: dateFinInscription"/></p>
+        <div class="col-lg-4 text-center" data-bind="visible: showDateFin">
+            <p>Date de fin d'inscription : <span data-bind="text: dateFinInscription" /></p>
         </div>
     </div>
     <div class="row">

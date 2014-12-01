@@ -110,6 +110,15 @@ var evenementModule = (function () {
         //attribut public
         self.public = ko.observable(data.visible);
         self.hashTag = ko.observable(data.hashTag);
+        self.showDateFin =ko.observable(true);
+        self.calculShowDateFin = function ()
+        {
+            if (self.dateFinInscription() != "") {
+                self.showDateFin(true);
+            } else {
+                self.showDateFin(false);
+            }
+        }
 
         self.show = ko.observable(true);
 
@@ -123,6 +132,7 @@ var evenementModule = (function () {
         self.setShow = function (show) {
             self.show(show);
         }
+        self.calculShowDateFin();
     }
 
     function adresseEvt(data) {
