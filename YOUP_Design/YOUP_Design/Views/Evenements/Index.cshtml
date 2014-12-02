@@ -20,7 +20,7 @@
 
     <div class="rechercheEvenement" style="display: flex;">
         <div class=" moduleRechercheEvenement form-group input-group">
-        <input id="txtRechercheEvt" type="text" class="form-control" placeholder="Rechercher dans évènement">
+        <input id="txtRechercheEvt" type="text" class="form-control" placeholder="Rechercher par mots clés">
     </div>
 
         <div class="selectCategorieEvent">
@@ -82,8 +82,8 @@
                         <!-- code à générer pour un event -->
                         <div data-bind="foreach: { data: evenementDate.listeEvenements, as: 'evt' }">
                             <a class="row moreOneEvent" href="#" data-bind="'evenementId': idEvenement, visible: show, click: goDetail">
-                                <div class="col-lg-2">
-                                    <img class="photoTimelineEvent img-responsive img-rounded text-center" src="" alt="photo evenement" data-bind="attr: {src: evt.imgEvt()}">
+                                <div class="col-lg-2 text-center" >
+                                    <img class="photoTimelineEvent img-responsive img-rounded" src="" alt="photo evenement" data-bind="attr: {src: evt.imgEvt()}">
                                 </div>
                                 <div class="col-lg-10">
                                     <span class="titreTimelineEvent" data-bind="text: evt.titre"></span>

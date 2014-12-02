@@ -60,9 +60,15 @@
                 CKEDITOR.replace('editor1');
             </script>
             <input type="hidden" name="idTopic" id="idTopic" value="@Request["id"]" />
+            
+            <div class="row">
+                <div class="col-lg-offset-4 col-lg-4" style="margin-top :30px; margin-bottom:30px;">
+                    <a href="Topics?id=@top.Sujet_id" class="btn btn-default btn-defaultProfil">Retour</a>
+                    <input type="submit" class="btn btn-primary" value="Envoyer" />
+                </div>
 
-            <br /><center> <div><input type="submit" class="btn btn-primary" value="Envoyer" /></div></center>
-            <br />
+            </div>
+
         </div>
     }
     <a href="#hautpage"><img src="http://redecouvrirdieu.com/img/B1.svg" alt="top" /></a>
