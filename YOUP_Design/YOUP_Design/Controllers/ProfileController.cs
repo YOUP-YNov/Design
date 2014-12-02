@@ -94,7 +94,8 @@ namespace YOUP_Design.Controllers
                 });
                 if(u != null)
                 {
-                    ProfileCookie.CreateCookie(HttpContext, u);
+                    var nu = await AuthAPIConnecteur.Post(model.Email, model.Password);
+                    ProfileCookie.CreateCookie(HttpContext, nu);
                     return RedirectToAction("Index", "Profile");
                 }
                 ViewBag.Error = "Impossible de creer le compte à partir des données renseigné.";
