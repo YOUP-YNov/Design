@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -20,9 +21,9 @@ namespace YOUP_Design.Controllers
     public class BlogController : Controller
     {
 
-        const string blogApiUrl = "http://youp-blog.azurewebsites.net/";
-        const string eventApiUrl = "http://youp-evenementapi.azurewebsites.net/";
-        const string profileApiUrl = "http://aspmoduleprofil.azurewebsites.net/";
+        string blogApiUrl = ConfigurationManager.AppSettings["ApiBlog"];
+        string eventApiUrl = ConfigurationManager.AppSettings["ApiEvenement"];
+        string profileApiUrl = ConfigurationManager.AppSettings["ApiProfil"];
 
         public T Execute<T>(RestRequest request, string url) where T : new()
         {

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using RestSharp;
 using System.Globalization;
 using YOUP_Design.Models.Profile;
+using System.Configuration;
 namespace YOUP_Design.Controllers
 {
     /// <summary>
@@ -28,7 +29,7 @@ namespace YOUP_Design.Controllers
         /// <returns></returns>
         public T Execute<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://forumyoup.apphb.com/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiForum"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
@@ -40,7 +41,7 @@ namespace YOUP_Design.Controllers
         /// <returns></returns>
         public T ExecuteProfil<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiProfil"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }

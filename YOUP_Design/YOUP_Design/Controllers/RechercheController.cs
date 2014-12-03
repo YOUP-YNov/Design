@@ -11,6 +11,7 @@ using YOUP_Design.Classes.Recherche;
 using YOUP_Design.Classes.Profile;
 using YOUP_Design.Models.Evenement.webApiObjects;
 using YOUP_Design.Classes.Blog;
+using System.Configuration;
 
 namespace YOUP_Design.Controllers
 {
@@ -18,25 +19,25 @@ namespace YOUP_Design.Controllers
     {
         public T Execute<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://youp-recherche.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiRecherche"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
         public T ExecuteUser<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiProfil"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
         public T ExecuteEvent<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiEvenement"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
         public T ExecuteBlog<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://youp-blog.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiBlog"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }

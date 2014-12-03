@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using RestSharp;
+using System.Configuration;
 
 namespace YOUP_Design.Controllers
 {
@@ -19,21 +20,21 @@ namespace YOUP_Design.Controllers
     {
         public T ProfilRequest<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiProfil"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
 
         public T EventRequest<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://youp-evenementapi.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiEvenement"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
 
         public T BlogRequest<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://youp-blog.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiBlog"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
